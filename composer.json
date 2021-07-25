@@ -11,6 +11,6 @@
         "google/cloud-firestore": "^1.19",
         "minishlink/web-push": "^6.0",
         "aws/aws-sdk-php": "^3.185",
-        "php": "^c7.3"
+        "php": "^7.3"
     }
 }

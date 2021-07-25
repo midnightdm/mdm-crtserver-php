@@ -1,6 +1,9 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
+include_once('classes/Firestore.class.php');
+include_once('d-classes/Dbh.class.php');
+
 /* * * * * * * * *
  * ImportPassagesModel Class
  * daemon/classes/AlertsModel.class.php

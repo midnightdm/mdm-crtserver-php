@@ -1,0 +1,530 @@
+[18-Jul-2021 19:03:41 UTC] PHP Warning:  require_once(E:\xampp\htdocs\mdm-crt2-server\classes../vendor/autoload.php): failed to open stream: No such file or directory in E:\xampp\htdocs\mdm-crt2-server\classes\firestore.php on line 3
+[18-Jul-2021 19:03:41 UTC] PHP Fatal error:  require_once(): Failed opening required 'E:\xampp\htdocs\mdm-crt2-server\classes../vendor/autoload.php' (include_path='.;E:\xampp\php\includes') in E:\xampp\htdocs\mdm-crt2-server\classes\firestore.php on line 3
+[18-Jul-2021 19:05:52 UTC] PHP Warning:  file_get_contents(E:\xampp\htdocs\mdm-crt2-server\classes/../config/mdm-qcrt-demo-1-cd99971bc002.json): failed to open stream: No such file or directory in E:\xampp\htdocs\mdm-crt2-server\classes\firestore.php on line 11
+[18-Jul-2021 22:56:47 UTC] PHP Parse error:  syntax error, unexpected '}' in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 25
+[18-Jul-2021 22:57:31 UTC] PHP Warning:  Illegal string offset 'name' in E:\xampp\htdocs\mdm-crt2-server\classes\Firestore.class.php on line 23
+[18-Jul-2021 22:58:47 UTC] PHP Notice:  Undefined index: name in E:\xampp\htdocs\mdm-crt2-server\classes\Firestore.class.php on line 23
+[18-Jul-2021 23:01:22 UTC] PHP Notice:  Undefined index: name in E:\xampp\htdocs\mdm-crt2-server\classes\Firestore.class.php on line 23
+[18-Jul-2021 23:02:31 UTC] PHP Notice:  Undefined index: name in E:\xampp\htdocs\mdm-crt2-server\classes\Firestore.class.php on line 23
+[18-Jul-2021 23:08:21 UTC] PHP Notice:  Undefined index: name in E:\xampp\htdocs\mdm-crt2-server\classes\Firestore.class.php on line 23
+[18-Jul-2021 23:37:06 UTC] PHP Notice:  Undefined property: PlotDaemon::$localVesselFilter in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 66
+[18-Jul-2021 23:37:09 UTC] PHP Notice:  Undefined property: PlotDaemon::$localVesselFilter in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 66
+[18-Jul-2021 23:37:10 UTC] PHP Notice:  Undefined property: PlotDaemon::$localVesselFilter in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 66
+[18-Jul-2021 23:37:10 UTC] PHP Notice:  Undefined variable: dest in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 76
+[18-Jul-2021 23:37:10 UTC] PHP Notice:  Undefined variable: length in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 77
+[18-Jul-2021 23:37:10 UTC] PHP Notice:  Undefined variable: width in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 78
+[18-Jul-2021 23:37:10 UTC] PHP Notice:  Undefined variable: draft in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 79
+[18-Jul-2021 23:37:10 UTC] PHP Notice:  Undefined variable: callsign in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 80
+[18-Jul-2021 23:37:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getNow() in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:300
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(96): LiveScan->__construct(1626651430, '', 366970360, 41.826835, -90.18823, 0, 346.2, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS9bd...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(116): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(83): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(52): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 300
+[18-Jul-2021 23:51:41 UTC] PHP Notice:  Undefined variable: kmlUrl in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 73
+[18-Jul-2021 23:51:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getVessel() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:302
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(96): LiveScan->__construct(1626652309, '', 366970360, 41.827501666667, -90.189353333333, 2.9, 262.1, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P0MIS9E`...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(170): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(137): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(25): PlotDaemon->start()
+#8 {main}
+  t in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 302
+[18-Jul-2021 23:55:13 UTC] PHP Notice:  Undefined variable: kmlUrl in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 73
+[18-Jul-2021 23:55:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\FirestoreClient::doc() in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php:24
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(116): LiveScanModel->insertLiveScan(Object(LiveScan))
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(86): LiveScan->insertNewRecord()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(96): LiveScan->__construct(1626652529, '', 366970360, 41.827601666667, -90.189416666667, 0.3, 51.3, Object(PlotDaemon))
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P03IS9DL...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(170): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-s in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 24
+[19-Jul-2021 00:04:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\CollectionReference::doc() in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php:24
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(116): LiveScanModel->insertLiveScan(Object(LiveScan))
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(86): LiveScan->insertNewRecord()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(96): LiveScan->__construct(1626653089, '', 366970360, 41.827995, -90.187811666667, 3.2, 61.2, Object(PlotDaemon))
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P0PIS9jR...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(170): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-ser in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 24
+[19-Jul-2021 00:08:50 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Google\Cloud\Firestore\DocumentReference::set() must be of the type array, string given, called in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 24 and defined in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\DocumentReference.php:222
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php(24): Google\Cloud\Firestore\DocumentReference->set('{"liveID":null,...')
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(116): LiveScanModel->insertLiveScan(Object(LiveScan))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(86): LiveScan->insertNewRecord()
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(96): LiveScan->__construct(1626653330, '', 366970360, 41.82885, -90.183823333333, 6.7, 180.9, Object(PlotDaemon))
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\DocumentReference.php on line 222
+[19-Jul-2021 00:14:09 UTC] PHP Notice:  Trying to get property 'liveVesselID' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 24
+[19-Jul-2021 00:14:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getVesselLastDetectedTS() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:88
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(96): LiveScan->__construct(1626653649, '', 366970360, 41.824996666667, -90.184656666667, 0, 229.9, Object(PlotDaemon))
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS:ed...', 28, 0, '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(170): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(137): PlotDaemon->run()
+#6 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(25): PlotDaemon->start()
+#7 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 88
+[19-Jul-2021 00:17:09 UTC] PHP Notice:  Undefined property: LiveScan::$lat in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 87
+[19-Jul-2021 00:17:09 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function LiveScan::update(), 6 passed in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 88 and exactly 7 expected in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:147
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(88): LiveScan->update(1626653829, '', 41.824995, -90.184653333333, 0, 209.6)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS:eh...', 28, 0, '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(170): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(137): PlotDaemon->run()
+#6 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(25): PlotDaemon->start()
+#7 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 147
+[19-Jul-2021 00:29:31 UTC] PHP Notice:  Undefined variable: dest in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 168
+[19-Jul-2021 00:29:31 UTC] PHP Fatal error:  Uncaught Error: Class 'Location' not found in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:391
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(174): LiveScan->calculateLocation()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(88): LiveScan->update(1626654569, '', 366970360, 41.824498333333, -90.18464, 0, 117.9)
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS:f0...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(170): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(137): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(25): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 391
+[19-Jul-2021 00:32:12 UTC] PHP Notice:  Trying to get property 'description' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 186
+[19-Jul-2021 00:32:12 UTC] PHP Notice:  Undefined variable: live in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 29
+[19-Jul-2021 00:32:12 UTC] PHP Notice:  Undefined variable: live in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 29
+[19-Jul-2021 00:32:12 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Google\Cloud\Firestore\DocumentReference::set() must be of the type array, null given, called in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 29 and defined in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\DocumentReference.php:222
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php(29): Google\Cloud\Firestore\DocumentReference->set(NULL, Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(203): LiveScanModel->updateLiveScan(Array)
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(177): LiveScan->updateRecord()
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(88): LiveScan->update(1626654731, '', 366970360, 41.824498333333, -90.184625, 0, 164.3)
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS:fB...', 28, 0, '') in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\DocumentReference.php on line 222
+[19-Jul-2021 01:44:08 UTC] PHP Parse error:  syntax error, unexpected '**' (T_POW) in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 81
+[19-Jul-2021 01:44:40 UTC] PHP Warning:  include_once(classes/VesselsModel.class.php): failed to open stream: No such file or directory in E:\xampp\htdocs\mdm-crt2-server\plotserver.php on line 13
+[19-Jul-2021 01:44:40 UTC] PHP Warning:  include_once(): Failed opening 'classes/VesselsModel.class.php' for inclusion (include_path='.;E:\xampp\php\includes') in E:\xampp\htdocs\mdm-crt2-server\plotserver.php on line 13
+[19-Jul-2021 02:00:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getVessel() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:304
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626660027, '', 367143910, 41.691181666667, -90.318685, 3.3, 49.3, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15N8cqP00QqRSLb...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(170): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(137): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(27): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 304
+[19-Jul-2021 02:02:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\DocumentReference::exists() in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php:17
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(304): VesselsModel->getVessel(367143910)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626660169, '', 367143910, 41.692911666667, -90.316873333333, 3.4, 30.4, Object(PlotDaemon))
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15N8cqP00RqRSv`...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-server\classe in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php on line 17
+[19-Jul-2021 02:20:15 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php:18
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(304): VesselsModel->getVessel(366970360)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626661210, '', 366970360, 41.824228333333, -90.194983333333, 0, 12.6, Object(PlotDaemon))
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS7d4...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run()
+ in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php on line 18
+[19-Jul-2021 02:22:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getElementsByTagName() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:329
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626661330, '', 366970360, 41.824213333333, -90.194998333333, 0, 29.9, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS7cj...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(27): PlotDaemon->start()
+#8 {m in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 329
+[19-Jul-2021 02:32:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getElementsByTagName() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:330
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626661931, '', 366970360, 41.8242, -90.194988333333, 0, 148.5, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS7cv...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(27): PlotDaemon->start()
+#8 {main}
+   in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 330
+[19-Jul-2021 02:34:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getElementsByTagName() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:330
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626662051, '', 366970360, 41.824178333333, -90.194978333333, 0, 155, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS7d:...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(27): PlotDaemon->start()
+#8 {ma in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 330
+[19-Jul-2021 02:36:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getElementsByTagName() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:330
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(172): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(89): LiveScan->update(1626662189, '', 366970360, 41.824156666667, -90.194935, 0, 161)
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS7dv...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(27): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 330
+[22-Jul-2021 00:32:50 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getElementsByTagName() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:331
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626913954, '', 366963520, 41.895825, -90.155631666667, 0.7, 200, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Muc@0007qSC=r...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(27): PlotDaemon->start()
+#8 {main}
+ in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 331
+[22-Jul-2021 00:35:52 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 320
+[22-Jul-2021 00:36:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getElementsByTagName() on null in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:332
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626914187, '', 367505660, 41.845428333333, -90.181553333333, 2.5, 207, Object(PlotDaemon))
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15NNhw<00IqS;Wp...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(27): PlotDaemon->start()
+#8 { in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 332
+[22-Jul-2021 01:25:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Aws\Credentials\Credentials' not found in E:\xampp\htdocs\mdm-crt2-server\classes\crtfunctions_helper.php:71
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(348): saveImage(367505660)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1626917087, '', 367505660, 41.806941666667, -90.182426666667, 4.5, 203, Object(PlotDaemon))
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15NNhw<OheqS;GP...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(171): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(138): PlotDaemon->run in E:\xampp\htdocs\mdm-crt2-server\classes\crtfunctions_helper.php on line 71
+[23-Jul-2021 01:34:19 UTC] PHP Fatal error:  Uncaught Error: Class 'AlertsModel' not found in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php:33
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(132): PlotDaemon->setup()
+#1 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(29): PlotDaemon->start()
+#2 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 33
+[23-Jul-2021 01:49:27 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php:19
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(306): VesselsModel->getVessel(366970360)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(81): LiveScan->lookUpVessel()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(97): LiveScan->__construct(1627004967, '', 366970360, 41.825918333333, -90.192498333333, 3.8, 234, Object(PlotDaemon))
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P0VIS8Jb...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(172): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(139): PlotDaemon->run() in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php on line 19
+[23-Jul-2021 01:52:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Location::setPoint() in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php:103
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(403): Location->calculate()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(174): LiveScan->calculateLocation()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(89): LiveScan->update(1627005163, '', 369970630, 41.896495, -90.155931666667, 102.3, 360)
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101100...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Pm=iP0?wqSC8B...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(172): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(139): PlotDaemon->run()
+#8 E:\xampp\htdocs\mdm- in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 103
+[23-Jul-2021 01:57:31 UTC] PHP Fatal error:  Uncaught Error: Access to undeclared static property: ZONE::$mbeaver in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php:154
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(403): Location->calculate()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(174): LiveScan->calculateLocation()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(89): LiveScan->update(1627005450, '', 366970360, 41.824703333333, -90.19375, 0, 117)
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS83<...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(172): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(139): PlotDaemon->run()
+#8 E:\xampp\htdocs\md in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 154
+[23-Jul-2021 02:00:17 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:00:24 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:00:24 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:00:59 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:01:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:01:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:01:24 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:01:39 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:01:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:01:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:02:00 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:02:01 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:02:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:02:24 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:02:25 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:02:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:02:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:02:59 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:03:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:03:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:03:21 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:03:22 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:03:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:03:39 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:03:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:03:59 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:04:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:04:19 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:04:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:04:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:04:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:04:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:05:00 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:05:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:05:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:05:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:05:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:05:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:05:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:05:39 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:05:40 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:05:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:05:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:05:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:06:00 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:06:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:06:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:06:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:06:21 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:06:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:06:24 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:06:24 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:06:37 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:06:40 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:06:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:06:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:07:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:07:05 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:07:18 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:07:21 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:07:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:07:37 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:07:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:07:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:07:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:07:59 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:08:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:08:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:08:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:08:25 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:08:37 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:08:40 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:08:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:08:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:09:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:09:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:09:04 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:09:05 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:09:19 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:09:22 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:09:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:09:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:09:58 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:00 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:10:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:19 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:10:21 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:34 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:37 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:10:40 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:10:59 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:11:00 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:11:02 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:11:03 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:11:23 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:11:25 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:11:36 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:11:37 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:11:40 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:11:42 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:11:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 02:11:43 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 02:11:50 UTC] PHP Notice:  Undefined property: LiveScan::$liveType in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 03:20:03 UTC] PHP Fatal error:  Uncaught Error: Cannot access protected property PlotDaemon::$lastCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php:103
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mvvkd000ISDvH...', 28, 0, '')
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(167): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(134): PlotDaemon->run()
+#5 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#6 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 103
+[23-Jul-2021 03:24:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method PlotDaemon::removeOldPlots() in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php:105
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mvvkd000ISDuh...', 28, 0, '')
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(167): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(134): PlotDaemon->run()
+#5 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#6 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 105
+[23-Jul-2021 03:49:20 UTC] PHP Parse error:  syntax error, unexpected '>' in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 104
+[23-Jul-2021 03:49:54 UTC] PHP Parse error:  syntax error, unexpected ';' in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 104
+[23-Jul-2021 03:50:27 UTC] PHP Fatal error:  Uncaught Error: Call to protected method PlotDaemon::removeOldScans() from context 'MyAIS' in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php:105
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000011000101011...', '')
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('35Mvsu<00rqS;5f...', 28, 0, '')
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,35...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(167): AIS->process_ais_buf('!AIVDM,1,1,,,35...')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(134): PlotDaemon->run()
+#5 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#6 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 105
+[23-Jul-2021 04:02:02 UTC] PHP Fatal error:  Uncaught Exception: Invalid timestamp  in LiveScan:setTimeStamp(). in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php:113
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(61): LiveScan->setTimestamp(NULL, 'liveInitTS')
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(370): LiveScan->__construct(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, Object(PlotDaemon), true, Array)
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(134): PlotDaemon->reloadSavedScans()
+#3 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#4 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 113
+[23-Jul-2021 04:08:41 UTC] PHP Notice:  Trying to get property 'vesselType' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 126
+[23-Jul-2021 04:08:41 UTC] PHP Warning:  in_array() expects parameter 2 to be array, null given in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 190
+[23-Jul-2021 04:08:44 UTC] PHP Notice:  Trying to get property 'vesselType' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 04:08:44 UTC] PHP Warning:  in_array() expects parameter 2 to be array, null given in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 190
+[23-Jul-2021 04:08:47 UTC] PHP Notice:  Trying to get property 'vesselType' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 04:08:47 UTC] PHP Warning:  in_array() expects parameter 2 to be array, null given in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 190
+[23-Jul-2021 04:09:07 UTC] PHP Notice:  Trying to get property 'vesselType' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 138
+[23-Jul-2021 04:09:09 UTC] PHP Warning:  in_array() expects parameter 2 to be array, null given in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 190
+[24-Jul-2021 00:12:55 UTC] PHP Notice:  Trying to get property 'textContent' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 338
+[24-Jul-2021 00:12:56 UTC] PHP Fatal error:  Uncaught Google\Cloud\Core\Exception\BadRequestException: {
+    "message": "Document name \"projects\/mdm-qcrt-demo-1\/databases\/(default)\/documents\/Vessels\/\" has invalid trailing \"\/\".",
+    "code": 3,
+    "status": "INVALID_ARGUMENT",
+    "details": []
+} in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php:257
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php(146): Google\Cloud\Core\GrpcRequestWrapper->convertToGoogleException(Object(Google\ApiCore\ApiException))
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcTrait.php(79): Google\Cloud\Core\GrpcRequestWrapper->send(Array, Array, Array)
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\Connection\Grpc.php(161): Google\Cloud\Firestore\Connection\Grpc->send(Array, Array)
+#3 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(439): Google\Cloud\Firestore\Connection\Grpc->commit(Array)
+#4 E:\xampp\htdocs in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php on line 257
+[24-Jul-2021 00:33:34 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:34 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:34 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:34 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:34 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined property: LiveScan::$liveCleanUp in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 310
+[24-Jul-2021 00:33:35 UTC] PHP Notice:  Undefined variable: liveID in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 38
+[24-Jul-2021 00:33:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\DocumentReference::exists() in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php:39
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(346): LiveScanModel->deleteLiveScan(NULL)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(105): PlotDaemon->removeOldScans()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IRpC2...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(167): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(134): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 39
+[24-Jul-2021 01:06:40 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php:19
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(307): VesselsModel->getVessel(369970630)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php(173): LiveScan->lookUpVessel()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(89): LiveScan->update(1627088800, '', 369970630, 41.896485, -90.155945, 102.3, 360)
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101100...', '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Pm=iP0?wqSC82...', 28, 0, '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(168): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#7 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(135): PlotDaemon->run()
+#8 E:\xampp\htdocs\mdm-crt2-serve in E:\xampp\htdocs\mdm-crt2-server\classes\VesselsModel.class.php on line 19
+[24-Jul-2021 01:08:30 UTC] PHP Notice:  Undefined variable: liveID in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 38
+[24-Jul-2021 01:08:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\DocumentReference::exists() in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php:39
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(347): LiveScanModel->deleteLiveScan(NULL)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(105): PlotDaemon->removeOldScans()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IRpBL...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(168): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(135): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 39
+[24-Jul-2021 01:48:24 UTC] PHP Notice:  Undefined property: LiveScan::$liveID in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 347
+[24-Jul-2021 01:48:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\DocumentReference::exists() in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php:39
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(347): LiveScanModel->deleteLiveScan(NULL)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(105): PlotDaemon->removeOldScans()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000101000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('55Mv5v000001L@;...', 71, 2, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,2,2,5,,L...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(168): AIS->process_ais_buf('!AIVDM,2,1,5,,5...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(135): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 39
+[24-Jul-2021 01:50:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\DocumentReference::exists() in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php:39
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(347): LiveScanModel->deleteLiveScan(366963460)
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(105): PlotDaemon->removeOldScans()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IRpBR...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(168): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(135): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(30): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScanModel.class.php on line 39
+[24-Jul-2021 03:36:17 UTC] PHP Parse error:  syntax error, unexpected '"downriver bravo was reached.\' (T_CONSTANT_ENCAPSED_STRING) in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 316
+[24-Jul-2021 04:12:15 UTC] PHP Parse error:  syntax error, unexpected 'this' (T_STRING), expecting variable (T_VARIABLE) or '{' or '$' in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 338
+[24-Jul-2021 04:13:01 UTC] PHP Warning:  include_once(classes/PassagesModel.class.php): failed to open stream: No such file or directory in E:\xampp\htdocs\mdm-crt2-server\plotserver.php on line 18
+[24-Jul-2021 04:13:01 UTC] PHP Warning:  include_once(): Failed opening 'classes/PassagesModel.class.php' for inclusion (include_path='.;E:\xampp\php\includes') in E:\xampp\htdocs\mdm-crt2-server\plotserver.php on line 18
+[24-Jul-2021 04:13:03 UTC] PHP Fatal error:  Uncaught Error: Class 'PassagesModel' not found in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php:36
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(135): PlotDaemon->setup()
+#1 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(31): PlotDaemon->start()
+#2 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 36
+[24-Jul-2021 04:14:53 UTC] PHP Fatal error:  Class 'Firebase' not found in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 9
+[24-Jul-2021 04:17:33 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ',' or ';' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 375
+[24-Jul-2021 04:38:15 UTC] PHP Parse error:  syntax error, unexpected ':' in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 136

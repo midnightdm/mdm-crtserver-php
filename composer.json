@@ -1,0 +1,7 @@
+{
+    "require": {
+        "google/cloud-firestore": "^1.19",
+        "minishlink/web-push": "^6.0",
+        "aws/aws-sdk-php": "^3.185"
+    }
+}

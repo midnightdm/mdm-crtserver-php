@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d152432ea03c7999a53e385c45bf1180",
+    "content-hash": "7fed286b651c3afb7a8a239fe4782e19",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.185.18",
+            "version": "3.185.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "726d042a6e445557a5709735b494886d4f12025a"
+                "reference": "41aae0221d449b29e400cfead948a6b0343756db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/726d042a6e445557a5709735b494886d4f12025a",
-                "reference": "726d042a6e445557a5709735b494886d4f12025a",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/41aae0221d449b29e400cfead948a6b0343756db",
+                "reference": "41aae0221d449b29e400cfead948a6b0343756db",
                 "shasum": ""
             },
             "require": {
@@ -92,9 +92,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.185.18"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.185.20"
             },
-            "time": "2021-07-21T18:18:25+00:00"
+            "time": "2021-07-23T18:16:11+00:00"
         },
         {
             "name": "brick/math",
@@ -647,16 +647,16 @@
         },
         {
             "name": "grpc/grpc",
-            "version": "1.38.0",
+            "version": "1.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grpc/grpc-php.git",
-                "reference": "e1687963fb0b087d0c70e75d3bfff9062eaeb215"
+                "reference": "101485614283d1ecb6b2ad1d5b95dc82495931db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grpc/grpc-php/zipball/e1687963fb0b087d0c70e75d3bfff9062eaeb215",
-                "reference": "e1687963fb0b087d0c70e75d3bfff9062eaeb215",
+                "url": "https://api.github.com/repos/grpc/grpc-php/zipball/101485614283d1ecb6b2ad1d5b95dc82495931db",
+                "reference": "101485614283d1ecb6b2ad1d5b95dc82495931db",
                 "shasum": ""
             },
             "require": {
@@ -685,9 +685,9 @@
                 "rpc"
             ],
             "support": {
-                "source": "https://github.com/grpc/grpc-php/tree/v1.38.0"
+                "source": "https://github.com/grpc/grpc-php/tree/v1.39.0"
             },
-            "time": "2021-05-24T20:45:41+00:00"
+            "time": "2021-07-23T23:04:53+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -987,16 +987,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "9738e495f288eec0b187e310b7cdbbb285777dbe"
+                "reference": "71312564759a7db5b789296369c1a264efc43aad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/9738e495f288eec0b187e310b7cdbbb285777dbe",
-                "reference": "9738e495f288eec0b187e310b7cdbbb285777dbe",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/71312564759a7db5b789296369c1a264efc43aad",
+                "reference": "71312564759a7db5b789296369c1a264efc43aad",
                 "shasum": ""
             },
             "require": {
@@ -1067,7 +1067,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.3.1"
+                "source": "https://github.com/Seldaek/monolog/tree/2.3.2"
             },
             "funding": [
                 {
@@ -1079,7 +1079,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-14T11:56:39+00:00"
+            "time": "2021-07-23T07:42:52+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -2263,7 +2263,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "7.2.34"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
 }

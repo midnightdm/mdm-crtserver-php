@@ -7,8 +7,20 @@ require_once $autoload;
 
 use Google\Cloud\Firestore\FirestoreClient;
 
-// Get the contents of the JSON file 
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ *                                                     *
+ *   NOTE: The .json file below is project specific    *
+ *   and private.  Admin will need to secure one       *
+ *   and put their own reference here. Be sure to      *
+ *   include it in your .gitignore file to prevent     *
+ *   public exposure.                                  *
+ *                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 $strJsonFileContents = file_get_contents(__DIR__ . '/../mdm-qcrt-demo-1-cd99971bc002.json');
+
+
 //Convert into array & Put into CONSTANT
 define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
 

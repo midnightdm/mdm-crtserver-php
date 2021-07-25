@@ -1,7 +1,16 @@
 {
+    "name": "midnightdm/mdm-crt2-server",
+    "description": "A daemon accepting NMEA vessel data input via UDP and publishing output to a firestore db as backend for https://www.clintonrivertraffic.com",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/midnightdm/mdm-crt2-server"
+        }
+    ],
     "require": {
         "google/cloud-firestore": "^1.19",
         "minishlink/web-push": "^6.0",
-        "aws/aws-sdk-php": "^3.185"
+        "aws/aws-sdk-php": "^3.185",
+        "php": "7.2.*"
     }
 }

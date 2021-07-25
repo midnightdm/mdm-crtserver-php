@@ -528,3 +528,10 @@ Stack trace:
 [24-Jul-2021 04:14:53 UTC] PHP Fatal error:  Class 'Firebase' not found in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 9
 [24-Jul-2021 04:17:33 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ',' or ';' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 375
 [24-Jul-2021 04:38:15 UTC] PHP Parse error:  syntax error, unexpected ':' in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 136
+[25-Jul-2021 04:26:16 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_grpc' (tried: E:\xampp\php\ext\php_grpc (The specified module could not be found.), E:\xampp\php\ext\php_php_grpc.dll (The specified module could not be found.)) in Unknown on line 0
+[25-Jul-2021 04:26:45 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_grpc' (tried: E:\xampp\php\ext\php_grpc (The specified module could not be found.), E:\xampp\php\ext\php_php_grpc.dll (The specified module could not be found.)) in Unknown on line 0
+[25-Jul-2021 04:28:40 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_grpc' (tried: E:\xampp\php\ext\php_grpc (The specified procedure could not be found.), E:\xampp\php\ext\php_php_grpc.dll (The specified module could not be found.)) in Unknown on line 0
+[25-Jul-2021 04:39:04 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_grpc' (tried: E:\xampp\php\ext\php_grpc (%1 is not a valid Win32 application.), E:\xampp\php\ext\php_php_grpc.dll (The specified module could not be found.)) in Unknown on line 0
+[25-Jul-2021 04:41:27 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_grpc' (tried: E:\xampp\php\ext\php_grpc (%1 is not a valid Win32 application.), E:\xampp\php\ext\php_php_grpc.dll (The specified module could not be found.)) in Unknown on line 0
+[25-Jul-2021 04:54:15 UTC] PHP Warning:  PHP Startup: Failed to load E:\xampp\php\ext\php_grpc, The system cannot find the file specified.
+ in Unknown on line 0

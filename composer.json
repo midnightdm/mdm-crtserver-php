@@ -8,9 +8,10 @@
         }
     ],
     "require": {
+        "php": "^7.4",
+        "ext-grpc": "*",
         "google/cloud-firestore": "^1.19",
         "minishlink/web-push": "^6.0",
-        "aws/aws-sdk-php": "^3.185",
-        "php": "^7.3"
+        "aws/aws-sdk-php": "^3.185"
     }
 }

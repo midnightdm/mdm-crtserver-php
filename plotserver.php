@@ -1,6 +1,23 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
+//Load all the dependencies
+include_once('config.php');
+include_once('classes/ais.2.php');
+include_once('classes/MyAIS.class.php');
+include_once('classes/PlotDaemon.class.php');
+include_once('classes/LivePlot.class.php');
+include_once('classes/Firestore.class.php');
+include_once('classes/LiveScan.class.php');
+include_once('classes/LiveScanModel.class.php');
+include_once('classes/Vessels.class.php');
+include_once('classes/VesselsModel.class.php');
+include_once('classes/crtfunctions_helper.php');
+include_once('classes/Zone.class.php');
+include_once('classes/Location.class.php');
+include_once('classes/AlertsModel.class.php');
+include_once('classes/PassagesModel.class.php');
+
 // * * * Constant Definitions * * * 
 //Marker Alpha Lat is 3 mi upriver Lock 13
 define('MARKER_ALPHA_LAT', 41.938785);
@@ -21,22 +38,8 @@ define('AIS_LOG_PATH', 'AISMon.log');
 define('API_POST_URL', getenv('MDM_CRT_PLOT_POST'));
 define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
 
-//Load all the dependencies
-include_once('config.php');
-include_once('classes/ais.2.php');
-include_once('classes/MyAIS.class.php');
-include_once('classes/PlotDaemon.class.php');
-include_once('classes/LivePlot.class.php');
-include_once('classes/Firestore.class.php');
-include_once('classes/LiveScan.class.php');
-include_once('classes/LiveScanModel.class.php');
-include_once('classes/Vessels.class.php');
-include_once('classes/VesselsModel.class.php');
-include_once('classes/crtfunctions_helper.php');
-include_once('classes/Zone.class.php');
-include_once('classes/Location.class.php');
-include_once('classes/AlertsModel.class.php');
-include_once('classes/PassagesModel.class.php');
+//Make the config array available globally
+define('CONFIG_ARR', $config);
 
 //This is the active part of the app. It creates the daemon object then starts the loop.
 $plotDaemon = new PlotDaemon();

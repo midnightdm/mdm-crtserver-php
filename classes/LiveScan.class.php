@@ -30,6 +30,8 @@ class LiveScan {
   public $liveMarkerDeltaTS;
   public $liveCallSign;
   public $isReloaded;
+  public $triggerQueued;
+  public $triggerActivated;
   public $liveEta;
   public $liveSpeed;
   public $liveCourse;
@@ -58,8 +60,12 @@ class LiveScan {
           // in calling method reloadSaveScans()
         }
       }
-      //Add "reload" flag
-      $this->reload = true;      
+      //Add "reload" and trigger flags
+      $this->reload = true;
+      $this->triggerQueued = false;
+      $this->triggerActivated = true;
+      //Delete db record pending update of new live data
+      $this->callBack->LiveScanModel->deleteLiveScan($id);      
     } else {
       $this->setTimestamp($ts, 'liveInitTS');
       $this->setTimestamp($ts, 'liveLastTS');
@@ -68,29 +74,44 @@ class LiveScan {
       $this->liveVesselID = $id;
       $this->liveIsLocal = in_array($id, $this->callBack->localVesselFilter);      
       $this->liveInitLat = $lat;
-      //Check for bogus latitude
-      if($lat==0.0) {
-        echo "Bogus latitude rejected by livescan constructor"; 
-        return;
-      }
       $this->liveInitLon = $lon;
       $this->liveSpeed = $speed;
       $this->liveCourse = $course;     
       $this->lookUpVessel();
       //Use scraped vesselName if not provided by transponder
-      if(strpos($this->liveName, $id)>-1) {
+      if(strpos($this->liveName, strval($id))>-1) {
         $this->liveName = $this->liveVessel->vesselName;
       }
-      $this->insertNewRecord(); 
+      $validated = $this->insertNewRecord();
+      //Unset this construction if above failed
+      if(!$validated) {
+        unset($this->callBack->liveScan['mmsi'.$id]);
+        return;
+      } 
       //Test for previous detect, don't alert if within last 8 hours
       $lastDetected = $this->callBack->VesselsModel->getVesselLastDetectedTS($id)['vesselLastDetectedTS'];
       echo "lastDetected check = ".$lastDetected;
       if($lastDetected==false || ($ts-$lastDetected)>28800) {
-        $this->callBack->VesselsModel->updateVesselLastDetectedTS($id, $ts);
-        $this->callBack->AlertsModel->triggerDetectEvent('detected', $this);
+        $this->triggerQueued = true;
+        $this->triggerActivated = false;
       } 
-      
     }   
+  }
+
+  public function checkDetectEventTrigger() {
+    //Performs trigger when condtions met. (Created 2021-07-31)
+    if($this->triggerQueued && 
+      !$this->triggerActivated && 
+      $this->liveDirection !=="undetermined" &&
+      $this->liveLocation != null) 
+    {
+      $this->callBack->VesselsModel->updateVesselLastDetectedTS($this->liveVesselID, time());
+      $event = strpos($this->liveVessel->vesselType, "assenger")>-1 ? "detectp" : "detecta";
+      $this->callBack->AlertsModel->triggerEvent($event, $this);
+      $this->triggerQueued = false;
+      $this->triggerActivated = true;
+    }
+   
   }
 
   public function setTimestamp($ts, $attribute) {
@@ -110,19 +131,17 @@ class LiveScan {
     }
   }
 
-  public function insertNewRecord() {
-    //$this->callBack->LiveScanModel->insertLiveScan($this);
-    
+  public function insertNewRecord() {   
+    //Error check to make sure starting pos is not 0
+    if($this->liveInitLat < 1 || $this->liveInitLon < 1) {
+      echo "Bogus starting position data rejected.";
+      return false;
+    }
     $data = [];
     $data['liveInitTS'] = $this->liveInitTS;
     $data['liveLastTS'] = $this->liveLastTS;
     $data['liveInitLat'] = $this->liveInitLat;
     $data['liveInitLon'] = $this->liveInitLon;
-    //Error check to make sure starting pos is not 0
-    if($data['liveInitLat']==0.0) {
-      echo "Bogus starting latitude rejected.";
-      return;
-    }
     $data['liveDirection'] = $this->liveDirection;
     $data['liveLocation'] = "";
     $data['liveVesselID'] = $this->liveVesselID;
@@ -133,12 +152,10 @@ class LiveScan {
     $data['liveCallSign'] = $this->liveCallSign;
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
-    //$data['liveDest'] = $this->liveDest;
     $data['liveIsLocal'] = $this->liveIsLocal;
-    echo 'Inserting new livescan record for '.$this->liveName .' '.getNow()."\n";
-    // $this->liveID = 
+    echo 'Inserting new livescan record for '.$this->liveName .' '.getNow()."\n"; 
     $this->callBack->LiveScanModel->insertLiveScan($data);
-    
+    return true;
   }
 
   public function update($ts, $name, $id, $lat, $lon, $speed, $course) {
@@ -153,7 +170,9 @@ class LiveScan {
         //Yes. Has position changed?
         if($this->liveLastLat != $lat || $this->liveLastLon != $lon) {
           //Yes. Then update TS.
-          $this->setTimestamp($ts, 'liveLastTS'); 
+          $this->setTimestamp($ts, 'liveLastTS');
+          //And test if detect event can be triggered
+          $this->checkDetectEventTrigger();           
         } //No. Then do nothing keeping last TS.
       }
     }    
@@ -170,6 +189,11 @@ class LiveScan {
     }
     $this->calculateLocation();
     $this->checkMarkerPassage();
+    //And remove reload flag if set.
+    if($this->isReloaded) {
+      $this->insertNewRecord(); //Adds reload as new db record 
+      $this->isReloaded = false;
+    }
     $this->savePassageIfComplete();
     $this->updateRecord();
   }
@@ -202,17 +226,6 @@ class LiveScan {
     $this->callBack->LiveScanModel->updateLiveScan($data);
   }
 
-  /*  OLD VERSION
-  public function determineDirection() {
-    //Downriver when lat is decreasing
-    if($this->liveLastLat < $this->liveInitLat) {
-      $this->liveDirection = 'downriver';
-      //Upriver when lat is increasing
-    } elseif ($this->liveLastLat > $this->liveInitLat) {
-      $this->liveDirection = 'upriver';
-    }
-  }
-  */
 
   public function determineDirection() {
     //Downriver when lat is decreasing
@@ -241,7 +254,7 @@ class LiveScan {
   public function checkMarkerPassage() {
     echo "Running LiveScan::checkMarkerPassage() ";
     //For upriver Direction (Lat increasing)
-    if($this->liveLastLat < (MARKER_DELTA_LAT - 1) || $this->lastLastLat > (MARKER_ALPHA_LAT + 1)) { 
+    if($this->liveLastLat < (MARKER_DELTA_LAT - 1) || $this->liveLastLat > (MARKER_ALPHA_LAT + 1)) { 
       return; //Skips further testing if lat jumped to a bogus value beyond local view.
     } 
     if($this->liveDirection == "upriver") {

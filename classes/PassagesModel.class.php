@@ -21,8 +21,15 @@ class PassagesModel extends Firestore {
         $data['passageMarkerDeltaTS'] = $liveScanObj->liveMarkerDeltaTS;
         $data['passageEvents'] = $liveScanObj->liveLocation->events;
         $offset = getTimeOffset();
-        $data['date'] = $data['passageDirection'] == "upriver" ?  date('Y-m-d', $data['passageMarkerDeltaTS']+$offset) : date('Y-m-d', $data['passageMarkerAlphaTS']+offset);
-        $this->db->collection('Vessels')->document('mmsi'.$data['passageVesselID'])->collection('Passages')->document($data['date'])->set($data);
+        $data['date'] = $data['passageDirection'] == "upriver" ?  
+            date('Y-m-d', $data['passageMarkerDeltaTS']+$offset) :
+            date('Y-m-d', $data['passageMarkerAlphaTS']+$offset);
+        
+         $this->db->collection('Vessels')
+            ->document('mmsi'.$data['passageVesselID'])
+            ->collection('Passages')
+            ->document($data['date'])
+            ->set($data, ["merge"=>true]);
 
     }
 

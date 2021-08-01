@@ -618,3 +618,52 @@ Stack trace:
 [01-Aug-2021 01:17:41 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 249
 [01-Aug-2021 01:17:42 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 249
 [01-Aug-2021 01:17:59 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 249
+[01-Aug-2021 04:24:34 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 49
+[01-Aug-2021 04:24:34 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 49
+[01-Aug-2021 04:24:35 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 50
+[01-Aug-2021 04:24:35 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 50
+[01-Aug-2021 04:24:35 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 51
+[01-Aug-2021 04:24:35 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 51
+[01-Aug-2021 04:24:36 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 52
+[01-Aug-2021 04:24:36 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 52
+[01-Aug-2021 04:24:36 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 53
+[01-Aug-2021 04:24:36 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 53
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 54
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 54
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 55
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 55
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 56
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 56
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 57
+[01-Aug-2021 04:24:37 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 57
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Use of undefined constant CONFIG_ARR - assumed 'CONFIG_ARR' (this will throw an Error in a future version of PHP) in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 43
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'timeout' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 52
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'errEmail' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 53
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'dbHost' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 54
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'dbUser' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 55
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'dbPwd' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 56
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'dbName' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 57
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'nonVesselFilter' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 58
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'localVesselFilter' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 59
+[01-Aug-2021 04:29:36 UTC] PHP Warning:  Illegal string offset 'image_base' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 60
+[01-Aug-2021 04:30:52 UTC] PHP Deprecated:  strpos(): Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 82
+[01-Aug-2021 04:31:09 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:32:09 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:32:51 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:33:00 UTC] PHP Deprecated:  strpos(): Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 82
+[01-Aug-2021 04:33:10 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:33:30 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:33:51 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:34:01 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:34:10 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:34:30 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:34:51 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:35:10 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:35:51 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:36:10 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:36:31 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:36:52 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:37:10 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:37:31 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:38:10 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
+[01-Aug-2021 04:58:31 UTC] Error deleting LiveScan 366993550

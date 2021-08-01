@@ -39,7 +39,10 @@ class PlotDaemon {
 
 
     protected function setup() {
-        $this->livePlot = array();
+
+        $config = CONFIG_ARR;
+
+        $this->liveScan = array();
         $this->rowsBefore = 0;
         $this->LiveScanModel = new LiveScanModel();
         $this->VesselsModel = new VesselsModel();
@@ -122,10 +125,10 @@ class PlotDaemon {
                     } else {
                         //    2-A) No.
                         echo "is NOT near edge of range.\r\n";
-                        //        3-Q) Is record older than 8 hours?
-                        if ($now - $obj->liveLastTS > 21600) {
+                        //        3-Q) Is record older than 15 minutes?
+                        if ($now - $obj->liveLastTS > 900) {
                             //      3-A) Yes
-                            echo "The record is 8 hours old";
+                            echo "The record is 15 minutes old";
                             //      4-Q) Is vessel parked?
                             if(intval(rtrim($obj->liveSpeed, "kts"))<1) {
                                 //    4-A) Yes, then keep in live.

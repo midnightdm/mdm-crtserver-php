@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 $config =  [
-    'timeout'  =>   600,
+    'timeout'  =>   300,
     'errEmail' =>   getEnv('MDM_CRT_ERR_EML'),
     'dbHost'   =>   getEnv('MDM_CRT_DB_HOST'),
     'dbUser'   =>   getEnv('MDM_CRT_DB_USR'),
@@ -34,5 +34,5 @@ $config =  [
       993683157,
       993683158   
     ],
-    'localVesselFilter' => [366986450, 368024780, 366970820, 366970780, 366970360, 367614749]
+    'localVesselFilter' => [366986450, 368024780, 366970820, 366970780, 366970360, 367614749, 367143650]
   ];

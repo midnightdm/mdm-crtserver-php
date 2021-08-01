@@ -18,7 +18,7 @@ use Google\Cloud\Firestore\FirestoreClient;
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$strJsonFileContents = file_get_contents(__DIR__ . '/../mdm-qcrt-demo-1-cd99971bc002.json');
+$strJsonFileContents = file_get_contents(__DIR__ . '/../mdm-qcrt-demo-1-f28500aebc1a.json');
 
 
 //Convert into array & Put into CONSTANT

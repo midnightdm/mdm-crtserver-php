@@ -1,7 +1,28 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
+// * * * Constant Definitions * * * 
+//Marker Alpha Lat is 3 mi upriver Lock 13
+define('MARKER_ALPHA_LAT', 41.938785);
+
+//Marker Bravo Lat is Lock 13
+define ('MARKER_BRAVO_LAT', 41.897258);
+
+//Marker Charlie Lat is RR bridge
+define ('MARKER_CHARLIE_LAT', 41.836353);
+
+//Marker Delta Lat is 3 mi downriver RR bridge
+define('MARKER_DELTA_LAT', 41.800704);
+
+//Set path to live log or sample data file here (See PlotDaemon::setup() for more)
+define('AIS_LOG_PATH', 'AISMon.log');
+
+//Set the URL of the API that will save the decoded data
+define('API_POST_URL', getenv('MDM_CRT_PLOT_POST'));
+define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
+
 //Load all the dependencies
+include_once('config.php');
 include_once('classes/ais.2.php');
 include_once('classes/MyAIS.class.php');
 include_once('classes/PlotDaemon.class.php');
@@ -16,15 +37,6 @@ include_once('classes/Zone.class.php');
 include_once('classes/Location.class.php');
 include_once('classes/AlertsModel.class.php');
 include_once('classes/PassagesModel.class.php');
-
-
-//Set path to live log or sample data file here (See PlotDaemon::setup() for more)
-define('AIS_LOG_PATH', 'AISMon.log');
-
-//Set the URL of the API that will save the decoded data
-define('API_POST_URL', getenv('MDM_CRT_PLOT_POST'));
-define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
-
 
 //This is the active part of the app. It creates the daemon object then starts the loop.
 $plotDaemon = new PlotDaemon();

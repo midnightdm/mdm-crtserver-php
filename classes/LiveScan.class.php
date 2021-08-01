@@ -29,7 +29,7 @@ class LiveScan {
   public $liveMarkerDeltaWasReached = FALSE;
   public $liveMarkerDeltaTS;
   public $liveCallSign;
-  //public $liveDest;
+  public $isReloaded;
   public $liveEta;
   public $liveSpeed;
   public $liveCourse;
@@ -57,7 +57,9 @@ class LiveScan {
           //lookUpVessel() & calculateLocation() deferred to post construction
           // in calling method reloadSaveScans()
         }
-      }      
+      }
+      //Add "reload" flag
+      $this->reload = true;      
     } else {
       $this->setTimestamp($ts, 'liveInitTS');
       $this->setTimestamp($ts, 'liveLastTS');
@@ -73,12 +75,7 @@ class LiveScan {
       }
       $this->liveInitLon = $lon;
       $this->liveSpeed = $speed;
-      $this->liveCourse = $course;
-      //$this->liveDest = $dest;
-      //$this->liveLength = $length;
-      //$this->liveWidth = $width;
-      //$this->liveDraft = $draft;
-      //$this->liveCallSign = $callsign;      
+      $this->liveCourse = $course;     
       $this->lookUpVessel();
       //Use scraped vesselName if not provided by transponder
       if(strpos($this->liveName, $id)>-1) {
@@ -86,15 +83,13 @@ class LiveScan {
       }
       $this->insertNewRecord(); 
       //Test for previous detect, don't alert if within last 8 hours
-      /* MODELS NOT CREATED YET
-      
       $lastDetected = $this->callBack->VesselsModel->getVesselLastDetectedTS($id)['vesselLastDetectedTS'];
       echo "lastDetected check = ".$lastDetected;
       if($lastDetected==false || ($ts-$lastDetected)>28800) {
         $this->callBack->VesselsModel->updateVesselLastDetectedTS($id, $ts);
-        $this->callBack->AlertsModel->triggerDetectEvent($this);
+        $this->callBack->AlertsModel->triggerDetectEvent('detected', $this);
       } 
-      */
+      
     }   
   }
 
@@ -147,7 +142,7 @@ class LiveScan {
   }
 
   public function update($ts, $name, $id, $lat, $lon, $speed, $course) {
-  //Function run by run() in crtDaemon.class.php
+    //Function run by run() in crtDaemon.class.php
     //Is this first update after init?
     if($this->liveLastLat == null) {
       //Yes. Then update TS.
@@ -246,8 +241,8 @@ class LiveScan {
   public function checkMarkerPassage() {
     echo "Running LiveScan::checkMarkerPassage() ";
     //For upriver Direction (Lat increasing)
-    if($this->liveLastLat < 1) { 
-      return; //Skips further testing if lat value is bogus. Added after Twilight DR false triggers witnessed 6/1/21 
+    if($this->liveLastLat < (MARKER_DELTA_LAT - 1) || $this->lastLastLat > (MARKER_ALPHA_LAT + 1)) { 
+      return; //Skips further testing if lat jumped to a bogus value beyond local view.
     } 
     if($this->liveDirection == "upriver") {
       if(!$this->liveMarkerDeltaWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_DELTA_LAT > $this->liveInitLat) && 
@@ -399,7 +394,7 @@ class LiveScan {
     try {
       if(saveImage($this->liveVesselID)) {
         //$endPoint = getEnv('AWS_ENDPOINT');
-        $base = getEnv('BASE_URL');
+        $base = $this->callBack->image_base;
         $data['vesselHasImage'] = true;
         //$data['vesselImageUrl'] = $endPoint . 'vessels/mmsi' . $this->liveVesselID . '.jpg';      
         $data['vesselImageUrl'] = $base.'vessels/jpg/' . $this->liveVesselID; 

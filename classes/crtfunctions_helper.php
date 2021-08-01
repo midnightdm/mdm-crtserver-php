@@ -15,9 +15,13 @@ function base_url() {
   return "localhost/mdm-crt/";
 }
 
-function getTimeOffset() {
+function getTimeOffset($ts="") {
   $tz = new DateTimeZone("America/Chicago");
+  if($ts==="") {
+    $ts = time();
+  }
   $dt = new DateTime();
+  $dt->setTimestamp($ts);
   $dt->setTimeZone($tz);
   return $dt->format("I") ? -18000 : -21600;
 }

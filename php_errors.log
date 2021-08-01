@@ -535,3 +535,86 @@ Stack trace:
 [25-Jul-2021 04:41:27 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_grpc' (tried: E:\xampp\php\ext\php_grpc (%1 is not a valid Win32 application.), E:\xampp\php\ext\php_php_grpc.dll (The specified module could not be found.)) in Unknown on line 0
 [25-Jul-2021 04:54:15 UTC] PHP Warning:  PHP Startup: Failed to load E:\xampp\php\ext\php_grpc, The system cannot find the file specified.
  in Unknown on line 0
+[29-Jul-2021 01:50:25 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 54
+[29-Jul-2021 03:36:43 UTC] PHP Parse error:  syntax error, unexpected '"vesselType"' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 34
+[30-Jul-2021 00:25:35 UTC] PHP Fatal error:  Uncaught Google\Cloud\Core\Exception\ServiceException: {
+    "message": "DNS resolution failed for service: firestore.googleapis.com:443",
+    "code": 14,
+    "status": "UNAVAILABLE",
+    "details": []
+} in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php:257
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php(194): Google\Cloud\Core\GrpcRequestWrapper->convertToGoogleException(Object(Google\ApiCore\ApiException))
+#1 [internal function]: Google\Cloud\Core\GrpcRequestWrapper->handleStream(Object(Google\ApiCore\ServerStream))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\Query.php(210): Generator->valid()
+#3 [internal function]: Google\Cloud\Firestore\Query->Google\Cloud\Firestore\{closure}()
+#4 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\ExponentialBackoff.php(80): call_user_func_array(Object(Closure), Array)
+#5 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\Query.php(24 in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php on line 257
+[30-Jul-2021 01:24:42 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: getaddrinfo() thread failed to start
+ (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://oauth2.googleapis.com/token in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php:210
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(158): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(110): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 E:\xampp\htdocs\mdm-crt in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 210
+[30-Jul-2021 01:43:44 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php on line 27
+[30-Jul-2021 01:52:28 UTC] PHP Warning:  in_array() expects parameter 2 to be array, string given in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php on line 20
+[30-Jul-2021 01:53:43 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: getaddrinfo() thread failed to start
+ (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://oauth2.googleapis.com/token in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php:210
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(158): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(110): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 E:\xampp\htdocs\mdm-crt in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 210
+[30-Jul-2021 01:57:36 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: getaddrinfo() thread failed to start
+ (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://oauth2.googleapis.com/token in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php:210
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(158): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(110): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 E:\xampp\htdocs\mdm-crt in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 210
+[30-Jul-2021 02:06:29 UTC] PHP Parse error:  syntax error, unexpected '$documents' (T_VARIABLE), expecting ';' or ',' in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php on line 29
+[30-Jul-2021 02:07:30 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: getaddrinfo() thread failed to start
+ (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://oauth2.googleapis.com/token in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php:210
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(158): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(110): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 E:\xampp\htdocs\mdm-crt in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 210
+[30-Jul-2021 02:11:05 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: getaddrinfo() thread failed to start
+ (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://oauth2.googleapis.com/token in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php:210
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(158): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(110): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 E:\xampp\htdocs\mdm-crt in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 210
+[30-Jul-2021 02:14:56 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: getaddrinfo() thread failed to start
+ (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://oauth2.googleapis.com/token in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php:210
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(158): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(110): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 E:\xampp\htdocs\mdm-crt in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 210
+[30-Jul-2021 02:17:28 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: getaddrinfo() thread failed to start
+ (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://oauth2.googleapis.com/token in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php:210
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(158): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php(110): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 E:\xampp\htdocs\mdm-crt in E:\xampp\htdocs\mdm-crt2-server\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 210
+[30-Jul-2021 02:20:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Google\Cloud\Firestore\QuerySnapshot::exists() in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php:32
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\test1.php(11): AlertsModel->triggerEvent('alphadp')
+#1 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php on line 32
+[30-Jul-2021 03:14:53 UTC] PHP Warning:  require_once(../vendor/autoload.php): failed to open stream: No such file or directory in E:\xampp\htdocs\mdm-crt2-server\crtdaemon.php on line 51
+[30-Jul-2021 03:14:53 UTC] PHP Fatal error:  require_once(): Failed opening required '../vendor/autoload.php' (include_path='.;E:\xampp\php\includes') in E:\xampp\htdocs\mdm-crt2-server\crtdaemon.php on line 51
+[30-Jul-2021 03:15:33 UTC] PHP Parse error:  syntax error, unexpected ')' in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php on line 44
+[30-Jul-2021 03:44:54 UTC] PHP Parse error:  syntax error, unexpected ')' in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php on line 44
+[01-Aug-2021 01:17:19 UTC] PHP Deprecated:  strpos(): Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 84
+[01-Aug-2021 01:17:21 UTC] PHP Deprecated:  strpos(): Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 84
+[01-Aug-2021 01:17:22 UTC] PHP Deprecated:  strpos(): Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 84
+[01-Aug-2021 01:17:38 UTC] PHP Deprecated:  strpos(): Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 84
+[01-Aug-2021 01:17:41 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 249
+[01-Aug-2021 01:17:42 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 249
+[01-Aug-2021 01:17:59 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 249

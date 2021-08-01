@@ -1,6 +1,9 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
+use Minishlink\WebPush\WebPush;
+use Minishlink\WebPush\Subscription;
+
 
 /* * * * * * * * *
  * AlertsModel Class
@@ -8,24 +11,117 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
  * 
  */
 class AlertsModel extends Firestore {
+
+    public $WebPushLibrary;
     
     public function __construct() {
-        parent::__construct(['name' => 'LiveScan']);
+        parent::__construct(['name' => 'user_devices']);
+        //Prepare VAPID package and initialize WebPush
+        $auth = array(
+			'VAPID' => array(
+				'subject' => 'https://www.clintonrivertraffic.com/about',
+				'publicKey' => getenv('MDM_VKEY_PUB'),
+				'privateKey' => getenv('MDM_VKEY_PRI') 
+			)
+		);	
+        $this->WebPushLibrary = new WebPush($auth);
     }
 
- 
+    public function triggerEvent($event, $liveObj) {
+        //Error check for valid event code
+        $codes = array("alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detected", "albany", "camanche", "beaverua", "beaverda", "m503up", "m504up", "m505up", "m506up", "m507up","m508up","m509up", "m510up", "m511up", "m512up", "m513up", "m514up", "m515up", "m516up", "m517up", "m518up", "m519up", "m520up", "m521up", "m522up", "m523up","m524up", "m525up","m526up", "m527up", "m528up", "m529up", "m530up", "m531up", "m532up", "m533up", "m534up", "m535up", "m536up", "m537up", "m538up", "m539up", "m503dp", "m504dp", "m505dp", "m506dp", "m507dp", "m508dp", "m509dp", "m510dp","m511dp","m512dp","m513dp","m514dp","m515dp","m516dp","m517dp",  "m518dp","m519dp","m520dp","m521dp","m522dp","m523dp","m524dp","m525dp","m526dp","m527dp","m528dp","m529dp","m530dp","m531dp","m532dp","m533dp","m534dp","m535dp","m536dp","m537dp","m538dp","m539dp","m503ua","m504ua","m505ua","m506ua","m507ua","m508ua","m509ua","m510ua","m511ua","m512ua","m513ua","m514ua","m515ua","m516ua","m517ua", "m518ua","m519ua","m520ua","m521ua","m522ua","m523ua","m524ua","m525ua","m526ua","m527ua","m528ua","m529ua","m530ua","m531ua","m532ua","m533ua","m534ua","m535ua","m536ua","m537ua","m538ua","m539ua","m503da","m504da","m505da","m506da","m507da","m508da","m509da","m510da","m511da","m512da","m513da","m514da","m515da","m516da","m517da", "m518da","m519da","m520da","m521da","m522da","m523da","m524da","m525da","m526da","m527da","m528da","m529da","m530da","m531da","m532da","m533da","m534da","m535da","m536da","m537da","m538da","m539da");
+        
+        if(!in_array($event, $codes)) {
+            echo "ERROR: triggerEvent(".$event.") failed. Event not recognized.\n";
+            return false;
+        }
+        $ref = $this->db->collection('user_devices');
+        $query = $ref->where("events", "array-contains", $event);    
+        $documents = $query->documents();
+        
+        foreach($documents as $document) {
+            if($document->exists()) {               
+                $user = $document->data();
+                if($user['is_enabled']) {
+                    //Send to push queue
+                    $subscriber = array();
+                    $subscriber['endpoint']  = $user['subscription']['endpoint'];
+                    $subscriber['auth']      = $user['subscription']['auth'];
+                    $subscriber['p256dh']    = $user['subscription']['p256dh'];
+                    $this->pushNoticeTo($subscriber);
+                }  
+            } else {
+                echo "Document ". $document->id(). " does not exist!\n";
+            }
+        }
+
+    }
+
+    public function pushNoticeTo($subscriber, $event, $liveObj) {
+		//Prepare subscription package  
+		$data = [
+			"contentEncoding" => "aesgcm",
+			"endpoint" => $subscriber['endpoint'],
+			"keys" => [
+				"auth" =>   $subscriber['auth'],
+				"p256dh" => $subscriber['p256dh']
+			]
+		];
+		$subscription = createSubscription($data);
+		
+		//Prepare notification message
+		$txt = $this->buildAlertMessage(
+            $event, 
+            $liveObj->liveName, 
+            $liveObj->liveVessel->vesselType, 
+            $liveObj->liveDirection,
+            $liveObj->liveLocation->eventTS,
+            $liveObj->liveLastLat,
+            $liveObj->liveLastLon
+        );
+        $msg = [
+			"title" => "CRT Notice for ".$liveObj->liveName,
+			"body"  =>  $txt,
+			"icon"  => "images/favicon.png",
+			"url"   => "https://www.clintonrivertraffic.com/livescan/live"
+		];
+
+		$report = $this->WebPushLibrary->webPush->sendOneNotification($subscription, json_encode($msg));
+		if($report->isSuccess()) {
+			echo "Webpush success.\n";
+		} else {
+			$target = $report->getRequest()->getUri()->__toString();
+			echo "Failed for {$target}: {$report->getReason()}";
+		}	
+	}
+    
+
     public function buildAlertMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon) {
         $loc = "";
         $str = "m/j/Y h:i:sa";
         $offset = getTimeOffset();
-        switch($event) {
-            case "detected": $evtDesc = "Transponder detected";
-                            $loc    .= "\nLocation: https://maps.google.com/maps?q=".$lat.",".$lon; break;
+        //Parse event code to get status (and marker data)
+        if(strpos($event, "m")==0) { 
+            $status = "marker"; 
+            $mile = substr(1,3);
+        }
+        if(strpos($event, 'alpha'   )==0) { $status = "alpha";    }
+        if(strpos($event, 'bravo'   )==0) { $status = "bravo";    }
+        if(strpos($event, 'charlie' )==0) { $status = "charlie";  }
+        if(strpos($event, 'delta'   )==0) { $status = "delta";    }
+        if(strpos($event, 'albany'  )==0) { $status = "albany";   }
+        if(strpos($event, 'camanche')==0) { $status = "camanche"; }
+        if(strpos($event, 'beaver' ) ==0) { $status = "beaver";   }
+        switch($status) {
             case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;
             case "bravo" : $evtDesc = $direction=="downriver" ? "left " : " reached ";
                             $evtDesc .= "Lock 13 "; break;
             case "charlie" : $evtDesc = "passed the Clinton RR drawbridge ";  break;
             case "delta" : $evtDesc = "crossed 3 mi S of drawbridge ";  break;
+            case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
+            case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
+            case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
+            case "marker" : $eventDesc = " crossed mile marker $mile "; break;
         }
         $txt  = str_replace('Vessel', '', $vesselType);
         $txt .= " Vessel ".$vesselName." ".$evtDesc;
@@ -347,4 +443,8 @@ class AlertsModel extends Firestore {
         }
         return false;
     }
+}
+
+function createSubscription($data) {
+	return Subscription::create($data);
 }

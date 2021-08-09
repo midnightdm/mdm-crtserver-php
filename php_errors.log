@@ -667,3 +667,431 @@ Stack trace:
 [01-Aug-2021 04:37:31 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
 [01-Aug-2021 04:38:10 UTC] PHP Notice:  Undefined property: LiveScan::$lastLastLat in E:\xampp\htdocs\mdm-crt2-server\classes\LiveScan.class.php on line 257
 [01-Aug-2021 04:58:31 UTC] Error deleting LiveScan 366993550
+[06-Aug-2021 00:53:03 UTC] PHP Parse error:  syntax error, unexpected '{' in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 72
+[06-Aug-2021 00:53:54 UTC] PHP Warning:  A non-numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 105
+[06-Aug-2021 01:23:43 UTC] PHP Parse error:  syntax error, unexpected '$yyyymm' (T_VARIABLE) in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 81
+[06-Aug-2021 01:51:45 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 113
+[06-Aug-2021 01:53:01 UTC] PHP Notice:  Undefined variable: month in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Aug-2021 01:53:01 UTC] PHP Fatal error:  Uncaught Google\Cloud\Core\Exception\BadRequestException: {
+    "message": "Document name \"projects\/mdm-qcrt-demo-1\/databases\/(default)\/documents\/Passages\/\" has invalid trailing \"\/\".",
+    "code": 3,
+    "status": "INVALID_ARGUMENT",
+    "details": []
+} in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php:257
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php(146): Google\Cloud\Core\GrpcRequestWrapper->convertToGoogleException(Object(Google\ApiCore\ApiException))
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcTrait.php(79): Google\Cloud\Core\GrpcRequestWrapper->send(Array, Array, Array)
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\Connection\Grpc.php(161): Google\Cloud\Firestore\Connection\Grpc->send(Array, Array)
+#3 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(439): Google\Cloud\Firestore\Connection\Grpc->commit(Array)
+#4 E:\xampp\htdoc in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php on line 257
+[07-Aug-2021 01:00:48 UTC] Error deleting LiveScan 366806920
+[07-Aug-2021 01:05:04 UTC] Error deleting LiveScan 366806920
+[07-Aug-2021 01:08:30 UTC] Error deleting LiveScan 366806920
+[07-Aug-2021 02:02:59 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:16:51 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:20:10 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:23:51 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:27:04 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:30:10 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:33:32 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:36:50 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:40:31 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:43:50 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 02:47:07 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:00:02 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:03:04 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:06:10 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:09:30 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:13:07 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:16:13 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:19:30 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:36:29 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:39:50 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:43:04 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 04:46:11 UTC] Error deleting LiveScan 366967650
+[07-Aug-2021 18:10:10 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:13:33 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:16:49 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:19:52 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:23:10 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:26:30 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:29:33 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:33:07 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:36:09 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:39:10 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:42:15 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:45:28 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:48:29 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:51:33 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:54:54 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 18:58:14 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 19:01:35 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 19:04:50 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 19:07:55 UTC] Error deleting LiveScan 368024780
+[07-Aug-2021 20:02:09 UTC] Error deleting LiveScan 368024780
+[09-Aug-2021 00:03:54 UTC] PHP Parse error:  syntax error, unexpected '.' in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 110
+[09-Aug-2021 00:04:03 UTC] PHP Parse error:  syntax error, unexpected '.' in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 110
+[09-Aug-2021 00:22:03 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ';' or ',' in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 104
+[09-Aug-2021 00:22:15 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ';' or ',' in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 104
+[09-Aug-2021 00:31:54 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:31:54 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:31:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:31:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:32:10 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:32:12 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:32:12 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:32:12 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:32:31 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:32:33 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:32:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:32:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:32:51 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:32:51 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:32:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:32:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:33:06 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:06 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:33:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:33:09 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:09 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:09 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:33:09 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:33:10 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:10 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:33:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:33:31 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:33 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:33:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:33:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 113
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:34:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 113
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:34:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:34:53 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:34:53 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:34:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:34:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:34:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:34:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:06 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:06 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:07 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:07 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:08 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:08 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:10 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:10 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:31 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:33 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:34 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:34 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:34 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:34 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:34 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:34 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:53 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:54 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:35:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:35:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:35:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:01 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:01 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:10 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:10 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:11 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:11 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 113
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:22 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 113
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:42 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:42 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:43 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:42 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:42 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:37:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:42 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:37:43 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:37:43 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:38:51 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:38:53 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:38:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:38:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:38:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:38:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:38:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:38:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:02 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:02 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:02 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:03 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:03 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:30 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:32 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:32 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:32 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:32 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:32 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:33 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:52 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:53 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:39:53 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:54 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:39:55 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:39:55 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:40:14 UTC] PHP Notice:  Undefined property: MyAIS::$PlotDaemon in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:40:16 UTC] PHP Notice:  Trying to get property 'liveScan' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php on line 111
+[09-Aug-2021 00:40:16 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:40:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:40:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:40:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:40:18 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:40:18 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 30
+[09-Aug-2021 00:41:04 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:41:04 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 31
+[09-Aug-2021 00:41:16 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:41:16 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 31
+[09-Aug-2021 00:41:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:41:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 31
+[09-Aug-2021 00:41:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:41:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 31
+[09-Aug-2021 00:41:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:41:17 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 31
+[09-Aug-2021 00:41:18 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 29
+[09-Aug-2021 00:41:18 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 31
+[09-Aug-2021 01:32:46 UTC] PHP Parse error:  syntax error, unexpected '"No events to save for "' (T_CONSTANT_ENCAPSED_STRING) in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 32
+[09-Aug-2021 01:33:23 UTC] PHP Parse error:  syntax error, unexpected '=' in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 39
+[09-Aug-2021 01:34:11 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:34:12 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:12 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:34:12 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:34:24 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:24 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:24 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:34:24 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:34:25 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:34:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:01 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:06 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:35:06 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:07 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:07 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:07 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:21 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:35:23 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:23 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:23 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:23 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:23 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:23 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:23 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:30 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:35:50 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:36:01 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:36:01 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:03 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:36:03 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:10 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:36:10 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:21 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:36:21 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:21 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[09-Aug-2021 01:36:21 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 01:36:21 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:21 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:36:21 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:36:29 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:36:29 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:29 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[09-Aug-2021 01:36:29 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 01:36:29 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:29 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:36:29 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:36:49 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:36:51 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:51 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[09-Aug-2021 01:36:51 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 01:36:51 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:36:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:37:06 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:37:06 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:37:06 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[09-Aug-2021 01:37:06 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 01:37:06 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:37:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:37:06 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:37:10 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:37:10 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:37:10 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[09-Aug-2021 01:37:10 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 01:37:10 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:37:10 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 01:37:30 UTC] PHP Notice:  Undefined property: PlotDaemon::$lastPassagesTimeout in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 175
+[09-Aug-2021 01:37:31 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:37:31 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[09-Aug-2021 01:37:31 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[09-Aug-2021 01:37:31 UTC] PHP Notice:  Undefined index: events in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 26
+[09-Aug-2021 01:37:31 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 01:37:31 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[09-Aug-2021 02:01:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[09-Aug-2021 02:01:52 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59

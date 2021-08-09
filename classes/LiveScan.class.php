@@ -21,13 +21,13 @@ class LiveScan {
   public $liveVessel = null;
   public $liveLocation = null;
   public $liveMarkerAlphaWasReached = FALSE;
-  public $liveMarkerAlphaTS;
+  public $liveMarkerAlphaTS = null;
   public $liveMarkerBravoWasReached = FALSE;
-  public $liveMarkerBravoTS;
+  public $liveMarkerBravoTS = null;
   public $liveMarkerCharlieWasReached = FALSE;
-  public $liveMarkerCharlieTS;
+  public $liveMarkerCharlieTS = null;
   public $liveMarkerDeltaWasReached = FALSE;
-  public $liveMarkerDeltaTS;
+  public $liveMarkerDeltaTS = null;
   public $liveCallSign;
   public $isReloaded;
   public $triggerQueued;
@@ -454,11 +454,11 @@ class LiveScan {
     $this->liveDraft    = $data['vesselDraft'];
   }  
 
-  public function calculateLocation() {
+  public function calculateLocation($suppressTrigger=false) {
     if($this->liveLocation === null) {
       $this->liveLocation = new Location($this);
     }
-    $this->liveLocation->calculate();
+    $this->liveLocation->calculate($suppressTrigger);
   }
 
   public function savePassageIfComplete($overRide = false) {

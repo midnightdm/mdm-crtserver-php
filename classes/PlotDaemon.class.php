@@ -19,7 +19,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
  * 
  *  This class is a daemon that runs an endless while loop, listens
  *  for raw NMEA data, decodes useful AIS information and stores it 
- *  as LivePlot objects in an array. 
+ *  as LiveScan objects in an array. 
  *  
  *  setup() is a substitute for __construct. Instantiate then run start().
  *
@@ -34,7 +34,9 @@ class PlotDaemon {
 	public $VesselsModel;
 	public $AlertsModel;
     public $PassagesModel;
-    public $timeout;
+    public $liveScanTimeout;
+    public $cleanUpTimeout;
+    public $savePassagesTimeout;
     public $image_base;
 
 
@@ -48,8 +50,13 @@ class PlotDaemon {
         $this->VesselsModel = new VesselsModel();
         $this->AlertsModel = new AlertsModel();
         $this->PassagesModel = new PassagesModel();
-        $this->lastCleanUp = 0; //Used to increment cleanup routine
-        $this->timeout = intval($config['timeout']);   //$config array in config.php      
+        $this->lastCleanUp = time()-50; //Used to increment cleanup routine
+        $this->lastPassagesSave = time()-50;//Increments savePassages routine
+        
+        //Set values below in $config array in config.php
+        $this->liveScanTimeout = intval($config['liveScanTimeout']); 
+        $this->cleanUpTimeout = intval($config['cleanUpTimeout']); 
+        $this->savePassagesTimeout = intval($config['savePassagesTimeout']);        
         $this->errEmail = $config['errEmail']; 
         $this->dbHost = $config['dbHost'];
         $this->dbUser = $config['dbUser'];
@@ -107,14 +114,14 @@ class PlotDaemon {
 
     public function removeOldScans() {
         $now = time(); 
-        if(($now-$this->lastCleanUp) > 180) {
-            //Only perform once every 3 min to reduce db queries
+        if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
+            //Only perform once every few min to reduce db queries
             echo "PlotDaemon::removeOldScans()... \n";     
             foreach($this->liveScan as $key => $obj) {  
                 //Test age of update.  
                 $deleteIt = false;       
-                echo "   ... Vessel ". $obj->liveName . " last updated ". ($now - $obj->liveLastTS) . " seconds ago (Timeout is " . $this->timeout . " seconds) ";
-                if(($now - $this->timeout) > $obj->liveLastTS) { //1-Q) Is record is older than timeout value?
+                echo "   ... Vessel ". $obj->liveName . " last updated ". ($now - $obj->liveLastTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ";
+                if(($now - $this->liveScanTimeout) > $obj->liveLastTS) { //1-Q) Is record is older than timeout value?
                     /*1-A) Yes, then 
                      *     2-Q) Is it near the edge of receiving range?
                      *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
@@ -162,6 +169,22 @@ class PlotDaemon {
         }   
         $this->lastCleanUp = $now;
     } 
+
+    public function saveAllScans() {
+        $now = time();
+        if(($now - $this->lastPassagesSave) > $this->savePassagesTimeout) {
+            echo "Writing passages to db...\n";
+				$scans = count($this->liveScan);
+				foreach($this->liveScan as $liveScanObj) {
+					$len = count($liveScanObj->liveLocation->events);
+					echo "   ...".$liveScanObj->liveName. " ".$len." events.\n";
+					$liveScanObj->livePassageWasSaved = true;
+					$this->PassagesModel->savePassage($liveScanObj);
+				}
+				$this->lastPassagesSave = $now;
+				echo "Finished saving ".$scans." live vessels to passages.\n";
+        }
+    }
 
     protected function reloadSavedScans() {
         echo "CRTDaemon::reloadSavedScans() started ".getNow()."...\n";

@@ -84,7 +84,7 @@ class MyAIS extends AIS {
             
 			echo "Decoded: ".$id."\n";
             if(isset($this->plotDaemon->liveScan[$key])) {
-                //Update only if data is new
+                //Update liveScan object only if data is new
                 if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
                     $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course);
                     /*echo "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
@@ -100,10 +100,13 @@ class MyAIS extends AIS {
             }
 
 			//Remove old scans every 3 minutes
-		
-			if( time() - $this->plotDaemon->lastCleanUp > 180) {
+			$now = time();
+			echo ($now- $this->plotDaemon->lastCleanUp). ">" .$this->plotDaemon->cleanUpTimeout. "=".($now- $this->plotDaemon->lastCleanUp) > $this->plotDaemon->cleanUpTimeout;
+			if( ($now- $this->plotDaemon->lastCleanUp) > $this->plotDaemon->cleanUpTimeout) {
 				$this->plotDaemon->removeOldScans(); 
 			}
+			//Save scans to db at interval set within
+			$this->plotDaemon->saveAllScans();
         }
         /*                  End of custom CRT code           *
          * * * * * * * * * * * * * * * * * * * * * * * * * * */

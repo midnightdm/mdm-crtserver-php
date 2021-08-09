@@ -6,7 +6,7 @@ include_once('config.php');
 include_once('classes/ais.2.php');
 include_once('classes/MyAIS.class.php');
 include_once('classes/PlotDaemon.class.php');
-include_once('classes/LivePlot.class.php');
+//include_once('classes/LivePlot.class.php');
 include_once('classes/Firestore.class.php');
 include_once('classes/LiveScan.class.php');
 include_once('classes/LiveScanModel.class.php');

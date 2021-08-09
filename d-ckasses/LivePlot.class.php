@@ -64,7 +64,7 @@ class LivePlot {
     public function formatName() {
         //Get vessel's name
         $name = $this->name;        
-        $name     = trim($name);                   //Remove white spaces
+        $name     = trim($name, ' @');                   //Remove white spaces or @ symbols
         $name     = str_replace(',', '', $name);   //Remove commas (,)
         $name     = str_replace('.', '. ', $name); //Add space after (.)
         $name     = str_replace('  ', ' ', $name); //Remove double space

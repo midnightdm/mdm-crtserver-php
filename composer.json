@@ -4,7 +4,8 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/midnightdm/mdm-crt2-server"
+            "url": "https://github.com/midnightdm/mdm-crt2-server",
+            "license": "BSD-1-Clause"
         }
     ],
     "require": {

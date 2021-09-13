@@ -252,7 +252,7 @@ class LiveScan {
   }
 
   public function checkMarkerPassage() {
-    echo "Running LiveScan::checkMarkerPassage() ";
+    echo "LiveScan::checkMarkerPassage() ";
     //For upriver Direction (Lat increasing)
     if($this->liveLastLat < (MARKER_DELTA_LAT - 1) || $this->liveLastLat > (MARKER_ALPHA_LAT + 1)) { 
       return; //Skips further testing if lat jumped to a bogus value beyond local view.
@@ -262,7 +262,7 @@ class LiveScan {
       ($this->liveLastLat > MARKER_DELTA_LAT))   {
         $this->liveMarkerDeltaWasReached = true;
         $this->liveMarkerDeltaTS = $this->liveLastTS;
-        echo "upriver delta was reached.\n";
+        echo "upriver delta was reached.\n\n";
         //     $this->callBack->setApubId($this->callBack->AlertsModel->triggerDeltaEvent($this));
         //Pass waypoint event to Location::waypointEvent()
         $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
@@ -274,7 +274,7 @@ class LiveScan {
       if(!$this->liveMarkerCharlieWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_CHARLIE_LAT > $this->liveInitLat) && ($this->liveLastLat > MARKER_CHARLIE_LAT)) {
         $this->liveMarkerCharlieWasReached = true;
         $this->liveMarkerCharlieTS = $this->liveLastTS; 
-        echo "upriver charlie was reached.\n";       
+        echo "upriver charlie was reached.\n\n";       
         //  $this->callBack->setApubId($this->callBack->AlertsModel->triggerCharlieEvent($this));
         //Pass waypoint event to Location::waypointEvent()
         $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
@@ -286,7 +286,7 @@ class LiveScan {
       if(!$this->liveMarkerBravoWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_BRAVO_LAT > $this->liveInitLat) && ($this->liveLastLat > MARKER_BRAVO_LAT)) {
         $this->liveMarkerBravoWasReached = true;
         $this->liveMarkerBravoTS = $this->liveLastTS; 
-        echo "upriver bravo was reached.\n";       
+        echo "upriver bravo was reached.\n\n";       
         //  $this->callBack->setApubId($this->callBack->AlertsModel->triggerBravoEvent($this));
         //Pass waypoint event to Location::waypointEvent()
         $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
@@ -310,7 +310,7 @@ class LiveScan {
       if(!$this->liveMarkerAlphaWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_ALPHA_LAT < $this->liveInitLat) && ($this->liveLastLat < MARKER_ALPHA_LAT)) {
         $this->liveMarkerAlphaWasReached = true;
         $this->liveMarkerAlphaTS = $this->liveLastTS;    
-        echo "downriver alpha was reached.\n";    
+        echo "downriver alpha was reached.\n\n";    
         // $this->callBack->setApubId($this->callBack->AlertsModel->triggerAlphaEvent($this));
         //Pass waypoint event to Location::waypointEvent()
         $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
@@ -321,7 +321,7 @@ class LiveScan {
       if(!$this->liveMarkerBravoWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_BRAVO_LAT < $this->liveInitLat) && ($this->liveLastLat < MARKER_BRAVO_LAT)) {
         $this->liveMarkerBravoWasReached = true;
         $this->liveMarkerBravoTS = $this->liveLastTS;  
-        echo "downriver bravo was reached.\n";       
+        echo "downriver bravo was reached.\n\n";       
         // $this->callBack->setApubId($this->callBack->AlertsModel->triggerBravoEvent($this));
         //Pass waypoint event to Location::waypointEvent()
         $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
@@ -332,7 +332,7 @@ class LiveScan {
       if(!$this->liveMarkerCharlieWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_CHARLIE_LAT < $this->liveInitLat) && ($this->liveLastLat < MARKER_CHARLIE_LAT)) {
         $this->liveMarkerCharlieWasReached = true;
         $this->liveMarkerCharlieTS = $this->liveLastTS;
-        echo "downriver charlie was reached.\n";         
+        echo "downriver charlie was reached.\n\n";         
         //  $this->callBack->setApubId($this->callBack->AlertsModel->triggerCharlieEvent($this));
         //Pass waypoint event to Location::waypointEvent()
         $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
@@ -351,11 +351,11 @@ class LiveScan {
         $this->liveLocation->waypointEvent($event);        
       }           
     }
-    echo "no conditions met.\n";
+    echo "no conditions met.\n\n";
   }
   
   public function lookUpVessel() {   
-    echo 'LiveScan::lookUpVessel() started '.getNow()."\n";
+    echo 'LiveScan::lookUpVessel() '.getNow()."\n";
     //See if Vessel data is available locally
     if($data = $this->callBack->VesselsModel->getVessel($this->liveVesselID)) {
       //echo "Vessel found in database: " . var_dump($data);

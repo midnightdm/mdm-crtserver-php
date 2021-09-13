@@ -17,6 +17,7 @@ include_once('classes/Zone.class.php');
 include_once('classes/Location.class.php');
 include_once('classes/AlertsModel.class.php');
 include_once('classes/PassagesModel.class.php');
+include_once('classes/Messages.class.php');
 
 // * * * Constant Definitions * * * 
 //Marker Alpha Lat is 3 mi upriver Lock 13

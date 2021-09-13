@@ -138,7 +138,16 @@ class Location {
                 if($suppressTrigger) {
                     $status = "suppressed";
                 }
-                echo "Location::calculate() found ".$m." for ".$this->live->liveName." Event Trigger= $status\n";
+                if($status==="true") {
+                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
+                    echo "|                                                                               |\n";
+                    echo "*   Location::calculate() found ".$m." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m     *\n";
+                    echo "|                                                                               |\n";
+                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
+                } else {
+                    echo "Location::calculate() found ".$m." for ".$this->live->liveName." Event Trigger = $status\n";
+                }
+                
                 break;
             } 
 
@@ -173,7 +182,15 @@ class Location {
                 if($suppressTrigger) {
                     $status = "suppressed";
                 }
-                echo "Location::calculate() found ".$um." for ".$this->live->liveName." Event Trigger= $status\n";
+                if($status==="true") {
+                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
+                    echo "|                                                                               |\n";
+                    echo "*   Location::calculate() found ".$m." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m      *  \n";
+                    echo "|                                                                               |\n";
+                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
+                } else {
+                    echo "Location::calculate() found ".$m." for ".$this->live->liveName." Event Trigger = $status\n";
+                }
                 break;
             } 
         }
@@ -208,18 +225,18 @@ class Location {
         $this->event = $event;
         $this->eventTS = time();
         $this->updateEventStatus();
-         //*** disabled until written  *** $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
+        
     }
 
     public function updateEventStatus($suppressTrigger=false) {
         if($suppressTrigger) {
             return false;
         }
-        if($this->event === $this->lastEvent) {
+        if($this->event == $this->lastEvent) {
             return false;
         }
         //Reject update if one just happened
-        if((time() - $this->lastEventTS) < 10) {
+        if((time() - $this->lastEventTS) < 60) {
             return false;
         }
 
@@ -228,9 +245,10 @@ class Location {
             return false;
         }
         $this->events[$this->event] = $this->eventTS; 
+        
         //trigger an alert
-
-        //*** disabled until written  *** $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
+        //*** disabled until written  *** 
+        $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
         return true;
     }
     

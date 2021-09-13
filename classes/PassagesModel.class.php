@@ -13,7 +13,9 @@ class PassagesModel extends Firestore {
     }
 
     public function savePassage($liveScanObj) {
-        $data['passageVesselID'] = $liveScanObj->liveVesselID;
+        $data['vesselID'] = $liveScanObj->liveVesselID;
+        //$data['vesselName'] = $liveScanObj->liveName;
+        //$data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
         $data['passageDirection'] = $liveScanObj->liveDirection;
         $data['passageMarkerAlphaTS'] = $liveScanObj->liveMarkerAlphaTS;
         $data['passageMarkerBravoTS'] = $liveScanObj->liveMarkerBravoTS;
@@ -27,41 +29,60 @@ class PassagesModel extends Firestore {
             $data['passageMarkerAlphaTS']==null && 
             $data['passageMarkerBravoTS']==null &&
             $data['passageMarkerCharlieTS']==null &&
-            $data['passageMarkerDeltaTS'] )
+            $data['passageMarkerDeltaTS'] ==null)
         {
             echo "No events to save for ".$liveScanObj->liveName.".\n";
             return;
         }
        
+
+        //Default to today's date if no other found
+        $firstEventTS = time()+$offset;
         //Determine passage date for label
         //   Use first other event's date if no waypoint time
         if(!is_int($data['passageMarkerDeltaTS']) || !is_int($data['passageMarkerAlphaTS'])) {
             $c = count($data['passageEvents']); $i=0;
             if($c>0) {
                 while($i<0) {
-                    $firstEventTS = current($data['passageEvents'])+$offset;
+                    $key = key($data['passageEvents']) + $offset;
+                    if($key > 100000000) {
+                        $firstEventTS = $key;
+                        break;
+                    }
                     $i++;
                 }  
-            } else {
-                //Use today's date if no other found
-                $firstEventTS = time()+offset;
-            }
-        //   Otherwise use first reached waypoint time    
+            } 
+        //Otherwise use first reached waypoint time    
         } else {
-            $firstEventTS = $data['passageDirection'] == "upriver" ? $data['passageMarkerDeltaTS']+$offset : $data['passageMarkerAlphaTS']+$offset;
-            
+            $key = $data['passageDirection'] == "upriver" ? $data['passageMarkerDeltaTS']+$offset : $data['passageMarkerAlphaTS']+$offset;  
+        }
+        if($key > 100000000) {
+            $firstEventTS = $key;
         }
             
-        //Build array for Passages collection
+        //Build array for Passages by Date collection with added data
         $data['date'] = date('Y-m-d', $firstEventTS); 
+        $data['vesselName'] = $liveScanObj->liveName;
+        $data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
+        
         $month = date('Ym', $firstEventTS);
         echo "month=".$month.", ";
         $day   = date('d' , $firstEventTS);
         echo "day=".$day."\n";
         $passage = [
             $day => [
-                'mmsi'.$data['passageVesselID'] => $data
+                'mmsi'.$data['vesselID'] => $data
             ]
+        ];
+
+        //Build array for Passages All document update
+        $humanDate = date('M d, Y', $firstEventTS);
+        $model = [ $data['vesselID'] => [
+                "date" => $humanDate,
+                "id" => $liveScanObj->liveVesselID,
+                "image" => $liveScanObj->liveVessel->vesselImageUrl,
+                "name"  => $liveScanObj->liveName
+             ]
         ];
         
         //Final error check for bogus month
@@ -71,12 +92,20 @@ class PassagesModel extends Firestore {
         }
 
         $this->db->collection('Vessels')
-            ->document('mmsi'.$data['passageVesselID'])
-            ->set(['vesselPassages' => [ $data['date'] => $data] ] , ["merge"=>true]);
+            ->document('mmsi'.$data['vesselID'])
+            ->set(['vesselPassages' => [ $data['date'] => $data] ] , ['merge' => true]);
         
         $this->db->collection('Passages')
             ->document($month)
             ->set($passage, ['merge' => true]);
+        
+        $this->db->collection('Passages')
+            ->document('All')
+            ->set($model, ['merge' => true]);
+
+        echo "\033[33m Passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n";
+
+        
 
     }
 

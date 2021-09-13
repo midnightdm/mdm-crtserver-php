@@ -1,8 +1,8 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
-use Minishlink\WebPush\WebPush;
-use Minishlink\WebPush\Subscription;
+//use Minishlink\WebPush\WebPush;
+//use Minishlink\WebPush\Subscription;
 
 
 /* * * * * * * * *
@@ -12,19 +12,13 @@ use Minishlink\WebPush\Subscription;
  */
 class AlertsModel extends Firestore {
 
-    public $WebPushLibrary;
+    public $messageController;
     
     public function __construct() {
         parent::__construct(['name' => 'user_devices']);
-        //Prepare VAPID package and initialize WebPush
-        $auth = array(
-			'VAPID' => array(
-				'subject' => 'https://www.clintonrivertraffic.com/about',
-				'publicKey' => getenv('MDM_VKEY_PUB'),
-				'privateKey' => getenv('MDM_VKEY_PRI') 
-			)
-		);	
-        $this->WebPushLibrary = new WebPush($auth);
+        //Initialize Messages contoller
+        $this->messageController = new Messages();
+
     }
 
     public function triggerEvent($event, $liveObj) {
@@ -32,45 +26,45 @@ class AlertsModel extends Firestore {
         $codes = array("alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp","albany", "camanche", "beaverua", "beaverda", "m503up", "m504up", "m505up", "m506up", "m507up","m508up","m509up", "m510up", "m511up", "m512up", "m513up", "m514up", "m515up", "m516up", "m517up", "m518up", "m519up", "m520up", "m521up", "m522up", "m523up","m524up", "m525up","m526up", "m527up", "m528up", "m529up", "m530up", "m531up", "m532up", "m533up", "m534up", "m535up", "m536up", "m537up", "m538up", "m539up", "m503dp", "m504dp", "m505dp", "m506dp", "m507dp", "m508dp", "m509dp", "m510dp","m511dp","m512dp","m513dp","m514dp","m515dp","m516dp","m517dp",  "m518dp","m519dp","m520dp","m521dp","m522dp","m523dp","m524dp","m525dp","m526dp","m527dp","m528dp","m529dp","m530dp","m531dp","m532dp","m533dp","m534dp","m535dp","m536dp","m537dp","m538dp","m539dp","m503ua","m504ua","m505ua","m506ua","m507ua","m508ua","m509ua","m510ua","m511ua","m512ua","m513ua","m514ua","m515ua","m516ua","m517ua", "m518ua","m519ua","m520ua","m521ua","m522ua","m523ua","m524ua","m525ua","m526ua","m527ua","m528ua","m529ua","m530ua","m531ua","m532ua","m533ua","m534ua","m535ua","m536ua","m537ua","m538ua","m539ua","m503da","m504da","m505da","m506da","m507da","m508da","m509da","m510da","m511da","m512da","m513da","m514da","m515da","m516da","m517da", "m518da","m519da","m520da","m521da","m522da","m523da","m524da","m525da","m526da","m527da","m528da","m529da","m530da","m531da","m532da","m533da","m534da","m535da","m536da","m537da","m538da","m539da");
         
         if(!in_array($event, $codes)) {
-            echo "ERROR: triggerEvent(".$event.") failed. Event not recognized.\n";
+            echo "ERROR: AlertsModel::triggerEvent(".$event.") failed. Event not recognized.\n";
             return false;
         }
         $ref = $this->db->collection('user_devices');
-        $query = $ref->where("events", "array-contains", $event);    
+        $query = $ref->where("events", "array-contains", $event);  //Matches events to subcriptions  
         $documents = $query->documents();
-        
+
+        $count = 0;
         foreach($documents as $document) {
-            if($document->exists()) {               
+
+            if($document->exists()) {   
+                $count++;            
                 $user = $document->data();
                 if($user['is_enabled']) {
-                    //Send to push queue
-                    $subscriber = array();
-                    $subscriber['endpoint']  = $user['subscription']['endpoint'];
-                    $subscriber['auth']      = $user['subscription']['auth'];
-                    $subscriber['p256dh']    = $user['subscription']['p256dh'];
-                    $this->pushNoticeTo($subscriber, $event, $liveObj);
+                    if($user['alertMethod']=='notification') {          
+                        $this->pushNoticeTo($user, $event, $liveObj);
+                    } elseif($user['alertMethod']=='email') {
+                        $this->pushEmailTo($user, $event, $liveObj);
+                    } elseif(['alertMethod']=='sms') {
+                        $this->pushSmsTo($user, $event, $liveObj);
+                    }
                 }  
             } else {
                 echo "Document ". $document->id(). " does not exist!\n";
             }
         }
+        if($count) {
+            echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
+            echo "|                                                                               |\n";
+            echo "*\033[31m   AlertsModel::triggerEvent() found $count subscriber matches for event $event. \033[0m\n";
+            echo "|                                                                               |\n";
+            echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
+        }
 
     }
 
-    public function pushNoticeTo($subscriber, $event, $liveObj) {
-		//Prepare subscription package  
-		$data = [
-			"contentEncoding" => "aesgcm",
-			"endpoint" => $subscriber['endpoint'],
-			"keys" => [
-				"auth" =>   $subscriber['auth'],
-				"p256dh" => $subscriber['p256dh']
-			]
-		];
-		$subscription = createSubscription($data);
-		
-		//Prepare notification message
-		$txt = $this->buildAlertMessage(
+    public function pushSmsTo($user, $event, $liveObj) {
+        $phone = $user['alertDest'];
+        $message = $this->buildAlertMessage(
             $event, 
             $liveObj->liveName, 
             $liveObj->liveVessel->vesselType, 
@@ -80,14 +74,28 @@ class AlertsModel extends Firestore {
             $liveObj->liveLastLon,
             $liveObj->liveLocation->description
         );
-        $msg = [
-			"title" => "CRT Notice for ".$liveObj->liveName,
-			"body"  =>  $txt,
-			"icon"  => "images/favicon.png",
-			"url"   => "https://www.clintonrivertraffic.com/livescan/live"
-		];
+        $clickSendResponse = json_decode(
+            $this->messageController->sendOneSMS($phone, $message)
+        );
+        $this->generateAlertLogSms($clickSendResponse, $smsMessages);
+        echo "Sent SMS message to ".$phone."\n";
+    }
 
-		$report = $this->WebPushLibrary->webPush->sendOneNotification($subscription, json_encode($msg));
+    public function pushNoticeTo($user, $event, $liveObj) {
+		//Prepare notification message
+		$messageTxt = $this->buildAlertMessage(
+            $event, 
+            $liveObj->liveName, 
+            $liveObj->liveVessel->vesselType, 
+            $liveObj->liveDirection,
+            $liveObj->liveLocation->eventTS,
+            $liveObj->liveLastLat,
+            $liveObj->liveLastLon,
+            $liveObj->liveLocation->description
+        );
+        
+        $this->messageController->sendOneNotification($user, $messageTxt, $liveObj);
+
 		if($report->isSuccess()) {
 			echo "Webpush success.\n";
 		} else {
@@ -96,6 +104,22 @@ class AlertsModel extends Firestore {
 		}	
 	}
     
+    public function pushEmailTo($user, $event, $liveObj) {
+        $address = $user['alertDest'];
+        $subject = "CRT Notice for ".$liveObj->liveName;
+        $message = $this->buildAlertMessage(
+            $event, 
+            $liveObj->liveName, 
+            $liveObj->liveVessel->vesselType, 
+            $liveObj->liveDirection,
+            $liveObj->liveLocation->eventTS,
+            $liveObj->liveLastLat,
+            $liveObj->liveLastLon,
+            $liveObj->liveLocation->description
+        );
+        $report = $this->messageController->sendEmail($address, $subject, $message);
+        echo $report; 
+    }
 
     public function buildAlertMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $location) {
         $loc = "";
@@ -124,7 +148,7 @@ class AlertsModel extends Firestore {
             case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
             case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
             case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
-            case "marker" : $eventDesc = " is "; break;
+            case "marker" : $eventDesc = " is ".$location; break;
         }
         $txt  = str_replace('Vessel', '', $vesselType);
         $txt .= " Vessel ".$vesselName." ".$evtDesc;
@@ -132,6 +156,9 @@ class AlertsModel extends Firestore {
         $txt .= ". ".date($str, ($ts+$offset)).$loc;
         return $txt;
     }
+
+
+    //Methods below were for sql based version of app
 
     public function postAlertMessage($event, $liveScan) {
         //This function gets run by Event trigger methods of this class 
@@ -158,104 +185,8 @@ class AlertsModel extends Firestore {
         } catch(PDOException $exception){ 
             echo $exception; 
         }            
-    }
-  
-    public function generateAlertMessages($limit) {
-        //This function gets run by CRTdaemon::checkAlertStatus()
-        $db = $this->db();
-        $sql = "SELECT * FROM alertpublish ORDER BY apubTS DESC LIMIT $limit";
-        $q1 = $db->query($sql);
-
-        //Get data for new found messages     
-        if($limit > 1) {
-            $publishData    = $q1->fetchAll();
-        } elseif($limit==1) {
-            $publishData    = [];
-            $publishData[0] = $q1->fetch(); 
-        }
-        unset($db);
-        //arrays for messages
-        $smsMessages   = [];
-        $emailMessages = [];
-        $notifMessages = [];
-
-        //Check data
-        //echo "Dumping \$publishData array with \$limit = ".$limit."\n";
-        //die(var_dump($publishData));
-
-        //Loop through publish data to get elements for next searches
-        foreach($publishData as $row) {
-            $alertID   = $row['apubID'];
-            $txt       = $row['apubText'];
-            $vesselID  = $row['apubVesselID'];
-            $name      = $row['apubVesselName'];
-            $event     = $row['apubEvent'];
-            $dir       = $row['apubDir'];
-            switch($dir) {
-                case "upriver"  : $add = "Up";   break;
-                case "downriver": $add = "Down"; break;
-                default         : $add = "";     break;
-            }
-            
-            //Find alerts for this event and direction for 'any' vessel
-            $sql = "SELECT alertDest, alertMethod FROM alerts WHERE alertOnAny = 1 AND alertOn".ucfirst($event).$add. " = 1";
-            $db = $this->db();
-            $q2 = false;
-            try {
-            //echo "Tried query was \"".$sql."\"\n";
-            $q2 = $db->query($sql);
-            //echo "Dumping \$q2 ".var_dump($q2)."\n";
-            } catch(PDOException $exception){ 
-            echo $exception; 
-            }  
-            if(!$q2) {
-            //error_log("No 'Any' alerts found for alertpublish ID $alertID");
-            echo "No 'Any' alerts found for alertpublish ID $alertID\n";
-            continue;
-            } elseif ($q2->rowCount()) {
-                $alertOnAnyData = $q2->fetchAll();
-                foreach($alertOnAnyData as $row) {
-                    if($row['alertMethod']=='sms') {
-                    $smsMsg = ['phone'=>$row['alertDest'], 'text'=>'CRT Alert '.$alertID."\n".$txt, 'event' => $event, 'dir' => $dir, 'alertID' => $alertID];
-                    $smsMessages[] = $smsMsg;
-                    } elseif($row['alertMethod']=='email') {
-                    $emlMsg = ['to'=>$row['alertDest'],  'text'=>$txt, 'subject'=> 'CRT Alert '.$alertID.' for '.$name, 'event' => $event, 'dir' => $dir, 'alertID' => $alertID];
-                    $emailMessages[] = $emlMsg;
-                    } elseif($row['alertMethod']=='notification') {
-                    $notMsg = ['to'=>$row['alertDest'],  'text'=>$txt, 'subject'=> 'CRT Alert '.$alertID.' for '.$name, 'event' => $event, 'dir' => $dir, 'alertID' => $alertID];
-                    $notifMessages[] = $notMsg;
-                    }
-                }
-            }      
-            unset($db);
-            
-            //Find alerts for this event and direction for specified vessel   
-            $sql = "SELECT alertDest, alertMethod FROM alerts WHERE alertVesselID = ? AND alertOn".ucfirst($event).$add. " = 1";
-            $db = $this->db();
-            $q3 = $db->prepare($sql);
-            $q3->execute([$vesselID]);
-            if(!$q3) {
-            //error_log("No vessel specific alerts found for alertpublish ID $alertID");
-            echo "No 'vessel specific alerts found for alertpublish ID $alertID\n";
-            continue;
-            } elseif ($q3->rowCount()) { 
-                $alertOnVesselData = $q3->fetchAll();
-                foreach($alertOnVesselData as $row) {
-                    if($row['alertMethod']=='sms') {
-                        $smsMsg = ['phone'=>$row['alertDest'], 'text'=>'CRT Alert '.$alertID.' '.$txt, 'event' => $event, 'dir' => $dir, 'alertID' => $alertID];
-                        $smsMessages[] = $smsMsg;
-                    } elseif($row['alertMethod']=='email') {
-                        $emlMsg = ['to'=>$row['alertDest'],  'text'=>$txt, 'subject'=> 'CRT Alert '.$alertID.' for '.$name, 'event' => $event, 'dir' => $dir, 'alertID' => $alertID];
-                        $emailMessages[] = $emlMsg;
-                    } elseif($row['alertMethod']=='notification') {
-                        $notMsg = ['to'=>$row['alertDest'],  'text'=>$txt, 'subject'=> 'CRT Alert '.$alertID.' for '.$name, 'event' => $event, 'dir' => $dir, 'alertID' => $alertID];
-                        $notifMessages[] = $notMsg;
-                    }
-                }
-            }
-            unset($db);
-        }
-
+      
+    
         //---- Test code start point ----
         //echo "Dumping smsMessages array now....:\n\n";
         //echo var_dump($smsMessages);
@@ -264,7 +195,7 @@ class AlertsModel extends Firestore {
         //--- Test code end point -----
         
         //Send $smsMessages & $emailMessages assembled in loops above
-        $msgController = new Messages();
+        //$msgController = new Messages();
         $qtySmsMessages = count($smsMessages);
         if($qtySmsMessages>0) {
             $clickSendResponse = json_decode($msgController->sendSMS($smsMessages));
@@ -448,6 +379,4 @@ class AlertsModel extends Firestore {
     }
 }
 
-function createSubscription($data) {
-	return Subscription::create($data);
-}
+

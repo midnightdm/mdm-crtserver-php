@@ -38,6 +38,7 @@ class VesselsModel extends Firestore {
       }
     
       public function updateVesselLastDetectedTS($vesselID, $ts) {
+        //In Vessels/:id document
         $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
         $snapshot = $document->snapshot();
         if($snapshot->exists()) {
@@ -45,6 +46,14 @@ class VesselsModel extends Firestore {
         } else {
             return false;
         }
+        //And in Passages/All document
+        $date = date("F j, Y", $ts);
+        $document = $this->db->collection('Passages')->document('All');
+        $snapshot = $document->snapshot();
+        if($snapshot-exists()) {
+          $document->set([$vesselID => ['date' => $date ]], ['merge'=> true]);
+        }
+      
       }
     
       public function insertVessel($dataArr) {

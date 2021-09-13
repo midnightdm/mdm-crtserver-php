@@ -1095,3 +1095,1333 @@ Stack trace:
 [09-Aug-2021 01:37:31 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
 [09-Aug-2021 02:01:51 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
 [09-Aug-2021 02:01:52 UTC] PHP Notice:  A non well formed numeric value encountered in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:33:10 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:33:10 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:33:10 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:33:10 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[13-Aug-2021 23:33:11 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[13-Aug-2021 23:33:12 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:33:12 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:33:12 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:33:12 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:36:51 UTC] Error deleting LiveScan 367580880
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[13-Aug-2021 23:38:50 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[13-Aug-2021 23:38:51 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:38:51 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:38:51 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:38:51 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:40:01 UTC] Error deleting LiveScan 367580880
+[13-Aug-2021 23:43:06 UTC] Error deleting LiveScan 367580880
+[13-Aug-2021 23:44:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[13-Aug-2021 23:44:32 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[13-Aug-2021 23:46:09 UTC] Error deleting LiveScan 367580880
+[13-Aug-2021 23:49:11 UTC] Error deleting LiveScan 367580880
+[13-Aug-2021 23:50:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[13-Aug-2021 23:50:08 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 22
+[13-Aug-2021 23:50:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 56
+[13-Aug-2021 23:50:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 57
+[13-Aug-2021 23:50:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Aug-2021 23:50:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 68
+[14-Aug-2021 00:21:03 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 00:21:03 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 00:21:03 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 00:21:03 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 65
+[14-Aug-2021 00:21:03 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 00:21:03 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 71
+[14-Aug-2021 00:41:03 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 65
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 71
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 65
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 00:41:05 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 71
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 65
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 71
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 65
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 01:01:06 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 71
+[14-Aug-2021 01:21:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 01:21:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 01:21:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 01:21:11 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 65
+[14-Aug-2021 01:21:12 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 01:21:12 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 71
+[14-Aug-2021 01:21:12 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 65
+[14-Aug-2021 01:21:13 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 71
+[14-Aug-2021 01:21:13 UTC] PHP Notice:  Undefined index: passageVesselID in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 86
+[14-Aug-2021 01:21:13 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Field paths cannot contain empty path elements. Given path was ``. in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\FieldPath.php:50
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\FieldPath.php(122): Google\Cloud\Firestore\FieldPath->__construct(Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(714): Google\Cloud\Firestore\FieldPath->child('')
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(685): Google\Cloud\Firestore\WriteBatch->filterFieldsRecursive(Array, Array, Array, Array, Object(Google\Cloud\Firestore\FieldPath))
+#3 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(201): Google\Cloud\Firestore\WriteBatch->filterFields(Array)
+#4 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\DocumentReference.php(226): Google\Cloud\Firestore\WriteBatch->set('projects/mdm-qc...', Array, Array)
+#5 E:\xampp\h in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\FieldPath.php on line 50
+[14-Aug-2021 02:57:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 02:57:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 02:57:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 02:57:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:17:51 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 03:17:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 03:17:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 03:17:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:17:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 03:17:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 03:17:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 03:17:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:17:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 03:17:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 03:17:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 03:17:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:38:01 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[14-Aug-2021 03:38:02 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 24
+[14-Aug-2021 03:53:10 UTC] Error deleting LiveScan 368024780
+[14-Aug-2021 03:56:10 UTC] Error deleting LiveScan 368024780
+[14-Aug-2021 03:58:10 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 03:58:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 03:58:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 03:58:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:58:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[14-Aug-2021 03:58:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[14-Aug-2021 03:58:11 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 61
+[14-Aug-2021 03:58:12 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 70
+[14-Aug-2021 03:58:12 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php on line 179
+[14-Aug-2021 03:58:12 UTC] PHP Notice:  Trying to get property 'events' of non-object in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 24
+[14-Aug-2021 03:59:10 UTC] Error deleting LiveScan 368024780
+[14-Aug-2021 04:02:30 UTC] Error deleting LiveScan 368024780
+[14-Aug-2021 04:05:31 UTC] Error deleting LiveScan 368024780
+[14-Aug-2021 04:08:32 UTC] Error deleting LiveScan 368024780
+[14-Aug-2021 04:11:51 UTC] Error deleting LiveScan 368024780
+[15-Aug-2021 22:32:46 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ']' in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:35:39 UTC] PHP Parse error:  syntax error, unexpected '17' (T_LNUMBER), expecting ']' in E:\xampp\htdocs\mdm-crt2-server\classes\passagesdata.php on line 1110
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:20 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:21 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Notice:  Trying to get property 'id' of non-object in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 138
+[15-Aug-2021 22:38:22 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Field paths cannot contain empty path elements. Given path was ``. in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\FieldPath.php:50
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\FieldPath.php(122): Google\Cloud\Firestore\FieldPath->__construct(Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(714): Google\Cloud\Firestore\FieldPath->child('')
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(685): Google\Cloud\Firestore\WriteBatch->filterFieldsRecursive(Array, Array, Array, Array, Object(Google\Cloud\Firestore\FieldPath))
+#3 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(201): Google\Cloud\Firestore\WriteBatch->filterFields(Array)
+#4 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\DocumentReference.php(226): Google\Cloud\Firestore\WriteBatch->set('projects/mdm-qc...', Array, Array)
+#5 E:\xampp\h in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\FieldPath.php on line 50
+[06-Sep-2021 19:36:40 UTC] PHP Notice:  Undefined variable: vess in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 231
+[06-Sep-2021 19:36:40 UTC] PHP Warning:  Invalid argument supplied for foreach() in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 22
+[06-Sep-2021 19:36:41 UTC] PHP Notice:  Undefined variable: pass in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 232
+[06-Sep-2021 19:36:41 UTC] PHP Warning:  Invalid argument supplied for foreach() in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 106
+[06-Sep-2021 19:36:41 UTC] PHP Notice:  Undefined variable: all in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 233
+[06-Sep-2021 19:36:41 UTC] PHP Warning:  Invalid argument supplied for foreach() in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 155
+[06-Sep-2021 19:40:13 UTC] PHP Parse error:  syntax error, unexpected '{', expecting ']' in E:\xampp\htdocs\mdm-crt2-server\classes\passagesdata.php on line 14
+[06-Sep-2021 19:46:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in E:\xampp\htdocs\mdm-crt2-server\classes\passagesdata.php on line 14
+[06-Sep-2021 19:49:29 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:29 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:29 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:30 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:30 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:30 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:31 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:31 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:31 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:32 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:32 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:32 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:32 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:33 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:33 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:33 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:34 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:34 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:34 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:34 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:34 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:35 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:35 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:35 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:36 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:36 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:36 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:36 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:37 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:38 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:39 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:40 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:41 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:42 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:43 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:44 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 8 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 126
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined variable: update in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 129
+[06-Sep-2021 19:49:45 UTC] PHP Notice:  Undefined offset: 7 in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 125
+[06-Sep-2021 19:52:29 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:30 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:31 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:32 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:33 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:52:34 UTC] PHP Notice:  Undefined variable: pdate in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 116
+[06-Sep-2021 19:53:31 UTC] PHP Notice:  Undefined variable: month in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 143
+[06-Sep-2021 19:53:33 UTC] PHP Fatal error:  Uncaught Google\Cloud\Core\Exception\BadRequestException: {
+    "message": "Document name \"projects\/mdm-qcrt-demo-1\/databases\/(default)\/documents\/Passages\/\" has invalid trailing \"\/\".",
+    "code": 3,
+    "status": "INVALID_ARGUMENT",
+    "details": []
+} in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php:257
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php(146): Google\Cloud\Core\GrpcRequestWrapper->convertToGoogleException(Object(Google\ApiCore\ApiException))
+#1 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcTrait.php(79): Google\Cloud\Core\GrpcRequestWrapper->send(Array, Array, Array)
+#2 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\Connection\Grpc.php(161): Google\Cloud\Firestore\Connection\Grpc->send(Array, Array)
+#3 E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-firestore\src\WriteBatch.php(439): Google\Cloud\Firestore\Connection\Grpc->commit(Array)
+#4 E:\xampp\htdoc in E:\xampp\htdocs\mdm-crt2-server\vendor\google\cloud-core\src\GrpcRequestWrapper.php on line 257
+[11-Sep-2021 20:09:51 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php on line 69
+[11-Sep-2021 20:25:53 UTC] PHP Fatal error:  Cannot redeclare createSubscription() (previously declared in E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php:375) in E:\xampp\htdocs\mdm-crt2-server\classes\Messages.class.php on line 220
+[11-Sep-2021 20:27:14 UTC] PHP Warning:  require_once(E:\xampp\htdocs\mdm-crt2-server\classes/../../vendor/autoload.php): failed to open stream: No such file or directory in E:\xampp\htdocs\mdm-crt2-server\classes\Messages.class.php on line 28
+[11-Sep-2021 20:27:14 UTC] PHP Fatal error:  require_once(): Failed opening required 'E:\xampp\htdocs\mdm-crt2-server\classes/../../vendor/autoload.php' (include_path='.;E:\xampp\php\includes') in E:\xampp\htdocs\mdm-crt2-server\classes\Messages.class.php on line 28
+[11-Sep-2021 20:28:31 UTC] PHP Fatal error:  Uncaught Error: Class 'ClickSend\Configuration' not found in E:\xampp\htdocs\mdm-crt2-server\classes\Messages.class.php:30
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php(20): Messages->__construct()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(51): AlertsModel->__construct()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(72): PlotDaemon->setup()
+#3 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(47): PlotDaemon->start()
+#4 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\Messages.class.php on line 30
+[11-Sep-2021 20:29:20 UTC] PHP Fatal error:  Uncaught Error: Class 'ClickSend\Configuration' not found in E:\xampp\htdocs\mdm-crt2-server\classes\Messages.class.php:30
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\AlertsModel.class.php(20): Messages->__construct()
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(51): AlertsModel->__construct()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(72): PlotDaemon->setup()
+#3 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(47): PlotDaemon->start()
+#4 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\Messages.class.php on line 30
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 21:07:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 21:27:28 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 21:27:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 21:27:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 21:27:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 21:27:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 21:27:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 21:27:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 21:27:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 21:47:30 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 21:47:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 21:47:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 21:47:32 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 22:07:31 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 22:07:33 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 22:07:33 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 22:07:33 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 22:27:45 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 22:27:47 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 22:27:47 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 22:27:47 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 22:27:47 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 22:27:47 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 22:27:47 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 22:27:47 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 22:47:48 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 22:47:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 22:47:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 22:47:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 22:47:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 22:47:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 22:47:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 22:47:50 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 23:07:51 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 23:07:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 23:07:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 23:07:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 23:07:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 23:07:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 23:07:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 23:07:52 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 23:27:51 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 23:27:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 23:27:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 23:27:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 23:27:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 23:27:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 23:27:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 23:27:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 23:48:01 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 23:48:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 23:48:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 23:48:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[11-Sep-2021 23:48:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[11-Sep-2021 23:48:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[11-Sep-2021 23:48:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[11-Sep-2021 23:48:02 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 00:08:06 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[12-Sep-2021 00:08:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[12-Sep-2021 00:08:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[12-Sep-2021 00:08:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 00:08:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[12-Sep-2021 00:08:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[12-Sep-2021 00:08:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[12-Sep-2021 00:08:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[12-Sep-2021 00:28:08 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 00:48:07 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[12-Sep-2021 00:48:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[12-Sep-2021 00:48:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[12-Sep-2021 00:48:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 00:48:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[12-Sep-2021 00:48:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[12-Sep-2021 00:48:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[12-Sep-2021 00:48:09 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 01:27:04 UTC] PHP Parse error:  syntax error, unexpected '*' in E:\xampp\htdocs\mdm-crt2-server\classes\Location.class.php on line 143
+[12-Sep-2021 02:26:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 58
+[12-Sep-2021 02:26:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 62
+[12-Sep-2021 02:26:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 64
+[12-Sep-2021 02:26:53 UTC] PHP Notice:  Undefined variable: firstEventTS in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 73
+[12-Sep-2021 03:38:31 UTC] PHP Notice:  Undefined variable: key in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[12-Sep-2021 03:38:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getTime() in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php:106
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(182): PassagesModel->savePassage(Object(LiveScan))
+#1 E:\xampp\htdocs\mdm-crt2-server\classes\MyAIS.class.php(109): PlotDaemon->saveAllScans()
+#2 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(131): MyAIS->decode_ais('000001000101011...', '')
+#3 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(218): AIS->process_ais_itu('15Mv5v0P00IS:n<...', 28, 0, '')
+#4 E:\xampp\htdocs\mdm-crt2-server\classes\ais.2.php(236): AIS->process_ais_raw('!AIVDM,1,1,,,15...', '')
+#5 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(106): AIS->process_ais_buf('!AIVDM,1,1,,,15...')
+#6 E:\xampp\htdocs\mdm-crt2-server\classes\PlotDaemon.class.php(75): PlotDaemon->run()
+#7 E:\xampp\htdocs\mdm-crt2-server\plotserver.php(47): PlotDaemon->start()
+#8 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 106
+[12-Sep-2021 04:10:10 UTC] PHP Notice:  Undefined variable: key in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[12-Sep-2021 04:10:10 UTC] PHP Notice:  Undefined variable: key in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[12-Sep-2021 04:30:09 UTC] PHP Notice:  Undefined variable: key in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[12-Sep-2021 04:30:11 UTC] PHP Notice:  Undefined variable: key in E:\xampp\htdocs\mdm-crt2-server\classes\PassagesModel.class.php on line 59
+[13-Sep-2021 00:27:47 UTC] PHP Notice:  Array to string conversion in E:\xampp\htdocs\mdm-crt2-server\importpassages.php on line 250

@@ -3,7 +3,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 include_once('classes/Firestore.class.php');
 
-include_once('classes/passagesdata.php'); //$vess and $pass arrays
+//include_once('classes/passagesdata.php'); //$vess and $pass arrays
 include_once('classes/crtfunctions_helper.php');
 
 /* * * * * * * * *
@@ -23,10 +23,10 @@ class ExportPassagesModel extends Firestore {
             $vess = [
                 "vesselBuilt" => $v[10],
                 "vesselCallSign" => $v[2],
-                "vesselDraft" => $v[8],
-                "vesselHasImage" => $v[6],
+                "vesselDraft" => $v[6],
+                "vesselHasImage" => $v[7],
                 "vesselID" => $v[1],
-                "vesselImageUrl" => $v[7],
+                "vesselImageUrl" => $v[8],
                 "vesselLastDetectedTS" => $v[13],
                 "vesselLength" => $v[4],
                 "vesselName" => $v[0],
@@ -87,7 +87,9 @@ class ExportPassagesModel extends Firestore {
                 "passageMarkerCharlieTS" => $c[2],
                 "passageMarkerDeltaTS" => $c[3],
                 "passageEvents" => [],
-                "date" =>  date('Y-m-d', $ts+$offset)
+                "date" =>  date('Y-m-d', $ts+$offset),
+                "vesselName" => $p[7],
+                "vesselImageUrl" => $p[8]
             ];
         }
         //Loop through array to write to db
@@ -95,12 +97,13 @@ class ExportPassagesModel extends Firestore {
             //For Passage collection
             $this->db->collection('Passages')->document(strval($month))->set($value, ["merge" => true]);
             //For Vessels collection
-            $this->db->collection('Vessels')->document('mmsi'.$p[1])->collection('Passages')->document($pass['date'])->set($pass, ["merge" => true]);
+            //$this->db->collection('Vessels')->document('mmsi'.$p[1])->collection('Passages')->document($pass['date'])->set($pass, ["merge" => true]);
         }
     }
 
     public function run4($passages) {
         $mmsi = [];
+        $alt  = [];
         //Build array with all passages
         foreach($passages as $p) {
             //correct for 0 ts
@@ -108,10 +111,12 @@ class ExportPassagesModel extends Firestore {
             $ts = $p[2] == "upriver" ? $c[3] : $c[0]; //Time 1st waypoint was crossed
             $offset = getTimeOffset($ts); 
             $ts+= $offset;
+            $pmonth = date('Ym', $ts);
             $pdate  = date('Y-m-d', $ts);        
             if(!isset($mmsi['mmsi'.$p[1]])) {
                 $mmsi['mmsi'.$p[1]]["vesselPassages"] = [];
             }
+
             $mmsi['mmsi'.$p[1]]["vesselPassages"][$pdate] = [
                 "passageVesselID" => $p[1],
                 "passageDirection" => $p[2],
@@ -120,18 +125,45 @@ class ExportPassagesModel extends Firestore {
                 "passageMarkerCharlieTS" => $c[2],
                 "passageMarkerDeltaTS" => $c[3],
                 "passageEvents" => [],
-                "date" =>  date('Y-m-d', $ts+$offset)
+                "date" =>  date('Y-m-d', $ts+$offset),
+                "vesselName" => $p[7],
+                "vesselImageUrl" => $p[8]
+            ];
+
+            $alt['mmsi'.$p[1]]["vesselPassages"][$pdate] = [
+                "passageVesselID" => $p[1],
+                "passageDirection" => $p[2],
+                "passageMarkerAlphaTS" => $c[0],
+                "passageMarkerBravoTS" => $c[1],
+                "passageMarkerCharlieTS" => $c[2],
+                "passageMarkerDeltaTS" => $c[3],
+                "passageEvents" => [],
+                "date" =>  date('Y-m-d', $ts+$offset),
             ];
         }
-        //Loop through array to write to db
+        //Loop through arrays to write to db
+        /*
         foreach($mmsi as $vessel => $value) {
             //For Passage collection
-            //$this->db->collection('Passages')->document(strval($month))->set($value, ["merge" => true]);
+            $this->db->collection('Passages')->document(strval($pmonth))->set($value, ["merge" => true]);
+        }
+        */
+
+        foreach($alt as $vessel=> $value) {
             //For Vessels collection
             $this->db->collection('Vessels')->document($vessel)->set($value, ["merge" => true]);
-        }
+        }   
+            
+        
     }
 
+    public function run5($all) {
+        $passages = [];
+        foreach($all as $a) {
+            $passages[$a['id']] = $a;
+        }
+        $this->db->collection('Passages')->document('All')->set($passages);
+    }    
     public function timeCorrector($a, $b, $c, $d) {
         $arr = [$a, $b, $c, $d];
         if(!in_array(0, $arr)) {
@@ -203,8 +235,22 @@ class ExportPassagesModel extends Firestore {
 $start = time();
 echo "Starting ".date('c')."\n";
 $model = new ExportPassagesModel();
+
+$vess = json_decode(grab_page(
+    "https://www.clintonrivertraffic.com/vesselsjson/vess"));
 $model->run($vess);
-$model->run4($pass);
+echo "Imported vessels to Vessels.\n";
+$pass = json_decode(grab_page(
+    "https://www.clintonrivertraffic.com/vesselsjson/pass"));
+$model->run3($pass); //To Passages
+echo "Imported passages to Passages.\n";
+$model->run4($pass); //To Vessels/Passages
+echo "Imported passages to Vessels/Passages.\n";
+
+$all = json_decode(grab_page(
+    "https://www.clintonrivertraffic.com/vesselsjson/all"), true);
+$model->run5($all);  //To Passages/All
+echo "Imported latest passage to All\n";
 $finish = time();
 
 echo "Done ".date('c')." in ".($finish-$start)." seconds\n";

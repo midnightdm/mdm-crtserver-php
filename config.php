@@ -10,6 +10,8 @@ $config =  [
     'dbUser'   =>   getEnv('MDM_CRT_DB_USR'),
     'dbPwd'    =>   getEnv('MDM_CRT_DB_PWD'),
     'dbName'   =>   getEnv('MDM_CRT_DB_NAME'),
+    'socket_address' => '127.0.0.1',
+    'socket_port' => '10111',
     'image_base' => 'https://www.clintonrivertraffic.com/',
     'nonVesselFilter' => [
       3660692,

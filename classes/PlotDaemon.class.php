@@ -64,7 +64,9 @@ class PlotDaemon {
         $this->dbName = $config['dbName'];   
         $this->nonVesselFilter = $config['nonVesselFilter'];
         $this->localVesselFilter = $config['localVesselFilter'];
-        $this->image_base = $config['image_base'];      
+        $this->image_base = $config['image_base'];
+        $this->socket_address = $config['socket_address'];
+        $this->socket_port    = $config['socket_port'];      
     }
 
     public function start() {
@@ -88,7 +90,7 @@ class PlotDaemon {
         }
         echo "Socket created \n";
         // Bind the source address
-        if( !socket_bind($sock, "127.0.0.1", 10110) ) {
+        if( !socket_bind($sock, $this->socket_address, $this->socket_port) ) {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
             die("Could not bind socket : [$errorcode] $errormsg \n");

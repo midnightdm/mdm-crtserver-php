@@ -1,6 +1,10 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
+//Tell PHP to save error logs
+ini_set("log_errors", 1);
+ini_set("error_log", "/tmp/php-error.log");
+
 //Load all the dependencies
 include_once('config.php');
 include_once('classes/ais.2.php');

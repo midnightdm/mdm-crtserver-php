@@ -230,24 +230,28 @@ class Location {
 
     public function updateEventStatus($suppressTrigger=false) {
         if($suppressTrigger) {
+            echo "\033[33m updateEventStatus() TRIGGER SUPPRESSED \033[0m\n";
             return false;
         }
         if($this->event == $this->lastEvent) {
+            echo "\033[33m updateEventStatus() SAME AS LAST EVENT\033[0m\n";
             return false;
         }
         //Reject update if one just happened
         if((time() - $this->lastEventTS) < 60) {
+            echo "\033[33m updateEventStatus() EVENT < 60 OLD \033[0m\n";
             return false;
         }
 
         //Is this event in array already?
         if(isset($this->events[$this->event])) {
+            echo "\033[33m updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
             return false;
         }
         $this->events[$this->event] = $this->eventTS; 
         
         //trigger an alert
-        //*** disabled until written  *** 
+        echo "\033[42m \033[30m updateEventStatus() $this->event ALERT TRIGGERED \033[0m\n";
         $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
         return true;
     }

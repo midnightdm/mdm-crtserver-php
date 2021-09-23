@@ -70,7 +70,9 @@ class PlotDaemon {
     }
 
     public function start() {
-        echo "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\nPlotDaemon::start() \r\n";
+        echo " Starting mdm-crt2-server\n\n";  
+        echo "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n";
+        
         $this->setup();
         $this->run = true;
         $this->reloadSavedScans();
@@ -89,6 +91,18 @@ class PlotDaemon {
             die("Couldn't create socket: [$errorcode] $errormsg \n");
         }
         echo "Socket created \n";
+        //A run once message for Brian at start up to enable companion app
+        echo "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"; 
+        echo "\033[41m *                       A T T E N T I O N,                     * \033[0m\r\n";
+        echo "\033[41m *                           B R I A N                          * \033[0m\r\n";
+        echo "\033[41m *                                                              * \033[0m\r\n";
+        echo "\033[41m *  Ensure you have a seperate instance of AISMon running.      * \033[0m\r\n";
+        echo "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n";
+        echo "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n";
+        echo "\033[41m *           127.0.0.1:100111                                   * \033[0m\r\n";
+        echo "\033[41m *    (Your other instance uses port 10110)                     * \033[0m\r\n";
+        echo "\033[41m *                                                              * \033[0m\r\n";
+        echo "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n";
         // Bind the source address
         if( !socket_bind($sock, $this->socket_address, $this->socket_port) ) {
             $errorcode = socket_last_error();

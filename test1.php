@@ -1,12 +1,9 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
-include_once('classes/Firestore.class.php');
-include_once('classes/crtfunctions_helper.php');
-include_once('classes/AlertsModel.class.php');
+echo "\033[33m updateEventStatus() \033[0m\n";
 
 
-$am = new AlertsModel();
 
-$ret = $am->triggerEvent('alphadp');
-exit($ret);
+echo "\033[42m \033[30m updateEventStatus() \033[0m\n";
+

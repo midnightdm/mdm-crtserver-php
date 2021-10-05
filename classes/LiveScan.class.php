@@ -62,6 +62,7 @@ class LiveScan {
       }
       //Add "reload" and trigger flags
       $this->reload = true;
+      $this->reloadTS = time();
       $this->triggerQueued = false;
       $this->triggerActivated = true;
       //Delete db record pending update of new live data

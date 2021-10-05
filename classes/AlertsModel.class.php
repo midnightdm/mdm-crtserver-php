@@ -39,12 +39,16 @@ class AlertsModel extends Firestore {
             if($document->exists()) {   
                 $count++;            
                 $user = $document->data();
-                if($user['is_enabled']) {
-                    if($user['alertMethod']=='notification') {          
+                //echo "User Match Found: ".var_dump($user)."\n";
+                if($user['subscription']['is_enabled']) {
+                    if($user['alertMethod']=='notification') {  
+                        echo "pushNoticeTo(".$user['subscription']['auth'].") for event ".$event."\n";        
                         $this->pushNoticeTo($user, $event, $liveObj);
                     } elseif($user['alertMethod']=='email') {
+                        echo "pushEmailTo(".$user['alertDest'].") for event ".$event."\n";
                         $this->pushEmailTo($user, $event, $liveObj);
-                    } elseif(['alertMethod']=='sms') {
+                    } elseif($user['alertMethod']=='sms') {
+                        echo "pushSmsTo(".$user['alertDest'].") for event ".$event."\n";
                         $this->pushSmsTo($user, $event, $liveObj);
                     }
                 }  
@@ -74,11 +78,11 @@ class AlertsModel extends Firestore {
             $liveObj->liveLastLon,
             $liveObj->liveLocation->description
         );
-        $clickSendResponse = json_decode(
-            $this->messageController->sendOneSMS($phone, $message)
-        );
-        $this->generateAlertLogSms($clickSendResponse, $smsMessages);
-        echo "Sent SMS message to ".$phone."\n";
+        $report = $this->messageController->sendOneSMS($phone, $message);
+        
+        //$this->generateAlertLogSms($clickSendResponse, $smsMessages);
+        echo "Sent SMS message to ".$phone."  Report: ".$report."\n";
+        
     }
 
     public function pushNoticeTo($user, $event, $liveObj) {
@@ -93,8 +97,7 @@ class AlertsModel extends Firestore {
             $liveObj->liveLastLon,
             $liveObj->liveLocation->description
         );
-        
-        $this->messageController->sendOneNotification($user, $messageTxt, $liveObj);
+        $report = $this->messageController->sendOneNotification($user, $messageTxt, $liveObj);
 
 		if($report->isSuccess()) {
 			echo "Webpush success.\n";
@@ -225,32 +228,32 @@ class AlertsModel extends Firestore {
         //Gets run by generateAlertMessages() method of this class to document response from sms host
         $csArr = $clickSendResponse->data->messages;
         foreach ($smsMessages as $msg) {
-        $data = [];
-        $data['alogAlertID']   = intval($msg['alertID']);
-        $data['alogDirection'] = $msg['dir'];
-        $data['alogType']      = $msg['event'];
-        $data['alogMessageTo'] = $msg['phone'];
-        $data['alogMessageType'] = 'sms';
-        $sms = current($csArr);
-        while($sms) {
-            if($sms->to == $msg['phone']) {
-            $data['alogMessageID']     = $sms->message_id;
-            $data['alogMessageCost']    = $sms->message_price;
-            $data['alogMessageStatus'] = $sms->status;
-            $data['alogTS']            = $sms->schedule;
-            break;          
+            $data = [];
+            $data['alogAlertID']   = intval($msg['alertID']);
+            $data['alogDirection'] = $msg['dir'];
+            $data['alogType']      = $msg['event'];
+            $data['alogMessageTo'] = $msg['phone'];
+            $data['alogMessageType'] = 'sms';
+            $sms = current($csArr);
+            while($sms) {
+                if($sms->to == $msg['phone']) {
+                    $data['alogMessageID']     = $sms->message_id;
+                    $data['alogMessageCost']    = $sms->message_price;
+                    $data['alogMessageStatus'] = $sms->status;
+                    $data['alogTS']            = $sms->schedule;
+                    break;          
+                }
+                next($csArr);
             }
-            next($csArr);
-        }
-        //Test dump
-        //echo "AlertsModel::generateAlertLogSms() test dumping data array...\n";
-        //var_dump($data);
-        $db = $this->db();
-        $sql = "INSERT INTO alertlog (alogAlertID, alogType, alogTS, alogDirection, alogMessageType, alogMessageTo, "
-        . "alogMessageID, alogMessageCost, alogMessageStatus) VALUES (:alogAlertID, :alogType, :alogTS, "
-        . ":alogDirection, :alogMessageType, :alogMessageTo, :alogMessageID, :alogMessageCost, :alogMessageStatus)";
-        echo "AlertsModel::generateAlertLogSms()\n";
-        $db->prepare($sql)->execute($data);
+            //Test dump
+            //echo "AlertsModel::generateAlertLogSms() test dumping data array...\n";
+            //var_dump($data);
+            $db = $this->db();
+            $sql = "INSERT INTO alertlog (alogAlertID, alogType, alogTS, alogDirection, alogMessageType, alogMessageTo, "
+            . "alogMessageID, alogMessageCost, alogMessageStatus) VALUES (:alogAlertID, :alogType, :alogTS, "
+            . ":alogDirection, :alogMessageType, :alogMessageTo, :alogMessageID, :alogMessageCost, :alogMessageStatus)";
+            echo "AlertsModel::generateAlertLogSms()\n";
+            $db->prepare($sql)->execute($data);
         }
     }
 

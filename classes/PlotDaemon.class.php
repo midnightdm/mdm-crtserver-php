@@ -99,7 +99,7 @@ class PlotDaemon {
         echo "\033[41m *  Ensure you have a seperate instance of AISMon running.      * \033[0m\r\n";
         echo "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n";
         echo "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n";
-        echo "\033[41m *           127.0.0.1:100111                                   * \033[0m\r\n";
+        echo "\033[41m *           127.0.0.1:10111                                   * \033[0m\r\n";
         echo "\033[41m *    (Your other instance uses port 10110)                     * \033[0m\r\n";
         echo "\033[41m *                                                              * \033[0m\r\n";
         echo "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n";
@@ -159,6 +159,11 @@ class PlotDaemon {
                             } else {
                                 //    4-A) No, speed is interupted value.
                                 echo " with no updates so delete it.\r\n";
+                                $deleteIt = true;
+                            }
+                            //Check for stale reload time [Added 10/2/21]
+                            if(($now - $obj->reloadTS) > 900) {
+                                echo ", but vessel was reloaded with no new updates. Deleting it.\r\n";
                                 $deleteIt = true;
                             }
                         } else {

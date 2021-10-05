@@ -233,10 +233,10 @@ class Location {
             echo "\033[33m updateEventStatus() TRIGGER SUPPRESSED \033[0m\n";
             return false;
         }
-        if($this->event == $this->lastEvent) {
-            echo "\033[33m updateEventStatus() SAME AS LAST EVENT\033[0m\n";
-            return false;
-        }
+        //if($this->event == $this->lastEvent) {
+        //    echo "\033[33m updateEventStatus() SAME AS LAST EVENT\033[0m\n";
+        //    return false;
+        //}
         //Reject update if one just happened
         if((time() - $this->lastEventTS) < 60) {
             echo "\033[33m updateEventStatus() EVENT < 60 OLD \033[0m\n";

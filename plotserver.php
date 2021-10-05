@@ -23,6 +23,10 @@ include_once('classes/AlertsModel.class.php');
 include_once('classes/PassagesModel.class.php');
 include_once('classes/Messages.class.php');
 
+$path = __DIR__ . '/vendor/autoload.php';
+echo "Vendor Path = ".$path."\n";
+require_once($path);
+
 // * * * Constant Definitions * * * 
 //Marker Alpha Lat is 3 mi upriver Lock 13
 define('MARKER_ALPHA_LAT', 41.938785);

@@ -9,6 +9,8 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed: Messages.cl
  *
  */
 
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -124,7 +126,7 @@ class Messages {
     $message = [
 			"title" => "CRT Notice for ".$liveObj->liveName,
 			"body"  =>  $messageTxt,
-			"icon"  => "images/favicon.png",
+			"icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
 			"url"   => "https://www.clintonrivertraffic.com/livescan/live"
 		];
 
@@ -138,9 +140,8 @@ class Messages {
       ]
     ];
     $subscription = createSubscription($data);
-		
-    $report = $this->WebPushLibrary
-      ->webPush
+		echo "Prepared Message Text: ".json_encode($message)."\n";
+    $report = $this->webPushInstance
       ->sendOneNotification($subscription, json_encode($message));
     return $report;
   }
@@ -212,13 +213,20 @@ class Messages {
 				'privateKey' => getenv('MDM_VKEY_PRI') 
 			)
 		);	
-    return new WebPush($auth);
+    $webPush = createWebPush($auth);
+    return $webPush;
+    //return new WebPush($auth);
   }
 }  
 
 
 function createSubscription($data) {
 	return Subscription::create($data);
+}
+
+function createWebPush($auth) {
+  //2nd param sets options for TTL, urgency, topic, batchSize
+  return new WebPush($auth, [86400, null, null, 1000]);
 }
 
 ?>

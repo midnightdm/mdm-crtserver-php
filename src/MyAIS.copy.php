@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 /* * * * * * * * * * * * * * * * * * * 
- *  daemon2/classes/MyAIS.class.php
+ *  daemon2/src/MyAIS.class.php
  * 
  *  Uses the parent AIS class to decode raw NMEA data 
  *  supplied by the AISMon app via UDP port or text file.

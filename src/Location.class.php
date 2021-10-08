@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 /* * * * * * * * *
  * Location Class
- * daemon/classes/Location.class.php
+ * daemon/src/Location.class.php
  * 
  * Includes Location, Zone and Point classes 
  */

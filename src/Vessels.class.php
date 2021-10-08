@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 /* * * * * * * * *
  * Vessel Class
- * classes/vessel.class.php
+ * src/vessel.class.php
  * 
  */
 

@@ -1,14 +1,14 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
-include_once('classes/Firestore.class.php');
+include_once('src/Firestore.class.php');
 
-//include_once('classes/passagesdata.php'); //$vess and $pass arrays
-include_once('classes/crtfunctions_helper.php');
+//include_once('src/passagesdata.php'); //$vess and $pass arrays
+include_once('src/crtfunctions_helper.php');
 
 /* * * * * * * * *
  * ImportPassagesModel Class
- * daemon/classes/AlertsModel.class.php
+ * daemon/src/AlertsModel.class.php
  * 
  */
 

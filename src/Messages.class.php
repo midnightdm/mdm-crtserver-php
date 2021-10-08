@@ -3,14 +3,11 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed: Messages.class.php');}
 /* * * * * *
  * Messages class
- * daemon/classes/Messages.class.php
+ * daemon/src/Messages.class.php
  * 
  *  Requires edits replaced $messages with params ($user, $event, $liveObj)
  *
  */
-
-
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -27,7 +24,6 @@ class Messages {
   public $msg;
 
   function __construct() {
-    //require_once(__DIR__ . '/../../vendor/autoload.php');
     // Configure HTTP basic authorization: BasicAuth
     $this->config = ClickSend\Configuration::getDefaultConfiguration()
       ->setUsername(getEnv('MDM_CRT_ERR_EML'))

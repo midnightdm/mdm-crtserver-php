@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 /* * * * * *
  * PassagesModel class
- * dclasses/passagesmodel.class.php
+ * dsrc/passagesmodel.class.php
  *
  */
 

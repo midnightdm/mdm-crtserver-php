@@ -2,10 +2,10 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 //Load all the dependencies
-include_once('classes/ais.2.php');
-include_once('classes/MyAIS.class.php');
-include_once('classes/PlotDaemon.class.php');
-include_once('classes/LivePlot.class.php');
+include_once('src/ais.2.php');
+include_once('src/MyAIS.class.php');
+include_once('src/PlotDaemon.class.php');
+include_once('src/LivePlot.class.php');
 
 //Function to convert stored GMT time to central time for display
 function getTimeOffset() {

@@ -7,7 +7,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 /* * * * * * * * *
  * AlertsModel Class
- * classes/AlertsModel.class.php
+ * src/AlertsModel.class.php
  * 
  */
 class AlertsModel extends Firestore {

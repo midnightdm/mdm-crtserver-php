@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 /* * * * * * * * *
  * LiveScan Class
- * daemon/classes/livescan.class.php
+ * daemon/src/livescan.class.php
  * 
  */
 

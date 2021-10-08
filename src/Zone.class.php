@@ -3,7 +3,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 /* * * * * * * * *
  * Location Class
- * classes/Zone.class.php
+ * src/Zone.class.php
  * 
  * 
  */

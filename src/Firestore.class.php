@@ -1,6 +1,6 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
-$autoload = __DIR__.'/../vendor/autoload.php';
+$autoload = $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 //exit($autoload);
 require_once $autoload;
 
@@ -18,7 +18,9 @@ use Google\Cloud\Firestore\FirestoreClient;
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$strJsonFileContents = file_get_contents(__DIR__ . '/../mdm-qcrt-demo-1-f28500aebc1a.json');
+// $config = $_SERVER['DOCUMENT_ROOT'] . "config.php"
+
+$strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
 
 
 //Convert into array & Put into CONSTANT

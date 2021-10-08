@@ -9,13 +9,13 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
  *
  *     HINT: AISMon version 2.2.0 has no config file, so
  *           you'll have to add settings upon each start. 
- *           See classes/AISMonSS.png for screenshot.
+ *           See src/AISMonSS.png for screenshot.
  *
  *   NOTE: See config.php for app settings and note environmental varables there.
  */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
- *  classes/PlotDaemon.class.php
+ *  src/PlotDaemon.class.php
  * 
  *  This class is a daemon that runs an endless while loop, listens
  *  for raw NMEA data, decodes useful AIS information and stores it 

@@ -9,6 +9,13 @@
         }
     ],
     "type": "project",
+    "license": "BSD-1-Clause",
+    "authors": [
+        {
+            "name": "Brian Griffin",
+            "email": "admin@clintonrivertraffic.com"
+        }
+    ],
     "require": {
         "php": "^7.4",
         "ext-grpc": "*",
@@ -16,6 +23,12 @@
         "minishlink/web-push": "^6.0",
         "aws/aws-sdk-php": "^3.185",
         "phpmailer/phpmailer": "^6.5",
-        "clicksend/clicksend-php": "^5.0"
-    }
+        "clicksend/clicksend-php": "^5.0",
+        "curl/curl": "^2.3"
+    },
+    "autoload": {
+        "psr-4" : {
+          "Midnightdm\\Mdm-crt2-server\\" : "src"
+        }
+      }
 }

@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 /* * * * * *
  * LiveScanModel class
- * classes/LiveScanModel.class.php
+ * src/LiveScanModel.class.php
  *
  */
 class LiveScanModel extends Firestore {

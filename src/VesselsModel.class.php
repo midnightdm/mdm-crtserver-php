@@ -2,7 +2,7 @@
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 /* * * * * *
  * VesselsModel class
- * classes/vesselsmodel.php
+ * src/vesselsmodel.php
  *
  */
 class VesselsModel extends Firestore {

@@ -13,6 +13,7 @@ $config =  [
     'socket_address' => '127.0.0.1',
     'socket_port' => '10111',
     'image_base' => 'https://www.clintonrivertraffic.com/',
+    'firestore_json_file' => 'mdm-qcrt-demo-1-f28500aebc1a.json', //Used by Firestore class
     'nonVesselFilter' => [
       3660692,
       '003660690',

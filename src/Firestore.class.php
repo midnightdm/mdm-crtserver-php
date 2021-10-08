@@ -1,8 +1,8 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
-$autoload = $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+//$autoload = $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 //exit($autoload);
-require_once $autoload;
+//require_once $autoload;
 
 
 use Google\Cloud\Firestore\FirestoreClient;

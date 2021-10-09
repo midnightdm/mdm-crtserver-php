@@ -120,8 +120,7 @@ class Messages {
     $subscriber['p256dh']    = $userArr['subscription']['p256dh'];
     
     $message = [
-			"title" => "CRT Notice for ".$liveObj->liveName,
-			"body"  =>  $messageTxt,
+			"body"  =>  $messageTxt." -CRT",
 			"icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
 			"url"   => "https://www.clintonrivertraffic.com/livescan/live"
 		];

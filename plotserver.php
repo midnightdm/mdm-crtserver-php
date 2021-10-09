@@ -10,7 +10,6 @@ include_once('config.php');
 include_once('src/ais.2.php');
 include_once('src/MyAIS.class.php');
 include_once('src/PlotDaemon.class.php');
-//include_once('src/LivePlot.class.php');
 include_once('src/Firestore.class.php');
 include_once('src/LiveScan.class.php');
 include_once('src/LiveScanModel.class.php');

@@ -111,34 +111,40 @@ class Location {
         foreach($range as $m) {
             $inside = $this->insidePoly($this->point, $polys[$m]);
             if($inside && $this->live->liveDirection=="upriver") {
-                $this->lastMM    = $this->mm;    //Save last marker before updating
-                $this->lastEvent = $this->event; //Save last event  before updating
-                $this->lastEventTS = $this->eventTS; //Save time of last event update
-                $this->mm = $m;
                 $mileMarker = "m".$m;
                 $this->description = ZONE::$$mileMarker;
                 //Concatanate event
                 if($m == "beaver") {
-                    $this->event = "beaverua";
-                    $this->eventTS = time();
+                    $event = "beaverua";
+                    $eventTS = time();
                 } elseif($m == "camanche") {
-                    $this->event = "camanche";
-                    $this->eventTS = time();
+                    $event = "camanche";
+                    $eventTS = time();
                 } elseif($m == "albany"){
-                    $this->event = "albany";
-                    $this->eventTS = time();
+                    $event = "albany";
+                    $eventTS = time();
                 } else {
                     $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
-                    $this->event = "m".$m."u".$type;
-                    $this->eventTS = time();
+                    $event = "m".$m."u".$type;
+                    $eventTS = time();
                 }
                 
-                $status = $this->updateEventStatus($suppressTrigger);
+                $status = $this->updateEventStatus($event, $suppressTrigger);
                 $status = $status == true ? "true" : "false";
                 if($suppressTrigger) {
                     $status = "suppressed";
                 }
                 if($status==="true") {
+                    //Push new event and do updates
+                    $this->lastEventTS = $this->eventTS;
+                    $this->lastMM      = $this->mm;
+                    $this->lastEvent   = $this->event;
+
+                    $this->mm          = $m;
+
+                    $this->eventTS     = time();
+                    $this->event       = $event;
+                    $this->events[$this->event] = $this->eventTS; 
                     echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
                     echo "|                                                                               |\n";
                     echo "*   Location::calculate() found ".$m." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m     *\n";
@@ -163,26 +169,35 @@ class Location {
                     $um = $m;
                     //Concatanate event
                     if($m == "beaver") {
-                        $this->event = "beaverda";
-                        $this->eventTS = time();
+                        $event = "beaverda";
+                        $eventTS = time();
                     } elseif($m == "camanche") {
-                        $this->event = "camanche";
-                        $this->eventTS = time();
+                        $event = "camanche";
+                        $eventTS = time();
                     } elseif($m == "albany"){
-                        $this->event = "albany";
-                        $this->eventTS = time();
+                        $event = "albany";
+                        $eventTS = time();
                     }
                 }
-                $this->lastMM = $this->mm;       //Save last marker before updating 
-                $this->mm = $m;
+
                 $mileMarker = "m".$um;
                 $this->description = ZONE::$$mileMarker;
-                $status = $this->updateEventStatus($suppressTrigger);
+                $status = $this->updateEventStatus($event, $suppressTrigger);
                 $status = $status == true ? "true" : "false";
                 if($suppressTrigger) {
                     $status = "suppressed";
                 }
                 if($status==="true") {
+                    //Push new event and do updates
+                    $this->lastEventTS = $this->eventTS;
+                    $this->lastMM      = $this->mm;
+                    $this->lastEvent   = $this->event;
+
+                    $this->mm          = $m;
+
+                    $this->eventTS     = time();
+                    $this->event       = $event;
+                    $this->events[$this->event] = $this->eventTS; 
                     echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
                     echo "|                                                                               |\n";
                     echo "*   Location::calculate() found ".$m." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m      *  \n";
@@ -228,15 +243,15 @@ class Location {
         
     }
 
-    public function updateEventStatus($suppressTrigger=false) {
+    public function updateEventStatus($event, $suppressTrigger=false) {
         if($suppressTrigger) {
             echo "\033[33m   updateEventStatus() TRIGGER SUPPRESSED \033[0m\n";
             return false;
         }
-        //if($this->event == $this->lastEvent) {
-        //    echo "\033[33m updateEventStatus() SAME AS LAST EVENT\033[0m\n";
-        //    return false;
-        //}
+        if($event == $this->lastEvent) {
+            echo "\033[33m updateEventStatus() SAME AS LAST EVENT\033[0m\n";
+            return false;
+        }
         //Is this event in array already?
         if(isset($this->events[$this->event])) {
             echo "\033[33m updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
@@ -247,8 +262,6 @@ class Location {
             echo "\033[33m   updateEventStatus() EVENT < 60 OLD \033[0m\n";
             return false;
         }
-
-        $this->events[$this->event] = $this->eventTS; 
         
         //trigger an alert
         echo "\033[42m \033[30m updateEventStatus() $this->event ALERT TRIGGERED \033[0m\n";

@@ -236,10 +236,12 @@ class Location {
 
     public function waypointEvent($event) {
         echo "Running Location::waypointEvent().\n";
-        $this->lastEvent = $this->event;
-        $this->event = $event;
-        $this->eventTS = time();
-        $this->updateEventStatus();
+        if($this->updateEventStatus($event)) {
+            $this->lastEvent = $this->event;     
+            $this->event = $event;
+            $this->lastEventTS = $this->eventTS;
+            $this->eventTS = time();
+        }       
         
     }
 
@@ -249,12 +251,12 @@ class Location {
             return false;
         }
         if($event == $this->lastEvent) {
-            echo "\033[33m updateEventStatus() SAME AS LAST EVENT\033[0m\n";
+            echo "\033[33m   updateEventStatus() SAME AS LAST EVENT\033[0m\n";
             return false;
         }
         //Is this event in array already?
         if(isset($this->events[$this->event])) {
-            echo "\033[33m updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
+            echo "\033[33m   updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
             return false;
         }
         //Reject update if one just happened

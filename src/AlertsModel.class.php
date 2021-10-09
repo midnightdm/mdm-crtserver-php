@@ -141,6 +141,8 @@ class AlertsModel extends Firestore {
         if(strpos($event, 'camanche')==0) { $status = "camanche"; }
         if(strpos($event, 'beaver' ) ==0) { $status = "beaver";   }
         if(strpos($event, 'detect' ) ==0) { $status = "detect";   }
+        else { $status = "Not Resolved"; }
+        echo "alert message status: ".$status."\n";
         switch($status) {
             case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;
             case "bravo" : $evtDesc = $direction=="downriver" ? "left " : " reached ";

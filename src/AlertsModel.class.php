@@ -132,16 +132,25 @@ class AlertsModel extends Firestore {
         if(strpos($event, "m")==0) { 
             $status = "marker"; 
             $mile = substr(1,3);
+        } elseif(strpos($event, 'alpha'   )==0) { 
+            $status = "alpha";
+        } elseif(strpos($event, 'bravo'   )==0) {
+            $status = "bravo";
+        } elseif(strpos($event, 'charlie' )==0) {
+            $status = "charlie";
+        } elseif(strpos($event, 'delta'   )==0) {
+            $status = "delta";
+        } elseif(strpos($event, 'albany'  )==0) {
+            $status = "albany";
+        } elseif(strpos($event, 'camanche')==0) {
+            $status = "camanche";
+        } elseif(strpos($event, 'beaver' ) ==0) {
+            $status = "beaver";
+        } elseif(strpos($event, 'detect' ) ==0) {
+            $status = "detect";
+        } else { 
+            $status = "Not Resolved";
         }
-        if(strpos($event, 'alpha'   )==0) { $status = "alpha";    }
-        if(strpos($event, 'bravo'   )==0) { $status = "bravo";    }
-        if(strpos($event, 'charlie' )==0) { $status = "charlie";  }
-        if(strpos($event, 'delta'   )==0) { $status = "delta";    }
-        if(strpos($event, 'albany'  )==0) { $status = "albany";   }
-        if(strpos($event, 'camanche')==0) { $status = "camanche"; }
-        if(strpos($event, 'beaver' ) ==0) { $status = "beaver";   }
-        if(strpos($event, 'detect' ) ==0) { $status = "detect";   }
-        else { $status = "Not Resolved"; }
         echo "AlertsModel::buildAlertMessage() event: $event, status: $status, strpos of \"m\":".strpos($event,"m"). "\n";
         switch($status) {
             case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;

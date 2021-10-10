@@ -172,7 +172,11 @@ class PlotDaemon {
                         }
                     }
                 }
-            
+                //Check DB for admin command to stop daemon & run updates
+                if($this->LiveScanModel->testExit()) {
+                    echo "Stopping plotserver at request of database.\n\n";
+                    $this->run = false;
+                }
                 //Do deletes according to test conditions
                 if($deleteIt) {
                     $obj->savePassageIfComplete(true);          

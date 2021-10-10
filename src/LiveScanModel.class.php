@@ -34,6 +34,22 @@ class LiveScanModel extends Firestore {
             ->set($live, ["merge"=> true]);
     }
 
+    public function resetExit() {
+        $this->db->collection('Passages')
+        ->document('Admin')
+        ->set(['exit'=> false]);
+    }    
+
+    public function testExit() {
+        $document = $this->db->collection('Passages')
+            ->document('Admin');
+        $snapshot = $document->snapshot();
+        if($snapshot->exists()) {
+            $data = $snapshot->data();
+            return $data['exit'];
+        }
+    }
+
     public function deleteLiveScan($vesselID) {
         $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);
         $snapshot = $document->snapshot();

@@ -151,7 +151,7 @@ class AlertsModel extends Firestore {
         } else { 
             $status = "Not Resolved";
         }
-        echo "AlertsModel::buildAlertMessage() event: $event, status: $status, strpos of \"m\":".strpos($event,"m"). "\n";
+        echo "AlertsModel::buildAlertMessage() event: $event, status: $status. "\n";
         switch($status) {
             case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;
             case "bravo" : $evtDesc = $direction=="downriver" ? "left " : " reached ";

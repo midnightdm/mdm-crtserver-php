@@ -136,7 +136,7 @@ class Messages {
       ]
     ];
     $subscription = createSubscription($data);
-		echo "Prepared Message Text: ".json_encode($message)."\n";
+		//echo "Prepared Message Text: ".json_encode($message)."\n";
     $report = $this->webPushInstance
       ->sendOneNotification($subscription, json_encode($message));
     return $report;

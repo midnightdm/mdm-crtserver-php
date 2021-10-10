@@ -31,6 +31,7 @@ class Location {
     }
 
     public function calculate($suppressTrigger=false) {
+        echo "Location::calculate()...\n";
         //Define points of polygons represenating geographic zones
         $polys = [
             486=>[[-90.50971806363766, 41.52215220467504],  [-90.5092203536731,41.51372097487243],  [-90.48856266269104, 41.5145424556308],   [-90.48875678287305, 41.521402024002950] ], 
@@ -99,7 +100,7 @@ class Location {
            
         //Range of miles posts used by this app
         if($this->live->liveDirection=="undetermined") {
-            echo "Location::calculate() halted because direction undetermined yet.\r\n";
+            echo "   ...halted because direction undetermined yet.\r\n";
             return;
         }
         
@@ -113,47 +114,28 @@ class Location {
             if($inside && $this->live->liveDirection=="upriver") {
                 $mileMarker = "m".$m;
                 $this->description = ZONE::$$mileMarker;
-                //Concatanate event
-                if($m == "beaver") {
-                    $event = "beaverua";
-                    $eventTS = time();
-                } elseif($m == "camanche") {
-                    $event = "camanche";
-                    $eventTS = time();
-                } elseif($m == "albany"){
-                    $event = "albany";
-                    $eventTS = time();
-                } else {
+                if(is_int($m)) {
                     $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
                     $event = "m".$m."u".$type;
                     $eventTS = time();
-                }
-                
-                $status = $this->updateEventStatus($event, $suppressTrigger);
-                $status = $status == true ? "true" : "false";
-                if($suppressTrigger) {
-                    $status = "suppressed";
-                }
-                if($status==="true") {
-                    //Push new event and do updates
-                    $this->lastEventTS = $this->eventTS;
-                    $this->lastMM      = $this->mm;
-                    $this->lastEvent   = $this->event;
-
-                    $this->mm          = $m;
-
-                    $this->eventTS     = time();
-                    $this->event       = $event;
-                    $this->events[$this->event] = $this->eventTS; 
-                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
-                    echo "|                                                                               |\n";
-                    echo "*   Location::calculate() found ".$event." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m     *\n";
-                    echo "|                                                                               |\n";
-                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
                 } else {
-                    echo "Location::calculate() found ".$event." for ".$this->live->liveName." Event Trigger = $status\n";
+                //Concatanate event
+                    if($m == "beaver") {
+                        $event = "beaverua";
+                        $eventTS = time();
+                    } elseif($m == "camanche") {
+                        $event = "camanche";
+                        $eventTS = time();
+                    } elseif($m == "albany"){
+                        $event = "albany";
+                        $eventTS = time();
+                    } 
                 }
-                
+                if($this->verifyWaypointEvent($event)) {
+                    //Trigger event
+                    echo "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n";
+                    $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
+                }
                 break;
             } 
 
@@ -163,8 +145,8 @@ class Location {
                 if(is_int($m)) {
                     $um = ($m + 1); //To reflect that polygon entry was at upper mile line
                     $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
-                    $this->event = "m".$um."d".$type;
-                    $this->eventTS = time();
+                    $event = "m".$um."d".$type;
+                    $eventTS = time();
                 } else {
                     $um = $m;
                     //Concatanate event
@@ -179,39 +161,18 @@ class Location {
                         $eventTS = time();
                     }
                 }
-
                 $mileMarker = "m".$um;
                 $this->description = ZONE::$$mileMarker;
-                $status = $this->updateEventStatus($event, $suppressTrigger);
-                $status = $status == true ? "true" : "false";
-                if($suppressTrigger) {
-                    $status = "suppressed";
-                }
-                if($status==="true") {
-                    //Push new event and do updates
-                    $this->lastEventTS = $this->eventTS;
-                    $this->lastMM      = $this->mm;
-                    $this->lastEvent   = $this->event;
-
-                    $this->mm          = $m;
-
-                    $this->eventTS     = time();
-                    $this->event       = $event;
-                    $this->events[$this->event] = $this->eventTS; 
-                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
-                    echo "|                                                                               |\n";
-                    echo "*   Location::calculate() found ".$m." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m      *  \n";
-                    echo "|                                                                               |\n";
-                    echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
-                } else {
-                    echo "Location::calculate() found ".$m." for ".$this->live->liveName." Event Trigger = $status\n";
+                if($this->verifyWaypointEvent($event)) {
+                    //Trigger event
+                    echo "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n";
+                    $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
                 }
                 break;
             } 
         }
-
         if($inside==false) {
-            echo "Location search ended at $m for ".$this->live->liveName."\r\n";
+            echo "   ...search for ".$this->live->liveName." ended at $m \r\n";
         }
     }
 
@@ -238,6 +199,7 @@ class Location {
         echo "   Location::verifyWaypointEvent()...\n";
         $status = $this->updateEventStatus($event);
         if($status) {
+            //Push new event to array and do updates
             $this->lastEvent = $this->event;     
             $this->event = $event;
             $this->lastEventTS = $this->eventTS;
@@ -265,11 +227,7 @@ class Location {
         if((time() - $this->lastEventTS) < 60) {
             echo "\033[33m      ...Location::updateEventStatus() EVENT < 60 OLD \033[0m\n";
             return false;
-        }
-        
-        //trigger an alert
-        echo "\033[42m \033[30m      ...Location::updateEventStatus() $this->event ALERT TRIGGERED \033[0m\n";
-        $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
+        }        
         return true;
     }
     

@@ -131,7 +131,7 @@ class Location {
                         $eventTS = time();
                     } 
                 }
-                if($this->verifyWaypointEvent($event)) {
+                if($this->verifyWaypointEvent($event, $suppressTrigger)) {
                     //Trigger event
                     echo "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n";
                     $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
@@ -163,7 +163,7 @@ class Location {
                 }
                 $mileMarker = "m".$um;
                 $this->description = ZONE::$$mileMarker;
-                if($this->verifyWaypointEvent($event)) {
+                if($this->verifyWaypointEvent($event, $suppressTrigger)) {
                     //Trigger event
                     echo "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n";
                     $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
@@ -195,9 +195,9 @@ class Location {
         return $inside;
     }
 
-    public function verifyWaypointEvent($event) {
+    public function verifyWaypointEvent($event, $supressTrigger=false) {
         echo "   Location::verifyWaypointEvent()...\n";
-        $status = $this->updateEventStatus($event);
+        $status = $this->updateEventStatus($event, $supressTrigger);
         if($status) {
             //Push new event to array and do updates
             $this->lastEvent = $this->event;     

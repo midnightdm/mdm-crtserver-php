@@ -216,7 +216,6 @@ class PlotDaemon {
         $this->liveScan = array();
         foreach($data as $row) {      
           $key = 'mmsi'. $row['liveVesselID'];
-          echo "   ... Reloading ".$row['liveName']."\n";
           $this->liveScan[$key] = new LiveScan(null, null, null, null, null, null, null, $this, true, $row);
           $this->liveScan[$key]->lookUpVessel();
           $this->liveScan[$key]->calculateLocation(true); //supress event trigger

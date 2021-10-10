@@ -43,6 +43,8 @@ class LiveScan {
   public $callBack;
   public $lookUpCount = 0;
   public $dirScore    = 0;
+  public $reload;
+  public $reloadTS;
 
   public function __construct($ts, $name, $id, $lat, $lon, $speed, $course, $cb, $reload=false, $reloadData=[]) {
     $this->callBack = $cb;
@@ -55,7 +57,7 @@ class LiveScan {
         }
         $this->$attribute = $value;
         if($attribute=='liveName') {
-          echo "  Reloading ".$value." from DB.\n";
+          echo "   ...Reloading ".$value." from DB.\n";
           //lookUpVessel() & calculateLocation() deferred to post construction
           // in calling method reloadSaveScans()
         }
@@ -66,7 +68,7 @@ class LiveScan {
       $this->triggerQueued = false;
       $this->triggerActivated = true;
       //Delete db record pending update of new live data
-      $this->callBack->LiveScanModel->deleteLiveScan($id);      
+      $this->callBack->LiveScanModel->deleteLiveScan($this->liveVesselID);      
     } else {
       $this->setTimestamp($ts, 'liveInitTS');
       $this->setTimestamp($ts, 'liveLastTS');

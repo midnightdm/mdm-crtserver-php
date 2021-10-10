@@ -234,40 +234,41 @@ class Location {
         return $inside;
     }
 
-    public function waypointEvent($event) {
-        echo "Running Location::waypointEvent().\n";
-        if($this->updateEventStatus($event)) {
+    public function verifyWaypointEvent($event) {
+        echo "   Location::verifyWaypointEvent()...\n";
+        $status = $this->updateEventStatus($event);
+        if($status) {
             $this->lastEvent = $this->event;     
             $this->event = $event;
             $this->lastEventTS = $this->eventTS;
             $this->eventTS = time();
             $this->events[$this->event] = $this->eventTS; 
-        }       
-        
+        }
+        return $status;           
     }
 
     public function updateEventStatus($event, $suppressTrigger=false) {
         if($suppressTrigger) {
-            echo "\033[33m   updateEventStatus() TRIGGER SUPPRESSED \033[0m\n";
+            echo "\033[33m      ...Location::updateEventStatus() TRIGGER SUPPRESSED \033[0m\n";
             return false;
         }
         if($event == $this->lastEvent) {
-            echo "\033[33m   updateEventStatus() SAME AS LAST EVENT\033[0m\n";
+            echo "\033[33m      ...Location::updateEventStatus() SAME AS LAST EVENT\033[0m\n";
             return false;
         }
         //Is this event in array already?
         if(isset($this->events[$this->event])) {
-            echo "\033[33m   updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
+            echo "\033[33m      ...Location::updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
             return false;
         }
         //Reject update if one just happened
         if((time() - $this->lastEventTS) < 60) {
-            echo "\033[33m   updateEventStatus() EVENT < 60 OLD \033[0m\n";
+            echo "\033[33m      ...Location::updateEventStatus() EVENT < 60 OLD \033[0m\n";
             return false;
         }
         
         //trigger an alert
-        echo "\033[42m \033[30m updateEventStatus() $this->event ALERT TRIGGERED \033[0m\n";
+        echo "\033[42m \033[30m      ...Location::updateEventStatus() $this->event ALERT TRIGGERED \033[0m\n";
         $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
         return true;
     }

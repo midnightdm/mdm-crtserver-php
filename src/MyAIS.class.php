@@ -82,7 +82,8 @@ class MyAIS extends AIS {
             $course = $ro->cog;
             $ts   = $ro->ts;
             
-			echo "Decoded: ".$id."\n";
+
+			echo "Decoded: ".$id." ".$ts."\n";
             if(isset($this->plotDaemon->liveScan[$key])) {
                 //Update liveScan object only if data is new
                 if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {

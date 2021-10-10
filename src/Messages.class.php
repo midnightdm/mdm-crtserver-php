@@ -120,7 +120,7 @@ class Messages {
     $subscriber['p256dh']    = $userArr['subscription']['p256dh'];
     
     $message = [
-			"body"  => $messageTxt." -CRT",
+			"title"  => $messageTxt." -CRT",
       "icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
 			"url"   => "https://www.clintonrivertraffic.com/livescan/live"
 		];

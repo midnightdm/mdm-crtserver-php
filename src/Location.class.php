@@ -219,7 +219,7 @@ class Location {
             return false;
         }
         //Is this event in array already?
-        if(isset($this->events[$this->event])) {
+        if(isset($this->events[$event])) {
             echo "\033[33m      ...Location::updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
             return false;
         }

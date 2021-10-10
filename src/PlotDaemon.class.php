@@ -219,6 +219,8 @@ class PlotDaemon {
           $this->liveScan[$key] = new LiveScan(null, null, null, null, null, null, null, $this, true, $row);
           $this->liveScan[$key]->lookUpVessel();
           $this->liveScan[$key]->calculateLocation(true); //supress event trigger
+          //Put last liveEvent in object to prevent duplicate trigger after reload 
+          $this->liveScan[$key]->liveLocation->lastEvent = $row['liveEvent'];
         }
     }
     

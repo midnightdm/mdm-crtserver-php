@@ -119,6 +119,7 @@ class Messages {
     $subscriber['auth']      = $userArr['subscription']['auth'];
     $subscriber['p256dh']    = $userArr['subscription']['p256dh'];
     
+    //Package message
     $message = [
 			"title"  => $messageTxt." -CRT",
       "icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",

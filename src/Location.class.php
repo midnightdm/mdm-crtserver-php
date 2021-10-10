@@ -147,11 +147,11 @@ class Location {
                     $this->events[$this->event] = $this->eventTS; 
                     echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
                     echo "|                                                                               |\n";
-                    echo "*   Location::calculate() found ".$m." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m     *\n";
+                    echo "*   Location::calculate() found ".$event." for ".$this->live->liveName."\033[31m Event Trigger = $status\033[0m     *\n";
                     echo "|                                                                               |\n";
                     echo "*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*\n";
                 } else {
-                    echo "Location::calculate() found ".$m." for ".$this->live->liveName." Event Trigger = $status\n";
+                    echo "Location::calculate() found ".$event." for ".$this->live->liveName." Event Trigger = $status\n";
                 }
                 
                 break;
@@ -241,6 +241,7 @@ class Location {
             $this->event = $event;
             $this->lastEventTS = $this->eventTS;
             $this->eventTS = time();
+            $this->events[$this->event] = $this->eventTS; 
         }       
         
     }

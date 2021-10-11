@@ -140,9 +140,13 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
 
 function flog($string) {
   $date = Date('ymj', time()+getTimeOffset());
-  $file = "logs/output_".$date.".txt";
-  $handle = fopen($file,'a');
-  fwrite($handle, $string);
-  fclose($handle);
+  $file = $_SERVER['DOCUMENT_ROOT']."/logs/output_".$date.".txt";
+  if (is_writeable($file)) {
+    $handle = fopen($file,'a');
+    fwrite($handle, $string);
+    fclose($handle);
+  } else {
+    echo "Cannot write to $filename\n";
+  }
   echo $string;
 }

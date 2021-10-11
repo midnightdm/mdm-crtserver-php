@@ -140,7 +140,7 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
 
 function flog($string) {
   $date = Date('ymj', time()+getTimeOffset());
-  $file = __DIR__."/../../../logs/output_".$date.".txt";
+  $file = __DIR__."/../../../../logs/output_".$date.".txt";
   if (is_writeable($file)) {
     $handle = fopen($file,'a');
     fwrite($handle, $string);

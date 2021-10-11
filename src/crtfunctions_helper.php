@@ -146,7 +146,7 @@ function flog($string) {
     fwrite($handle, $string);
     fclose($handle);
   } else {
-    echo "Cannot write to $filename\n";
+    echo "Cannot write to $file\n";
   }
   echo $string;
 }

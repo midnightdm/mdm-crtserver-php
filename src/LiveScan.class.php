@@ -57,7 +57,7 @@ class LiveScan {
         }
         $this->$attribute = $value;
         if($attribute=='liveName') {
-          echo "   ...Reloading ".$value." from DB.\n";
+          flog("   ...Reloading ".$value." from DB.\n");
           //lookUpVessel() & calculateLocation() deferred to post construction
           // in calling method reloadSaveScans()
         }
@@ -93,7 +93,7 @@ class LiveScan {
       } 
       //Test for previous detect, don't alert if within last 8 hours
       $lastDetected = $this->callBack->VesselsModel->getVesselLastDetectedTS($id)['vesselLastDetectedTS'];
-      echo "lastDetected check = ".$lastDetected;
+     flog("lastDetected check = ".$lastDetected);
       if($lastDetected==false || ($ts-$lastDetected)>28800) {
         $this->triggerQueued = true;
         $this->triggerActivated = false;
@@ -104,7 +104,7 @@ class LiveScan {
   public function checkDetectEventTrigger() {
     //Performs trigger when condtions met. (Created 2021-07-31)
     $event = strpos($this->liveVessel->vesselType, "assenger")>-1 ? "detectp" : "detecta";
-    echo "LiveScan::checkDetectEventTrigger(".$event.")...\n";
+    flog("LiveScan::checkDetectEventTrigger(".$event.")...\n");
     if($this->triggerQueued && 
       !$this->triggerActivated && 
       $this->liveDirection !=="undetermined" &&
@@ -118,7 +118,7 @@ class LiveScan {
         $this->triggerQueued = false;
         $this->triggerActivated = true;
         $this->callBack->AlertsModel->triggerEvent($event, $this);
-        echo "\033[42m \033[30m       ...ALERT BY ".$this->liveName."\033[0m\n";
+        flog("\033[42m \033[30m       ...ALERT BY ".$this->liveName."\033[0m\n");
       }
 
     }
@@ -144,7 +144,7 @@ class LiveScan {
   public function insertNewRecord() {   
     //Error check to make sure starting pos is not 0
     if($this->liveInitLat < 1 || $this->liveInitLon < 1) {
-      echo "Bogus starting position data rejected.";
+      flog("Bogus starting position data rejected.");
       return false;
     }
     $data = [];
@@ -163,7 +163,7 @@ class LiveScan {
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
     $data['liveIsLocal'] = $this->liveIsLocal;
-    echo 'Inserting new livescan record for '.$this->liveName .' '.getNow()."\n"; 
+    flog('Inserting new livescan record for '.$this->liveName .' '.getNow()."\n"); 
     $this->callBack->LiveScanModel->insertLiveScan($data);
     return true;
   }
@@ -260,7 +260,7 @@ class LiveScan {
   }
 
   public function checkMarkerPassage() {
-    echo "LiveScan::checkMarkerPassage()...\n";
+    flog("LiveScan::checkMarkerPassage()...\n");
     //For upriver Direction (Lat increasing)
     if($this->liveLastLat < (MARKER_DELTA_LAT - 1) || $this->liveLastLat > (MARKER_ALPHA_LAT + 1)) { 
       return; //Skips further testing if lat jumped to a bogus value beyond local view.
@@ -275,7 +275,7 @@ class LiveScan {
           $this->liveMarkerDeltaWasReached = true;
           $this->liveMarkerDeltaTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this);
-          echo "\33[42m      ...Delta waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n";
+          flog("\33[42m      ...Delta waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
         }
         return;         
       }
@@ -288,7 +288,7 @@ class LiveScan {
           $this->liveMarkerCharlieWasReached = true;
           $this->liveMarkerCharlieTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          echo "\33[42m      ...Charlie waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n";
+          flog("\33[42m      ...Charlie waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
         }
         return;
       }
@@ -301,7 +301,7 @@ class LiveScan {
           $this->liveMarkerBravoWasReached = true;
           $this->liveMarkerBravoTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          echo "\33[42m      ...Bravo waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n";
+          flog("\33[42m      ...Bravo waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
         }
         return;
       }
@@ -313,7 +313,7 @@ class LiveScan {
           $this->liveMarkerAlphaWasReached = true;
           $this->liveMarkerAlphaTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          echo "\33[42m      ...Alpha waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n";
+          flog("\33[42m      ...Alpha waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
         }
         return;
       }
@@ -327,7 +327,7 @@ class LiveScan {
           $this->liveMarkerAlphaWasReached = true;
           $this->liveMarkerAlphaTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          echo "\33[42m      ...Alpha waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n";
+          flog( "\33[42m      ...Alpha waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
         }    
         return;
       }
@@ -340,7 +340,7 @@ class LiveScan {
           $this->liveMarkerBravoWasReached = true;
           $this->liveMarkerBravoTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          echo "\33[42m      ...Bravo waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n";
+          flog( "\33[42m      ...Bravo waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
         }       
         return;
       }
@@ -353,7 +353,7 @@ class LiveScan {
           $this->liveMarkerCharlieWasReached = true;
           $this->liveMarkerCharlieTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          echo "\33[42m      ...Charlie waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n";
+          flog( "\33[42m      ...Charlie waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
         }
         return;
       }
@@ -365,18 +365,18 @@ class LiveScan {
           $this->liveMarkerDeltaWasReached = true;
           $this->liveMarkerDeltaTS = $this->liveLastTS;
           $this->callBack->AlertsModel->triggerEvent($event, $this);
-          echo "\33[42m      ...Delta waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n";
+          flog( "\33[42m      ...Delta waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
         }       
       }           
     }
-    echo "   ...No conditions met.\n\n";
+    flog( "   ...No conditions met.\n\n");
   }
   
   public function lookUpVessel() {   
-    echo 'LiveScan::lookUpVessel() '.getNow()."\n";
+    flog( 'LiveScan::lookUpVessel() '.getNow()."\n");
     //See if Vessel data is available locally
     if($data = $this->callBack->VesselsModel->getVessel($this->liveVesselID)) {
-      //echo "Vessel found in database: " . var_dump($data);
+      //flog( "Vessel found in database: " . var_dump($data));
       $this->liveVessel = new Vessel($data, $this->callBack);
       //Give saved vesselName to live if it has none or number only
       if($this->liveName == "" || strpos($this->liveName, '[')  || strpos($this->liveName, "@@")) {
@@ -387,12 +387,12 @@ class LiveScan {
     //Otherwise scrape data from a website
     $url = 'https://www.myshiptracking.com/vessels/';
     $q = $this->liveVesselID;
-    echo "Begin scraping for vesselID " . $this->liveVesselID."\n";
+    flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
     $html = grab_page($url, $q);  
     //Edit segment from html string
     $startPos = strpos($html, '<div class="vessels_main_data cell">');
     $clip     = substr($html, $startPos);
-    //echo "substr clip: ".$clip;
+    //flog( "substr clip: ".$clip);
     $endPos   = (strpos($clip, '</tbody>')+8);
     $len      = strlen($clip);
     $edit     = substr($clip, 0, ($endPos-$len));   
@@ -409,7 +409,7 @@ class LiveScan {
       $vesselName  =  ucwords( strtolower( $rows->item(0)->getElementsByTagName('strong')->item(0)->textContent) );
     } 
     catch (exception $e) {
-      echo "lookUpVessel() failed on vesselName with error ".$e->getMessage()."\n";
+      flog( "lookUpVessel() failed on vesselName with error ".$e->getMessage()."\n");
       $vesselName = $this->liveVesselID;
     }
     

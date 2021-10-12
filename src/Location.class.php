@@ -31,7 +31,7 @@ class Location {
     }
 
     public function calculate($suppressTrigger=false) {
-        echo "Location::calculate()...\n";
+        flog( "Location::calculate()...\n");
         //Define points of polygons represenating geographic zones
         $polys = [
             486=>[[-90.50971806363766, 41.52215220467504],  [-90.5092203536731,41.51372097487243],  [-90.48856266269104, 41.5145424556308],   [-90.48875678287305, 41.521402024002950] ], 
@@ -100,7 +100,7 @@ class Location {
            
         //Range of miles posts used by this app
         if($this->live->liveDirection=="undetermined") {
-            echo "   ...halted because direction undetermined yet.\r\n";
+            flog( "   ...halted because direction undetermined yet.\r\n");
             return;
         }
         
@@ -133,7 +133,7 @@ class Location {
                 }
                 if($this->verifyWaypointEvent($event, $suppressTrigger)) {
                     //Trigger event
-                    echo "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n";
+                    flog( "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n");
                     $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
                 }
                 break;
@@ -165,14 +165,14 @@ class Location {
                 $this->description = ZONE::$$mileMarker;
                 if($this->verifyWaypointEvent($event, $suppressTrigger)) {
                     //Trigger event
-                    echo "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n";
+                    flog( "\33[42m   ...".$this->live->liveName." found at ".$event.".\033[0m\n\n");
                     $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
                 }
                 break;
             } 
         }
         if($inside==false) {
-            echo "   ...search for ".$this->live->liveName." ended at $m \r\n";
+            flog( "   ...search for ".$this->live->liveName." ended at $m \r\n");
         }
     }
 
@@ -196,7 +196,7 @@ class Location {
     }
 
     public function verifyWaypointEvent($event, $supressTrigger=false) {
-        echo "   Location::verifyWaypointEvent()...\n";
+        flog( "   Location::verifyWaypointEvent()...\n");
         $status = $this->updateEventStatus($event, $supressTrigger);
         if($status) {
             //Push new event to array and do updates
@@ -211,21 +211,21 @@ class Location {
 
     public function updateEventStatus($event, $suppressTrigger=false) {
         if($suppressTrigger) {
-            echo "\033[33m      ...Location::updateEventStatus() TRIGGER SUPPRESSED \033[0m\n";
+            flog( "\033[33m      ...Location::updateEventStatus() TRIGGER SUPPRESSED \033[0m\n");
             return false;
         }
         if($event == $this->lastEvent) {
-            echo "\033[33m      ...Location::updateEventStatus() SAME AS LAST EVENT\033[0m\n";
+            flog( "\033[33m      ...Location::updateEventStatus() SAME AS LAST EVENT\033[0m\n");
             return false;
         }
         //Is this event in array already?
         if(isset($this->events[$event])) {
-            echo "\033[33m      ...Location::updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n";
+            flog( "\033[33m      ...Location::updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n");
             return false;
         }
         //Reject update if one just happened
         if((time() - $this->lastEventTS) < 60) {
-            echo "\033[33m      ...Location::updateEventStatus() EVENT < 60 OLD \033[0m\n";
+            flog( "\033[33m      ...Location::updateEventStatus() EVENT < 60 OLD \033[0m\n");
             return false;
         }        
         return true;

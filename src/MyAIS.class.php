@@ -70,7 +70,7 @@ class MyAIS extends AIS {
          * This is beginning of custom code for CRT project  *
          *                                                   */
         
-        //echo "ro: :".var_dump($ro); // dump results here for demo purpose
+        //flog( "ro: :".var_dump($ro)); // dump results here for demo purpose
         //Put ro data into LivePlot object
         if(is_object($ro)) {
             $id  = $ro->mmsi;
@@ -88,21 +88,21 @@ class MyAIS extends AIS {
                 //Update liveScan object only if data is new
                 if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
                     $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course);
-                    /*echo "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
-                      .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n";
+                    /*flog( "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
+                      .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
 					  */
                 }  
             } else {
                 //Skip river marker numbers
                 if($id < 990000000 && $id > 100000000) {
                     $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon);
-                    echo "NEW liveScan[$key] (".date("F j, Y, g:i a", ($ts+getTimeOffset())).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n";
+                    flog( "NEW liveScan[$key] (".date("F j, Y, g:i a", ($ts+getTimeOffset())).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
                 } 
             }
 
 			//Remove old scans every 3 minutes
 			$now = time();
-			echo ($now- $this->plotDaemon->lastCleanUp). ">" .$this->plotDaemon->cleanUpTimeout. "=".($now- $this->plotDaemon->lastCleanUp) > $this->plotDaemon->cleanUpTimeout;
+			flog( ($now- $this->plotDaemon->lastCleanUp). ">" .$this->plotDaemon->cleanUpTimeout. "=".($now- $this->plotDaemon->lastCleanUp) > $this->plotDaemon->cleanUpTimeout);
 			if( ($now- $this->plotDaemon->lastCleanUp) > $this->plotDaemon->cleanUpTimeout) {
 				$this->plotDaemon->removeOldScans(); 
 			}

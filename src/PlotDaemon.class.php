@@ -70,8 +70,8 @@ class PlotDaemon {
     }
 
     public function start() {
-        echo " Starting mdm-crt2-server\n\n";  
-        echo "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n";
+        flog( " Starting mdm-crt2-server\n\n");  
+        flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
         
         $this->setup();
         $this->run = true;
@@ -90,26 +90,26 @@ class PlotDaemon {
             $errormsg = socket_strerror($errorcode);
             die("Couldn't create socket: [$errorcode] $errormsg \n");
         }
-        echo "Socket created \n";
+        flog( "Socket created \n");
         //A run once message for Brian at start up to enable companion app
-        echo "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"; 
-        echo "\033[41m *                       A T T E N T I O N,                     * \033[0m\r\n";
-        echo "\033[41m *                           B R I A N                          * \033[0m\r\n";
-        echo "\033[41m *                                                              * \033[0m\r\n";
-        echo "\033[41m *  Ensure you have a seperate instance of AISMon running.      * \033[0m\r\n";
-        echo "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n";
-        echo "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n";
-        echo "\033[41m *           127.0.0.1:10111                                   * \033[0m\r\n";
-        echo "\033[41m *    (Your other instance uses port 10110)                     * \033[0m\r\n";
-        echo "\033[41m *                                                              * \033[0m\r\n";
-        echo "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n";
+        flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
+        flog( "\033[41m *                       A T T E N T I O N,                     * \033[0m\r\n");
+        flog( "\033[41m *                           B R I A N                          * \033[0m\r\n");
+        flog( "\033[41m *                                                              * \033[0m\r\n");
+        flog( "\033[41m *  Ensure you have a seperate instance of AISMon running.      * \033[0m\r\n");
+        flog( "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n");
+        flog( "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n");
+        flog( "\033[41m *           127.0.0.1:10111                                   * \033[0m\r\n");
+        flog( "\033[41m *    (Your other instance uses port 10110)                     * \033[0m\r\n");
+        flog( "\033[41m *                                                              * \033[0m\r\n");
+        flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
         // Bind the source address
         if( !socket_bind($sock, $this->socket_address, $this->socket_port) ) {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
             die("Could not bind socket : [$errorcode] $errormsg \n");
         }
-        echo "Socket bind OK \n";
+        flog( "Socket bind OK \n");
         
         while($this->run==true) {
             //** This is Main Loop this server for the UDP version ** 
@@ -117,7 +117,7 @@ class PlotDaemon {
             flog("Waiting for data ... \n");
             //Receive some data
             $r = socket_recvfrom($sock, $buf, 512, 0, $remote_ip, $remote_port);
-            echo "$remote_ip : $remote_port -- " . $buf;
+            flog( "$remote_ip : $remote_port -- " . $buf);
             //Send back the data to the decoder
             $ais->process_ais_buf($buf);
 
@@ -132,55 +132,55 @@ class PlotDaemon {
         $now = time(); 
         if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
             //Only perform once every few min to reduce db queries
-            echo "PlotDaemon::removeOldScans()... \n";     
+            flog( "PlotDaemon::removeOldScans()... \n");     
             foreach($this->liveScan as $key => $obj) {  
                 //Test age of update.  
                 $deleteIt = false;       
-                echo "   ... Vessel ". $obj->liveName . " last updated ". ($now - $obj->liveLastTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ";
+                flog( "   ... Vessel ". $obj->liveName . " last updated ". ($now - $obj->liveLastTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
                 if(($now - $this->liveScanTimeout) > $obj->liveLastTS) { //1-Q) Is record is older than timeout value?
                     /*1-A) Yes, then 
                      *     2-Q) Is it near the edge of receiving range?
                      *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
                     if(($obj->liveLastLat > MARKER_ALPHA_LAT || $obj->liveLastLat < MARKER_DELTA_LAT)) {
                         //    2-A) Yes, then save it to passages table
-                        echo "is near edge of range.\r\n";
+                        flog( "is near edge of range.\r\n");
                         $deleteIt = true;
                     } else {
                         //    2-A) No.
-                        echo "is NOT near edge of range.\r\n";
+                        flog( "is NOT near edge of range.\r\n");
                         //        3-Q) Is record older than 15 minutes?
                         if ($now - $obj->liveLastTS > 900) {
                             //      3-A) Yes
-                            echo "The record is 15 minutes old";
+                            flog( "The record is 15 minutes old");
                             //      4-Q) Is vessel parked?
                             if(intval(rtrim($obj->liveSpeed, "kts"))<1) {
                                 //    4-A) Yes, then keep in live.
-                                echo ", but vessel is parked, so keeping in live";
+                                flog( ", but vessel is parked, so keeping in live");
                             } else {
                                 //    4-A) No, speed is interupted value.
-                                echo " with no updates so delete it.\r\n";
+                                flog( " with no updates so delete it.\r\n");
                                 $deleteIt = true;
                             }
                             //Check for stale reload time [Added 10/2/21]
                             if(($now - $obj->reloadTS) > 900) {
-                                echo ", but vessel was reloaded with no new updates. Deleting it.\r\n";
+                                flog( ", but vessel was reloaded with no new updates. Deleting it.\r\n");
                                 $deleteIt = true;
                             }
                         } else {
                             //      3-A) No, then keep waiting.
-                            echo " keeping in live.\r\n";
+                            flog( " keeping in live.\r\n");
                         }
                     }
                 }
                 //Check DB for admin command to stop daemon & run updates
                 if($this->LiveScanModel->testExit()) {
-                    echo "Stopping plotserver at request of database.\n\n";
+                    flog( "Stopping plotserver at request of database.\n\n");
                     $this->run = false;
                 }
                 //Do deletes according to test conditions
                 if($deleteIt) {
                     $obj->savePassageIfComplete(true);          
-                    echo 'Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n";
+                    flog( 'Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n");
                     if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
                         //Table delete was sucessful, remove object from array
                         unset($this->liveScan[$key]);
@@ -189,7 +189,7 @@ class PlotDaemon {
                     }
                 }
                 //1-A) No, record is fresh, so keep in live.
-                echo "\r\n";
+                flog( "\r\n");
             }    
         }   
         $this->lastCleanUp = $now;
@@ -198,23 +198,23 @@ class PlotDaemon {
     public function saveAllScans() {
         $now = time();
         if(($now - $this->lastPassagesSave) > $this->savePassagesTimeout) {
-            echo "Writing passages to db...\n";
+            flog( "Writing passages to db...\n");
 				$scans = count($this->liveScan);
 				foreach($this->liveScan as $liveScanObj) {
 					$len = count($liveScanObj->liveLocation->events);
-					echo "   ...".$liveScanObj->liveName. " ".$len." events.\n";
+					flog( "   ...".$liveScanObj->liveName. " ".$len." events.\n");
 					$liveScanObj->livePassageWasSaved = true;
 					$this->PassagesModel->savePassage($liveScanObj);
 				}
 				$this->lastPassagesSave = $now;
-				echo "Finished saving ".$scans." live vessels to passages.\n";
+				flog( "Finished saving ".$scans." live vessels to passages.\n");
         }
     }
 
     protected function reloadSavedScans() {
-        echo "CRTDaemon::reloadSavedScans() started ".getNow()."...\n";
+        flog( "CRTDaemon::reloadSavedScans() started ".getNow()."...\n");
         if(!($data = $this->LiveScanModel->getAllLiveScans())) {
-          echo "   ... No old scans. ".getNow()."\n";
+          flog( "   ... No old scans. ".getNow()."\n");
           return;
         }
         $this->liveScan = array();
@@ -222,9 +222,13 @@ class PlotDaemon {
           $key = 'mmsi'. $row['liveVesselID'];
           $this->liveScan[$key] = new LiveScan(null, null, null, null, null, null, null, $this, true, $row);
           $this->liveScan[$key]->lookUpVessel();
-          $this->liveScan[$key]->calculateLocation(true); //supress event trigger
-          //Put last liveEvent in object to prevent duplicate trigger after reload 
+          //Initialize location object
+          $this->liveScan[$key]->liveLocation = new Location($this->liveScan[$key]);
+          //Restore db saved event data
           $this->liveScan[$key]->liveLocation->lastEvent = $row['liveEvent'];
+          $this->liveScan[$key]->liveLocation->events = $row['liveEvents'];
+          //Now update with new location supressing event trigger
+          $this->liveScan[$key]->calculateLocation(true);           
         }
     }
     

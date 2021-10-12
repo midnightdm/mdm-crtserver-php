@@ -31,7 +31,7 @@ class PassagesModel extends Firestore {
             $data['passageMarkerCharlieTS']==null &&
             $data['passageMarkerDeltaTS'] ==null)
         {
-            echo "No events to save for ".$liveScanObj->liveName.".\n";
+            flog( "No events to save for ".$liveScanObj->liveName.".\n");
             return;
         }
        
@@ -66,9 +66,9 @@ class PassagesModel extends Firestore {
         $data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
         
         $month = date('Ym', $firstEventTS);
-        echo "month=".$month.", ";
+        flog( "month=".$month.", ");
         $day   = date('d' , $firstEventTS);
-        echo "day=".$day."\n";
+        flog( "day=".$day."\n");
         $passage = [
             $day => [
                 'mmsi'.$data['vesselID'] => $data
@@ -87,7 +87,7 @@ class PassagesModel extends Firestore {
         
         //Final error check for bogus month
         if($month < 202001) {
-            echo "Bogus month ".$month." for ".$liveScanObj->liveName.". Passage not saved.\n";
+            flog( "Bogus month ".$month." for ".$liveScanObj->liveName.". Passage not saved.\n");
             return;
         }
 
@@ -103,7 +103,7 @@ class PassagesModel extends Firestore {
             ->document('All')
             ->set($model, ['merge' => true]);
 
-        echo "\033[33m Passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n";
+        flog( "\033[33m Passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n");
 
         
 

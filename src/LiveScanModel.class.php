@@ -57,7 +57,7 @@ class LiveScanModel extends Firestore {
             $document->delete();
             return true;
         } else {
-            echo "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n";
+            flog( "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n");
             return false;
         }
     }

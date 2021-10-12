@@ -133,7 +133,7 @@ class Location {
                 }
                 if($this->verifyWaypointEvent($event, $suppressTrigger)) {
                     //Trigger event
-                    flog( "\033[1;30;42m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");
+                    flog( "\033[32;43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");
                     $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
                 }
                 break;
@@ -165,7 +165,7 @@ class Location {
                 $this->description = ZONE::$$mileMarker;
                 if($this->verifyWaypointEvent($event, $suppressTrigger)) {
                     //Trigger event
-                    flog( "\033[1;30;43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");
+                    flog( "\033[32;43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");
                     $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
                 }
                 break;

@@ -30,8 +30,12 @@ class AlertsModel extends Firestore {
             return false;
         }
 
-        //Publish the event to the database [Added 10/13/21]
-        $this->publishAlertMessage($event, $liveObj);
+        //Publish the event to the database is it passes waypoint type filter [Added 10/13/21]
+        $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
+        if(in_array($event, $filter)) {
+            $this->publishAlertMessage($event, $liveObj);
+        }    
+        
 
         //Match triggered event to possible saved subcriptions  
         $ref = $this->db->collection('user_devices');

@@ -167,7 +167,7 @@ class AlertsModel extends Firestore {
             case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
             case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
             case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
-            case "marker" : $evtDesc = " is ".$location; break;
+            case "marker" : $evtDesc = "is ".$location; break;
         }
         $txt  = str_replace('Vessel', '', $vesselType);
         $txt .= " Vessel ".$vesselName." ".$evtDesc;

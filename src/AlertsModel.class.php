@@ -154,7 +154,7 @@ class AlertsModel extends Firestore {
         } elseif(strpos($event, "m")==0) { 
             $status = "marker"; 
             $mile = substr(1,3);
-        else { 
+        } else { 
             $status = "Not Resolved";
         }
         flog( "AlertsModel::buildAlertMessage() event: $event, status: $status\n");

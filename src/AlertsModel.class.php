@@ -134,10 +134,8 @@ class AlertsModel extends Firestore {
         $str = "m/j/Y h:i:sa";
         $offset = getTimeOffset();
         //Parse event code to get status (and marker data)
-        if(strpos($event, "m")==0) { 
-            $status = "marker"; 
-            $mile = substr(1,3);
-        } elseif(strpos($event, 'alpha'   )==0) { 
+        
+        if(strpos($event, 'alpha'   )==0) { 
             $status = "alpha";
         } elseif(strpos($event, 'bravo'   )==0) {
             $status = "bravo";
@@ -153,7 +151,10 @@ class AlertsModel extends Firestore {
             $status = "beaver";
         } elseif(strpos($event, 'detect' ) ==0) {
             $status = "detect";
-        } else { 
+        } elseif(strpos($event, "m")==0) { 
+            $status = "marker"; 
+            $mile = substr(1,3);
+        else { 
             $status = "Not Resolved";
         }
         flog( "AlertsModel::buildAlertMessage() event: $event, status: $status\n");

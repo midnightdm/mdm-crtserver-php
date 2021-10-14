@@ -379,7 +379,7 @@ class LiveScan {
       //flog( "Vessel found in database: " . var_dump($data));
       $this->liveVessel = new Vessel($data, $this->callBack);
       //Give saved vesselName to live if it has none or number only
-      if($this->liveName == "" || strpos($this->liveName, '[')  || strpos($this->liveName, "@@")) {
+      if($this->liveName == "" || strpos($this->liveName, '[')  || str_contains($this->liveName, "@@")) {
         $this->liveName = $this->liveVessel->vesselName;
       }
       return;

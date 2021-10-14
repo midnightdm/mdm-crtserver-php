@@ -187,7 +187,8 @@ class AlertsModel extends Firestore {
             $liveScan->liveDirection, 
             $ts, 
             $liveScan->liveInitLat, 
-            $liveScan->liveInitLon
+            $liveScan->liveInitLon,
+            $liveScan->liveLocation->description
         );
         $data = [
             'apubTS'=>$ts, 

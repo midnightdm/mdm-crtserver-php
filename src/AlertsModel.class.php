@@ -191,7 +191,8 @@ class AlertsModel extends Firestore {
             $liveScan->liveLocation->description
         );
         $data = [
-            'apubTS'=>$ts, 
+            'apubTS'=>$ts,
+            'apubServerTS' => FieldValue::serverTimestamp(), 
             'apubText'=>$txt, 
             'apubVesselID'=>$liveScan->liveVesselID, 
             'apubVesselName' => $liveScan->liveName, 

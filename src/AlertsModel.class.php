@@ -171,7 +171,7 @@ class AlertsModel extends Firestore {
         }
         $txt  = str_replace('Vessel', '', $vesselType);
         $txt .= " Vessel ".$vesselName." ".$evtDesc;
-        $txt .= $direction=='undetermined' ? "" : "traveling ".$direction;
+        $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
         $txt .= ". ".date($str, ($ts+$offset)).$loc;
         return $txt;
     }
@@ -199,7 +199,7 @@ class AlertsModel extends Firestore {
             'apubDir'=>$liveScan->liveDirection
         ];
         $this->db->collection('Alertpublish')->add($data);
-        flog('AlertsModel::publishAlertMessage()\n');
+        flog("AlertsModel::publishAlertMessage()\n");
     }
 
 

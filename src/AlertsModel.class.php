@@ -135,23 +135,23 @@ class AlertsModel extends Firestore {
         $offset = getTimeOffset();
         //Parse event code to get status (and marker data)
         
-        if(strpos($event, 'alpha'   )==0) { 
+        if(str_starts_with($event, 'alpha'   )) { 
             $status = "alpha";
-        } elseif(strpos($event, 'bravo'   )==0) {
+        } elseif(str_starts_with($event, 'bravo'   )) {
             $status = "bravo";
-        } elseif(strpos($event, 'charlie' )==0) {
+        } elseif(str_starts_with($event, 'charlie' )) {
             $status = "charlie";
-        } elseif(strpos($event, 'delta'   )==0) {
+        } elseif(str_starts_with($event, 'delta'   )) {
             $status = "delta";
-        } elseif(strpos($event, 'albany'  )==0) {
+        } elseif(str_starts_with($event, 'albany'  )) {
             $status = "albany";
-        } elseif(strpos($event, 'camanche')==0) {
+        } elseif(str_starts_with($event, 'camanche')) {
             $status = "camanche";
-        } elseif(strpos($event, 'beaver' ) ==0) {
+        } elseif(str_starts_with($event, 'beaver' ) ) {
             $status = "beaver";
-        } elseif(strpos($event, 'detect' ) ==0) {
+        } elseif(str_starts_with($event, 'detect' ) ) {
             $status = "detect";
-        } elseif(strpos($event, "m")==0) { 
+        } elseif(str_starts_with($event, "m")) { 
             $status = "marker"; 
             $mile = substr(1,3);
         } else { 

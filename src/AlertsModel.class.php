@@ -29,8 +29,13 @@ class AlertsModel extends Firestore {
             flog( "ERROR: AlertsModel::triggerEvent(".$event.") failed. Event not recognized.\n");
             return false;
         }
+
+        //Publish the event to the database [Added 10/13/21]
+        $this->publishAlertMessage($event, $liveObj);
+
+        //Match triggered event to possible saved subcriptions  
         $ref = $this->db->collection('user_devices');
-        $query = $ref->where("events", "array-contains", $event);  //Matches events to subcriptions  
+        $query = $ref->where("events", "array-contains", $event);  
         $documents = $query->documents();
 
         $count = 0;
@@ -171,10 +176,7 @@ class AlertsModel extends Firestore {
         return $txt;
     }
 
-
-    //Methods below were for sql based version of app
-
-    public function postAlertMessage($event, $liveScan) {
+    public function publishAlertMessage($event, $liveScan) {
         //This function gets run by Event trigger methods of this class 
         $ts = time();
         $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
@@ -187,53 +189,20 @@ class AlertsModel extends Firestore {
             $liveScan->liveInitLat, 
             $liveScan->liveInitLon
         );
-        //$sql = "INSERT INTO alertpublish (apubTS, apubText, apubVesselID, apubVesselName) VALUES ( ". $ts.", ".addslashes($txt).", "
-        // .$liveScan->liveVesselID.", ".$liveScan->liveName.")";
-        $sql = "INSERT INTO alertpublish (apubTS, apubText, apubVesselID, apubVesselName, apubEvent, apubDir) VALUES (:apubTS, :apubText, :apubVesselID, :apubVesselName, :apubEvent, :apubDir)";
-        $data = ['apubTS'=>$ts, 'apubText'=>$txt, 'apubVesselID'=>$liveScan->liveVesselID, 'apubVesselName' => $liveScan->liveName, 'apubEvent'=>$event, 'apubDir'=>$liveScan->liveDirection];
-        $db = $this->db();
-        $res = $db->prepare($sql);
-
-        try {
-            $res->execute($data);
-        } catch(PDOException $exception){ 
-            echo $exception; 
-        }            
-      
-    
-        //---- Test code start point ----
-        //echo "Dumping smsMessages array now....:\n\n";
-        //echo var_dump($smsMessages);
-        //echo "Dumping emailMessages array now....:\n\n";
-        //echo var_dump($emailMessages);
-        //--- Test code end point -----
-        
-        //Send $smsMessages & $emailMessages assembled in loops above
-        //$msgController = new Messages();
-        $qtySmsMessages = count($smsMessages);
-        if($qtySmsMessages>0) {
-            $clickSendResponse = json_decode($msgController->sendSMS($smsMessages));
-            $this->generateAlertLogSms($clickSendResponse, $smsMessages);
-            echo "Sent $qtySmsMessages SMS messages.\n";
-            unset($smsMessages);
-        }
-        
-        $qtyEmailMessages = count($emailMessages);
-        if($qtyEmailMessages>0) {
-            //$clickSendResponse = json_decode($msgController->sendSMS($emailMessages));
-            $msgController->sendEmail($emailMessages);
-            $this->generateAlertLogEmail(null, $emailMessages);
-            echo "Sent $qtyEmailMessages Email messages.\n";
-            unset($emailMessages);
-        }
-
-        $qtyNotifMessages = count($notifMessages);
-        if($qtyNotifMessages>0) {
-            $pusherResponse = $msgController->sendNotification($notifMessages);
-            $this->generateAlertLogNotif($pusherResponse, $notifMessages);
-            unset($notifMessages);
-        }
+        $data = [
+            'apubTS'=>$ts, 
+            'apubText'=>$txt, 
+            'apubVesselID'=>$liveScan->liveVesselID, 
+            'apubVesselName' => $liveScan->liveName, 
+            'apubEvent'=>$event, 
+            'apubDir'=>$liveScan->liveDirection
+        ];
+        $this->db->collection('Alertpublish')->add($data);
+        flog('AlertsModel::publishAlertMessage()\n');
     }
+
+
+    //Methods below were for sql based version of app 
   
     public function generateAlertLogSms($clickSendResponse, $smsMessages) {
         //Gets run by generateAlertMessages() method of this class to document response from sms host

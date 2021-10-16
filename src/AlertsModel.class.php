@@ -182,6 +182,7 @@ class AlertsModel extends Firestore {
     }
 
     public function publishAlertMessage($event, $liveScan) {
+        flog("AlertsModel::publishAlertMessage()\n");
         //This function gets run by Event trigger methods of this class 
         $ts = time();
         $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
@@ -209,9 +210,60 @@ class AlertsModel extends Firestore {
             'apubDir'=>$liveScan->liveDirection
         ];
         $this->db->collection('Alertpublish')->add($data);
-        flog("AlertsModel::publishAlertMessage()\n");
+        $this->generateRss($type);
     }
 
+    public function generateRss($vt) { //a=any, p=passenger
+        flog("AlertsModel::generateRss()\n");
+        //Query 20 most recent documents in Alertpublish collection
+        $alertpublish = $db->collection('Alertpublish');
+        $queryAny = $alertpublish->where('apubType', '==', $vt)->orderBy('apubTS', 'DESC')->limit(20);
+        $documents = $query->documents();
+        $head =  $vt == "p" ? "PASSENGER" : "ALL VESSELS";
+        $label = $vt == "p" ? "passenger" : "all commercial";
+        $fileName = $vt == "p" ? "passenger.rss" : "any.rss";
+    
+        //Date building
+        $str    = "D, j M Y G:i:s \C\D\T"; 
+        $offset = getTimeOffset();
+        $time   = time();
+        $pubdate = date($str, ($documents[0]['apubTS']+$offset));
+    
+        //Begin building rss XML document
+        $output = <<<_END
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+   <channel>
+      <title>Clinton River Traffic-$head</title>
+      <link>https://www.clintonrivertraffic.com</link>
+      <description>Waypoint crossing notifications for $vt vessels passing Clinton, Iowa on the Mississippi river.</description>
+      <language>en</language>
+      <pubDate>$pubdate</pubDate>
+_END;
+        //Loop through returned data
+        $items = "";
+        foreach($documents as $d) {
+            $data = $d->data();
+            $vesselID  = $data['apubVesselID'];
+            $alertID   = $data['apubID'];
+            $vesselLink = "https://www.clintonrivertraffic.com/alerts/waypoint/".$alertID;
+            $vesselName  = $data['apubVesselName'];
+            $itemPubDate = date( $str, ($data['apubTS']+$offset) );
+            $vesselImg  = $data['apubVesselImageUrl'];
+            $text       = htmlentities($data['apubText']);
+            $title      = "Notice# ".$alertID." ".$text;
+            $items .= "<item>\n\t\t<title>$title</title>\n\t\t<description>$text</description>\n\t\t"
+                    ."<pubDate>$itemPubDate</pubDate>\n\t\t<link>$vesselLink</link>\n\t"
+                    ."\t<content:encoded><![CDATA[<img src=\"$vesselImg\" alt=\"Image of vessel $vesselName\"/>]]></content:encoded>\n\t</item>\n\t";
+        }
+        //Conclude XML document
+        $output .= $items."</channel>\n</rss>\n";
+        //Save file locally
+        $file_put_contents($fileName, $output);
+        //Upload to cloud bucket
+        $cs = new CloudStorage();
+        $cs->upload($fileName, basename($fileName));          
+    }
 
     //Methods below were for sql based version of app 
   

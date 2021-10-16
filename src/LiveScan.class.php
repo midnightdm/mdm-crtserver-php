@@ -214,7 +214,7 @@ class LiveScan {
     $data['liveLastLat'] = $this->liveLastLat;
     $data['liveLastLon'] = $this->liveLastLon;
     $data['liveDirection'] = $this->liveDirection;
-    $data['liveLocation'] = $this->liveLocation->description;
+    $data['liveLocation'] = ucfirst($this->liveLocation->description);
     $data['liveEvent']  = $this->liveLocation->event;
     $data['liveEvents'] = $this->liveLocation->events; //This is array
     $data['liveName'] = $this->liveName;

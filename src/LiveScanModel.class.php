@@ -37,7 +37,7 @@ class LiveScanModel extends Firestore {
     public function resetExit() {
         $this->db->collection('Passages')
         ->document('Admin')
-        ->set(['exit'=> false]);
+        ->set(['exit'=> false],['merge'=>true]);
     }    
 
     public function testExit() {

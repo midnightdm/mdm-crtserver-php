@@ -42,7 +42,8 @@ class Firestore {
             'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
             'projectId'=> 'mdm-qcrt-demo-1'
         ]);
-        
+
+            
         
     }
 
@@ -59,7 +60,13 @@ class Firestore {
         return FieldValue::serverTimestamp();
     }
    
+    public function generateApubID() {
+        $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
+        $apubID = $admin->data()['lastApubID']++;
+        $admin->set(['lastApubID'=>$apubID], ['merge'=>true]);
+        return $apubID;
 
+    }
    
 
 }

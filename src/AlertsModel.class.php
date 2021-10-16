@@ -185,6 +185,7 @@ class AlertsModel extends Firestore {
         //This function gets run by Event trigger methods of this class 
         $ts = time();
         $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
+        $apubID = $this->generateApubID(); //Method in parent
         $txt = $this->buildAlertMessage(
             $event, 
             $liveScan->liveName, 
@@ -196,9 +197,11 @@ class AlertsModel extends Firestore {
             $liveScan->liveLocation->description
         );
         $data = [
+            'apubID'=>$apubID,
             'apubTS'=>$ts, 
             'apubText'=>$txt, 
-            'apubVesselID'=>$liveScan->liveVesselID, 
+            'apubVesselID'=>$liveScan->liveVesselID,
+            'apubVesselImageUrl' => $liveScan->liveVessel->vesselImageUrl,
             'apubVesselName' => $liveScan->liveName, 
             'apubEvent'=>$event, 
             'apubDir'=>$liveScan->liveDirection

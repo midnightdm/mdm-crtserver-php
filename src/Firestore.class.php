@@ -63,7 +63,9 @@ class Firestore {
     public function generateApubID() {
         $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
         $apubID = $admin->data()['lastApubID']++;
-        $admin->set(['lastApubID'=>$apubID], ['merge'=>true]);
+        $this->db->collection('Passages')
+            ->document('Admin')
+            ->set(['lastApubID'=>$apubID], ['merge'=>true]);
         return $apubID;
 
     }

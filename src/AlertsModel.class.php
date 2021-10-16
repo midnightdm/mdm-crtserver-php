@@ -216,8 +216,8 @@ class AlertsModel extends Firestore {
     public function generateRss($vt) { //a=any, p=passenger
         flog("AlertsModel::generateRss()\n");
         //Query 20 most recent documents in Alertpublish collection
-        $alertpublish = $db->collection('Alertpublish');
-        $queryAny = $alertpublish->where('apubType', '==', $vt)->orderBy('apubTS', 'DESC')->limit(20);
+        $alertpublish = $this->db->collection('Alertpublish');
+        $query = $alertpublish->where('apubType', '==', $vt)->orderBy('apubTS', 'DESC')->limit(20);
         $documents = $query->documents();
         $head =  $vt == "p" ? "PASSENGER" : "ALL VESSELS";
         $label = $vt == "p" ? "passenger" : "all commercial";

@@ -237,7 +237,7 @@ class AlertsModel extends Firestore {
    <channel>
       <title>Clinton River Traffic-$head</title>
       <link>https://www.clintonrivertraffic.com</link>
-      <description>Waypoint crossing notifications for $vt vessels passing Clinton, Iowa on the Mississippi river.</description>
+      <description>Waypoint crossing notifications for $label vessels passing Clinton, Iowa on the Mississippi river.</description>
       <language>en</language>
       <pubDate>$pubdate</pubDate>
 _END;

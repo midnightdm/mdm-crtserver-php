@@ -218,7 +218,7 @@ class AlertsModel extends Firestore {
         //Query 20 most recent documents in Alertpublish collection
         $alertpublish = $this->db->collection('Alertpublish');
         $query = $alertpublish->where('apubType', '=', $vt)->orderBy('apubTS', 'DESC')->limit(20);
-        $documents = $query->documents();
+        $documents = $query->documents()->rows();
         $head =  $vt == "p" ? "PASSENGER" : "ALL VESSELS";
         $label = $vt == "p" ? "passenger" : "all commercial";
         $fileName = $vt == "p" ? "passenger.rss" : "any.rss";
@@ -227,7 +227,7 @@ class AlertsModel extends Firestore {
         $str    = "D, j M Y G:i:s \C\D\T"; 
         $offset = getTimeOffset();
         $time   = time();
-        $first  = $documents->rows()[0]->data();
+        $first  = $documents[0]->data();
         $pubdate = date($str, ($first['apubTS']+$offset));
     
         //Begin building rss XML document
@@ -243,8 +243,8 @@ class AlertsModel extends Firestore {
 _END;
         //Loop through returned data
         $items = "";
-        foreach($documents as $d) {
-            $data = $d->data();
+        foreach($documents as $data) {
+            //$data = $d->data();
             $vesselID  = $data['apubVesselID'];
             $alertID   = $data['apubID'];
             $vesselLink = "https://www.clintonrivertraffic.com/alerts/waypoint/".$alertID;

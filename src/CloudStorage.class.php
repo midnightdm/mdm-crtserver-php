@@ -33,8 +33,8 @@ class CloudStorage {
         
 
         $this->storage = new StorageClient([
+            'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
             'projectId'=>$this->projectID,
-            'keyFilePath' => GOOGLE_APPLICATION_CREDENTIALS,
         ]);
     }
 

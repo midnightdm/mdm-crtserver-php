@@ -14,10 +14,10 @@ use Google\Cloud\Storage\StorageClient;
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
+//$strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
 
 //Convert into array & Put into CONSTANT
-define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
+//define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
 
 class CloudStorage {
     public $bucketName;

@@ -15,7 +15,12 @@ class CloudStorage {
         
         //# Your Google Cloud Platform project ID
         $this->projectId = $config['cloud_projectID'];
-        $this->storage = new StorageClient(['projectId'=>$this->projectID]);
+        
+
+        $this->storage = new StorageClient([
+            'projectId'=>$this->projectID,
+            'keyFilePath' => GOOGLE_APPLICATION_CREDENTIALS,
+        ]);
     }
 
     public function upload($sourcePath, $destName) {    

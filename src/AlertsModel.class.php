@@ -227,9 +227,10 @@ class AlertsModel extends Firestore {
         $str    = "D, j M Y G:i:s \C\D\T"; 
         $offset = getTimeOffset();
         $time   = time();
-        $first  = $documents[0];
-        flog("First Alertpublish doc: ".var_dump($first));
-        $pubdate = date($str, ($first['apubTS']+$offset));
+        //$first  = $documents[0];
+        flog("Alertpublish docs: ".var_dump($documents));
+        exit();
+        //$pubdate = date($str, ($first['apubTS']+$offset));
     
         //Begin building rss XML document
         $output = <<<_END

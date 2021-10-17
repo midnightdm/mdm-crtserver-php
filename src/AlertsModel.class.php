@@ -217,7 +217,7 @@ class AlertsModel extends Firestore {
         flog("AlertsModel::generateRss()\n");
         //Query 20 most recent documents in Alertpublish collection
         $alertpublish = $this->db->collection('Alertpublish');
-        $query = $alertpublish->where('apubType', '==', $vt)->orderBy('apubTS', 'DESC')->limit(20);
+        $query = $alertpublish->where('apubType', '=', $vt)->orderBy('apubTS', 'DESC')->limit(20);
         $documents = $query->documents();
         $head =  $vt == "p" ? "PASSENGER" : "ALL VESSELS";
         $label = $vt == "p" ? "passenger" : "all commercial";
@@ -227,7 +227,9 @@ class AlertsModel extends Firestore {
         $str    = "D, j M Y G:i:s \C\D\T"; 
         $offset = getTimeOffset();
         $time   = time();
-        $pubdate = date($str, ($documents[0]['apubTS']+$offset));
+        $first  = $documents[0];
+        flog("First Alertpublish doc: ".var_dump($first));
+        $pubdate = date($str, ($first['apubTS']+$offset));
     
         //Begin building rss XML document
         $output = <<<_END

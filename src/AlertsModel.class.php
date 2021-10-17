@@ -227,7 +227,7 @@ class AlertsModel extends Firestore {
         $str    = "D, j M Y G:i:s \C\D\T"; 
         $offset = getTimeOffset();
         $time   = time();
-        $first  = $documents->rows(0)->data();
+        $first  = $documents->docs[0]->data();
         flog("Alertpublish docs: ".var_dump($first));
         exit();
         //$pubdate = date($str, ($first['apubTS']+$offset));

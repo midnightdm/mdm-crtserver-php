@@ -4,6 +4,21 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 # Imports the Google Cloud client library
 use Google\Cloud\Storage\StorageClient;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ *                                                     *
+ *   NOTE: The .json file below is project specific    *
+ *   and private.  Admin will need to secure one       *
+ *   and put their own reference here. Be sure to      *
+ *   include it in your .gitignore file to prevent     *
+ *   public exposure.                                  *
+ *                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+$strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
+
+//Convert into array & Put into CONSTANT
+define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
+
 class CloudStorage {
     public $bucketName;
     public $projectID;

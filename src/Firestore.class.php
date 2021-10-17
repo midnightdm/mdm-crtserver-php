@@ -1,9 +1,5 @@
 <?php
 if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
-//$autoload = $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-//exit($autoload);
-//require_once $autoload;
-
 
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FieldValue;
@@ -19,7 +15,6 @@ use Google\Cloud\Firestore\FieldValue;
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-// $config = $_SERVER['DOCUMENT_ROOT'] . "config.php"
 
 $strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
 

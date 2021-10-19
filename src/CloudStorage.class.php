@@ -42,11 +42,25 @@ class CloudStorage {
         if(is_readable($sourcePath)) {
             $file = fopen($sourcePath, 'r');
             $bucket = $this->storage->bucket($this->bucketName);
-            $object = $bucket->upload($file, ['name' => $destName]);
+            $object = $bucket->upload($file, ['name' => ''.$destName]);
             flog("Uploaded ".basename($sourcePath)." to gs://".$this->bucketName."/".$destName."\n");
+        }        
+    }
 
+    public function scrapeImage($mmsi) {
+        flog("CloudStorage::scrapeImage($mmsi)\n");
+        $url = 'https://www.myshiptracking.com/requests/getimage-normal/';
+        $imgData = grab_image($url.$mmsi.'.jpg');
+        $strLen = strlen($imgData);
+        flog('$imgData length test: '.$strLen.' bytes\n');
+        if(!$strLen) {
+            flog("No image saved for $mmsi\n");
+            return false;
         }
-        
+        $fileName = 'E:/app/scraped-images/mmsi'.$mmsi.'.jpg'; 
+        file_put_contents($fileName, $imgData);
+        $this->upload($fileName, 'images/vessels/mmsi'.$mmsi.'.jpg');
+        return true;
     }
 
 }

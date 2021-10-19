@@ -43,7 +43,7 @@ class CloudStorage {
             $file = fopen($sourcePath, 'r');
             $bucket = $this->storage->bucket($this->bucketName);
             $object = $bucket->upload($file, ['name' => ''.$destName]);
-            flog("Uploaded ".basename($sourcePath)." to gs://".$this->bucketName."/".$destName."\n");
+            flog("Uploaded ".basename($sourcePath)." to https://storage.googleapis.com/www.clintonrivertraffic.com/".$this->bucketName."/".$destName."\n");
         }        
     }
 
@@ -52,7 +52,7 @@ class CloudStorage {
         $url = 'https://www.myshiptracking.com/requests/getimage-normal/';
         $imgData = grab_image($url.$mmsi.'.jpg');
         $strLen = strlen($imgData);
-        flog('$imgData length test: '.$strLen.' bytes\n');
+        flog('$imgData length test: '.$strLen." bytes\n");
         if(!$strLen) {
             flog("No image saved for $mmsi\n");
             return false;

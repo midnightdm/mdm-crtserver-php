@@ -43,7 +43,7 @@ class CloudStorage {
             $file = fopen($sourcePath, 'r');
             $bucket = $this->storage->bucket($this->bucketName);
             $object = $bucket->upload($file, ['name' => ''.$destName]);
-            flog("Uploaded ".basename($sourcePath)." to https://storage.googleapis.com/www.clintonrivertraffic.com/".$this->bucketName."/".$destName."\n");
+            flog("Uploaded ".basename($sourcePath)." to https://storage.googleapis.com/".$this->bucketName."/".$destName."\n");
         }        
     }
 

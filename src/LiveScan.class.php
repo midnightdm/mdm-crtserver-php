@@ -423,14 +423,16 @@ class LiveScan {
     $data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
     //Try for image
     try {
-      if(saveImage($this->liveVesselID)) {
-        //$endPoint = getEnv('AWS_ENDPOINT');
+      //Upload to cloud bucket
+      $cs = new CloudStorage(); 
+      if($cs->scrapeImage($this->liveVesselID)) {
         $base = $this->callBack->image_base;
         $data['vesselHasImage'] = true;
-        //$data['vesselImageUrl'] = $endPoint . 'vessels/mmsi' . $this->liveVesselID . '.jpg';      
-        $data['vesselImageUrl'] = $base.'vessels/jpg/' . $this->liveVesselID; 
+        
+        $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
       } else {
         $data['vesselHasImage'] = false;
+        $data['vesselImageUrl'] = 'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
       }
     }
     catch (exception $e) {

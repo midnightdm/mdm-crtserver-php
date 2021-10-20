@@ -65,26 +65,9 @@ function printRange($dateArr) {
 }
 
 //Has server specific 'hard-set' file path
-function saveImage($mmsi) {
-  $url = 'https://www.myshiptracking.com/requests/getimage-normal/';
-  $imgData = grab_page($url.$mmsi.'.jpg');
-  //$imgData = grab_image($url.$mmsi.'.jpg');
-
-  $awsKey      = getEnv('AWS_ACCESS_KEY_ID');
-  $awsSecret   = getEnv('AWS_SECRET_ACCES_KEY');
-  $credentials = new Aws\Credentials\Credentials($awsKey, $awsSecret);
-
-  $s3 = new Aws\S3\S3Client([
-      'version'     => 'latest',
-      'region'      => 'us-east-2',
-      'credentials' => $credentials
-  ]);    
-
-  $bucket = getEnv('S3_BUCKET');
-  $fileName = 'vessels/mmsi'.$mmsi.'.jpg';
-  $s3->upload($bucket, $fileName, $imgData);
-  return true;
-}
+//function saveImage($mmsi) {
+//  Replaced by CloudStorage::scrapeImage()
+//}
 
 //function to grab page using cURL
 function grab_page($url, $query='') {

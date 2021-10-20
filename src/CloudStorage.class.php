@@ -23,9 +23,11 @@ class CloudStorage {
     public $bucketName;
     public $projectID;
     public $storage;
+    public $appPath;
 
     public function __construct() {
         global $config;
+        $this->appPath = $config['appPath'];
         $this->bucketName = $config['cloud_bucket_name'];
         
         //# Your Google Cloud Platform project ID
@@ -57,7 +59,7 @@ class CloudStorage {
             flog("No image saved for $mmsi\n");
             return false;
         }
-        $fileName = 'E:/app/scraped-images/mmsi'.$mmsi.'.jpg'; 
+        $fileName = $this->appPath.'/scraped-images/mmsi'.$mmsi.'.jpg'; 
         file_put_contents($fileName, $imgData);
         $this->upload($fileName, 'images/vessels/mmsi'.$mmsi.'.jpg');
         return true;

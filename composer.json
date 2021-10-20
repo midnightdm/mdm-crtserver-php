@@ -21,7 +21,6 @@
         "ext-grpc": "*",
         "google/cloud-firestore": "^1.19",
         "minishlink/web-push": "^6.0",
-        "aws/aws-sdk-php": "^3.185",
         "phpmailer/phpmailer": "^6.5",
         "clicksend/clicksend-php": "^5.0",
         "curl/curl": "^2.3",

@@ -260,10 +260,10 @@ _END;
         //Conclude XML document
         $output .= $items."</channel>\n</rss>\n";
         //Save file locally
-        file_put_contents("E:/app/". $fileName, $output);
+        file_put_contents("C:/app/". $fileName, $output);
         //Upload to cloud bucket
         $cs = new CloudStorage();
-        $cs->upload( 'E:/app/'. $fileName, basename($fileName));          
+        $cs->upload( 'C:/app/'. $fileName, basename($fileName));          
     }
 
     //Methods below were for sql based version of app 

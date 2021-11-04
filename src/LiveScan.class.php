@@ -426,18 +426,19 @@ class LiveScan {
       //Upload to cloud bucket
       $cs = new CloudStorage(); 
       if($cs->scrapeImage($this->liveVesselID)) {
-        $base = $this->callBack->image_base;
+        $base = $cs->image_base;
         $data['vesselHasImage'] = true;
-        
         $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
       } else {
         $data['vesselHasImage'] = false;
-        $data['vesselImageUrl'] = 'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
+        $data['vesselImageUrl'] = $cs->no_image;
+        //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
       }
     }
     catch (exception $e) {
       //
       $data['vesselHasImage'] = false;
+      $data['vesselImageUrl'] = $cs->no_image;
     }
     
     $data['vesselID'] = $this->liveVesselID;

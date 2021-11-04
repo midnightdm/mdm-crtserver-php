@@ -24,11 +24,15 @@ class CloudStorage {
     public $projectID;
     public $storage;
     public $appPath;
+    public $image_base;
+    public $no_image; 
 
     public function __construct() {
         global $config;
         $this->appPath = $config['appPath'];
         $this->bucketName = $config['cloud_bucket_name'];
+        $this->image_base = $config['image_base'];
+        $this->no_image = $config['no_image'];
         
         //# Your Google Cloud Platform project ID
         $this->projectId = $config['cloud_projectID'];

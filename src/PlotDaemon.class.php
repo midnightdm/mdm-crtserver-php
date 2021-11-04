@@ -176,7 +176,7 @@ class PlotDaemon {
                 $mmsi = $this->VesselsModel->testForAddVessel();
                 if($mmsi) {
                     flog("Admin request received to add vessel ".$mmsi);
-                    $vesselData = $this->VesselModel->lookUpVessel($mmsi);
+                    $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
                     flog(" ".$vesselData['vesselName']);
                     //Test for error
                     if(isset($vesselData['error'])) {

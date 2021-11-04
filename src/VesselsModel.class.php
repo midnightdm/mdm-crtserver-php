@@ -101,7 +101,7 @@ class VesselsModel extends Firestore {
         //$endPoint = getEnv('AWS_ENDPOINT');
         $base = $this->cs->image_base;
         $data['vesselHasImage'] = true;
-        $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $vesselID;      
+        $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $vesselID.'jpg';      
       } else {
         $data['vesselHasImage'] = false;
         $data['vesselImageUrl'] = $this->cs->no_image;

@@ -47,10 +47,11 @@ class LiveScanModel extends Firestore {
         if($snapshot->exists()) {
             $data = $snapshot->data();
             if($data['exit']==true) {
-                return $data['exit'];
+                return true;
             }
-            
+            return false;   
         }
+        return false;
     }
 
     public function deleteLiveScan($vesselID) {

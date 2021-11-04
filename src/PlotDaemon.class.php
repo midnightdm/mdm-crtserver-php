@@ -172,16 +172,12 @@ class PlotDaemon {
                         }
                     }
                 }
-                //Check DB for admin command to stop daemon & run updates
-                if($this->LiveScanModel->testExit()==true) {
-                    flog( "Stopping plotserver at request of database.\n\n");
-                    $this->run = false;
-                }
                 //Check DB for admin command to scrape new vessel
                 $mmsi = $this->VesselsModel->testForAddVessel();
                 if($mmsi) {
                     flog("Admin request received to add vessel ".$mmsi);
                     $vesselData = $this->VesselModel->lookUpVessel($mmsi);
+                    flog(" ".$vesselData['vesselName']);
                     //Test for error
                     if(isset($vesselData['error'])) {
                         $this->VesselsModel->reportVesselError($vesselData);
@@ -191,6 +187,11 @@ class PlotDaemon {
                         $this->VesselsModel->resetAddVessel();
                         flog("Added vessel ".$vesselData['vesselName']."\n");
                     }
+                }
+                //Check DB for admin command to stop daemon & run updates
+                if($this->LiveScanModel->testExit()==true) {
+                    flog( "Stopping plotserver at request of database.\n\n");
+                    $this->run = false;
                 }
                 //Do deletes according to test conditions
                 if($deleteIt) {

@@ -178,9 +178,10 @@ class PlotDaemon {
                     $this->run = false;
                 }
                 //Check DB for admin command to scrape new vessel
-                if($mmsi = $this->VesselsModel->testForAddVessel()) {
+                $mmsi = $this->VesselsModel->testForAddVessel();
+                if($mmsi) {
                     flog("Admin request received to add vessel ".$mmsi);
-                    $vesselData = $this->VesselModel->lookUpVessel();
+                    $vesselData = $this->VesselModel->lookUpVessel($mmsi);
                     //Test for error
                     if(isset($vesselData['error'])) {
                         $this->VesselsModel->reportVesselError($vesselData);

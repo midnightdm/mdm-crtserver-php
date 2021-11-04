@@ -114,6 +114,8 @@ class VesselsModel extends Firestore {
       $data['vesselImageUrl'] = $this->cs->no_image;
     }
     //data gleened locally by daemon needs done remotely in manual admin add
+    $data['vesselRecordAddedTS'] = time();
+    $data['vesselWatchOn']  = false;
     $data['vesselID']       = $vesselID;
     $name                   = $rows->item(0)->getElementsByTagName('td')->item(1)->textContent;
     //Test for no data returned which is probably bad vesselID 

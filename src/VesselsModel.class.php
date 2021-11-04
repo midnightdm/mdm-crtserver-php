@@ -67,7 +67,7 @@ class VesselsModel extends Firestore {
   function lookUpVessel($vesselID) {      
     //Test vessel id validity in range 200 000 000 - 899 999 999
     if(intval($vesselID) < 200000000 || intval($vesselID) > 899999999) {
-      return ["error" => "Not a valid MMSI ID number."]
+      return ["error" => "Not a valid MMSI ID number."];
     }
     //See if Vessel data is available locally
     if($data = $this->vesselHasRecord($vesselID)) {

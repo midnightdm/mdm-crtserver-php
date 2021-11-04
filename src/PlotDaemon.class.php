@@ -173,7 +173,7 @@ class PlotDaemon {
                     }
                 }
                 //Check DB for admin command to stop daemon & run updates
-                if($this->LiveScanModel->testExit()) {
+                if($this->LiveScanModel->testExit()==true) {
                     flog( "Stopping plotserver at request of database.\n\n");
                     $this->run = false;
                 }

@@ -46,7 +46,10 @@ class LiveScanModel extends Firestore {
         $snapshot = $document->snapshot();
         if($snapshot->exists()) {
             $data = $snapshot->data();
-            return $data['exit'];
+            if($data['exit']==true) {
+                return $data['exit'];
+            }
+            
         }
     }
 

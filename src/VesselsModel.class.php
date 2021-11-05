@@ -171,7 +171,7 @@ class VesselsModel extends Firestore {
   public function reportVesselError($data) {
     $this->db->collection('Passages')
     ->document('Admin')
-    ->set(['vesselError'=> true, 'vesselStatusMsg' => $data['error']],['merge'=>true]);
+    ->set(['vesselError'=> true, 'vesselStatusMsg' => $data['error'], 'formAwaitingReset'=> true],['merge'=>true]);
   }
 }
 

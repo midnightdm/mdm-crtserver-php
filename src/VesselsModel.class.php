@@ -151,7 +151,7 @@ class VesselsModel extends Firestore {
   public function resetAddVessel() {
     $this->db->collection('Passages')
     ->document('Admin')
-    ->set(['vesselError'=> false, 'vesselStatusMsg' => "Ready for your input."],['merge'=>true]);
+    ->set(['vesselError'=> false, 'vesselStatusMsg' => "Ready for your input.", 'formAwaitingReset'=> true],['merge'=>true]);
   }    
 
   public function testForAddVessel() {

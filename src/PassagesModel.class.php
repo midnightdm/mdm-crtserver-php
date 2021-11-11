@@ -13,7 +13,7 @@ class PassagesModel extends Firestore {
     }
 
     public function savePassage($liveScanObj) {
-        $data['vesselID'] = $liveScanObj->liveVesselID;
+        $data['passageVesselID'] = $liveScanObj->liveVesselID;
         //$data['vesselName'] = $liveScanObj->liveName;
         //$data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
         $data['passageDirection'] = $liveScanObj->liveDirection;
@@ -63,7 +63,7 @@ class PassagesModel extends Firestore {
         //Build array for Passages by Date collection with added data
         $data['date'] = date('Y-m-d', $firstEventTS); 
         $data['vesselName'] = $liveScanObj->liveName;
-        $data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
+        $data['vesselImageUrl'] = $liveScanObj->liveVessel->vesselImageUrl;
         
         $month = date('Ym', $firstEventTS);
         flog( "month=".$month.", ");
@@ -71,13 +71,13 @@ class PassagesModel extends Firestore {
         flog( "day=".$day."\n");
         $passage = [
             $day => [
-                'mmsi'.$data['vesselID'] => $data
+                'mmsi'.$data['passageVesselID'] => $data
             ]
         ];
 
         //Build array for Passages All document update
         $humanDate = date('M d, Y', $firstEventTS);
-        $model = [ $data['vesselID'] => [
+        $model = [ $data['passageVesselID'] => [
                 "date" => $humanDate,
                 "id" => $liveScanObj->liveVesselID,
                 "image" => $liveScanObj->liveVessel->vesselImageUrl,
@@ -92,7 +92,7 @@ class PassagesModel extends Firestore {
         }
 
         $this->db->collection('Vessels')
-            ->document('mmsi'.$data['vesselID'])
+            ->document('mmsi'.$data['passageVesselID'])
             ->set(['vesselPassages' => [ $data['date'] => $data] ] , ['merge' => true]);
         
         $this->db->collection('Passages')

@@ -1,0 +1,9 @@
+[11-Nov-2021 03:50:48 UTC] PHP Notice:  Undefined variable: config in E:\xampp\htdocs\mdm-crt2-server\src\Firestore.class.php on line 19
+[11-Nov-2021 03:50:48 UTC] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\mdm-crt2-server\src\Firestore.class.php on line 19
+[11-Nov-2021 03:50:48 UTC] PHP Warning:  file_get_contents(): Filename cannot be empty in E:\xampp\htdocs\mdm-crt2-server\src\Firestore.class.php on line 19
+[11-Nov-2021 03:50:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Google\Cloud\Firestore\FirestoreClient' not found in E:\xampp\htdocs\mdm-crt2-server\src\Firestore.class.php:36
+Stack trace:
+#0 E:\xampp\htdocs\mdm-crt2-server\importpassages.php(18): Firestore->__construct(Array)
+#1 E:\xampp\htdocs\mdm-crt2-server\importpassages.php(237): ExportPassagesModel->__construct()
+#2 {main}
+  thrown in E:\xampp\htdocs\mdm-crt2-server\src\Firestore.class.php on line 36

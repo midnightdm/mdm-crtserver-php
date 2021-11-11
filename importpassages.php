@@ -236,16 +236,16 @@ $start = time();
 echo "Starting ".date('c')."\n";
 $model = new ExportPassagesModel();
 
-$vess = json_decode(grab_page(
-    "https://www.clintonrivertraffic.com/vesselsjson/vess"));
-$model->run($vess);
-echo "Imported vessels to Vessels.\n";
+//$vess = json_decode(grab_page(
+//    "https://www.clintonrivertraffic.com/vesselsjson/vess"));
+//$model->run($vess);
+//echo "Imported vessels to Vessels.\n";
 $pass = json_decode(grab_page(
     "https://www.clintonrivertraffic.com/vesselsjson/pass"));
 $model->run3($pass); //To Passages
 echo "Imported passages to Passages.\n";
-$model->run4($pass); //To Vessels/Passages
-echo "Imported passages to Vessels/Passages.\n";
+//$model->run4($pass); //To Vessels/Passages
+//echo "Imported passages to Vessels/Passages.\n";
 
 $all = json_decode(grab_page(
     "https://www.clintonrivertraffic.com/vesselsjson/all"), true);

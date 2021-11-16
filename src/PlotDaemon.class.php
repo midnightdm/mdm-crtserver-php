@@ -257,7 +257,12 @@ class PlotDaemon {
     protected function reloadSavedAlertsAll() {
         flog("CRTDaemon::reloadSavedAlertsAll()\n");
         $this->alertsAll = $this->AlertsModel->getAlertsAll();
-        echo var_dump($this->alertsAll[14]);
+        //Loop array 0 - 19
+        
+        for($i=0; $i<20; $i++) {
+            echo var_dump($this->alertsAll[$i])."\n";
+        }
+        
 
     }
 

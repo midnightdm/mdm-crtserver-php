@@ -33,8 +33,11 @@ class AlertsModel extends Firestore {
             return $snapshot->data();
         } else {
             return false;
-        }
-        
+        }  
+    }
+
+    public function setAlertsAll($data) {
+        $this->db->collection('Alertpublish')->document('all')->set($data);
     }
 
     public function getAlertsPassenger() {
@@ -45,6 +48,10 @@ class AlertsModel extends Firestore {
         } else {
             return false;
         }
+    }
+
+    public function setAlertsPassenger($data) {
+        $this->db->collection('Alertpublish')->document('passenger')->set($data);
     }
 
     public function triggerEvent($event, $liveObj) {
@@ -235,40 +242,28 @@ class AlertsModel extends Firestore {
             'apubEvent'=>$event, 
             'apubDir'=>$liveScan->liveDirection
         ];
+        //Add new Alert document for perm record
         $this->db->collection('Alertpublish')->document($apubID)->add($data);
+        //Also update collective alert list queue (a or p type)... 
+        $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
+        $this->daemon->$ref = objectQueue($this->daemon->$ref, $data);
+        //...and save as db document
+        $ref = $type=='p' ? 'setAlertsPassenger' : 'setAlertsAll';
+        $this->$ref($data);
+        //Use updated array to write RSS files
         $this->generateRss($type);
     }
 
     public function generateRss($vt) { //a=any, p=passenger
-
-
-
-        /**
-         *  UNFINISHED
-         *  Need to separate passenger from all generation.
-         *  Each needs to be in live object which this reads.
-         * 
-         *  Need to create initialize methods for loading obj 
-         * 
-         * 
-         * 
-         *  */
-
-
-
         flog("AlertsModel::generateRss()\n");
-        //Query 20 most recent documents in Alertpublish collection
-        $alertRef = $this->db->collection('Alertpublish')->document('all');
-        $alertSnap = $alertRef->snapshot();
-        if(!$alertSnap->exists()) {
-           flog("Error: Alertpublish/all could not be found.\n");
-           return; 
-        }
-        $documentArr = $alertSnap->data();
+        //Set vars based on type
         $head =  $vt == "p" ? "PASSENGER" : "ALL VESSELS";
         $label = $vt == "p" ? "passenger" : "all commercial";
         $fileName = $vt == "p" ? "passenger.rss" : "any.rss";
+        $arrName = $vt == "p" ? "alertsPassenger" :"alertsAll";
     
+        $documentArr = $this->daemon->$arrName;
+
         //Date building
         $str    = "D, j M Y G:i:s \C\D\T"; 
         $offset = getTimeOffset();
@@ -290,7 +285,6 @@ _END;
         //Loop through returned data
         $items = "";
         foreach($documentArr as $data) {
-            //$data = $d->data();
             $vesselID  = $data['apubVesselID'];
             $alertID   = $data['apubID'];
             $vesselLink = "https://www.clintonrivertraffic.com/alerts/waypoint/".$alertID;

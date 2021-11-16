@@ -256,26 +256,12 @@ class PlotDaemon {
 
     protected function reloadSavedAlertsAll() {
         flog("CRTDaemon::reloadSavedAlertsAll()\n");
-        $this->alertsAll = $this->AlertsModel->getAlertsAll();
-        //Loop array 0 - 19
-        
-        for($i=0; $i<20; $i++) {
-            //Date building
-            $str    = "D, j M Y G:i:s \C\D\T"; 
-            $offset = getTimeOffset();
-            $time   = time();
-            $firstTS  = $this->alertsAll[$i]['apubTS'];
-            $pubDate = date($str, ($firstTS+$offset));
-            echo $pubDate."\n";
-        }
-        
-
+        $this->alertsAll = $this->AlertsModel->getAlertsAll();       
     }
 
     protected function reloadSavedAlertsPassenger() {
         flog("CRTDaemon::reloadSavedAlertsPassengeer()\n");
         $this->alertsPassenger = $this->AlertsModel->getAlertsPassenger();
-        //echo var_dump($this->alertsPassenger);
     }
     
 }

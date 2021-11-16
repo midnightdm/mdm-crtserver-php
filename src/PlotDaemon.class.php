@@ -257,14 +257,14 @@ class PlotDaemon {
     protected function reloadSavedAlertsAll() {
         flog("CRTDaemon::reloadSavedAlertsAll()\n");
         $this->alertsAll = $this->AlertsModel->getAlertsAll();
-        echo var_dump($this->alertsAll);
+        echo var_dump($this->alertsAll[14]);
 
     }
 
     protected function reloadSavedAlertsPassenger() {
         flog("CRTDaemon::reloadSavedAlertsPassengeer()\n");
         $this->alertsPassenger = $this->AlertsModel->getAlertsPassenger();
-        echo var_dump($this->alertsPassenger);
+        //echo var_dump($this->alertsPassenger);
     }
     
 }

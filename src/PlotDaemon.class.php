@@ -260,7 +260,13 @@ class PlotDaemon {
         //Loop array 0 - 19
         
         for($i=0; $i<20; $i++) {
-            echo var_dump($this->alertsAll[$i])."\n";
+            //Date building
+            $str    = "D, j M Y G:i:s \C\D\T"; 
+            $offset = getTimeOffset();
+            $time   = time();
+            $firstTS  = $this->alertsAll[$i]['apubTS'];
+            $pubdate = date($str, ($firstTS+$offset));
+            echo $pubDate."\n";
         }
         
 

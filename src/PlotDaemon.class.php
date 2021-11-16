@@ -32,6 +32,8 @@ class PlotDaemon {
     public $lastCleanUp;
     public $LiveScanModel;
 	public $VesselsModel;
+    public $alertsAll;
+    public $alertsPassenger;
 	public $AlertsModel;
     public $PassagesModel;
     public $liveScanTimeout;
@@ -45,10 +47,12 @@ class PlotDaemon {
         $config = CONFIG_ARR;
 
         $this->liveScan = array();
+        $this->alertsAll = array();
+        $this->alertsPassenger = array();
         $this->rowsBefore = 0;
         $this->LiveScanModel = new LiveScanModel();
         $this->VesselsModel = new VesselsModel();
-        $this->AlertsModel = new AlertsModel();
+        $this->AlertsModel = new AlertsModel($this);
         $this->PassagesModel = new PassagesModel();
         $this->lastCleanUp = time()-50; //Used to increment cleanup routine
         $this->lastPassagesSave = time()-50;//Increments savePassages routine
@@ -76,6 +80,8 @@ class PlotDaemon {
         $this->setup();
         $this->run = true;
         $this->reloadSavedScans();
+        $this->reloadSavedAlertsAll();       //new 11/15/21
+        $this->reloadSavedAlertsPassenger(); //new 11/15/21
         $this->run();
     }
 
@@ -246,6 +252,19 @@ class PlotDaemon {
           //Now update with new location supressing event trigger
           $this->liveScan[$key]->calculateLocation(true);           
         }
+    }
+
+    protected function reloadSavedAlertsAll() {
+        flog("CRTDaemon::reloadSavedAlertsAll()\n");
+        $this->alertsAll = $this->AlertsModel->getAlertsAll();
+        echo var_dump($this->alertsAll);
+
+    }
+
+    protected function reloadSavedAlertsPassenger() {
+        flog("CRTDaemon::reloadSavedAlertsPassengeer()\n");
+        $this->alertsPassenger = $this->AlertsModel->getAlertsPassenger();
+        echo var_dump($this->alertsPassenger);
     }
     
 }

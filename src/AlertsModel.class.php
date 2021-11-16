@@ -13,12 +13,38 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 class AlertsModel extends Firestore {
 
     public $messageController;
+    public $appPath;
+    public $daemon;
     
-    public function __construct() {
+    public function __construct($daemonCallback) {
         parent::__construct(['name' => 'user_devices']);
+        global $config;
+        $this->appPath = $config['appPath'];
         //Initialize Messages contoller
         $this->messageController = new Messages();
+        $this->daemon = $daemonCallback;
 
+    }
+
+    public function getAlertsAll() {
+        $docRef = $this->db->collection('Alertpublish')->document('all');
+        $snapshot = $docRef->snapshot();
+        if($snapshot->exists()) {
+            return $snapshot->data();
+        } else {
+            return false;
+        }
+        
+    }
+
+    public function getAlertsPassenger() {
+        $docRef = $this->db->collection('Alertpublish')->document('passenger');
+        $snapshot = $docRef->snapshot();
+        if($snapshot->exists()) {
+            return $snapshot->data();
+        } else {
+            return false;
+        }
     }
 
     public function triggerEvent($event, $liveObj) {
@@ -209,16 +235,36 @@ class AlertsModel extends Firestore {
             'apubEvent'=>$event, 
             'apubDir'=>$liveScan->liveDirection
         ];
-        $this->db->collection('Alertpublish')->add($data);
+        $this->db->collection('Alertpublish')->document($apubID)->add($data);
         $this->generateRss($type);
     }
 
     public function generateRss($vt) { //a=any, p=passenger
+
+
+
+        /**
+         *  UNFINISHED
+         *  Need to separate passenger from all generation.
+         *  Each needs to be in live object which this reads.
+         * 
+         *  Need to create initialize methods for loading obj 
+         * 
+         * 
+         * 
+         *  */
+
+
+
         flog("AlertsModel::generateRss()\n");
         //Query 20 most recent documents in Alertpublish collection
-        $alertpublish = $this->db->collection('Alertpublish');
-        $query = $alertpublish->where('apubType', '=', $vt)->orderBy('apubTS', 'DESC')->limit(20);
-        $documents = $query->documents()->rows();
+        $alertRef = $this->db->collection('Alertpublish')->document('all');
+        $alertSnap = $alertRef->snapshot();
+        if(!$alertSnap->exists()) {
+           flog("Error: Alertpublish/all could not be found.\n");
+           return; 
+        }
+        $documentArr = $alertSnap->data();
         $head =  $vt == "p" ? "PASSENGER" : "ALL VESSELS";
         $label = $vt == "p" ? "passenger" : "all commercial";
         $fileName = $vt == "p" ? "passenger.rss" : "any.rss";
@@ -227,8 +273,8 @@ class AlertsModel extends Firestore {
         $str    = "D, j M Y G:i:s \C\D\T"; 
         $offset = getTimeOffset();
         $time   = time();
-        $first  = $documents[0]->data();
-        $pubdate = date($str, ($first['apubTS']+$offset));
+        $firstTS  = $documentArr[0]['apubTS'];
+        $pubdate = date($str, ($firstTS+$offset));
     
         //Begin building rss XML document
         $output = <<<_END
@@ -243,7 +289,7 @@ class AlertsModel extends Firestore {
 _END;
         //Loop through returned data
         $items = "";
-        foreach($documents as $data) {
+        foreach($documentArr as $data) {
             //$data = $d->data();
             $vesselID  = $data['apubVesselID'];
             $alertID   = $data['apubID'];
@@ -260,11 +306,13 @@ _END;
         //Conclude XML document
         $output .= $items."</channel>\n</rss>\n";
         //Save file locally
-        file_put_contents("C:/app/". $fileName, $output);
+        file_put_contents($this->appPath."/". $fileName, $output);
         //Upload to cloud bucket
         $cs = new CloudStorage();
-        $cs->upload( 'C:/app/'. $fileName, basename($fileName));          
+        $cs->upload( $this->appPath.'/'. $fileName, basename($fileName));          
     }
+
+
 
     //Methods below were for sql based version of app 
   

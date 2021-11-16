@@ -12,7 +12,6 @@ class LiveScanModel extends Firestore {
     }
 
     public function getAllLiveScans() {
-        //Write
         $documents = $this->db->collection('LiveScan')->documents();
         $scans = [];
         foreach($documents as $document) {

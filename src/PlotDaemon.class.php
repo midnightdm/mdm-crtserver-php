@@ -265,7 +265,7 @@ class PlotDaemon {
             $offset = getTimeOffset();
             $time   = time();
             $firstTS  = $this->alertsAll[$i]['apubTS'];
-            $pubdate = date($str, ($firstTS+$offset));
+            $pubDate = date($str, ($firstTS+$offset));
             echo $pubDate."\n";
         }
         

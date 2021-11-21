@@ -244,7 +244,7 @@ class AlertsModel extends Firestore {
             'apubDir'=>$liveScan->liveDirection
         ];
         //Add new Alert document for perm record
-        $this->db->collection('Alertpublish')->document(strval($apubID))->add($data);
+        $this->db->collection('Alertpublish')->document(strval($apubID))->set($data);
         flog("Added to collection 'Alertpublish', document: ".strval($apubID)."\n");
         //Also update collective alert list queue (a or p type)... 
         $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';

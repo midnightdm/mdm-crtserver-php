@@ -245,16 +245,13 @@ class AlertsModel extends Firestore {
         ];
         //Add new Alert document for perm record
         $this->db->collection('Alertpublish')->document(strval($apubID))->set($data);
-        flog("Added to collection 'Alertpublish', document: ".strval($apubID)."\n");
         //Also update collective alert list queue (a or p type)... 
         $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         $this->daemon->$ref = objectQueue($this->daemon->$ref, $data);
         //...and save as db document
         $sref = $type=='p' ? 'setAlertsPassenger' : 'setAlertsAll';
-        flog("Added to $sref \n");
         $this->$sref($this->daemon->$ref);
         //Use updated array to write RSS files
-        flog("Generating Rss of type $type\n");
         $this->generateRss($type);
     }
 

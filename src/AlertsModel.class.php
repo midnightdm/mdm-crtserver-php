@@ -17,7 +17,7 @@ class AlertsModel extends Firestore {
     public $daemon;
     
     public function __construct($daemonCallback) {
-        parent::__construct(['name' => 'user_devices']);
+        //parent::__construct(['name' => 'user_devices']);
         global $config;
         $this->appPath = $config['appPath'];
         //Initialize Messages contoller
@@ -63,9 +63,10 @@ class AlertsModel extends Firestore {
             return false;
         }
 
-        //Publish the event to the database is it passes waypoint type filter [Added 10/13/21]
+        //Publish the event to the database if it passes waypoint type filter [Added 10/13/21]
         $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
         if(in_array($event, $filter)) {
+            flog("AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.")\n");
             $this->publishAlertMessage($event, $liveObj);
         }    
         
@@ -215,7 +216,7 @@ class AlertsModel extends Firestore {
     }
 
     public function publishAlertMessage($event, $liveScan) {
-        flog("AlertsModel::publishAlertMessage()\n");
+        flog("AlertsModel::publishAlertMessage(".$event.",".$liveScan->liveName.") ");
         //This function gets run by Event trigger methods of this class 
         $ts = time();
         $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
@@ -244,13 +245,16 @@ class AlertsModel extends Firestore {
         ];
         //Add new Alert document for perm record
         $this->db->collection('Alertpublish')->document(strval($apubID))->add($data);
+        flog("Added to collection 'Alertpublish', document: ".strval($apubID)."\n");
         //Also update collective alert list queue (a or p type)... 
         $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         $this->daemon->$ref = objectQueue($this->daemon->$ref, $data);
         //...and save as db document
         $sref = $type=='p' ? 'setAlertsPassenger' : 'setAlertsAll';
+        flog("Added to $sref \n");
         $this->$sref($this->daemon->$ref);
         //Use updated array to write RSS files
+        flog("Generating Rss of type $type\n");
         $this->generateRss($type);
     }
 

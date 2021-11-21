@@ -204,7 +204,7 @@ class Messages {
     //Prepare VAPID package and initialize WebPush
     $auth = array(
 			'VAPID' => array(
-				'subject' => 'https://www.clintonrivertraffic.com/about',
+				'subject' => 'https://www.clintonrivertraffic.com',
 				'publicKey' => getenv('MDM_VKEY_PUB'),
 				'privateKey' => getenv('MDM_VKEY_PRI') 
 			)

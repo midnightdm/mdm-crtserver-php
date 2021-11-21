@@ -17,7 +17,7 @@ class AlertsModel extends Firestore {
     public $daemon;
     
     public function __construct($daemonCallback) {
-        //parent::__construct(['name' => 'user_devices']);
+        parent::__construct(['name' => 'Alertpublish']);
         global $config;
         $this->appPath = $config['appPath'];
         //Initialize Messages contoller

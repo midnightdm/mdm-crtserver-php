@@ -132,7 +132,7 @@ function flog($string) {
 
 function objectQueue($arr, $add, $size=20) { //Returns updated $arr
   $arr[] = $add;
-  if(count($arr)==$size) {
+  if(count($arr)>=$size) {
     array_shift($arr);
   }
   return $arr;

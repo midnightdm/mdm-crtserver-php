@@ -249,7 +249,7 @@ class AlertsModel extends Firestore {
         $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         $len = count($this->daemon->$ref);
         flog("Last $ref obj in $len sized array before queue update:". $this->daemon->$ref[$len]."\n");
-        $this->daemon->$ref = objectQueue($this->daemon->$ref, $data);
+        $this->daemon->$ref = objectQueue($this->daemon->$ref, $data, 20);
         $len = count($this->daemon->$ref);
         flog("Last $ref obj in $len sized array after queue update:". $this->daemon->$ref[$len]."\n");
         //...and save as db document

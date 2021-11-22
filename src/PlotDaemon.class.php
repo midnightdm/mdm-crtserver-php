@@ -256,12 +256,20 @@ class PlotDaemon {
 
     protected function reloadSavedAlertsAll() {
         flog("CRTDaemon::reloadSavedAlertsAll()\n");
-        $this->alertsAll = $this->AlertsModel->getAlertsAll();       
+        $all =  $this->AlertsModel->getAlertsAll();
+        //Sort by Date decending
+        usort($all, fn($a, $b) => $b->apubTS - $a->apubTS);
+        //Enfore queue limit of 20
+        $this->alertsAll = array_slice($all, 0, 19);      
     }
 
     protected function reloadSavedAlertsPassenger() {
         flog("CRTDaemon::reloadSavedAlertsPassengeer()\n");
-        $this->alertsPassenger = $this->AlertsModel->getAlertsPassenger();
+        $pass =  $this->AlertsModel->getAlertsPassenger();
+        //Sort by Date decending
+        usort($all, fn($a, $b) => $b->apubTS - $a->apubTS);
+        //Enfore queue limit of 20
+        $this->alertsPassenger = array_slice($pass, 0, 19);
     }
     
 }

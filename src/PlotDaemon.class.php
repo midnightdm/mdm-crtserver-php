@@ -259,8 +259,8 @@ class PlotDaemon {
         $all =  $this->AlertsModel->getAlertsAll();
         //Sort by Date decending
         usort($all, fn($a, $b) => $b->apubTS - $a->apubTS);
-        //Enfore queue limit of 20
-        $this->alertsAll = array_slice($all, 0, 19);      
+        //Enforce queue limit of 20
+        $this->alertsAll = array_slice($all, 0, 20);      
     }
 
     protected function reloadSavedAlertsPassenger() {
@@ -269,7 +269,7 @@ class PlotDaemon {
         //Sort by Date decending
         usort($all, fn($a, $b) => $b->apubTS - $a->apubTS);
         //Enfore queue limit of 20
-        $this->alertsPassenger = array_slice($pass, 0, 19);
+        $this->alertsPassenger = array_slice($pass, 0, 20);
     }
     
 }

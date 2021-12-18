@@ -162,6 +162,8 @@ class LiveScan {
     $data['liveCallSign'] = $this->liveCallSign;
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
+    $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
+    $data['type']       = $this->liveVessel->vesselType;
     $data['liveIsLocal'] = $this->liveIsLocal;
     flog('Inserting new livescan record for '.$this->liveName .' '.getNow()."\n"); 
     $this->callBack->LiveScanModel->insertLiveScan($data);
@@ -221,6 +223,8 @@ class LiveScan {
     $data['liveVesselID'] = $this->liveVesselID;
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
+    $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
+    $data['type']       = $this->liveVessel->vesselType;
     $data['liveMarkerAlphaWasReached'] = $this->liveMarkerAlphaWasReached;
     $data['liveMarkerAlphaTS'] = $this->liveMarkerAlphaTS;
     $data['liveMarkerBravoWasReached'] = $this->liveMarkerBravoWasReached;

@@ -143,7 +143,7 @@ class LiveScan {
 
   public function insertNewRecord() {   
     //Error check to make sure starting pos is not 0
-    if($this->liveInitLat < 1 || $this->liveInitLon < 1) {
+    if($this->liveInitLat < 1 || $this->liveInitLon == 0) {
       flog("Bogus starting position data rejected.");
       return false;
     }

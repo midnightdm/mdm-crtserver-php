@@ -61,6 +61,7 @@ class ZONE {
     public static $m532 = "at mile 532, 9.5 abv Lock 13, 3 blw Sabula drawbridge";
     public static $m533 = "at mile 533, 10.5 abv Lock 13, 2 blw Sabula drawbridge";
     public static $m534 = "at marker 534 1 mile below Sabula drawbridge";
+    public static $msabula = "In Island City Harbor at Sabula";
     public static $m535 = "at marker 535 Sabula drawbridge";
     public static $m536 = "at marker 536 1 mile above Sabula drawbridge";
     public static $m537 = "at Savanna, IL 2 miles above Sabula drawbridge";

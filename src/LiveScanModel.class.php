@@ -24,7 +24,7 @@ class LiveScanModel extends Firestore {
 
 
     public function insertLiveScan($live) {
-        flog("insertLiveScan(live) DATA=".var_dump($live)); //Test Only
+        flog("insertLiveScan(live) DATA=". var_dump($live). "EOF"); //Test Only
         $this->db->collection('LiveScan')->document('mmsi'.$live['liveVesselID'])->set($live);
     }
 

@@ -152,8 +152,6 @@ class LiveScan {
     $data['liveLastTS'] = $this->liveLastTS;
     $data['liveInitLat'] = $this->liveInitLat;
     $data['liveInitLon'] = $this->liveInitLon;
-
-
     $data['liveDirection'] = $this->liveDirection;
     $data['liveLocation'] = "";
     $data['liveVesselID'] = $this->liveVesselID;

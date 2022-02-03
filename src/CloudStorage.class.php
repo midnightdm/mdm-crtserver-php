@@ -69,6 +69,13 @@ class CloudStorage {
         return true;
     }
 
+    public function saveVoiceFile($fileName, $audioData) {
+      flog("ClooudStorage::saveVoiceFile($fileName");
+      $localPath = $this->appPath."/tempaudio/".$fileName;
+      file_put_contents($localPath, $audioData);
+      $this->upload($fileName, 'voices/'.$fileName);
+    }
+
 }
 
 

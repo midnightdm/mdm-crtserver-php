@@ -40,9 +40,7 @@ class MyTextToSpeech {
       $this->audioConfig = new AudioConfig();
       $this->audioConfig->setAudioEncoding(AudioEncoding::MP3);
 
-      
-      //# Your Google Cloud Platform project ID
-      $this->projectId = $config['cloud_projectID'];
+   
       
 
       // $this->storage = new StorageClient([

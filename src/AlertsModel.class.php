@@ -168,7 +168,7 @@ class AlertsModel extends Firestore {
     }
 
     public function buildAlertMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $location) {
-        $loc = "";
+        $loc = ""; 
         $str = "m/j/Y h:i:sa";
         $offset = getTimeOffset();
         //Parse event code to get status (and marker data)
@@ -211,9 +211,56 @@ class AlertsModel extends Firestore {
         $txt  = str_replace('Vessel', '', $vesselType);
         $txt .= " Vessel ".$vesselName." ".$evtDesc;
         $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
-        $txt .= ". ".date($str, ($ts+$offset)).$loc;
+        $txt .= ".".date($str, ($ts+$offset)).$loc;
         return $txt;
     }
+
+    public function buildVoiceMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $location) {
+      $loc = ""; 
+    
+      //Parse event code to get status (and marker data)  
+      if(str_starts_with($event, 'alpha'   )) { 
+          $status = "alpha";
+      } elseif(str_starts_with($event, 'bravo'   )) {
+          $status = "bravo";
+      } elseif(str_starts_with($event, 'charlie' )) {
+          $status = "charlie";
+      } elseif(str_starts_with($event, 'delta'   )) {
+          $status = "delta";
+      } elseif(str_starts_with($event, 'albany'  )) {
+          $status = "albany";
+      } elseif(str_starts_with($event, 'camanche')) {
+          $status = "camanche";
+      } elseif(str_starts_with($event, 'beaver' ) ) {
+          $status = "beaver";
+      } elseif(str_starts_with($event, 'detect' ) ) {
+          $status = "detect";
+      } elseif(str_starts_with($event, "m")) { 
+          $status = "marker"; 
+          $mile = substr(1,3);
+      } else { 
+          $status = "Not Resolved";
+      }
+      flog( "AlertsModel::buildVoiceMessage() event: $event, status: $status\n");
+      switch($status) {
+          case "alpha" : $evtDesc = "just crossed 3 miles north of Lock 13 ";  break;
+          case "bravo" : $evtDesc = $direction=="downriver" ? "just left " : " has reached ";
+                          $evtDesc .= "Lock 13 "; break;
+          case "charlie" : $evtDesc = "just passed the Clinton drawbridge ";  break;
+          case "delta" : $evtDesc = "just crossed 3 miles south of the drawbridge ";  break;
+          case "detect" : $evtDesc = "has been detected "; break;
+          case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
+          case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
+          case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
+          case "marker" : $evtDesc = "is ".$location; break;
+      }
+      $txt  = str_replace('Vessel', '', $vesselType);
+      $txt .= " Vessel, ".$vesselName." ,".$evtDesc;
+      $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
+      $txt .= ".";
+      return $txt;
+  }
+
 
     public function publishAlertMessage($event, $liveScan) {
         flog("AlertsModel::publishAlertMessage(".$event.",".$liveScan->liveName.") ");

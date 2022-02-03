@@ -198,7 +198,7 @@ class LiveScan {
     //$this->liveDest    = $dest;
     $this->liveName    = $name;
     $this->determineDirection();
-    if($this->liveName=="" || (is_null($this->liveVessel) && $this->lookUpCount < 5)) {
+    if($this->liveName=="" || str_contains($this->liveName, "@@") || (is_null($this->liveVessel) && $this->lookUpCount < 5)) {
       $this->lookUpVessel();
     }
     $this->calculateLocation();

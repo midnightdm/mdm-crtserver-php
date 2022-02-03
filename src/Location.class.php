@@ -163,7 +163,10 @@ class Location {
                     } elseif($m == "albany"){
                         $event = "albany";
                         $eventTS = time();
-                    }
+                    } elseif($m == "sabula") {
+                      $event = "sabula";
+                      $eventTS = time();
+                    } 
                 }
                 $mileMarker = "m".$um;
                 $this->description = ZONE::$$mileMarker;

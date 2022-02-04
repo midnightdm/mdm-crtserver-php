@@ -168,6 +168,21 @@ class VesselsModel extends Firestore {
     }
   }
 
+  public function checkForAlertTest() {
+    $document = $this->db->collection('Passages')->document('Admin');
+    $snapshot = $document->snapshot();
+    if($snapshot->exists()) {
+      $data = $snapshot->data();
+      return $data;
+    }
+  }
+
+  public function resetAlertTest() {
+    $this->db->collection('Passages')
+    ->document('Admin')
+    ->set(['alertTestDo' => false, 'alertTestEvent' => 'charlieua', 'alertTestKey' => 0 ]);
+  }
+
   public function reportVesselError($data) {
     $this->db->collection('Passages')
     ->document('Admin')

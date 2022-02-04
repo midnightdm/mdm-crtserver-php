@@ -194,6 +194,15 @@ class PlotDaemon {
                       flog("Added vessel ".$vesselData['vesselName']."\n");
                   }
               }
+              //Check DB for admin command to test Alert trigger
+              $alertData = $this->VesselsModel->checkForAlertTest();
+              if($alertData['alertTestDo']) {
+                $this->AlertsModel->triggerEvent($alertData['alertTestEvent'], $this->liveScan[$alertData['alertTestKey']]);
+                flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
+                flog( "\033[41m *  *  *   Test Event: ".$alertData['alertTestEvent']."     *  *  *  *  * \033[0m\r\n"); 
+                sleep(3);
+                $this->VesselsModel->resetAlertTest();
+              }
               //Check DB for admin command to stop daemon & run updates
               if($this->LiveScanModel->testExit()==true) {
                   flog( "Stopping plotserver at request of database.\n\n");

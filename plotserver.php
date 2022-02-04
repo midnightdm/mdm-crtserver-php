@@ -22,6 +22,7 @@ include_once('src/AlertsModel.class.php');
 include_once('src/PassagesModel.class.php');
 include_once('src/Messages.class.php');
 include_once('src/CloudStorage.class.php');
+include_once('src/TextToSpeech.class.php');
 
 $path =  'vendor/autoload.php';
 //echo "Vendor Path = ".$path."\n";

@@ -15,6 +15,7 @@ class AlertsModel extends Firestore {
     public $messageController;
     public $appPath;
     public $daemon;
+    public $cs; //Cloud Storage obj
     
     public function __construct($daemonCallback) {
         parent::__construct(['name' => 'Alertpublish']);
@@ -23,6 +24,7 @@ class AlertsModel extends Firestore {
         //Initialize Messages contoller
         $this->messageController = new Messages();
         $this->daemon = $daemonCallback;
+        $this->cs = new CloudStorage();
 
     }
 
@@ -50,6 +52,20 @@ class AlertsModel extends Firestore {
         }
     }
 
+    public function voiceIsSet($file) {
+      $docRef = $this->db->collection('Voice')->document(substr($file,0,-4)); //Removes '.mp3'
+      $snapshot = $docRef->snapshot();
+      return $snapshot->exists();
+    }
+
+    public function setVoice($data) {
+      $this->db->collection('Voice')->document($data['fileName'])->set($data);
+      // $docRef = $this->db->collection('Voice')->document($data['fileName']);
+      // $docRef->update([
+      //   ['path' => 'ts', 'value' => $this->serverTimestamp()]
+      // ]);
+    }
+
     public function setAlertsPassenger($data) {
         $this->db->collection('Alertpublish')->document('passenger')->set($data);
     }
@@ -63,8 +79,8 @@ class AlertsModel extends Firestore {
             return false;
         }
 
-        //Publish the event to the database if it passes waypoint type filter [Added 10/13/21]
-        $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
+        //Publish the event to the database if it passes waypoint type filter [Removed detect events 2/3/22]
+        $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup"];
         if(in_array($event, $filter)) {
             flog("AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.")\n");
             $this->publishAlertMessage($event, $liveObj);
@@ -243,11 +259,11 @@ class AlertsModel extends Firestore {
       }
       flog( "AlertsModel::buildVoiceMessage() event: $event, status: $status\n");
       switch($status) {
-          case "alpha" : $evtDesc = "just crossed 3 miles north of Lock 13 ";  break;
-          case "bravo" : $evtDesc = $direction=="downriver" ? "just left " : " has reached ";
+          case "alpha" : $evtDesc = "crossed 3 miles north of Lock 13 ";  break;
+          case "bravo" : $evtDesc = $direction=="downriver" ? " has left " : " has reached ";
                           $evtDesc .= "Lock 13 "; break;
-          case "charlie" : $evtDesc = "just passed the Clinton drawbridge ";  break;
-          case "delta" : $evtDesc = "just crossed 3 miles south of the drawbridge ";  break;
+          case "charlie" : $evtDesc = "passed the Clinton drawbridge ";  break;
+          case "delta" : $evtDesc = "crossed 3 miles south of the drawbridge ";  break;
           case "detect" : $evtDesc = "has been detected "; break;
           case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
           case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
@@ -270,15 +286,30 @@ class AlertsModel extends Firestore {
         $apubID = $this->generateApubID(); //Method in parent
         $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
         $txt = $this->buildAlertMessage(
-            $event, 
-            $liveScan->liveName, 
-            $vesselType,
-            $liveScan->liveDirection, 
-            $ts, 
-            $liveScan->liveInitLat, 
-            $liveScan->liveInitLon,
-            $liveScan->liveLocation->description
+          $event, 
+          $liveScan->liveName, 
+          $vesselType,
+          $liveScan->liveDirection, 
+          $ts, 
+          $liveScan->liveInitLat, 
+          $liveScan->liveInitLon,
+          $liveScan->liveLocation->description
         );
+        //Build voice file name based on event, direction & vesselID
+        $voiceFileName = substr($event, 0,1).substr($event, -2,1).$liveScan->liveVesselID.".mp3";
+        $apubVoiceUrl = $this->cs->image_base."voice/".$voiceFileName;
+        //Build text for voice synthesis
+        $voiceTxt = $this->buildVoiceMessage(
+          $event, 
+          $liveScan->liveName, 
+          $vesselType,
+          $liveScan->liveDirection, 
+          $ts, 
+          $liveScan->liveInitLat, 
+          $liveScan->liveInitLon,
+          $liveScan->liveLocation->description
+        );
+        $this->generateVoice($voiceFileName, $apubVoiceUrl, $voiceTxt);
         $data = [
             'apubID'=>$apubID,
             'apubTS'=>$ts, 
@@ -286,6 +317,7 @@ class AlertsModel extends Firestore {
             'apubType'=> $type,
             'apubVesselID'=>$liveScan->liveVesselID,
             'apubVesselImageUrl' => $liveScan->liveVessel->vesselImageUrl,
+            'apubVoiceUrl' => $apubVoiceUrl,
             'apubVesselName' => $liveScan->liveName, 
             'apubEvent'=>$event, 
             'apubDir'=>$liveScan->liveDirection
@@ -304,6 +336,27 @@ class AlertsModel extends Firestore {
         $this->$sref($this->daemon->$ref);
         //Use updated array to write RSS files
         $this->generateRss($type);
+    }
+
+    public function generateVoice($fileName, $fullUrl, $text) {
+      //Check whether file with this name is in database
+      if(!$this->voiceIsSet()) {
+        $data = [
+          'id'=> substr($fileName,0,-4),
+          'ts'=> time(),
+          'date' => $this->serverTimestamp(),
+          'url'=> $fullUrl,
+          'text' => $text
+        ];
+        //If not write file info to db
+        $this->setVoice($data);
+        //Use API to synthesize speech
+        $mts = new MyTextToSpeech();
+        $audioData = $mts->getSpeech($text);
+        //Save audio file in cloud storage
+        $this->cs->saveVoiceFile($fileName, $audioData);
+      }
+
     }
 
     public function generateRss($vt) { //a=any, p=passenger
@@ -354,8 +407,7 @@ _END;
         //Save file locally
         file_put_contents($this->appPath."/". $fileName, $output);
         //Upload to cloud bucket
-        $cs = new CloudStorage();
-        $cs->upload( $this->appPath.'/'. $fileName, basename($fileName));          
+        $this->cs->upload( $this->appPath.'/'. $fileName, basename($fileName));          
     }
 
 

@@ -34,7 +34,7 @@ class VesselsModel extends Firestore {
     $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
-        $data = $snapshot->data()
+        $data = $snapshot->data();
         return $data['vesselLastDetectedTS'];
     } else {
         return false;

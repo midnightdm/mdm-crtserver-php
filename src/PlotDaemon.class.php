@@ -199,11 +199,12 @@ class PlotDaemon {
               }
               //Check DB for admin command to test Alert trigger
               $alertData = $this->VesselsModel->checkForAlertTest();
+              $key = $alertData['alertTestKey'];
               if($alertData['alertTestDo']) {
                 flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
                 flog( "\033[41m *  *  *       Test Event: ".$alertData['alertTestEvent']."  *  *  *  *  *\n");
-                flog( "\033[41m *  *  *       Test Key:   ".$alertData['alertTestKey']."  *  *  *  *\n");
-                flog( "\033[41m".var_export($this->liveScan[$alertData['alertTestKey']], true)." \033[0m\r\n"); 
+                flog( "\033[41m *  *  *       Test Key:    $key  *  *  *  *\n");
+                flog( "\033[41m".var_export($this->liveScan[$key], true)." \033[0m\r\n"); 
                 $this->AlertsModel->triggerEvent($alertData['alertTestEvent'], $this->liveScan[$alertData['alertTestKey']]);
                 sleep(3);
                 $this->VesselsModel->resetAlertTest();

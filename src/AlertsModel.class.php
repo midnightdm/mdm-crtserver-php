@@ -55,9 +55,12 @@ class AlertsModel extends Firestore {
     }
 
     public function voiceIsSet($file) {
+      flog("AlertsModel::voiceIsSet($file) --> ");
       $docRef = $this->db->collection('Voice')->document(substr($file,0,-4)); //Removes '.mp3'
       $snapshot = $docRef->snapshot();
-      return $snapshot->exists();
+      $ret = $snapshot->exists();
+      flog($ret."\n");
+      return $ret;
     }
 
     public function setVoice($data) {

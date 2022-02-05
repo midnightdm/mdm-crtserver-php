@@ -29,11 +29,10 @@ class AlertsModel extends Firestore {
     }
 
     public function getAlertsAll() {
-        flog("AlertsModel::getAlertsAll()");
+        flog("AlertsModel::getAlertsAll()\n");
         $docRef = $this->db->collection('Alertpublish')->document('all');
         $snapshot = $docRef->snapshot();
         if($snapshot->exists()) {
-            flog(var_export($snapshot->data())."\n", true);
             return $snapshot->data();
         } else {
             return false;
@@ -84,8 +83,8 @@ class AlertsModel extends Firestore {
             return false;
         }
 
-        //Publish the event to the database if it passes waypoint type filter [Removed detect events 2/3/22]
-        $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup"];
+        //Publish the event to the database if it passes waypoint type filter 
+        $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
         if(in_array($event, $filter)) {
             flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.")\033[0m\r\n");
             $this->publishAlertMessage($event, $liveObj);

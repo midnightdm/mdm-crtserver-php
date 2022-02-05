@@ -5,6 +5,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 ini_set("log_errors", 1);
 ini_set("error_log", "/tmp/php-error.log");
 
+
 //Load all the dependencies
 include_once('config.php');
 include_once('src/ais.2.php');
@@ -23,6 +24,8 @@ include_once('src/PassagesModel.class.php');
 include_once('src/Messages.class.php');
 include_once('src/CloudStorage.class.php');
 include_once('src/TextToSpeech.class.php');
+
+set_error_handler('errorHandler', E_ALL);
 
 $path =  'vendor/autoload.php';
 //echo "Vendor Path = ".$path."\n";

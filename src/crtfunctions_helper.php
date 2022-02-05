@@ -122,7 +122,7 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
 } 
 
 function flog($string) {
-  $date = Date('ymj', time()+getTimeOffset());
+  $date = Date('ymd', time()+getTimeOffset());
   $file = __DIR__."/../../../../logs/output_".$date.".txt";
   $handle = fopen($file,'a');
   fwrite($handle, $string);
@@ -137,3 +137,11 @@ function objectQueue($arr, $add, $size=20) { //Returns updated $arr
   }
   return $arr;
 }
+
+function errorHandler($type, $msg, $file=null, $line=null) {
+  flog("\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n");
+  flog("\033[41m ERROR: ".$type.": ".$msg." in ".$file." on line ".$line." ".getNow()."\033[0m\r\n");
+  flog("\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n");
+}
+
+ 

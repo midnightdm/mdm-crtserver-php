@@ -281,7 +281,7 @@ class PlotDaemon {
     flog(var_export($all, true)."\n");
     if($all !== false && is_array($all)) {
       //Sort by Date decending
-      usort($all, fn($a, $b) => $b->apubTS - $a->apubTS);
+      usort($all, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
       //Enforce queue limit of 20
       $this->alertsAll = array_slice($all, 0, 20); 
     } else {

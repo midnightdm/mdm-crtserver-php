@@ -14,11 +14,11 @@ class Location {
     public $description;
     public $point;
     public $event;
-    public $events;
+    public $events; //array
     public $eventTS; 
     public $lastEvent;
     public $lastEventTS;
-    public $events; //array
+
 
     public function __construct($livescan) {
         $this->live = $livescan; //Callback

@@ -352,7 +352,8 @@ class AlertsModel extends Firestore {
           'ts'=> time(),
           'date' => $this->serverTimestamp(),
           'url'=> $fullUrl,
-          'text' => $text
+          'text' => $text,
+          'fileName' => $fileName
         ];
         //If not write file info to db
         $this->setVoice($data);

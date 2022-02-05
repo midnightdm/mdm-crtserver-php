@@ -188,7 +188,7 @@ class VesselsModel extends Firestore {
     flog("   VesselsModel::resetAlertTest()\n");
     $this->db->collection('Passages')
     ->document('Admin')
-    ->set(['alertTestDo' => false, 'alertTestEvent' => 'charlieua', 'alertTestKey' => 0 ]);
+    ->set(['alertTestDo' => false ]);
   }
 
   public function reportVesselError($data) {

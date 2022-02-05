@@ -29,9 +29,11 @@ class AlertsModel extends Firestore {
     }
 
     public function getAlertsAll() {
+        flog("AlertsModel::getAlertsAll()");
         $docRef = $this->db->collection('Alertpublish')->document('all');
         $snapshot = $docRef->snapshot();
         if($snapshot->exists()) {
+            flog(var_dump($snapshot->data())."\n");
             return $snapshot->data();
         } else {
             return false;

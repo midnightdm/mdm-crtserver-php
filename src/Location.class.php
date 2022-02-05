@@ -14,6 +14,7 @@ class Location {
     public $description;
     public $point;
     public $event;
+    public $events;
     public $eventTS; 
     public $lastEvent;
     public $lastEventTS;

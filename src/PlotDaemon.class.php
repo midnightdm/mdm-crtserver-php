@@ -232,7 +232,12 @@ class PlotDaemon {
           flog( "Writing passages to db...\n");
       $scans = count($this->liveScan);
       foreach($this->liveScan as $liveScanObj) {
-        $len = count($liveScanObj->liveLocation->events);
+        if($liveScanObj->liveLocation instanceof Location) {
+          $len = count($liveScanObj->liveLocation->events);
+        } else {
+          $len = 0;
+          throw new Exception("liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.");
+        }
         flog( "   ...".$liveScanObj->liveName. " ".$len." events.\n");
         $liveScanObj->livePassageWasSaved = true;
         $this->PassagesModel->savePassage($liveScanObj);

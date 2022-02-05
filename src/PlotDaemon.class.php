@@ -269,8 +269,9 @@ class PlotDaemon {
   }
 
   protected function reloadSavedAlertsAll() {
-      flog("CRTDaemon::reloadSavedAlertsAll()\n");
+      flog("CRTDaemon::reloadSavedAlertsAll()...");
       $all =  $this->AlertsModel->getAlertsAll();
+      flog(var_dump($all)."\n");
       if($all !== false && is_array($all)) {
         //Sort by Date decending
         usort($all, fn($a, $b) => $b->apubTS - $a->apubTS);

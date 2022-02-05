@@ -347,7 +347,7 @@ class AlertsModel extends Firestore {
     public function generateVoice($fileName, $fullUrl, $text) {
       flog("AlertsModel::generateVoice()\n");
       //Check whether file with this name is in database
-      if(!$this->voiceIsSet()) {
+      if(!$this->voiceIsSet($fileName)) {
         $data = [
           'id'=> substr($fileName,0,-4),
           'ts'=> time(),

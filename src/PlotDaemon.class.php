@@ -295,7 +295,7 @@ class PlotDaemon {
     $pass =  $this->AlertsModel->getAlertsPassenger();
     if($pass !== false && is_array($pass)) {
       //Sort by Date decending
-      usort($all, fn($a, $b) => $b->apubTS - $a->apubTS);
+      usort($pass, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
       //Enfore queue limit of 20
       $this->alertsPassenger = array_slice($pass, 0, 20);
     } else {

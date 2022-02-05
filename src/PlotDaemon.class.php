@@ -200,12 +200,12 @@ class PlotDaemon {
               //Check DB for admin command to test Alert trigger
               $alertData = $this->VesselsModel->checkForAlertTest();
               $key = $alertData['alertTestKey'];
-              $dump = var_export($this->liveScan[$key], true);
+              
               if($alertData['alertTestDo']) {
                 flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
                 flog( "\033[41m *  *  *       Test Event: ".$alertData['alertTestEvent']."  *  *  *  *  *\n");
                 flog( "\033[41m *  *  *       Test Key:    $key  *  *  *  *\n");
-                flog( "\033[41m". $dump." \033[0m\r\n"); 
+                
                 $this->AlertsModel->triggerEvent($alertData['alertTestEvent'], $this->liveScan[$key]);
                 sleep(3);
                 $this->VesselsModel->resetAlertTest();
@@ -243,7 +243,7 @@ class PlotDaemon {
           $len = count($liveScanObj->liveLocation->events);
         } else {
           $len = 0;
-          throw new Exception("liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.");
+          flog( "\033[41m *  liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.  * \033[0m\r\n"); 
         }
         flog( "   ...".$liveScanObj->liveName. " ".$len." events.\n");
         $liveScanObj->livePassageWasSaved = true;
@@ -298,7 +298,7 @@ class PlotDaemon {
       //Enfore queue limit of 20
       $this->alertsPassenger = array_slice($pass, 0, 20);
     } else {
-      throw new Exception("reloadSavedAlertsPassenger() failed to get data.");
+      flog( "\033[41m *  PlotDaemon::reloadSavedAlertsPassenger() failed to get data.  * \033[0m\r\n");
     }
 
   }

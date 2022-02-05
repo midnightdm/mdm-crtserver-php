@@ -38,9 +38,10 @@ class VesselsModel extends Firestore {
         if(isset($data['vesselLastDetectedTS'])) {
           return $data['vesselLastDetectedTS'];
         } else {
-          throw new Exception("getVesselLastDetectedTS failed to find TS data.");
+          
+          flog( "\033[41m *  VesselsModel::getVesselLastDetectedTS() failed to find TS data.  * \033[0m\r\n"); 
           return false;
-        }
+        } 
         
     } else {
         return false;

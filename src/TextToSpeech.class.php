@@ -30,6 +30,7 @@ class MyTextToSpeech {
 
   public function __construct() {
       global $config;
+      global $strJsonFileContents;
       try {
         $this->client = new TextToSpeechClient([
           'keyFile'  => json_decode($strJsonFileContents, true),

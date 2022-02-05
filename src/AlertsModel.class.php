@@ -33,7 +33,7 @@ class AlertsModel extends Firestore {
         $docRef = $this->db->collection('Alertpublish')->document('all');
         $snapshot = $docRef->snapshot();
         if($snapshot->exists()) {
-            flog(var_dump($snapshot->data())."\n");
+            flog(var_export($snapshot->data())."\n", true);
             return $snapshot->data();
         } else {
             return false;

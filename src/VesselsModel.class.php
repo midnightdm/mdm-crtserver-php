@@ -34,7 +34,8 @@ class VesselsModel extends Firestore {
     $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
-        return $snapshot->data()['vesselLastDetectedTS'];
+        $data = $snapshot->data()
+        return $data['vesselLastDetectedTS'];
     } else {
         return false;
     }
@@ -178,6 +179,7 @@ class VesselsModel extends Firestore {
   }
 
   public function resetAlertTest() {
+    flog("   VesselsModel::resetAlertTest()\n");
     $this->db->collection('Passages')
     ->document('Admin')
     ->set(['alertTestDo' => false, 'alertTestEvent' => 'charlieua', 'alertTestKey' => 0 ]);

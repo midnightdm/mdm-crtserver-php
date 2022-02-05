@@ -199,7 +199,7 @@ class PlotDaemon {
               if($alertData['alertTestDo']) {
                 $this->AlertsModel->triggerEvent($alertData['alertTestEvent'], $this->liveScan[$alertData['alertTestKey']]);
                 flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
-                flog( "\033[41m *  *  *   Test Event: ".$alertData['alertTestEvent']."     *  *  *  *  * \033[0m\r\n"); 
+                flog( "\033[41m *  *  *   Test Event: ".$alertData['alertTestEvent']." ".var_dump($this->liveScan[$alertDate['alertTestKey']])."    *  *  *  *  * \033[0m\r\n"); 
                 sleep(3);
                 $this->VesselsModel->resetAlertTest();
               }

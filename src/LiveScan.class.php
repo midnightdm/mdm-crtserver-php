@@ -92,8 +92,8 @@ class LiveScan {
         return;
       } 
       //Test for previous detect, don't alert if within last 8 hours
-      $lastDetected = $this->callBack->VesselsModel->getVesselLastDetectedTS($id)['vesselLastDetectedTS'];
-     flog("lastDetected check = ".$lastDetected);
+      $lastDetected = $this->callBack->VesselsModel->getVesselLastDetectedTS($id);
+     flog("lastDetected check = ".$lastDetected."\n");
       if($lastDetected==false || ($ts-$lastDetected)>28800) {
         $this->triggerQueued = true;
         $this->triggerActivated = false;

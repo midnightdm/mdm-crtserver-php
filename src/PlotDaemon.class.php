@@ -80,8 +80,11 @@ class PlotDaemon {
       $this->setup();
       $this->run = true;
       $this->reloadSavedScans();
-      $this->reloadSavedAlertsAll();       //new 11/15/21
-      $this->reloadSavedAlertsPassenger(); //new 11/15/21
+      sleep(3);
+      $this->reloadSavedAlertsAll();
+      sleep(3);       
+      $this->reloadSavedAlertsPassenger(); 
+      sleep(3);
       $this->run();
   }
 

@@ -123,7 +123,7 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
 
 function flog($string) {
   $date = Date('ymd', time()+getTimeOffset());
-  $file = __DIR__."/../../../../logs/output_".$date.".txt";
+  $file = __DIR__."/../../../../logs/crt_".$date.".log";
   $handle = fopen($file,'a');
   fwrite($handle, $string);
   fclose($handle);

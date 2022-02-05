@@ -314,7 +314,7 @@ class AlertsModel extends Firestore {
           $liveScan->liveInitLon,
           $liveScan->liveLocation->description
         );
-        flog('$voiceText: '.$voiceText."\n");
+        flog('$voiceText: '.$voiceTxt."\n");
         $this->generateVoice($voiceFileName, $apubVoiceUrl, $voiceTxt);
         $data = [
             'apubID'=>$apubID,

@@ -30,15 +30,22 @@ class MyTextToSpeech {
 
   public function __construct() {
       global $config;
-      $this->client = new TextToSpeechClient([
-        'keyFile'  => json_decode($strJsonFileContents, true),
-        'projectId'=> $config['cloud_projectID']
-      ]);
-      $this->input  = new SynthesisInput();
-      $this->voice  = new VoiceSelectionsParams();
-      $this->voice->setLanguageCode('en-US');
-      $this->audioConfig = new AudioConfig();
-      $this->audioConfig->setAudioEncoding(AudioEncoding::MP3);
+      try {
+        $this->client = new TextToSpeechClient([
+          'keyFile'  => json_decode($strJsonFileContents, true),
+          'projectId'=> $config['cloud_projectID']
+        ]);
+        $this->input  = new SynthesisInput();
+        $this->voice  = new VoiceSelectionsParams();
+        $this->voice->setLanguageCode('en-US');
+        $this->audioConfig = new AudioConfig();
+        $this->audioConfig->setAudioEncoding(AudioEncoding::MP3);
+      }
+      catch(Exception $e) {
+        flog("TextToSpeech ERROR: ", $e."\n");
+        
+      }
+
 
    
       

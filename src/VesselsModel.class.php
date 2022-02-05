@@ -35,7 +35,13 @@ class VesselsModel extends Firestore {
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
         $data = $snapshot->data();
-        return $data['vesselLastDetectedTS'];
+        if(isset($data['vesselLastDetectedTS'])) {
+          return $data['vesselLastDetectedTS'];
+        } else {
+          throw new Exception("getVesselLastDetectedTS failed to find TS data.");
+          return false;
+        }
+        
     } else {
         return false;
     }

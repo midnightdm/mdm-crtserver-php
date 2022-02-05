@@ -58,6 +58,7 @@ class MyTextToSpeech {
   }
 
   public function getSpeech($textString) {
+    flog("MyTextToSpeech::getSpeech($textString)\n");
     $this->input->setText($textString);
     $response = $this->client(
       $this->input,

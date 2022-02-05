@@ -274,9 +274,9 @@ class AlertsModel extends Firestore {
           case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
           case "marker" : $evtDesc = "is ".$location; break;
       }
-      $txt  = str_replace('Vessel', '', $vesselType);
-      $txt .= " Vessel, ".$vesselName." ,".$evtDesc;
-      $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
+      $txt  = str_replace('vessel', '', $vesselType);
+      $txt .= " Vessel, ".$vesselName.", ".$evtDesc;
+      $txt .= $direction=='undetermined' ? "" : "traveling ".$direction;
       $txt .= ".";
       return $txt;
   }
@@ -314,7 +314,7 @@ class AlertsModel extends Firestore {
           $liveScan->liveInitLon,
           $liveScan->liveLocation->description
         );
-        flog('$voiceText: '.$voiceTxt."\n");
+        flog('$voiceTxt: '.$voiceTxt."\n");
         $this->generateVoice($voiceFileName, $apubVoiceUrl, $voiceTxt);
         $data = [
             'apubID'=>$apubID,

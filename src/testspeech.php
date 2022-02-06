@@ -58,10 +58,15 @@ include_once('crtfunctions_helper.php');
 include_once('TextToSpeech.class.php');
 $vo = new MyTextToSpeech();
 
-//Writes voice_list.txt to c:/app/logs
-$vo->listVoices();
-
 $str = "Towing vessel, Artco Innovation, passed the Clinton drawbridge traveling downriver.";
-$rawAudio = $vo->getSpeech($str);
-file_put_contents('c:\app\logs\test_audio.mp3', $rawAudio);
+foreach($vo->voice_names as $name) {
+  $rawAudiom = $vo->getSpeech($str, $name, 'MALE');
+  $rawAudiof = $vo->getSpeech($str, $name, 'FEMALE');
+  file_put_contents("c:/app/logs/".$name."male.mp3", $rawAudiom);
+  file_put_contents("c:/app/logs/".$name."female.mp3", $rawAudiof); 
+}
+
+
+
+
 

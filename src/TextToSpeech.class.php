@@ -8,7 +8,6 @@ use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  *                                                     *
  *   NOTE: The .json file below is project specific    *
@@ -23,6 +22,29 @@ use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 
 
 class MyTextToSpeech {
+  public  $voice_names = [
+    "en-US-Wav-enet-G",
+    "en-US-Wav-enet-H",
+    "en-US-Wav-enet-I",
+    "en-US-Wav-enet-J",
+    "en-US-Wav-enet-A",
+    "en-US-Wav-enet-B",
+    "en-US-Wav-enet-C",
+    "en-US-Wav-enet-D",
+    "en-US-Wav-enet-E",
+    "en-US-Wav-enet-F",
+    "en-US-Standard-A",
+    "en-US-Standard-B",
+    "en-US-Standard-C",
+    "en-US-Standard-D",
+    "en-US-Standard-E",
+    "en-US-Standard-F",
+    "en-US-Standard-G",
+    "en-US-Standard-H",
+    "en-US-Standard-I",
+    "en-US-Standard-J"
+  ];
+
   public $client;
   public $input;
   public $projectID;
@@ -49,9 +71,24 @@ class MyTextToSpeech {
     $this->client->close();
   }
 
-  public function getSpeech($textString) {
-    flog("MyTextToSpeech::getSpeech($textString)\n");
+  public function getRandomVoiceName() {
+    $len = count($this->voice_names)-1;
+    $num = rand(0,$len);
+    return $this->voice_names[$num];
+  }
+
+  public function getRandomVoiceGender() {
+    $num = rand(0,1);
+    $arr = ['MALE', 'FEMALE' ];
+    return $arr[$num];
+  }
+
+  public function getSpeech($textString, $name, $gender) {
+    //Randomize voice
+    flog("MyTextToSpeech::getSpeech($textString) using voice \n");
     $this->input->setText($textString);
+    $this->voice->setName($name);
+    $this->voice->setSsmlGender($gender);
     $response = $this->client->synthesizeSpeech(
       $this->input,
       $this->voice,

@@ -345,7 +345,10 @@ class AlertsModel extends Firestore {
     }
 
     public function generateVoice($fileName, $fullUrl, $text) {
-      flog("AlertsModel::generateVoice()\n");
+      //Get speech instance & random voice 
+      $mts = new MyTextToSpeech();
+      $name = $mts->getRandomVoiceName();
+      $gender = $mts->getRandomVoiceGender();
       //Check whether file with this name is in database
       $baseFileName = substr($fileName,0,-4);
       if(!$this->voiceIsSet($baseFileName)) {
@@ -356,12 +359,14 @@ class AlertsModel extends Firestore {
           'text' => $text,
           'ts'=> time(),
           'url'=> $fullUrl,
+          'voice'=> $name." ".$gender
         ];
+        flog("AlertsModel::generateVoice() using $name $gender\n");
         //If not, write file info to db
         $this->setVoice($data);
         //Use API to synthesize speech
-        $mts = new MyTextToSpeech();
-        $audioData = $mts->getSpeech($text);
+  
+        $audioData = $mts->getSpeech($text, $name, $gender);
         //Save audio file in cloud storage
         $this->cs->saveVoiceFile($fileName, $audioData);
       }

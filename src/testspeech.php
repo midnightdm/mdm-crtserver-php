@@ -52,7 +52,7 @@ $strJsonFileContents = file_get_contents('c:\app\mdm-qcrt-demo-1-f28500aebc1a.js
 
 //Convert into array & Put into CONSTANT
 define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
-
+putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 include_once('c:/app/vendor/autoload.php');
 include_once('crtfunctions_helper.php');
 include_once('TextToSpeech.class.php');

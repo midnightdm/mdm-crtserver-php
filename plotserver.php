@@ -32,6 +32,8 @@ $path =  'vendor/autoload.php';
 require_once($path);
 
 // * * * Constant Definitions * * * 
+putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
+
 //Marker Alpha Lat is 3 mi upriver Lock 13
 define('MARKER_ALPHA_LAT', 41.938785);
 

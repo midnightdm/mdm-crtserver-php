@@ -32,9 +32,9 @@ class Firestore {
     public function __construct($collection) {
         //echo var_dump($collection);
         $this->name = $collection['name'];
-        flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS); 
+        flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']); 
         $this->db = new FirestoreClient([
-            'keyFile' => GOOGLE_APPLICATION_CREDENTIALS['project_id'],
+            'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
             'projectId'=> 'mdm-qcrt-demo-1'
         ]);
 

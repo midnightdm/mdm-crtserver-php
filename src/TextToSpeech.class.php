@@ -33,6 +33,7 @@ class MyTextToSpeech {
       global $config;
       global $strJsonFileContents;
       $this->projectID = $config['cloud_projectID'];
+      flog("MyTextToSpeech::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS);
       $this->client = new TextToSpeechClient([
         'keyFile'  => GOOGLE_APPLICATION_CREDENTIALS,
         'projectId'=> $this->projectID

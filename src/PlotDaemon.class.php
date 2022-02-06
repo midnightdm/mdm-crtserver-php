@@ -5,7 +5,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
  *   This app processes packets from a UDP stream. 
  *   Configure Output Options of your external AISMon app for 
  *      UDP Output = (enabled) 
- *      IP:Port    = (127.0.0.1:10110)
+ *      IP:Port    = (127.0.0.1:10111)
  *
  *     HINT: AISMon version 2.2.0 has no config file, so
  *           you'll have to add settings upon each start. 

@@ -39,7 +39,7 @@ class MyTextToSpeech {
         'projectId'=> $this->projectID
       ]);
       $this->input  = new SynthesisInput();
-      $this->voice  = new VoiceSelectionsParams();
+      $this->voice  = new VoiceSelectionParams();
       $this->voice->setLanguageCode('en-US');
       $this->audioConfig = new AudioConfig();
       $this->audioConfig->setAudioEncoding(AudioEncoding::MP3);

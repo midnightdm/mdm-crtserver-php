@@ -347,16 +347,17 @@ class AlertsModel extends Firestore {
     public function generateVoice($fileName, $fullUrl, $text) {
       flog("AlertsModel::generateVoice()\n");
       //Check whether file with this name is in database
-      if(!$this->voiceIsSet($fileName)) {
+      $baseFileName = substr($fileName,0,-4);
+      if(!$this->voiceIsSet($baseFileName)) {
         $data = [
-          'id'=> substr($fileName,0,-4),
-          'ts'=> time(),
           'date' => $this->serverTimestamp(),
-          'url'=> $fullUrl,
+          'fileName' => $fileName,
+          'id'=> $baseFileName,
           'text' => $text,
-          'fileName' => $fileName
+          'ts'=> time(),
+          'url'=> $fullUrl,
         ];
-        //If not write file info to db
+        //If not, write file info to db
         $this->setVoice($data);
         //Use API to synthesize speech
         $mts = new MyTextToSpeech();

@@ -47,18 +47,18 @@ $config =  [
     ],
     'localVesselFilter' => [366986450, 368024780, 366970820, 366970780, 366970360, 367614749, 367143650]
   ];
-$strJsonFileContents = file_get_contents('e:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
+$strJsonFileContents = file_get_contents('c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 
 
 //Convert into array & Put into CONSTANT
 define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
 
-include_once('e:/app/vendor/autoload.php');
+include_once('c:/app/vendor/autoload.php');
 include_once('crtfunctions_helper.php');
 include_once('TextToSpeech.class.php');
 $vo = new MyTextToSpeech();
 $str = "Towing vessel, Artco Innovation, passed the Clinton drawbridge traveling downriver.";
 
 $rawAudio = $vo->getSpeech($str);
-file_put_contents('e:\app\logs\test_audio.mp3', $rawAudio);
+file_put_contents('c:\app\logs\test_audio.mp3', $rawAudio);
 

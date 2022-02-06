@@ -57,8 +57,11 @@ include_once('c:/app/vendor/autoload.php');
 include_once('crtfunctions_helper.php');
 include_once('TextToSpeech.class.php');
 $vo = new MyTextToSpeech();
-$str = "Towing vessel, Artco Innovation, passed the Clinton drawbridge traveling downriver.";
 
+//Writes voice_list.txt to c:/app/logs
+$vo->listVoices();
+
+$str = "Towing vessel, Artco Innovation, passed the Clinton drawbridge traveling downriver.";
 $rawAudio = $vo->getSpeech($str);
 file_put_contents('c:\app\logs\test_audio.mp3', $rawAudio);
 

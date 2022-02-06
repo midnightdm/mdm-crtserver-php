@@ -32,7 +32,7 @@ class MyTextToSpeech {
   public function __construct() {
       global $config;
       $this->projectID = $config['cloud_projectID'];
-      flog("MyTextToSpeech::__construct() -> google cred:". GOOGLE_APPLICATION_CREDENTIALS."\n" );
+      flog("MyTextToSpeech::__construct() -> google cred:". GOOGLE_APPLICATION_CREDENTIALS['projectID']."\n" );
       $this->client = new TextToSpeechClient([
         'keyFile'  => GOOGLE_APPLICATION_CREDENTIALS,
         'projectId'=> $this->projectID

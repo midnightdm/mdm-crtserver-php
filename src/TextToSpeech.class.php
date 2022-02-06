@@ -88,6 +88,7 @@ class MyTextToSpeech {
     flog("MyTextToSpeech::getSpeech($textString) using voice \n");
     $this->input->setText($textString);
     $this->voice->setName($name);
+    $gender = $gender=='MALE'? 1: 2;
     $this->voice->setSsmlGender($gender);
     $response = $this->client->synthesizeSpeech(
       $this->input,

@@ -60,8 +60,8 @@ $vo = new MyTextToSpeech();
 
 $str = "Towing vessel, Artco Innovation, passed the Clinton drawbridge traveling downriver.";
 foreach($vo->voice_names as $name) {
-  $rawAudiom = $vo->getSpeech($str, $name, 'MALE');
-  $rawAudiof = $vo->getSpeech($str, $name, 'FEMALE');
+  $rawAudiom = $vo->getSpeech($str, $name, 1);
+  $rawAudiof = $vo->getSpeech($str, $name, 2);
   file_put_contents("c:/app/logs/".$name."male.mp3", $rawAudiom);
   file_put_contents("c:/app/logs/".$name."female.mp3", $rawAudiof); 
 }

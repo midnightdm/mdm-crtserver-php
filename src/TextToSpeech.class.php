@@ -32,12 +32,12 @@ class MyTextToSpeech {
   public function __construct() {
       global $config;
       $this->projectID = $config['cloud_projectID'];
-      $this->client = new TextToSpeechClient();
-      $this->client->useApplicationDefaultCredentials();
-      // $this->client = new TextToSpeechClient([
-      //   'keyFile'  => GOOGLE_APPLICATION_CREDENTIALS,
-      //   'projectId'=> $this->projectID
-      // ]);
+      // $this->client = new TextToSpeechClient();
+      // $this->client->useApplicationDefaultCredentials();
+      $this->client = new TextToSpeechClient([
+        'keyFile'  => GOOGLE_APPLICATION_CREDENTIALS,
+        'projectId'=> $this->projectID
+      ]);
       $this->input  = new SynthesisInput();
       $this->voice  = new VoiceSelectionParams();
       $this->voice->setLanguageCode('en-US');

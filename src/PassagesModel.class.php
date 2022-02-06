@@ -25,7 +25,7 @@ class PassagesModel extends Firestore {
         $offset = getTimeOffset();
         
         //Do not save if no events exist
-        if(count($data['passageEvents']==0) &&  
+        if(count($data['passageEvents'])==0 &&  
             $data['passageMarkerAlphaTS']==null && 
             $data['passageMarkerBravoTS']==null &&
             $data['passageMarkerCharlieTS']==null &&

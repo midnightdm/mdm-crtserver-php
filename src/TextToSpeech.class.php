@@ -19,28 +19,29 @@ use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['texttospeech_json_file']);
+//$strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['texttospeech_json_file']);
 
 
 class MyTextToSpeech {
   public $client;
   public $input;
+  public $projectID;
   public $voice;
   public $audioConfig;
 
   public function __construct() {
       global $config;
       global $strJsonFileContents;
-      
-        $this->client = new TextToSpeechClient([
-          'keyFile'  => json_decode($strJsonFileContents, true),
-          'projectId'=> $config['cloud_projectID']
-        ]);
-        $this->input  = new SynthesisInput();
-        $this->voice  = new VoiceSelectionsParams();
-        $this->voice->setLanguageCode('en-US');
-        $this->audioConfig = new AudioConfig();
-        $this->audioConfig->setAudioEncoding(AudioEncoding::MP3);
+      $this->projectID = $config['cloud_projectID'];
+      $this->client = new TextToSpeechClient([
+        'keyFile'  => GOOGLE_APPLICATION_CREDENTIALS,
+        'projectId'=> $this->projectID
+      ]);
+      $this->input  = new SynthesisInput();
+      $this->voice  = new VoiceSelectionsParams();
+      $this->voice->setLanguageCode('en-US');
+      $this->audioConfig = new AudioConfig();
+      $this->audioConfig->setAudioEncoding(AudioEncoding::MP3);
   }
 
   public function getSpeech($textString) {

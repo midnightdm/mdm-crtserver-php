@@ -67,9 +67,12 @@ class MyTextToSpeech {
     $voices = $response->getVoices();
     $text = "";
     foreach($voices as $voice) {
-      $text .= "Name: ".$voice->getName().PHP_EOL;
+      $ttext = "Name: ".$voice->getName().PHP_EOL;
       foreach($voice->getLanguageCodes() as $languageCode) {
-        $text .= "Suported language: ".$languageCode.PHP_EOL;
+        if($languageCode=="en-US") {
+          $text .= $ttext;
+          continue;
+        }
       }
     }
     file_put_contents('c:/app/logs/voice_list.txt', $text);

@@ -45,6 +45,10 @@ class MyTextToSpeech {
       $this->audioConfig->setAudioEncoding(AudioEncoding::MP3);
   }
 
+  public function __destruct() {
+    $this->client->close();
+  }
+
   public function getSpeech($textString) {
     flog("MyTextToSpeech::getSpeech($textString)\n");
     $this->input->setText($textString);
@@ -54,10 +58,22 @@ class MyTextToSpeech {
       $this->audioConfig
     );
     //Return audio context to be saved as file
-    return $response->getAudioContent();
+    $content = $response->getAudioContent();
+    return $content;
   }
 
-  
+  public function listVoices() {
+    $response = $this->client->listVoices();
+    $voices = $response->getVoices();
+    $text = "";
+    foreach($voices as $voice) {
+      $text .= "Name: ".$voice->getName().PHP_EOL;
+      foreach($voice->getLanguageCodes() as $languageCode) {
+        $text .= "Suported language: ".$languageCode.PHP_EOL;
+      }
+    }
+    file_put_contents('c:/app/logs/voice_list.txt', $text);
+  }
 
 }
 

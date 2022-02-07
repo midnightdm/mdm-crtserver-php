@@ -263,7 +263,7 @@ class AlertsModel extends Firestore {
           case "bravo" : $evtDesc = $direction=="downriver" ? " has left " : " has reached ";
                           $evtDesc .= "Lock 13 "; break;
           case "charlie" : $evtDesc = "passed the Clinton drawbridge ";  break;
-          case "delta" : $evtDesc = "crossed 3 miles south of the drawbridge ";  break;
+          case "delta" : $evtDesc = "crossed 3 miles south of the Clinton drawbridge ";  break;
           case "detect" : $evtDesc = "has been detected "; break;
           case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
           case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;

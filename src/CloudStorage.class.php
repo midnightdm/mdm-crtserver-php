@@ -73,7 +73,7 @@ class CloudStorage {
       flog("CloudStorage::saveVoiceFile($fileName");
       $localPath = $this->appPath."/voice/".$fileName;
       file_put_contents($localPath, $audioData);
-      $this->upload($localPath, 'voices/'.$fileName);
+      $this->upload($localPath, 'voice/'.$fileName);
     }
 
 }

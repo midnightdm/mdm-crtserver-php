@@ -296,7 +296,11 @@ class AlertsModel extends Firestore {
           $liveScan->liveLocation->description
         );
         //Build voice file name based on event, direction & vesselID
-        $voiceFileName = substr($event, 0,1).substr($event, -2,1).$liveScan->liveVesselID.".mp3";
+        if(str_starts_with($event, 'detect' )) {
+          $voiceFileName = "t".substr($event,-1,1).$liveScan->liveVesselID.".mp3";
+        } else {
+          $voiceFileName = substr($event, 0,1).substr($event, -2,1).$liveScan->liveVesselID.".mp3";
+        }
         flog( "  AlertsModel::publishAlertMessage() voiceFileName: $voiceFileName\n");
         $apubVoiceUrl = $this->cs->image_base."voice/".$voiceFileName;
         //Build text for voice synthesis

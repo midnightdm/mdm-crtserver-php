@@ -67,6 +67,15 @@ class LiveScan {
       $this->reloadTS = time();
       $this->triggerQueued = false;
       $this->triggerActivated = true;
+      //Ensure data include liveInitLat & liveInitLon or waypoint passages will fail
+      if(!is_set($this->liveInitLat)) {
+        $this->liveInitLat = $lat;
+        flog("Setting liveInitLat on ".$this->liveName." reload because it was empty");
+      }
+      if(!is_set($this->liveInitLon)) {
+        flog("Setting liveInitLon on ".$this->liveName." reload because it was empty");
+        $this->liveInitLon = $lon;
+      }
       //Delete db record pending update of new live data
       $this->callBack->LiveScanModel->deleteLiveScan($this->liveVesselID);      
     } else {

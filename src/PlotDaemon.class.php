@@ -264,6 +264,18 @@ class PlotDaemon {
       foreach($data as $row) {      
         $key = 'mmsi'. $row['liveVesselID'];
         $this->liveScan[$key] = new LiveScan(null, null, null, null, null, null, null, $this, true, $row);
+        
+        //Ensure data included liveInitLat & liveInitLon or waypoint passages will fail
+        if(!is_set($this->liveScan[$key]->liveInitLat)) {
+          $this->liveScan[$key]->liveInitLat = $this->liveScan[$key]->liveLastLat;
+          flog("Setting liveInitLat on ".$this->liveScan[$key]->liveName." reload because it was empty");
+        }
+        if(!is_set($this->liveScan[$key]->liveInitLon)) {
+          flog("Setting liveInitLon on ".$this->liveScan[$key]->liveName." reload because it was empty");
+          $this->liveScan[$key]->liveInitLon = $this->liveScan[$key]->liveLastLon;
+        }
+        
+        
         $this->liveScan[$key]->lookUpVessel();
         //Initialize location object
         $this->liveScan[$key]->liveLocation = new Location($this->liveScan[$key]);

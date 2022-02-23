@@ -93,8 +93,8 @@ class MyAIS extends AIS {
 					  
                 }  
             } else {
-                //Skip river marker numbers
-                if($id < 990000000 && $id > 100000000) {
+                //Skip river marker numbers & void bad lat data
+                if($id < 990000000 && $id > 100000000 && $lat > 1) {
                     $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon);
                     flog( "NEW liveScan[$key] (".date("F j, Y, g:i a", ($ts+getTimeOffset())).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
                 } 

@@ -221,6 +221,8 @@ class PlotDaemon {
                   flog( 'Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n");
                   if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
                       //Table delete was sucessful, remove object from array
+                      $key = 'mmsi'+$obj->liveVesselID;
+                      flog("Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
                       unset($this->liveScan[$key]);
                   } else {
                       error_log('Error deleting LiveScan ' . $obj->liveVesselID);

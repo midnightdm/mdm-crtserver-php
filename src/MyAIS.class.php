@@ -88,9 +88,9 @@ class MyAIS extends AIS {
                 //Update liveScan object only if data is new
                 if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
                     $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course);
-                    /*flog( "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
+                    flog( "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
                       .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
-					  */
+					  
                 }  
             } else {
                 //Skip river marker numbers

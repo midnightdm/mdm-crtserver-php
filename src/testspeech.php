@@ -17,7 +17,7 @@ $config =  [
     'no_image' => 'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg',
     'firestore_json_file' => 'mdm-qcrt-demo-1-f28500aebc1a.json', //Used by Firestore class
     'texttospeech_json_file' => 'mdm-qcrt-demo-1-a05f6f070f3b.json', //Used by TextToSpeech class
-    'appPath'=> 'C:/app',
+    'appPath'=> 'e:/app',
     'cloud_projectID'=>'mdm-qcrt-demo-1',
     'cloud_bucket_name'=>'www.clintonrivertraffic.com',
     'nonVesselFilter' => [
@@ -47,24 +47,26 @@ $config =  [
     ],
     'localVesselFilter' => [366986450, 368024780, 366970820, 366970780, 366970360, 367614749, 367143650]
   ];
-$strJsonFileContents = file_get_contents('c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
+$strJsonFileContents = file_get_contents('e:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 
 
 //Convert into array & Put into CONSTANT
 define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
-putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
-include_once('c:/app/vendor/autoload.php');
+//putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
+include_once('e:/app/vendor/autoload.php');
 include_once('crtfunctions_helper.php');
 include_once('TextToSpeech.class.php');
 $vo = new MyTextToSpeech();
 
-$str = "Towing vessel, Artco Innovation, passed the Clinton drawbridge traveling downriver.";
-foreach($vo->voice_names as $name) {
-  $rawAudiom = $vo->getSpeech($str, $name, 1);
-  $rawAudiof = $vo->getSpeech($str, $name, 2);
-  file_put_contents("c:/app/logs/".$name."male.mp3", $rawAudiom);
-  file_put_contents("c:/app/logs/".$name."female.mp3", $rawAudiof); 
-}
+$str = "Traveling upriver, towing vessel, Terrebonne, passed 3 miles south of the Clinton drawbridge.";
+$rawAudiof = $vo->getSpeech($str, 'da366970820', 2);
+file_put_contents("e:/app/logs/".$name."female.mp3", $rawAudiof); 
+// foreach($vo->voice_names as $name) {
+//   $rawAudiom = $vo->getSpeech($str, $name, 1);
+//   $rawAudiof = $vo->getSpeech($str, $name, 2);
+//   file_put_contents("c:/app/logs/".$name."male.mp3", $rawAudiom);
+//   file_put_contents("c:/app/logs/".$name."female.mp3", $rawAudiof); 
+// }
 
 
 

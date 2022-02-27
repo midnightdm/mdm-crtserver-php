@@ -55,12 +55,37 @@ define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true)
 //putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 include_once('e:/app/vendor/autoload.php');
 include_once('crtfunctions_helper.php');
+include_once('Firestore.class.php');
+include_once('AlertsModel.class.php');
+include_once('PlotDaemon.class.php');
 include_once('TextToSpeech.class.php');
-$vo = new MyTextToSpeech();
-$name = 'da366970820';
-$str = "Traveling upriver, towing vessel, Terrebonne, passed 3 miles south of the Clinton drawbridge.";
-$rawAudiof = $vo->getSpeech($str, $name, 2);
-file_put_contents("e:/app/logs/".$name."female.mp3", $rawAudiof); 
+
+//Load all the dependencies
+
+include_once('LiveScan.class.php');
+include_once('LiveScanModel.class.php');
+include_once('Vessels.class.php');
+include_once('VesselsModel.class.php');
+
+include_once('Zone.class.php');
+include_once('Location.class.php');
+
+include_once('PassagesModel.class.php');
+include_once('Messages.class.php');
+include_once('CloudStorage.class.php');
+
+$ts = time();
+$plotDaemon = new PlotDaemon();
+$am = new AlertsModel($plotDaemon);
+$lsObj = new LiveScan($ts, "America Simulated", 367710540, 41.7868017, -90.2475283, 4, 270, $plotDaemon, false);
+echo "Simulating trigger event m516dp";
+$am->triggerEvent('m516dp', $lsObj);
+
+// $vo = new MyTextToSpeech();
+// $name = 'da366970820';
+// $str = "Traveling upriver, towing vessel, Terrebonne, passed 3 miles south of the Clinton drawbridge.";
+// $rawAudiof = $vo->getSpeech($str, $name, 2);
+// file_put_contents("e:/app/logs/".$name."female.mp3", $rawAudiof); 
 // foreach($vo->voice_names as $name) {
 //   $rawAudiom = $vo->getSpeech($str, $name, 1);
 //   $rawAudiof = $vo->getSpeech($str, $name, 2);

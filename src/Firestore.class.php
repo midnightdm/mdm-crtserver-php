@@ -26,46 +26,53 @@ define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true)
  * This is a custom library to interact with the firebase firestore cloud db
  */
 class Firestore {
-    protected $db;
-    protected $name;
+  protected $db;
+  protected $name;
 
-    public function __construct($collection) {
-        //echo var_dump($collection);
-        $this->name = $collection['name'];
-        flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n"); 
-        $this->db = new FirestoreClient([
-            'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
-            'projectId'=> 'mdm-qcrt-demo-1'
-        ]);
+  public function __construct($collection) {
+    //echo var_dump($collection);
+    $this->name = $collection['name'];
+    flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n"); 
+    $this->db = new FirestoreClient([
+        'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
+        'projectId'=> 'mdm-qcrt-demo-1'
+    ]);    
+  }
 
-            
-        
+  public function getDocument($name) {
+    $snapshot = $this->db->collection($this->name)->document($name)->snapshot();
+    if(!$snapshot->exists()) {
+        return false;
     }
+    return $snapshot->data();
+  }
 
-    public function getDocument($name) {
-        $snapshot = $this->db->collection($this->name)->document($name)->snapshot();
-        if(!$snapshot->exists()) {
-            return false;
-        }
-        return $snapshot->data();
-
-    }
-
-    public function serverTimestamp() {
-        return FieldValue::serverTimestamp();
-    }
+  public function serverTimestamp() {
+    return FieldValue::serverTimestamp();
+  }
    
-    public function generateApubID() {
-        $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-        $apubID = $admin->data()['lastApubID'];
-        $apubID++;
-        flog("generateApubID(): $apubID\n");
-        $this->db->collection('Passages')
-            ->document('Admin')
-            ->set(['lastApubID'=>$apubID], ['merge'=>true]);
-        return $apubID;
+  public function generateApubID() {
+    $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
+    $apubID = $admin->data()['lastApubID'];
+    $apubID++;
+    flog("generateApubID(): $apubID\n");
+    $this->db->collection('Passages')
+        ->document('Admin')
+        ->set(['lastApubID'=>$apubID], ['merge'=>true]);
+    return $apubID;
 
-    }
+  }
+
+  public function generateVpubID() {
+    $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
+    $vpubID = $admin->data()['lastVpubID'];
+    $vpubID++;
+    flog("generateVpubID(): $vpubID\n");
+    $this->db->collection('Passages')
+        ->document('Admin')
+        ->set(['lastVpubID'=>$vpubID], ['merge'=>true]);
+    return $vpubID;
+  }
    
 
 }

@@ -75,17 +75,21 @@ class AlertsModel extends Firestore {
         $codes = array("alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp","albany", "camanche", "beaverua", "beaverda", "m503up", "m504up", "m505up", "m506up", "m507up","m508up","m509up", "m510up", "m511up", "m512up", "m513up", "m514up", "m515up", "m516up", "m517up", "m518up", "m519up", "m520up", "m521up", "m522up", "m523up","m524up", "m525up","m526up", "m527up", "m528up", "m529up", "m530up", "m531up", "m532up", "m533up", "m534up", "m535up", "m536up", "m537up", "m538up", "m539up", "m503dp", "m504dp", "m505dp", "m506dp", "m507dp", "m508dp", "m509dp", "m510dp","m511dp","m512dp","m513dp","m514dp","m515dp","m516dp","m517dp",  "m518dp","m519dp","m520dp","m521dp","m522dp","m523dp","m524dp","m525dp","m526dp","m527dp","m528dp","m529dp","m530dp","m531dp","m532dp","m533dp","m534dp","m535dp","m536dp","m537dp","m538dp","m539dp","m503ua","m504ua","m505ua","m506ua","m507ua","m508ua","m509ua","m510ua","m511ua","m512ua","m513ua","m514ua","m515ua","m516ua","m517ua", "m518ua","m519ua","m520ua","m521ua","m522ua","m523ua","m524ua","m525ua","m526ua","m527ua","m528ua","m529ua","m530ua","m531ua","m532ua","m533ua","m534ua","m535ua","m536ua","m537ua","m538ua","m539ua","m503da","m504da","m505da","m506da","m507da","m508da","m509da","m510da","m511da","m512da","m513da","m514da","m515da","m516da","m517da", "m518da","m519da","m520da","m521da","m522da","m523da","m524da","m525da","m526da","m527da","m528da","m529da","m530da","m531da","m532da","m533da","m534da","m535da","m536da","m537da","m538da","m539da", "sabula");
         
         if(!in_array($event, $codes)) {
-            flog( "ERROR: AlertsModel::triggerEvent(".$event.") failed. Event not recognized.\n");
+            trigger_error( "AlertsModel::triggerEvent(".$event.") failed. Event not recognized.\n");
             return false;
         }
 
         //Publish the event to the database if it passes waypoint type filter 
         $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
         if(in_array($event, $filter)) {
-            flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.")\033[0m\r\n");
+            flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") WAYPOINT PUBLISHED\033[0m\r\n");
             $this->publishAlertMessage($event, $liveObj);
         }    
-        
+        //If not otherwise published, but is passenger vessel push a voice annoucement
+        else if(str_ends_with($event, 'p')) {
+          flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") PASSENGER VESSEL PROGRESS ACCOUNCEMENT\033[0m\r\n");
+          $this->announcePassengerProgress($event, $liveObj);
+        }
 
         //Match triggered event to possible saved subcriptions  
         $ref = $this->db->collection('user_devices');
@@ -135,7 +139,7 @@ class AlertsModel extends Firestore {
             $liveObj->liveLocation->eventTS,
             $liveObj->liveLastLat,
             $liveObj->liveLastLon,
-            $liveObj->liveLocation->description
+            $liveObj->liveLocation->description[0]
         );
         $report = $this->messageController->sendOneSMS($phone, $message);
         
@@ -154,7 +158,7 @@ class AlertsModel extends Firestore {
             $liveObj->liveLocation->eventTS,
             $liveObj->liveLastLat,
             $liveObj->liveLastLon,
-            $liveObj->liveLocation->description
+            $liveObj->liveLocation->description[0]
         );
         $report = $this->messageController->sendOneNotification($user, $messageTxt, $liveObj);
 
@@ -177,7 +181,7 @@ class AlertsModel extends Firestore {
             $liveObj->liveLocation->eventTS,
             $liveObj->liveLastLat,
             $liveObj->liveLastLon,
-            $liveObj->liveLocation->description
+            $liveObj->liveLocation->description[1]
         );
         $report = $this->messageController->sendEmail($address, $subject, $message);
         flog( $report); 
@@ -270,9 +274,9 @@ class AlertsModel extends Firestore {
           case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
           case "marker" : $evtDesc = "is ".$location; break;
       }
-      $txt  = str_replace('vessel', '', $vesselType);
+      $txt = $direction=='undetermined' ? "" : "Traveling ".$direction.", ";
+      $txt .= str_replace('vessel', '', $vesselType);
       $txt .= " Vessel, ".$vesselName.", ".$evtDesc;
-      $txt .= $direction=='undetermined' ? "" : "traveling ".$direction;
       $txt .= ".";
       return $txt;
   }
@@ -293,7 +297,7 @@ class AlertsModel extends Firestore {
           $ts, 
           $liveScan->liveInitLat, 
           $liveScan->liveInitLon,
-          $liveScan->liveLocation->description
+          $liveScan->liveLocation->description[0]
         );
         //Build voice file name based on event, direction & vesselID
         if(str_starts_with($event, 'detect' )) {
@@ -312,13 +316,14 @@ class AlertsModel extends Firestore {
           $ts, 
           $liveScan->liveInitLat, 
           $liveScan->liveInitLon,
-          $liveScan->liveLocation->description
+          $liveScan->liveLocation->description[1]
         );
         flog('$voiceTxt: '.$voiceTxt."\n");
         $this->generateVoice($voiceFileName, $apubVoiceUrl, $voiceTxt);
         $data = [
             'apubID'=>$apubID,
-            'apubTS'=>$ts, 
+            'apubTS'=>$ts,
+            'apubDate'=>$this->serverTimestamp(), 
             'apubText'=>$txt,
             'apubType'=> $type,
             'apubVesselID'=>$liveScan->liveVesselID,
@@ -343,6 +348,50 @@ class AlertsModel extends Firestore {
         //Use updated array to write RSS files
         $this->generateRss($type);
     }
+
+
+    public function announcePassengerProgress($event, $liveScan) {
+      //This function gets run by Event trigger methods of this class 
+      $ts = time();
+      $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
+      $vpubID = $this->generateVpubID(); //Method in parent
+      $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
+      if($type=='a') {
+        trigger_error("Non passenger vessel sent to AlertsModel::announcePassengerProgress() function.");
+      }
+      //Build voice file name based on event & vesselID
+      $voiceFileName = $event.$liveScan->liveVesselID.".mp3";    
+      flog( "AlertsModel::announcePassengerProgress() voiceFileName: $voiceFileName\n");
+      $vpubVoiceUrl = $this->cs->image_base."voice/".$voiceFileName;
+      //Build text for voice synthesis
+      $voiceTxt = $this->buildVoiceMessage(
+        $event, 
+        $liveScan->liveName, 
+        $vesselType,
+        $liveScan->liveDirection, 
+        $ts, 
+        $liveScan->liveInitLat, 
+        $liveScan->liveInitLon,
+        $liveScan->liveLocation->description[1]
+      );
+      flog('$voiceTxt: '.$voiceTxt."\n");
+      $this->generateVoice($voiceFileName, $apubVoiceUrl, $voiceTxt);
+      $data = [
+          'vpubID'=>$vpubID,
+          'vpubTS'=>$ts,
+          'vpubDate' => $this->serverTimestamp(), 
+          'vpubText'=>$voiceTxt,
+          'vpubType'=> $type,
+          'vpubVesselID'=>$liveScan->liveVesselID,
+          'vpubVesselImageUrl' => $liveScan->liveVessel->vesselImageUrl,
+          'vpubVoiceUrl' => $vpubVoiceUrl,
+          'vpubVesselName' => $liveScan->liveName, 
+          'vpubEvent'=>$event, 
+          'vpubDir'=>$liveScan->liveDirection
+      ];
+      //Add new db document for perm record
+      $this->db->collection('Voicepublish')->document(strval($vpubID))->set($data);
+  }
 
     public function generateVoice($fileName, $fullUrl, $text) {
       //Get speech instance & random voice 

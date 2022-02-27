@@ -49,9 +49,11 @@ $config =  [
   ];
 $strJsonFileContents = file_get_contents('e:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 
+//Make the config array available globally
+define('CONFIG_ARR', $config);
 
 //Convert into array & Put into CONSTANT
-define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
+//define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
 //putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 include_once('e:/app/vendor/autoload.php');
 include_once('crtfunctions_helper.php');

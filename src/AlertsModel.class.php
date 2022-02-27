@@ -396,8 +396,8 @@ class AlertsModel extends Firestore {
     public function generateVoice($fileName, $fullUrl, $text) {
       //Get speech instance & random voice 
       $mts = new MyTextToSpeech();
-      $name = $mts->getRandomVoiceName();
-      $gender = $mts->getRandomVoiceGender();
+      $name = "en-US-Standard-C"; //$mts->getRandomVoiceName();
+      $gender = "FEMALE";         //$mts->getRandomVoiceGender();
       //Check whether file with this name is in database
       $baseFileName = substr($fileName,0,-4);
       if(!$this->voiceIsSet($baseFileName)) {

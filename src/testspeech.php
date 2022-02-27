@@ -57,9 +57,9 @@ include_once('e:/app/vendor/autoload.php');
 include_once('crtfunctions_helper.php');
 include_once('TextToSpeech.class.php');
 $vo = new MyTextToSpeech();
-
+$name = 'da366970820';
 $str = "Traveling upriver, towing vessel, Terrebonne, passed 3 miles south of the Clinton drawbridge.";
-$rawAudiof = $vo->getSpeech($str, 'da366970820', 2);
+$rawAudiof = $vo->getSpeech($str, $name, 2);
 file_put_contents("e:/app/logs/".$name."female.mp3", $rawAudiof); 
 // foreach($vo->voice_names as $name) {
 //   $rawAudiom = $vo->getSpeech($str, $name, 1);

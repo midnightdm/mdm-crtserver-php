@@ -15,7 +15,7 @@ use Google\Cloud\Firestore\FieldValue;
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
+echo $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
 $strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
 
 

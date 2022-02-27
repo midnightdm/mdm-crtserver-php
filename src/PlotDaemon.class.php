@@ -42,7 +42,7 @@ class PlotDaemon {
   public $image_base;
 
 
-  protected function setup() {
+  public function setup() {
 
       $config = CONFIG_ARR;
 

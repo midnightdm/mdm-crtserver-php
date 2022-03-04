@@ -21,7 +21,11 @@ class PassagesModel extends Firestore {
         $data['passageMarkerBravoTS'] = $liveScanObj->liveMarkerBravoTS;
         $data['passageMarkerCharlieTS'] = $liveScanObj->liveMarkerCharlieTS;
         $data['passageMarkerDeltaTS'] = $liveScanObj->liveMarkerDeltaTS;
-        $data['passageEvents'] = $liveScanObj->liveLocation->events;
+        if($liveScanObj->liveLocation instanceof Location) {
+          $data['passageEvents'] = $liveScanObj->liveLocation->events;
+        } else{
+          $data['passageEvents'] = [];
+        }
         $offset = getTimeOffset();
         
         //Do not save if no events exist

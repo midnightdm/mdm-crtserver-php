@@ -101,10 +101,10 @@ class Location {
         ];
            
         //Range of miles posts used by this app
-        if($this->live->liveDirection=="undetermined") {
-            flog( "   ...halted because direction undetermined yet.\r\n");
-            return;
-        }
+        // if($this->live->liveDirection=="undetermined") {
+        //     flog( "   ...halted because direction undetermined yet.\r\n");
+        //     return;
+        // }
         
         $urange = [495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,'albany',511,512,'camanche',513,514,515,516,517, 'beaver', 518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,'sabula',535,536,537,538,539];
         $drange = [539,538,537,536,535,'sabula',534,533,532,531,530,529,528,527,526,525,524,523,522,521,520,519,518,'beaver', 517,516,515,514,513,'camanche',512,511,'albany',510,509,508,507,506,505,504,503,502,501,500,499,498,497,496,495];

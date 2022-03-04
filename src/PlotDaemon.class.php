@@ -143,10 +143,10 @@ class PlotDaemon {
           //Only perform once every few min to reduce db queries
           flog( "PlotDaemon::removeOldScans()... \n");     
           foreach($this->liveScan as $key => $obj) {  
-              //Test age of update.  
+              //Test age of transponder update [changed from move update 3/3/22].  
               $deleteIt = false;       
-              flog( "   ... Vessel ". $obj->liveName . " last updated ". ($now - $obj->liveLastTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
-              if(($now - $this->liveScanTimeout) > $obj->liveLastTS) { //1-Q) Is record is older than timeout value?
+              flog( "   ... Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
+              if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
                   /*1-A) Yes, then 
                     *     2-Q) Is it near the edge of receiving range?
                     *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
@@ -158,7 +158,7 @@ class PlotDaemon {
                       //    2-A) No.
                       flog( "is NOT near edge of range.\r\n");
                       //        3-Q) Is record older than 15 minutes?
-                      if ($now - $obj->liveLastTS > 900) {
+                      if ($now - $obj->transponderTS > 900) {
                           //      3-A) Yes
                           flog( "The record is 15 minutes old");
                           //      4-Q) Is vessel parked?

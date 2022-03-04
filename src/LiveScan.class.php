@@ -19,6 +19,7 @@ class LiveScan {
   public $liveName;
   public $liveVesselID;
   public $liveVessel = null;
+  public $transponderTS = null;
   public $liveLocation = null;
   public $liveMarkerAlphaWasReached = FALSE;
   public $liveMarkerAlphaTS = null;
@@ -125,7 +126,7 @@ class LiveScan {
   }
 
   public function setTimestamp($ts, $attribute) {
-    $test = ['liveLastTS', 'liveInitTS', 'liveMarkerAlphaTS', 'liveMarkerBravoTS', 'liveMarkerCharlieTS', 'liveMarkerDeltaTS'];
+    $test = ['liveLastTS', 'liveInitTS', 'liveMarkerAlphaTS', 'liveMarkerBravoTS', 'liveMarkerCharlieTS', 'liveMarkerDeltaTS', 'transponderTS'];
     if(!in_array($attribute, $test)) { 
       $errMsg = "Invalid attribute: " . $attribute . " in LiveScan::setTimeStamp().";
       throw new Exception($errMsg);
@@ -150,6 +151,7 @@ class LiveScan {
     $data = [];
     $data['liveInitTS'] = $this->liveInitTS;
     $data['liveLastTS'] = $this->liveLastTS;
+    $data['transponderTS'] = $this->transponderTS;
     $data['liveInitLat'] = $this->liveInitLat;
     $data['liveInitLon'] = $this->liveInitLon;
     $data['liveDirection'] = $this->liveDirection;
@@ -187,7 +189,9 @@ class LiveScan {
           $this->checkDetectEventTrigger();           
         } //No. Then do nothing keeping last TS.
       }
-    }    
+    }
+    //liveLastTS changes only on movement, this changes on each transponder data receipt     
+    $this->setTimestamp($ts, 'transponderTS');
     $this->livePrevLat = $this->liveLastLat==null ? $this->liveInitLat : $this->liveLastLat;
     $this->liveLastLat = $lat;
     $this->liveLastLon = $lon;
@@ -213,6 +217,7 @@ class LiveScan {
   public function updateRecord() {
     $data = [];
     $data['liveLastTS'] = $this->liveLastTS;
+    $data['transponderTS'] = $this->transponderTS;
     $data['liveLastLat'] = $this->liveLastLat;
     $data['liveLastLon'] = $this->liveLastLon;
     $data['liveDirection'] = $this->liveDirection;

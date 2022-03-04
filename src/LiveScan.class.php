@@ -73,6 +73,7 @@ class LiveScan {
     } else {
       $this->setTimestamp($ts, 'liveInitTS');
       $this->setTimestamp($ts, 'liveLastTS');
+      $this->setTimestamp($ts, 'transponderTS');
       $this->liveName = $name;
 
       $this->liveVesselID = $id;

@@ -109,9 +109,10 @@ class LiveScan {
     flog("LiveScan::checkDetectEventTrigger(".$event.")...\n");
     if($this->triggerQueued && 
       !$this->triggerActivated && 
-      $this->liveDirection !=="undetermined" &&
+      //$this->liveDirection !=="undetermined" &&
       $this->liveLocation != null) 
     {
+      flog("Calling VesselsModel->updateVesselLastDetectedTS.\n");
       $this->callBack->VesselsModel->updateVesselLastDetectedTS($this->liveVesselID, time());
       
 
@@ -123,6 +124,8 @@ class LiveScan {
         flog("\033[42m \033[30m       ...ALERT BY ".$this->liveName."\033[0m\n");
       }
 
+    } else {
+      flog("LiveScan::checkDetectEventTrigger() didn't pass conditional tests.\n");
     }
   }
 

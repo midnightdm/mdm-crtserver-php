@@ -45,24 +45,17 @@ class PassagesModel extends Firestore {
         //Determine passage date for label
         //   Use first other event's date if no waypoint time
         if(!is_int($data['passageMarkerDeltaTS']) || !is_int($data['passageMarkerAlphaTS'])) {
-          $c = count($data['passageEvents']); $i=0;
-          if($c>0) {
-              while($i<0) {
-                  $key = intval(key($data['passageEvents'])) + $offset;
-                  if($key > 100000000) {
-                      $firstEventTS = $key;
-                      break;
-                  }
-                  $i++;
-              }  
-          } 
+          foreach($data['passageEvents'] as $event => $ts) {
+            //Test validity of ts value
+            if($ts>100000000) {
+              $firstEventTS = $ts+$offset;
+              break;
+            } 
+          }
+          
         //Otherwise use first reached waypoint time    
         } else {
-            $key = $data['passageDirection'] == "upriver" ? intval($data['passageMarkerDeltaTS'])+$offset : intval($data['passageMarkerAlphaTS'])+$offset;
-              
-        }
-        if($key > 100000000) {
-            $firstEventTS = $key;
+            $firstEventTS = $data['passageDirection'] == "upriver" ? intval($data['passageMarkerDeltaTS'])+$offset : intval($data['passageMarkerAlphaTS'])+$offset;
         }
             
         //Build array for Passages by Date collection with added data

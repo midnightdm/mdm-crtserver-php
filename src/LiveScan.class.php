@@ -107,6 +107,8 @@ class LiveScan {
     //Performs trigger when condtions met. (Created 2021-07-31)
     $event = strpos($this->liveVessel->vesselType, "assenger")>-1 ? "detectp" : "detecta";
     flog("LiveScan::checkDetectEventTrigger(".$event.")...\n");
+    $ta = !$this->triggerActivated;
+    $nn = $this->liveLocation != null;
     if($this->triggerQueued && 
       !$this->triggerActivated && 
       //$this->liveDirection !=="undetermined" &&
@@ -125,7 +127,7 @@ class LiveScan {
       }
 
     } else {
-      flog("LiveScan::checkDetectEventTrigger() didn't pass conditional tests.\n");
+      flog("LiveScan::checkDetectEventTrigger() didn't pass conditional tests...\n      triggerQueued? $this->triggerQueued\n      NOT triggerActivated? $ta,\n      liveLocation NOT null?  $nn\n");
     }
   }
 

@@ -55,14 +55,20 @@ class LiveScanModel extends Firestore {
     }
 
     public function deleteLiveScan($vesselID) {
-        $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);
-        $snapshot = $document->snapshot();
-        if($snapshot->exists()) {
-            $document->delete();
-            return true;
-        } else {
-            flog( "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n");
-            return false;
-        }
+      $ts  = time();  
+      $now = date('n/j/Y, g:i:s A', $ts);
+      $day = date('w', ts);     
+      $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);
+      $snapshot = $document->snapshot();
+      if($snapshot->exists()) {
+          $document->delete();
+          //Record to 'Deletes' collection
+          $dat = ["date"=> $now, "day"=>$day, "id"=>$vesselID, "ts"=> $ts ];
+          $d2 = $this->db->collection('Deletes')->document()->set($dat);
+          return true;
+      } else {
+          flog( "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n");
+          return false;
+      }
     }
 }

@@ -16,11 +16,11 @@ class PassagesModel extends Firestore {
         $data['passageVesselID'] = $liveScanObj->liveVesselID;
         //$data['vesselName'] = $liveScanObj->liveName;
         //$data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
-        $data['passageDirection'] = $liveScanObj->liveDirection;
-        $data['passageMarkerAlphaTS'] = $liveScanObj->liveMarkerAlphaTS;
-        $data['passageMarkerBravoTS'] = $liveScanObj->liveMarkerBravoTS;
+        $data['passageDirection']       = $liveScanObj->liveDirection;
+        $data['passageMarkerAlphaTS']   = $liveScanObj->liveMarkerAlphaTS;
+        $data['passageMarkerBravoTS']   = $liveScanObj->liveMarkerBravoTS;
         $data['passageMarkerCharlieTS'] = $liveScanObj->liveMarkerCharlieTS;
-        $data['passageMarkerDeltaTS'] = $liveScanObj->liveMarkerDeltaTS;
+        $data['passageMarkerDeltaTS']   = $liveScanObj->liveMarkerDeltaTS;
         if($liveScanObj->liveLocation instanceof Location) {
           $data['passageEvents'] = $liveScanObj->liveLocation->events;
         } else{
@@ -48,7 +48,7 @@ class PassagesModel extends Firestore {
           $c = count($data['passageEvents']); $i=0;
           if($c>0) {
               while($i<0) {
-                  $key = key($data['passageEvents']) + $offset;
+                  $key = intval(key($data['passageEvents'])) + $offset;
                   if($key > 100000000) {
                       $firstEventTS = $key;
                       break;
@@ -58,7 +58,8 @@ class PassagesModel extends Firestore {
           } 
         //Otherwise use first reached waypoint time    
         } else {
-            $key = $data['passageDirection'] == "upriver" ? $data['passageMarkerDeltaTS']+$offset : $data['passageMarkerAlphaTS']+$offset;  
+            $key = $data['passageDirection'] == "upriver" ? intval($data['passageMarkerDeltaTS'])+$offset : intval($data['passageMarkerAlphaTS'])+$offset;
+              
         }
         if($key > 100000000) {
             $firstEventTS = $key;

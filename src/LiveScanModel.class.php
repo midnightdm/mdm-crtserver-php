@@ -57,7 +57,7 @@ class LiveScanModel extends Firestore {
     public function deleteLiveScan($vesselID) {
       $ts  = time();  
       $now = date('n/j/Y, g:i:s A', $ts);
-      $day = date('w', ts);     
+      $day = date('w', $ts);     
       $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);
       $snapshot = $document->snapshot();
       if($snapshot->exists()) {

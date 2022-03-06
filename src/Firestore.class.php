@@ -15,12 +15,13 @@ use Google\Cloud\Firestore\FieldValue;
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-echo $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
-$strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
+//echo $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
+if(!isset($strJsonFileContents)) {
+  $strJsonFileContents = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file']);
+  //Convert into array & Put into CONSTANT
+  define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
+}
 
-
-//Convert into array & Put into CONSTANT
-define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
 
 /**
  * This is a custom library to interact with the firebase firestore cloud db

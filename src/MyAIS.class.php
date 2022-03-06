@@ -108,6 +108,8 @@ class MyAIS extends AIS {
 			}
 			//Save scans to db at interval set within
 			$this->plotDaemon->saveAllScans();
+      //cleanup Deletes from db at interval set within
+      $this->plotDaemon->cleanupDeletes();
         }
         /*                  End of custom CRT code           *
          * * * * * * * * * * * * * * * * * * * * * * * * * * */

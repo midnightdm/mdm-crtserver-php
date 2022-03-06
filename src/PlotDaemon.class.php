@@ -30,6 +30,7 @@ class PlotDaemon {
   public $rowsBefore;
   protected $run;
   public $lastCleanUp;
+  public $lastDeletesCleanUp;
   public $LiveScanModel;
   public $VesselsModel;
   public $alertsAll;
@@ -55,6 +56,7 @@ class PlotDaemon {
       $this->AlertsModel = new AlertsModel($this);
       $this->PassagesModel = new PassagesModel();
       $this->lastCleanUp = time()-50; //Used to increment cleanup routine
+      $this->lastDeletesCleanUp = time()-50;
       $this->lastPassagesSave = time()-50;//Increments savePassages routine
       
       //Set values below in $config array in config.php
@@ -234,6 +236,15 @@ class PlotDaemon {
       }   
       $this->lastCleanUp = $now;
   } 
+
+  public function cleanupDeletes() {
+    //To be run once daily
+    $now = time();
+    if(($now - $this->lastDeletesCleanUp) > 86400) {
+      $this->LiveScanModel->cleanupDeletes();
+      $this->lastDeletesCleanUp = $now;
+    }
+  }
 
   public function saveAllScans() {
       $now = time();

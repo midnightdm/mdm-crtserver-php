@@ -51,28 +51,38 @@ class Firestore {
     return FieldValue::serverTimestamp();
   }
    
-  public function generateApubID() {
+  public function stepApubID() {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
     $apubID = $admin->data()['lastApubID'];
     $apubID++;
-    flog("generateApubID(): $apubID\n");
+    flog("stepApubID(): $apubID\n");
     $this->db->collection('Passages')
         ->document('Admin')
         ->set(['lastApubID'=>$apubID], ['merge'=>true]);
     return $apubID;
-
   }
 
-  public function generateVpubID() {
+  public function getApubID() {
+    $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
+    $apubID = $admin->data()['lastApubID'];
+    return $apubID;
+  }
+
+  public function stepVpubID() {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
     $vpubID = $admin->data()['lastVpubID'];
     $vpubID++;
-    flog("generateVpubID(): $vpubID\n");
+    flog("stepVpubID(): $vpubID\n");
     $this->db->collection('Passages')
         ->document('Admin')
         ->set(['lastVpubID'=>$vpubID], ['merge'=>true]);
     return $vpubID;
   }
    
+  public function getVpubID() {
+    $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
+    $vpubID = $admin->data()['lastVpubID'];
+    return $vpubID;
+  }
 
 }

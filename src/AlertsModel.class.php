@@ -287,7 +287,7 @@ class AlertsModel extends Firestore {
         //This function gets run by Event trigger methods of this class 
         $ts = time();
         $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
-        $apubID = $this->generateApubID(); //Method in parent
+        $apubID = $this->getApubID() + 1; //Method in parent
         $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
         $txt = $this->buildAlertMessage(
           $event, 
@@ -305,7 +305,7 @@ class AlertsModel extends Firestore {
         } else {
           $voiceFileName = substr($event, 0,1).substr($event, -2,1).$liveScan->liveVesselID.".mp3";
         }
-        flog( "  AlertsModel::publishAlertMessage() voiceFileName: $voiceFileName\n");
+        flog( "  AlertsModel::publishAlertMessage() voiceFileName: $voiceFileName, apubID: $abputID\n");
         $apubVoiceUrl = $this->cs->image_base."voice/".$voiceFileName;
         //Build text for voice synthesis
         $voiceTxt = $this->buildVoiceMessage(
@@ -335,6 +335,8 @@ class AlertsModel extends Firestore {
         ];
         //Add new Alert document for perm record
         $this->db->collection('Alertpublish')->document(strval($apubID))->set($data);
+        //Save new apubID to admin to trigger JS
+        $this->stepApubID();
         //Also update collective alert list queue (a or p type)... 
         $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         $len = count($this->daemon->$ref);
@@ -354,14 +356,14 @@ class AlertsModel extends Firestore {
       //This function gets run by Event trigger methods of this class 
       $ts = time();
       $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
-      $vpubID = $this->generateVpubID(); //Method in parent
+      $vpubID = $this->getVpubID() + 1; //Method in parent
       $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
       if($type=='a') {
         trigger_error("Non passenger vessel sent to AlertsModel::announcePassengerProgress() function.");
       }
       //Build voice file name based on event & vesselID
       $voiceFileName = $event.$liveScan->liveVesselID.".mp3";    
-      flog( "AlertsModel::announcePassengerProgress() voiceFileName: $voiceFileName\n");
+      flog( "AlertsModel::announcePassengerProgress() voiceFileName: $voiceFileName, vpubID: $vpubID\n");
       $vpubVoiceUrl = $this->cs->image_base."voice/".$voiceFileName;
       //Build text for voice synthesis
       $voiceTxt = $this->buildVoiceMessage(
@@ -391,6 +393,8 @@ class AlertsModel extends Firestore {
       ];
       //Add new db document for perm record
       $this->db->collection('Voicepublish')->document(strval($vpubID))->set($data);
+      //Now save new vpubID to admin which trips JS event
+      $this->stepVpubID();
   }
 
     public function generateVoice($fileName, $fullUrl, $text) {

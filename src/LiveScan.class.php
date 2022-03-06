@@ -227,9 +227,15 @@ class LiveScan {
     $data['liveLastLat'] = $this->liveLastLat;
     $data['liveLastLon'] = $this->liveLastLon;
     $data['liveDirection'] = $this->liveDirection;
-    $data['liveLocation'] = ucfirst($this->liveLocation->description[0]);
-    $data['liveEvent']  = $this->liveLocation->event;
-    $data['liveEvents'] = $this->liveLocation->events; //This is array
+    if($this->liveLocation instanceof Location) {
+      $data['liveLocation'] = ucfirst($this->liveLocation->description[0]);
+      $data['liveEvent']  = $this->liveLocation->event;
+      $data['liveEvents'] = $this->liveLocation->events; //This is array
+    } else{
+      $data['liveLocation'] = "Location Not Calculated";
+      $data['liveEvent'] = "";
+      $data['liveEvents'] = [];
+    }
     $data['liveName'] = $this->liveName;
     $data['liveVesselID'] = $this->liveVesselID;
     $data['liveSpeed'] = $this->liveSpeed;

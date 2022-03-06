@@ -144,7 +144,7 @@ class Location {
                 break;
             } 
 
-            if($inside && $this->live->liveDirection=="downriver") {
+            if($inside && $this->live->liveDirection!="upriver") { //downriver or undetermined
                 $this->lastEvent = $this->event; //Save last event  before updating
                 $this->lastEventTS = $this->eventTS; //Save time of last event update
                 if(is_int($m)) {

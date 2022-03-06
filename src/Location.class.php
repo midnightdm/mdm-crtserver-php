@@ -180,7 +180,8 @@ class Location {
             } 
         }
         if($inside==false) {
-            flog( "   ...search for ".$this->live->liveName." ended at $m \r\n");
+          $this->description = ["undetermined location", "at an as yet undetermined Location."];
+          flog( "   ...search for ".$this->live->liveName." ended at $m \r\n");
         }
     }
 

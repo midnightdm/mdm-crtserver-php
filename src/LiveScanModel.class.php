@@ -62,9 +62,6 @@ class LiveScanModel extends Firestore {
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
         $document->delete();
-        //Record to 'Deletes' collection
-        $dat = ["date"=> $now, "day"=>$day, "id"=>$vesselID, "ts"=> $ts, "source"=>"host server" ];
-        $d2 = $this->db->collection('Deletes')->document()->set($dat);
         return true;
     } else {
         flog( "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n");

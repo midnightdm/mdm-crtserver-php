@@ -226,6 +226,7 @@ class PlotDaemon {
                       $key = 'mmsi'.$obj->liveVesselID;
                       flog("Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
                       unset($this->liveScan[$key]);
+                      $this->updateLiveScanLength();
                   } else {
                       error_log('Error deleting LiveScan ' . $obj->liveVesselID);
                   }
@@ -244,6 +245,16 @@ class PlotDaemon {
       $this->LiveScanModel->cleanupDeletes();
       $this->lastDeletesCleanUp = $now;
     }
+  }
+
+  public function updateLiveScanLength() {
+    /* Write liveScan obj quantity to 'Passages/Admin' after any insert or delete
+     *   Run by   MyAIS::decode_ais() on new LiveScan construction 
+     *   and by   PlotDaemon::removeOldScans()
+     */ 
+    $currentLiveScanLength = count($this->liveScan);
+    $dat = ["liveScanLength"=> $currentLiveScanLength ];
+    $this->db->collection('Passages')->document('Admin')->set($dat, ["merge"=> true]);
   }
 
   public function saveAllScans() {

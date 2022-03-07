@@ -54,6 +54,14 @@ class LiveScanModel extends Firestore {
     return false;
   }
 
+  public function updateLiveScanLength($len) {
+    $dat = ["liveScanLength"=> $len ];
+    $this->db
+      ->collection('Passages')
+      ->document('Admin')
+      ->set($dat, ["merge"=> true]);  
+  }
+
   public function deleteLiveScan($vesselID) {
     $ts  = time();  
     $now = date('n/j/Y, g:i:s A', $ts);

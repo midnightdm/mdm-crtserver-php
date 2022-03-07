@@ -254,12 +254,9 @@ class PlotDaemon {
      *   and by   PlotDaemon::removeOldScans()
      */ 
     $currentLiveScanLength = count($this->liveScan);
-    $dat = ["liveScanLength"=> $currentLiveScanLength ];
     $this->LiveScanModel
-      ->db
-      ->collection('Passages')
-      ->document('Admin')
-      ->set($dat, ["merge"=> true]);
+      ->updateLiveScanLength($currentLiveScanLength);
+    
   }
 
   public function saveAllScans() {

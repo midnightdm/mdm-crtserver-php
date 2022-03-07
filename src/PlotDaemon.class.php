@@ -290,7 +290,7 @@ class PlotDaemon {
         $this->liveScan[$key] = new LiveScan(null, null, null, null, null, null, null, $this, true, $row);
         
         //Ensure data included liveInitLat & liveInitLon or waypoint passages will fail
-        if(!is_set($this->liveScan[$key]->liveInitLat)) {
+        if(!isset($this->liveScan[$key]->liveInitLat)) {
           $this->liveScan[$key]->liveInitLat = $this->liveScan[$key]->liveLastLat;
           flog("Setting liveInitLat on ".$this->liveScan[$key]->liveName." reload because it was empty");
         }

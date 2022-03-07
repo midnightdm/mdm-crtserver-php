@@ -87,6 +87,7 @@ class PlotDaemon {
       sleep(3);       
       $this->reloadSavedAlertsPassenger(); 
       sleep(3);
+      $this->updateLiveScanLength();
       $this->run();
   }
 

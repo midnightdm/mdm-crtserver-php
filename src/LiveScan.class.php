@@ -127,7 +127,8 @@ class LiveScan {
       }
 
     } else {
-      flog("LiveScan::checkDetectEventTrigger() didn't pass conditional tests...\n      triggerQueued? $this->triggerQueued\n      NOT triggerActivated? $ta,\n      liveLocation NOT null?  $nn\n");
+      flog("LiveScan::checkDetectEventTrigger() didn't pass conditional tests...\n");
+      // flog("LiveScan::checkDetectEventTrigger() didn't pass conditional tests...\n      triggerQueued? $this->triggerQueued\n      NOT triggerActivated? $ta,\n      liveLocation NOT null?  $n\n\n");
     }
   }
 

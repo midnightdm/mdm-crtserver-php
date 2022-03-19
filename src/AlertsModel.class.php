@@ -480,7 +480,7 @@ _END;
     public function saveLivescanJson() {
       //new 3/18/22
       $json     = json_encode($this->daemon->liveScan);
-      echo $json;
+      echo "liveScan.json echo output: ".$json;
       file_put_contents($this->appPath."/livescan.json", $json);
       $this->cs->upload( $this->appPath."/livescan.json", "livescan.json");
     }

@@ -483,7 +483,7 @@ _END;
       $json     = json_encode($liveScan);
       echo "\n\nliveScan array var_dump: ".var_dump($liveScan)."\n";
       echo "\n\nliveScan.json echo output: ".$json."\n";
-      exit()
+      exit();
       file_put_contents($this->appPath."/livescan.json", $json);
       $this->cs->upload( $this->appPath."/livescan.json", "livescan.json");
     }

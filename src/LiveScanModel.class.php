@@ -77,6 +77,8 @@ class LiveScanModel extends Firestore {
     }
   }
 
+  //Depricated
+  /*
   public function cleanupDeletes() {
     //Query all documents not today's "day"
     $day = gmdate('w') -1;
@@ -93,4 +95,5 @@ class LiveScanModel extends Firestore {
     }
     flog("LiveScanModel::cleanupDeletes() deleted $i olds records\n");  
   }
+  */
 }

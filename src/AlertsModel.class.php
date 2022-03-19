@@ -25,7 +25,6 @@ class AlertsModel extends Firestore {
         $this->messageController = new Messages();
         $this->daemon = $daemonCallback;
         $this->cs = new CloudStorage();
-
     }
 
     public function getAlertsAll() {
@@ -478,7 +477,11 @@ _END;
         $this->cs->upload( $this->appPath.'/'. $fileName, basename($fileName));          
     }
 
-
+    public function saveLivescanJson() {
+      $json     = json_encode($this->daemon->liveScans);
+      file_put_contents($this->appPath."/livescan.json", $json);
+      $this->cs->upload( $this->appPath."/livescan.json", "livescan.json");
+    }
 
     //Methods below were for sql based version of app 
   

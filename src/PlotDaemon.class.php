@@ -30,7 +30,8 @@ class PlotDaemon {
   public $rowsBefore;
   protected $run;
   public $lastCleanUp;
-  public $lastDeletesCleanUp;
+  //public $lastDeletesCleanUp;
+  public $lastJsonSave;
   public $LiveScanModel;
   public $VesselsModel;
   public $alertsAll;
@@ -56,7 +57,8 @@ class PlotDaemon {
       $this->AlertsModel = new AlertsModel($this);
       $this->PassagesModel = new PassagesModel();
       $this->lastCleanUp = time()-50; //Used to increment cleanup routine
-      $this->lastDeletesCleanUp = time()-50;
+      //$this->lastDeletesCleanUp = time()-50;
+      $this->lastJsonSave = time()-10; //Used to increment liveScan.json save
       $this->lastPassagesSave = time()-50;//Increments savePassages routine
       
       //Set values below in $config array in config.php
@@ -239,12 +241,12 @@ class PlotDaemon {
       $this->lastCleanUp = $now;
   } 
 
-  public function cleanupDeletes() {
-    //To be run once daily
+  public function saveLivescanJson() {
+    //To be run 3 times per minute
     $now = time();
-    if(($now - $this->lastDeletesCleanUp) > 86400) {
-      $this->LiveScanModel->cleanupDeletes();
-      $this->lastDeletesCleanUp = $now;
+    if(($now - $this->lastJsonSave) > 60) {
+      $this->AlertsModel->saveLivescanJson();
+      $this->lastJsonSave = $now;
     }
   }
 
@@ -339,8 +341,8 @@ class PlotDaemon {
     } else {
       flog( "\033[41m *  PlotDaemon::reloadSavedAlertsPassenger() failed to get data.  * \033[0m\r\n");
     }
-
   }
+
     
 }
 

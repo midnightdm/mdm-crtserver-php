@@ -244,7 +244,7 @@ class PlotDaemon {
   public function saveLivescanJson() {
     //To be run 3 times per minute
     $now = time();
-    if(($now - $this->lastJsonSave) > 60) {
+    if(($now - $this->lastJsonSave) > 20) {
       $this->AlertsModel->saveLivescanJson();
       $this->lastJsonSave = $now;
     }

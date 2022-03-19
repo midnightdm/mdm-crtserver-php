@@ -483,18 +483,21 @@ _END;
       $liveArr = [];
       foreach($liveScan as $live) {
         $data = [];
-        $data['liveInitTS'] = $live->liveInitTS;
-        $data['liveInitLat'] = $live->liveInitLat;
-        $data['liveInitLon'] = $live->liveInitLon;
-        $data['liveLength'] = $live->liveLength;
-        $data['liveWidth'] = $live->liveWidth;
-        $data['liveDraft'] = $live->liveDraft;
-        $data['liveCallSign'] = $live->liveCallSign; 
-        $data['liveIsLocal'] = $live->liveIsLocal;
-        $data['liveLastTS'] = $live->liveLastTS;
+        $data['liveVesselID'] = $live->liveVesselID;
+        $data['liveName'] = $live->liveName;
+        $data['type']       = $live->liveVessel->vesselType;
+
         $data['transponderTS'] = $live->transponderTS;
+        $data['liveLastTS'] = $live->liveLastTS;
+        $data['liveInitTS'] = $live->liveInitTS;
+        
+        $data['liveInitLat'] = $live->liveInitLat;
         $data['liveLastLat'] = $live->liveLastLat;
+        $data['liveInitLon'] = $live->liveInitLon;
         $data['liveLastLon'] = $live->liveLastLon;
+
+        $data['liveSpeed'] = $live->liveSpeed;
+        $data['liveCourse'] = $live->liveCourse;
         $data['liveDirection'] = $live->liveDirection;
         if($live->liveLocation instanceof Location) {
           $data['liveLocation'] = ucfirst($live->liveLocation->description[0]);
@@ -505,12 +508,14 @@ _END;
           $data['liveEvent'] = "";
           $data['liveEvents'] = [];
         }
-        $data['liveName'] = $live->liveName;
-        $data['liveVesselID'] = $live->liveVesselID;
-        $data['liveSpeed'] = $live->liveSpeed;
-        $data['liveCourse'] = $live->liveCourse;
+
         $data['imageUrl']   = $live->liveVessel->vesselImageUrl;
-        $data['type']       = $live->liveVessel->vesselType;
+        $data['liveLength'] = $live->liveLength;
+        $data['liveWidth'] = $live->liveWidth;
+        $data['liveDraft'] = $live->liveDraft;
+        $data['liveCallSign'] = $live->liveCallSign; 
+        $data['liveIsLocal'] = $live->liveIsLocal;
+
         $data['liveMarkerAlphaWasReached'] = $live->liveMarkerAlphaWasReached;
         $data['liveMarkerAlphaTS'] = $live->liveMarkerAlphaTS;
         $data['liveMarkerBravoWasReached'] = $live->liveMarkerBravoWasReached;

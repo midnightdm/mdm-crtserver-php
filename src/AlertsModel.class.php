@@ -479,8 +479,11 @@ _END;
 
     public function saveLivescanJson() {
       //new 3/18/22
-      $json     = json_encode($this->daemon->liveScan);
-      echo "liveScan.json echo output: ".$json;
+      $liveScan = $this->daemon->liveScan;
+      $json     = json_encode($liveScan);
+      echo "\n\nliveScan array var_dump: ".var_dump($liveScan)."\n";
+      echo "\n\nliveScan.json echo output: ".$json."\n";
+      exit()
       file_put_contents($this->appPath."/livescan.json", $json);
       $this->cs->upload( $this->appPath."/livescan.json", "livescan.json");
     }

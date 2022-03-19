@@ -480,10 +480,49 @@ _END;
     public function saveLivescanJson() {
       //new 3/18/22
       $liveScan = $this->daemon->liveScan;
-      $json     = json_encode($liveScan);
-      echo "\n\nliveScan array var_dump: ".var_dump($liveScan)."\n";
-      echo "\n\nliveScan.json echo output: ".$json."\n";
-      exit();
+      $liveArr = [];
+      foreach($liveScan as $live) {
+        $data = [];
+        $data['liveInitTS'] = $live->liveInitTS;
+        $data['liveInitLat'] = $live->liveInitLat;
+        $data['liveInitLon'] = $live->liveInitLon;
+        $data['liveLength'] = $live->liveLength;
+        $data['liveWidth'] = $live->liveWidth;
+        $data['liveDraft'] = $live->liveDraft;
+        $data['liveCallSign'] = $live->liveCallSign; 
+        $data['liveIsLocal'] = $live->liveIsLocal;
+        $data['liveLastTS'] = $live->liveLastTS;
+        $data['transponderTS'] = $live->transponderTS;
+        $data['liveLastLat'] = $live->liveLastLat;
+        $data['liveLastLon'] = $live->liveLastLon;
+        $data['liveDirection'] = $live->liveDirection;
+        if($live->liveLocation instanceof Location) {
+          $data['liveLocation'] = ucfirst($live->liveLocation->description[0]);
+          $data['liveEvent']  = $live->liveLocation->event;
+          $data['liveEvents'] = $live->liveLocation->events; //This is array
+        } else{
+          $data['liveLocation'] = "Location Not Calculated";
+          $data['liveEvent'] = "";
+          $data['liveEvents'] = [];
+        }
+        $data['liveName'] = $live->liveName;
+        $data['liveVesselID'] = $live->liveVesselID;
+        $data['liveSpeed'] = $live->liveSpeed;
+        $data['liveCourse'] = $live->liveCourse;
+        $data['imageUrl']   = $live->liveVessel->vesselImageUrl;
+        $data['type']       = $live->liveVessel->vesselType;
+        $data['liveMarkerAlphaWasReached'] = $live->liveMarkerAlphaWasReached;
+        $data['liveMarkerAlphaTS'] = $live->liveMarkerAlphaTS;
+        $data['liveMarkerBravoWasReached'] = $live->liveMarkerBravoWasReached;
+        $data['liveMarkerBravoTS'] = $live->liveMarkerBravoTS;
+        $data['liveMarkerCharlieWasReached'] = $live->liveMarkerCharlieWasReached;
+        $data['liveMarkerCharlieTS'] = $live->liveMarkerCharlieTS;
+        $data['liveMarkerDeltaWasReached'] = $live->liveMarkerDeltaWasReached;
+        $data['liveMarkerDeltaTS'] = $live->liveMarkerDeltaTS;
+        $data['livePassageWasSaved'] = $live->livePassageWasSaved;
+        $liveArr[] = $data;
+      }
+      $json     = json_encode($liveArr);
       file_put_contents($this->appPath."/livescan.json", $json);
       $this->cs->upload( $this->appPath."/livescan.json", "livescan.json");
     }

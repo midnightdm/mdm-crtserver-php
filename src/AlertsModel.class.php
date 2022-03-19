@@ -478,7 +478,7 @@ _END;
     }
 
     public function saveLivescanJson() {
-      $json     = json_encode($this->daemon->liveScans);
+      $json     = json_encode($this->daemon->liveScan);
       file_put_contents($this->appPath."/livescan.json", $json);
       $this->cs->upload( $this->appPath."/livescan.json", "livescan.json");
     }

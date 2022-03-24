@@ -499,6 +499,7 @@ _END;
         $data['liveSpeed'] = $live->liveSpeed;
         $data['liveCourse'] = $live->liveCourse;
         $data['liveDirection'] = $live->liveDirection;
+        $data['liveSegment'] = $live->liveSegment;
         if($live->liveLocation instanceof Location) {
           $data['liveLocation'] = ucfirst($live->liveLocation->description[0]);
           $data['liveEvent']  = $live->liveLocation->event;

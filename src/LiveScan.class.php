@@ -21,6 +21,7 @@ class LiveScan {
   public $liveVessel = null;
   public $transponderTS = null;
   public $liveLocation = null;
+  public $liveSegment = null;
   public $liveMarkerAlphaWasReached = FALSE;
   public $liveMarkerAlphaTS = null;
   public $liveMarkerBravoWasReached = FALSE;
@@ -81,7 +82,8 @@ class LiveScan {
       $this->liveInitLat = $lat;
       $this->liveInitLon = $lon;
       $this->liveSpeed = $speed;
-      $this->liveCourse = $course;     
+      $this->liveCourse = $course;
+      $this->liveSegment = $this->determineSegment($lat);     
       $this->lookUpVessel();
       //Use scraped vesselName if not provided by transponder
       if(strpos($this->liveName, strval($id))>-1) {
@@ -163,6 +165,7 @@ class LiveScan {
     $data['liveInitLon'] = $this->liveInitLon;
     $data['liveDirection'] = $this->liveDirection;
     $data['liveLocation'] = "";
+    $data['liveSegment'] = $this->liveSegment;
     $data['liveVesselID'] = $this->liveVesselID;
     $data['liveName'] = $this->liveName;
     $data['liveLength'] = $this->liveLength;
@@ -204,7 +207,7 @@ class LiveScan {
     $this->liveLastLon = $lon;
     $this->liveSpeed   = $speed;
     $this->liveCourse  = $course;
-    //$this->liveDest    = $dest;
+    $this->liveSegment = $this->determineSegment($lat);
     $this->liveName    = $name;
     $this->determineDirection();
     if($this->liveName=="" || str_contains($this->liveName, "@@") || (is_null($this->liveVessel) && $this->lookUpCount < 5)) {
@@ -241,6 +244,7 @@ class LiveScan {
     $data['liveVesselID'] = $this->liveVesselID;
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
+    $data['liveSegment'] = $this->liveSegment;
     $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
     $data['type']       = $this->liveVessel->vesselType;
     $data['liveMarkerAlphaWasReached'] = $this->liveMarkerAlphaWasReached;
@@ -256,6 +260,22 @@ class LiveScan {
     $this->callBack->LiveScanModel->updateLiveScan($data);
   }
 
+  public function determineSegment($lat) {
+    //Calculates river segment 0-4 below, between or above waypoints
+    if($lat < MARKER_DELTA_LAT) {
+      return 0;
+    } elseif($lat > MARKER_DELTA_LAT  && $lat < MARKER_CHARLIE_LAT) {
+      return 1;
+    } elseif($lat > MARKER_CHARLIE_LAT && $lat < MARKER_BRAVO_LAT) {
+      return 2;
+    } elseif($lat > MARKER_BRAVO_LAT && LAT < MARKER_ALPHA_LAT) {
+      return 3;
+    } elseif($lat > MARKER_ALPHA_LAT) {
+      return 4;
+    } else {
+      return null;
+    }
+  }
 
   public function determineDirection() {
     //Downriver when lat is decreasing

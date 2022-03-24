@@ -268,7 +268,7 @@ class LiveScan {
       return 1;
     } elseif($lat > MARKER_CHARLIE_LAT && $lat < MARKER_BRAVO_LAT) {
       return 2;
-    } elseif($lat > MARKER_BRAVO_LAT && LAT < MARKER_ALPHA_LAT) {
+    } elseif($lat > MARKER_BRAVO_LAT && $lat < MARKER_ALPHA_LAT) {
       return 3;
     } elseif($lat > MARKER_ALPHA_LAT) {
       return 4;

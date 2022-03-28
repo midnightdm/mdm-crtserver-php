@@ -478,7 +478,7 @@ _END;
     }
 
     public function saveLivescanJson() {
-      //new 3/18/22
+      //new 3/18/22, disabled 3/27/22
       $liveScan = $this->daemon->liveScan;
       $liveArr = [];
       foreach($liveScan as $live) {

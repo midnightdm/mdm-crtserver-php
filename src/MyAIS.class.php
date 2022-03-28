@@ -66,39 +66,39 @@ class MyAIS extends AIS {
 			$ro->cls = 2; // class B
 		}
 		
-        /* * * * * * * * * * * * * * * * * * * * * * * * * * *  
-         * This is beginning of custom code for CRT project  *
-         *                                                   */
-        
-        //flog( "ro: :".var_dump($ro)); // dump results here for demo purpose
-        //Put ro data into LivePlot object
-        if(is_object($ro)) {
-            $id  = $ro->mmsi;
-            $key  = 'mmsi'.$id;
-            $name = $ro->name;
-            $speed =$ro->sog;
-            $lat   = $ro->lat;
-            $lon   = $ro->lon;
-            $course = $ro->cog;
-            $ts   = $ro->ts;
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * *  
+      * This is beginning of custom code for CRT project  *
+      *                                                   */
+    
+    //flog( "ro: :".var_dump($ro)); // dump results here for demo purpose
+    //Put ro data into LivePlot object
+    if(is_object($ro)) {
+      $id  = $ro->mmsi;
+      $key  = 'mmsi'.$id;
+      $name = $ro->name;
+      $speed =$ro->sog;
+      $lat   = $ro->lat;
+      $lon   = $ro->lon;
+      $course = $ro->cog;
+      $ts   = $ro->ts;
             
-
 			flog("Decoded: ".$id." ".$ts."\n");
-            if(isset($this->plotDaemon->liveScan[$key])) {
-                //Update liveScan object only if data is new
-                if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
-                    $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course);
-                    flog( "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
-                      .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");					  
-                }  
-            } else {
-                //Skip river marker numbers & void bad lat data
-                if($id < 990000000 && $id > 100000000 && $lat > 1) {
-                    $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon);
-                    flog( "NEW liveScan[$key] (".date("F j, Y, g:i a", ($ts+getTimeOffset())).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
-                    $this->plotDaemon->updateLiveScanLength();
-                } 
-            }
+
+      if(isset($this->plotDaemon->liveScan[$key])) {
+        //Update liveScan object only if data is new
+        if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
+          $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course);
+          flog( "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
+            .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");					  
+        }  
+      } else {
+        //Skip river marker numbers & void bad lat data
+        if($id < 990000000 && $id > 100000000 && $lat > 1) {
+            $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon);
+            flog( "NEW liveScan[$key] (".date("F j, Y, g:i a", ($ts+getTimeOffset())).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
+            $this->plotDaemon->updateLiveScanLength();
+        } 
+      }
 
 			//Remove old scans every 3 minutes
 			$now = time();
@@ -108,11 +108,11 @@ class MyAIS extends AIS {
 			}
 			//Save scans to db at interval set within
 			$this->plotDaemon->saveAllScans();
-      //Save scans to json at interval set within 
-      $this->plotDaemon->saveLivescanJson();
-        }
-        /*                  End of custom CRT code           *
-         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+      //Save scans to json at interval set within [DISABLED]
+      //   $this->plotDaemon->saveLivescanJson();
+    }
+    /*                  End of custom CRT code           *
+      * * * * * * * * * * * * * * * * * * * * * * * * * * */
 		return $ro;
 	}
 }

@@ -241,6 +241,7 @@ class PlotDaemon {
       $this->lastCleanUp = $now;
   } 
 
+  //Not used as of 3/27/22 in favor of cloud API
   public function saveLivescanJson() {
     //To be run 3 times per minute
     $now = time();

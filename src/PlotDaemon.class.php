@@ -309,8 +309,12 @@ class PlotDaemon {
         //Initialize location object
         $this->liveScan[$key]->liveLocation = new Location($this->liveScan[$key]);
         //Restore db saved event data
-        $this->liveScan[$key]->liveLocation->lastEvent = $row['liveEvent'];
-        $this->liveScan[$key]->liveLocation->events = $row['liveEvents'];
+        if(isset($row['liveEvent'])) {
+          $this->liveScan[$key]->liveLocation->lastEvent = $row['liveEvent'];
+        }
+        if(isset($row['liveEvens'])) {
+          $this->liveScan[$key]->liveLocation->events = $row['liveEvents'];
+        }
         $this->liveScan[$key]->liveLocation->description = [];
         //Now update with new location supressing event trigger
         $this->liveScan[$key]->calculateLocation(true);           

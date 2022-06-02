@@ -305,7 +305,7 @@ class AlertsModel extends Firestore {
         } else {
           $voiceFileName = substr($event, 0,1).substr($event, -2,1).$liveScan->liveVesselID.".mp3";
         }
-        flog( "  AlertsModel::publishAlertMessage() voiceFileName: $voiceFileName, apubID: $abputID\n");
+        flog( "  AlertsModel::publishAlertMessage() voiceFileName: $voiceFileName, apubID: $apubID\n");
         $apubVoiceUrl = $this->cs->image_base."voice/".$voiceFileName;
         //Build text for voice synthesis
         $voiceTxt = $this->buildVoiceMessage(
@@ -340,10 +340,10 @@ class AlertsModel extends Firestore {
         //Also update collective alert list queue (a or p type)... 
         $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         $len = count($this->daemon->$ref);
-        flog("Last $ref obj in $len sized array before queue update:". $this->daemon->$ref[$len]."\n");
+        flog("Last $ref obj in $len sized array before queue update:". $this->daemon->$ref[$len-1]."\n");
         $this->daemon->$ref = objectQueue($this->daemon->$ref, $data, 20);
         $len = count($this->daemon->$ref);
-        flog("Last $ref obj in $len sized array after queue update:". $this->daemon->$ref[$len]."\n");
+        flog("Last $ref obj in $len sized array after queue update:". $this->daemon->$ref[$len-1]."\n");
         //...and save as db document
         $sref = $type=='p' ? 'setAlertsPassenger' : 'setAlertsAll';
         $this->$sref($this->daemon->$ref);

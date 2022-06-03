@@ -238,7 +238,8 @@ class Location {
         if((time() - $this->lastEventTS) < 60) {
             flog( "\033[33m      ...Location::updateEventStatus() EVENT < 60 OLD \033[0m\n");
             return false;
-        }        
+        }
+        flog( "\033[33m      ...Location::updateEventStatus($event) EVENT IS AUTHENTIC\033[0m\n");        
         return true;
     }
     

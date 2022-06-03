@@ -297,10 +297,10 @@ class PlotDaemon {
         //Ensure data included liveInitLat & liveInitLon or waypoint passages will fail
         if(!isset($this->liveScan[$key]->liveInitLat)) {
           $this->liveScan[$key]->liveInitLat = $this->liveScan[$key]->liveLastLat;
-          flog("Setting liveInitLat on ".$this->liveScan[$key]->liveName." reload because it was empty");
+          flog("Setting liveInitLat as ".$this->liveScan[$key]->liveLastLat." on ".$this->liveScan[$key]->liveName." reload because it was empty");
         }
         if(!isset($this->liveScan[$key]->liveInitLon)) {
-          flog("Setting liveInitLon on ".$this->liveScan[$key]->liveName." reload because it was empty");
+          flog("Setting liveInitLon as ".$this->liveScan[$key]->liveLastLon." on ".$this->liveScan[$key]->liveName." reload because it was empty");
           $this->liveScan[$key]->liveInitLon = $this->liveScan[$key]->liveLastLon;
         }
         
@@ -312,7 +312,7 @@ class PlotDaemon {
         if(isset($row['liveEvent'])) {
           $this->liveScan[$key]->liveLocation->lastEvent = $row['liveEvent'];
         }
-        if(isset($row['liveEvens'])) {
+        if(isset($row['liveEvents'])) {
           $this->liveScan[$key]->liveLocation->events = $row['liveEvents'];
         }
         $this->liveScan[$key]->liveLocation->description = [];

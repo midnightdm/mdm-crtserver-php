@@ -195,8 +195,8 @@ class LiveScan {
         if($this->liveLastLat != $lat || $this->liveLastLon != $lon) {
           //Yes. Then update TS.
           $this->setTimestamp($ts, 'liveLastTS');
-          //And test if detect event can be triggered
-          $this->checkDetectEventTrigger();           
+          //And test if detect event can be triggered [DISABLED 6/2/22, not working ]
+          //$this->checkDetectEventTrigger();           
         } //No. Then do nothing keeping last TS.
       }
     }

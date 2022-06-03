@@ -340,10 +340,10 @@ class AlertsModel extends Firestore {
         //Also update collective alert list queue (a or p type)... 
         $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         $len = count($this->daemon->$ref);
-        flog("Last $ref obj in $len sized array before queue update:". $this->daemon->$ref[$len-1]."\n");
+        flog("Last $ref obj in $len sized array before queue update:". var_dump($this->daemon->$ref[$len-1])."\n");
         $this->daemon->$ref = objectQueue($this->daemon->$ref, $data, 20);
         $len = count($this->daemon->$ref);
-        flog("Last $ref obj in $len sized array after queue update:". $this->daemon->$ref[$len-1]."\n");
+        flog("Last $ref obj in $len sized array after queue update:". var_dump($this->daemon->$ref[$len-1])."\n");
         //...and save as db document
         $sref = $type=='p' ? 'setAlertsPassenger' : 'setAlertsAll';
         $this->$sref($this->daemon->$ref);

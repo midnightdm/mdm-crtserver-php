@@ -123,8 +123,10 @@ class Messages {
     $message = [
 			"title"  => $messageTxt." -CRT",
       "icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
-			"url"   => "https://www.clintonrivertraffic.com/alerts/waypoint/".$apubID
+			"url"   => "https://www.clintonrivertraffic.com/live"
 		];
+    /*  Rework above to conditionally provide a waypoint link for a,b,c,d events 
+    "url"   => "https://www.clintonrivertraffic.com/alerts/waypoint/".$apubID */
 
     //Prepare subscription package  
     $data = [

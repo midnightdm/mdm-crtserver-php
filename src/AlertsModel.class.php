@@ -105,8 +105,9 @@ class AlertsModel extends Firestore {
                 //flog( "User Match Found: ".var_dump($user)."\n");
                 if($user['subscription']['is_enabled']) {
                     if($user['alertMethod']=='notification') {  
-                        flog( "pushNoticeTo(".$user['subscription']['auth'].") for event ".$event."\n");        
-                        $this->pushNoticeTo($user, $event, $liveObj);
+                        flog( "pushNoticeTo(".$user['subscription']['auth'].") for event ".$event."\n"); 
+                        $apubID = $this->getApubID() + 1; //Method in parent       
+                        $this->pushNoticeTo($user, $event, $apubID, $liveObj);
                     } elseif($user['alertMethod']=='email') {
                         flog( "pushEmailTo(".$user['alertDest'].") for event ".$event."\n");
                         $this->pushEmailTo($user, $event, $liveObj);
@@ -148,7 +149,7 @@ class AlertsModel extends Firestore {
         
     }
 
-    public function pushNoticeTo($user, $event, $liveObj) {
+    public function pushNoticeTo($user, $event, $apubID, $liveObj) {
 		//Prepare notification message
 		$messageTxt = $this->buildAlertMessage(
             $event, 
@@ -160,7 +161,7 @@ class AlertsModel extends Firestore {
             $liveObj->liveLastLon,
             $liveObj->liveLocation->description[0]
         );
-        $report = $this->messageController->sendOneNotification($user, $messageTxt, $liveObj);
+        $report = $this->messageController->sendOneNotification($user, $messageTxt, $apubID, $liveObj);
 
 		if($report->isSuccess()) {
 			flog( "Webpush success.\n");
@@ -231,7 +232,7 @@ class AlertsModel extends Firestore {
         $txt  = str_replace('Vessel', '', $vesselType);
         $txt .= " Vessel ".$vesselName." ".$evtDesc;
         $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
-        $txt .= ".".date($str, ($ts+$offset)).$loc;
+        $txt .= ". ".date($str, ($ts+$offset)).$loc;
         return $txt;
     }
 

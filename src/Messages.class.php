@@ -112,7 +112,7 @@ class Messages {
     }
   }
 
-  function sendOneNotification($userArr, $messageTxt, $liveObj ) {  
+  function sendOneNotification($userArr, $messageTxt, $apubID, $liveObj ) {  
     //Prepare subcription from user array. 
     $subscriber = array();
     $subscriber['endpoint']  = $userArr['subscription']['endpoint'];
@@ -123,7 +123,7 @@ class Messages {
     $message = [
 			"title"  => $messageTxt." -CRT",
       "icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
-			"url"   => "https://www.clintonrivertraffic.com/livescan/live"
+			"url"   => "https://www.clintonrivertraffic.com/alerts/waypoint/".$apubID
 		];
 
     //Prepare subscription package  

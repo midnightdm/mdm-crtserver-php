@@ -34,6 +34,15 @@ require_once($path);
 // * * * Constant Definitions * * * 
 putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 
+/* River orientation (Set one or the other in the 3rd position below for your app)
+    A North-South river setting employs lat to calculate upriver/downriver vessel direction.
+    An East-West river setting employs lon to calculate upriver/downriver vessel direction
+*/
+define('NORTH_SOUTH', 0);
+define('EAST_WEST', 1);
+define('RIVER_ORIENTATION_SETTING', NORTH_SOUTH);
+
+
 //Marker Alpha Lat is 3 mi upriver Lock 13
 define('MARKER_ALPHA_LAT', 41.938785);
 

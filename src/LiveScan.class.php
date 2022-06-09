@@ -15,6 +15,7 @@ class LiveScan {
   public $liveLastLat = null;
   public $livePrevLat = null;
   public $liveLastLon = null;
+  public $livePrevLon = null;
   public $liveDirection = 'undetermined';
   public $liveName;
   public $liveVesselID;
@@ -79,6 +80,12 @@ class LiveScan {
 
       $this->liveVesselID = $id;
       $this->liveIsLocal = in_array($id, $this->callBack->localVesselFilter);      
+      //Validate latitude and logitude values
+      if(!$this->validateLatitude($lat) || !$this->validateLongitude($lon)) {
+        unset($this->callBack->liveScan['mmsi'.$id]);
+        flog("\033[41m *  * Constructor stopped for vessel $id because of a bad initial position value: $lat, $lon.  *  * \033[0m\r\n");
+        return;
+      }
       $this->liveInitLat = $lat;
       $this->liveInitLon = $lon;
       $this->liveSpeed = $speed;
@@ -92,6 +99,7 @@ class LiveScan {
       $validated = $this->insertNewRecord();
       //Unset this construction if above failed
       if(!$validated) {
+        flog("\033[41m *  * Constructor stopped for vessel $id because insertNewRecord() failed.  *  * \033[0m\r\n");
         unset($this->callBack->liveScan['mmsi'.$id]);
         return;
       } 
@@ -203,8 +211,25 @@ class LiveScan {
     //liveLastTS changes only on movement, this changes on each transponder data receipt     
     $this->setTimestamp($ts, 'transponderTS');
     $this->livePrevLat = $this->liveLastLat==null ? $this->liveInitLat : $this->liveLastLat;
-    $this->liveLastLat = $lat;
-    $this->liveLastLon = $lon;
+    $this->livePrevLon = $this->liveLastLon==null ? $this->liveInitLon : $this->liveLastLon;
+    //Store new latitude value if valid
+    if($this->validateLatitude($lat)) {
+      $this->liveLastLat = $lat;
+      $latWasUpdated = true;
+    //Otherwise use latitude from previous update that was good
+    } else {
+      $this->liveLastLat = $this->livePrevLat;
+      $latWasUpdated = false;
+    }
+    
+    //Store new longitude if valid (& lat wasn't rejected)
+    if($this->validateLongitude($lon) && $latWasUpdated) {
+      $this->liveLastLon = $lon;
+    //Otherwise use longitude from previous update that was good.
+    } else {
+      $this->liveLastLon = $this->livePrevLon;
+    }
+    
     $this->liveSpeed   = $speed;
     $this->liveCourse  = $course;
     $this->liveSegment = $this->determineSegment($lat);
@@ -278,19 +303,47 @@ class LiveScan {
   }
 
   public function determineDirection() {
-    //Downriver when lat is decreasing
-    if($this->liveLastLat < $this->livePrevLat) {
-      //Deincrement score negative downto to min -3
-      if($this->dirScore>-3) {
-        $this->dirScore--;
-      }      
-      //Upriver when lat is increasing
-    } elseif ($this->liveLastLat > $this->livePrevLat) {
-      //Increment score positive upto max of 3
-      if($this->dirScore<3) {
-        $this->dirScore++;
+    //When monitored river section runs north/south (N Hemisphere)
+    if(RIVER_ORIENTATION_SETTING == NORTH_SOUTH) {
+      //Downriver when lat is decreasing
+      if($this->liveLastLat < $this->livePrevLat) {
+        //Deincrement score negative downto to min -3
+        if($this->dirScore>-3) {
+          $this->dirScore--;
+        }      
+        //Upriver when lat is increasing
+      } elseif ($this->liveLastLat > $this->livePrevLat) {
+        //Increment score positive upto max of 3
+        if($this->dirScore<3) {
+          $this->dirScore++;
+        }
+      }
+
+    //When monitored river section runs east/west (W Hemisphere)
+    } elseif(RIVER_ORIENTATION_SETTING==EAST_WEST) {
+      //Downriver is when lon is decreasing
+      if($this->liveLastLon < $this->livePrevLon) {
+        //Deincrement score negative downto to min -3
+        if($this->dirScore>-3) {
+          $this->dirScore--;
+        }    
+      //Upriver is when lon is increasing
+      } elseif ($this->liveLastLon > $this->livePrevLon) {
+        //Increment score positive upto max of 3
+        if($this->dirScore<3) {
+          $this->dirScore++;
+        }
       }
     }
+    
+
+
+    
+
+    
+
+
+
     //Set direction according to score
     if($this->dirScore > 0) {
       $this->liveDirection = 'upriver';
@@ -544,6 +597,14 @@ class LiveScan {
       return true;
     }
     return false;
+  }
+
+  public function validateLatitude($lat) {
+    preg_match('/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/', $lat);
+  }
+
+  public function validateLongitude($lon) {
+    preg_match('/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/', $lon);
   }
 
 }

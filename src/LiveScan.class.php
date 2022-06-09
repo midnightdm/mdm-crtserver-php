@@ -600,11 +600,21 @@ class LiveScan {
   }
 
   public function validateLatitude($lat) {
-    preg_match('/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/', $lat);
+    //preg_match('/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/', $lat);
+    $latd = doubleval($lat);
+    if($latd < -90 || $latd > 90) {
+      return false;
+    }
+    return true;
   }
 
   public function validateLongitude($lon) {
-    preg_match('/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/', $lon);
+    //preg_match('/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/', $lon);
+    $lond = doubleval($lon);
+    if($lond < -180 || $lond > 180) {
+      return false;
+    }
+    return true;
   }
 
 }

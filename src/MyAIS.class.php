@@ -71,7 +71,7 @@ class MyAIS extends AIS {
       *                                                   */
     
     //flog( "ro: :".var_dump($ro)); // dump results here for demo purpose
-    //Put ro data into LivePlot object
+    //Put ro data into LiveScan object
     if(is_object($ro)) {
       $id  = $ro->mmsi;
       $key  = 'mmsi'.$id;

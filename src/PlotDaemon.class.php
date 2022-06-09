@@ -48,7 +48,7 @@ class PlotDaemon {
 
       $config = CONFIG_ARR;
 
-      $this->liveScan = array();
+      $this->liveScan = array(); //LiveScan objects - the heart of this app - get stored here
       $this->alertsAll = array();
       $this->alertsPassenger = array();
       $this->rowsBefore = 0;
@@ -126,15 +126,17 @@ class PlotDaemon {
       flog( "Socket bind OK \n");
       
       while($this->run==true) {
-          //** This is Main Loop this server for the UDP version ** 
+          //** This is Main Loop of this server for the UDP version ** 
           //Do some communication, this loop can handle multiple clients
           flog("Waiting for data ... \n");
           //Receive some data
           $r = socket_recvfrom($sock, $buf, 512, 0, $remote_ip, $remote_port);
-          flog( "$remote_ip : $remote_port -- " . $buf);
+          
           //Send back the data to the decoder
           $ais->process_ais_buf($buf);
-
+          //And forward it to AIS Ship Sharing site
+          $sent = socket_sendto($sock, $data, strlen($data), 0, '109.200.19.151', 4001);
+          flog( "$remote_ip : $remote_port -- " . $buf ." -- \nAlso sent $sent bytes to ais.shipfinder.co.uk as $data \n");
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php)
       }

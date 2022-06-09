@@ -136,7 +136,7 @@ class PlotDaemon {
           $ais->process_ais_buf($buf);
           //And forward it to AIS Ship Sharing site
           //$sent = socket_sendto($sock, $buf, strlen($buf), 0, '109.200.19.151', 4001);
-          flog( "$remote_ip : $remote_port --  $buf -- \n");
+          flog( "$remote_ip:$remote_port -- $buf\n");
           /*
           // \nAlso sent $sent bytes to ais.shipfinder.co.uk as $data \n");
           //Since above process is a loop, you can't add any more below. 

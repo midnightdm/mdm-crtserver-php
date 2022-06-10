@@ -77,23 +77,4 @@ class LiveScanModel extends Firestore {
     }
   }
 
-  //Depricated
-  /*
-  public function cleanupDeletes() {
-    //Query all documents not today's "day"
-    $day = gmdate('w') -1;
-    if($day==-1) { $day = 6; }
-    $collection = $this->db->collection('Deletes');
-    $query = $collection->where('day', '!=', $day);
-    $allOtherDays = $query->documents();
-    $i = 0;    
-    foreach($allOtherDays as $document) {
-      if($document->exists()) {
-        $collection->document( $document->id() )->delete();
-        $i++;
-      }
-    }
-    flog("LiveScanModel::cleanupDeletes() deleted $i olds records\n");  
-  }
-  */
 }

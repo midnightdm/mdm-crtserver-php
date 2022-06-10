@@ -112,22 +112,22 @@ class Messages {
     }
   }
 
-  function sendOneNotification($userArr, $messageTxt, $apubID, $liveObj ) {  
+  function sendOneNotification($userArr, $messageTxt, $apubID, $event ) {  
     //Prepare subcription from user array. 
     $subscriber = array();
     $subscriber['endpoint']  = $userArr['subscription']['endpoint'];
     $subscriber['auth']      = $userArr['subscription']['auth'];
     $subscriber['p256dh']    = $userArr['subscription']['p256dh'];
     
+    $url = $this->getUrlBasedOn($event, $apubID);
+
     //Package message
     $message = [
 			"title"  => $messageTxt." -CRT",
       "icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
-			"url"   => "https://www.clintonrivertraffic.com/live"
+			"url"   => $url
 		];
-    /*  Rework above to conditionally provide a waypoint link for a,b,c,d events 
-    "url"   => "https://www.clintonrivertraffic.com/alerts/waypoint/".$apubID */
-
+ 
     //Prepare subscription package  
     $data = [
       "contentEncoding" => "aesgcm",
@@ -225,6 +225,16 @@ function createSubscription($data) {
 function createWebPush($auth) {
   //2nd param sets options for TTL, urgency, topic, batchSize
   return new WebPush($auth, [86400, null, null, 1000]);
+}
+
+function getUrlBasedOn($event, $apubID) {
+  $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
+  if(in_array($event, $filter)) {
+    $url = 'https://www.clintonrivertraffic.com/alerts/waypoint/'.$apubID;      
+  } else {
+    $url = 'https://www.clintonrivertraffic.com/live';
+  }
+  return $url;
 }
 
 ?>

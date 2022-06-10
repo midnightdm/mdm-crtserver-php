@@ -132,6 +132,7 @@ class PlotDaemon {
       }
       flog( "Socket bind OK \n");
       // Bind the destination address
+      /*
       if(!socket_bind($socketInbound, '178.162.215.175', 31995)) {
         $errorcode = socket_last_error();
         $errormsg = socket_strerror($errorcode);
@@ -140,7 +141,7 @@ class PlotDaemon {
       } else {
         $outSocketIsBound = true;
       }
-      
+      */
       while($this->run==true) {
           //** This is Main Loop of this server for the UDP version ** 
           //Do some communication, this loop can handle multiple clients
@@ -151,14 +152,14 @@ class PlotDaemon {
           //Send back the data to the decoder
           $ais->process_ais_buf($buf);
           //And if outbound socket connected, forward it to AIS Ship Sharing site
-          
+          /*
           if($outSocketIsBound) {
             $sent = socket_sendto($socketInbound, $buf, strlen($buf), 0, '178.162.215.175', 31995);
           } else {
             $sent = 0;
           }
-         
-          flog( "$local_ip:$local_port -- $buf -- $sent bytes outbound.\n");
+          */
+          flog( "$local_ip:$local_port -- $buf\n");
           /*
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 

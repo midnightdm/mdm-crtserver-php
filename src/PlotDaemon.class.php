@@ -151,6 +151,7 @@ class PlotDaemon {
           //Send back the data to the decoder
           $ais->process_ais_buf($buf);
           //And if outbound socket connected, forward it to AIS Ship Sharing site
+          $sent ="";
           if($outSocketIsBound) {
             $sent = socket_sendto($socketOutbound, $buf, strlen($buf), 0, '178.162.215.175', 31995);
           }

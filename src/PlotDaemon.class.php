@@ -152,8 +152,8 @@ class PlotDaemon {
           $ais->process_ais_buf($buf);
           //And if outbound socket connected, forward it to AIS Ship Sharing site
           
-          if($outSocketIsBound) {
-            $sent = socket_sendto($socketOutbound, $buf, strlen($buf), 0, '178.162.215.175', 31995);
+          if(true || $outSocketIsBound) {
+            $sent = socket_sendto($socketInbound, $buf, strlen($buf), 0, '178.162.215.175', 31995);
           } else {
             $sent = 0;
           }

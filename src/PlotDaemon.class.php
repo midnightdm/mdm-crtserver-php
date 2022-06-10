@@ -144,7 +144,7 @@ class PlotDaemon {
           $sent = socket_sendto($sock, $msg, $len, 0, '178.162.215.175', 31995);
           socket_close($sock);
 
-          flog( "$local_ip:$local_port -- $buf sent=$sent\n");
+          flog( "$local_ip:$local_port -- $buf \nAlso $sent bytes sent to myshiptracking.com\n");
           /*
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 

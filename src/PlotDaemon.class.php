@@ -105,12 +105,7 @@ class PlotDaemon {
           die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
       }
       flog( "Socket created \n");
-      
-      // if(!($socketOutbound = socket_create(AF_INET, SOCK_DGRAM, 0))) {
-      //   $errorcode = socket_last_error();
-      //   $errormsg = socket_strerror($errorcode);
-      //   flog("Couldn't create outbound socket: [$errorcode] $errormsg \n");
-      // }
+
 
       //A run once message for Brian at start up to enable companion app
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
@@ -131,17 +126,7 @@ class PlotDaemon {
           die("Could not bind inbound socket : [$errorcode] $errormsg \n");
       }
       flog( "Socket bind OK \n");
-      // Bind the destination address
-      /*
-      if(!socket_bind($socketInbound, '178.162.215.175', 31995)) {
-        $errorcode = socket_last_error();
-        $errormsg = socket_strerror($errorcode);
-        flog("Could not bind outbound socket : [$errorcode] $errormsg \n");
-        $outSocketIsBound = false;
-      } else {
-        $outSocketIsBound = true;
-      }
-      */
+
       while($this->run==true) {
           //** This is Main Loop of this server for the UDP version ** 
           //Do some communication, this loop can handle multiple clients
@@ -151,15 +136,15 @@ class PlotDaemon {
           
           //Send back the data to the decoder
           $ais->process_ais_buf($buf);
-          //And if outbound socket connected, forward it to AIS Ship Sharing site
-          /*
-          if($outSocketIsBound) {
-            $sent = socket_sendto($socketInbound, $buf, strlen($buf), 0, '178.162.215.175', 31995);
-          } else {
-            $sent = 0;
-          }
-          */
-          flog( "$local_ip:$local_port -- $buf\n");
+
+          //Seperate link
+          $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+          $msg = $buf;
+          $len = strlen($msg);
+          $sent = socket_sendto($sock, $msg, $len, 0, '178.162.215.175', 31995);
+          socket_close($sock);
+
+          flog( "$local_ip:$local_port -- $buf sent=$sent\n");
           /*
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 

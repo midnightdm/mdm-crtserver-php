@@ -98,13 +98,20 @@ class PlotDaemon {
 
       //Reduce errors
       error_reporting(~E_WARNING);
-      //Create a UDP socket
-      if(!($sock = socket_create(AF_INET, SOCK_DGRAM, 0))) {
+      //Create a UDP sockets
+      if(!($socketInbound = socket_create(AF_INET, SOCK_DGRAM, 0))) {
           $errorcode = socket_last_error();
           $errormsg = socket_strerror($errorcode);
-          die("Couldn't create socket: [$errorcode] $errormsg \n");
+          die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
       }
       flog( "Socket created \n");
+      
+      if(!($socketOutbound = socket_create(AF_INET, SOCK_DGRAM, 0))) {
+        $errorcode = socket_last_error();
+        $errormsg = socket_strerror($errorcode);
+        flog("Couldn't create outbound socket: [$errorcode] $errormsg \n");
+      }
+
       //A run once message for Brian at start up to enable companion app
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
       flog( "\033[41m *                       A T T E N T I O N,                     * \033[0m\r\n");
@@ -118,32 +125,44 @@ class PlotDaemon {
       flog( "\033[41m *                                                              * \033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
       // Bind the source address
-      if( !socket_bind($sock, $this->socket_address, $this->socket_port) ) {
+      if( !socket_bind($socketInbound, $this->socket_address, $this->socket_port) ) {
           $errorcode = socket_last_error();
           $errormsg = socket_strerror($errorcode);
-          die("Could not bind socket : [$errorcode] $errormsg \n");
+          die("Could not bind inbound socket : [$errorcode] $errormsg \n");
       }
       flog( "Socket bind OK \n");
+      // Bind the destination address
+      if(!socket_bind($socketOutbound, '178.162.215.175', 31995)) {
+        $errorcode = socket_last_error();
+        $errormsg = socket_strerror($errorcode);
+        flog("Could not bind outbound socket : [$errorcode] $errormsg \n");
+        $outSocketIsBound = false;
+      } else {
+        $outSocketIsBound = true;
+      }
       
       while($this->run==true) {
           //** This is Main Loop of this server for the UDP version ** 
           //Do some communication, this loop can handle multiple clients
           flog("Waiting for data ... \n");
           //Receive some data
-          $r = socket_recvfrom($sock, $buf, 512, 0, $remote_ip, $remote_port);
+          $r = socket_recvfrom($socketInbound, $buf, 512, 0, $local_ip, $local_port);
           
           //Send back the data to the decoder
           $ais->process_ais_buf($buf);
-          //And forward it to AIS Ship Sharing site
+          //And if outbound socket connected, forward it to AIS Ship Sharing site
+          if($outSocketIsBound) {
+            $sent = socket_sendto($socketOutbound, $buf, strlen($buf), 0, '178.162.215.175', 31995);
+          }
           //$sent = socket_sendto($sock, $buf, strlen($buf), 0, '178.162.215.175', 31995);
-          flog( "$remote_ip:$remote_port -- $buf\n");
+          flog( "$local_ip:$local_port -- $buf\n $sent bytes outbound.");
           /*
-          // \n\nAlso sent $sent bytes to myshiptracking.com\n");
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 
           */
       }
-      socket_close($sock);
+      socket_close($socketInbound);
+      socket_close($socketOutbound);
   }
 
 

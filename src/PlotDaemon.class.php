@@ -151,7 +151,6 @@ class PlotDaemon {
           */
       }
       socket_close($socketInbound);
-      socket_close($socketOutbound);
   }
 
 

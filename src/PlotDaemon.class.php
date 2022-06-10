@@ -106,11 +106,11 @@ class PlotDaemon {
       }
       flog( "Socket created \n");
       
-      if(!($socketOutbound = socket_create(AF_INET, SOCK_DGRAM, 0))) {
-        $errorcode = socket_last_error();
-        $errormsg = socket_strerror($errorcode);
-        flog("Couldn't create outbound socket: [$errorcode] $errormsg \n");
-      }
+      // if(!($socketOutbound = socket_create(AF_INET, SOCK_DGRAM, 0))) {
+      //   $errorcode = socket_last_error();
+      //   $errormsg = socket_strerror($errorcode);
+      //   flog("Couldn't create outbound socket: [$errorcode] $errormsg \n");
+      // }
 
       //A run once message for Brian at start up to enable companion app
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
@@ -132,7 +132,7 @@ class PlotDaemon {
       }
       flog( "Socket bind OK \n");
       // Bind the destination address
-      if(!socket_bind($socketOutbound, '178.162.215.175', 31995)) {
+      if(!socket_bind($socketInbound, '178.162.215.175', 31995)) {
         $errorcode = socket_last_error();
         $errormsg = socket_strerror($errorcode);
         flog("Could not bind outbound socket : [$errorcode] $errormsg \n");
@@ -158,7 +158,7 @@ class PlotDaemon {
             $sent = 0;
           }
          
-          flog( "$local_ip:$local_port -- $buf\n $sent bytes outbound.");
+          flog( "$local_ip:$local_port -- $buf -- $sent bytes outbound.\n");
           /*
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 

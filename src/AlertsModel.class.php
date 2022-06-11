@@ -161,7 +161,8 @@ class AlertsModel extends Firestore {
             $liveObj->liveLastLon,
             $liveObj->liveLocation->description[0]
         );
-        $report = $this->messageController->sendOneNotification($user, $messageTxt, $apubID, $event);
+    flog("Tracer: pushNoticeTo($user, $event, $apubID, ".$liveObj->liveName." \nMessageTxt: ".$messageTxt);
+    $report = $this->messageController->sendOneNotification($user, $messageTxt, $apubID, $event);
 
 		if($report->isSuccess()) {
 			flog( "Webpush success.\n");

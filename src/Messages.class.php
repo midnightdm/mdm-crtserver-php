@@ -113,6 +113,7 @@ class Messages {
   }
 
   function sendOneNotification($userArr, $messageTxt, $apubID, $event ) {  
+    flog("Tracer: sendOneNotification()");
     //Prepare subcription from user array. 
     $subscriber = array();
     $subscriber['endpoint']  = $userArr['subscription']['endpoint'];

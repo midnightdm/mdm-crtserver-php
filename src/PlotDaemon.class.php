@@ -132,7 +132,7 @@ class PlotDaemon {
           //Do some communication, this loop can handle multiple clients
           flog("Waiting for data ... \n");
           //Receive some data
-          $r = socket_recvfrom($aisMonSock, $buf, 64, 0, $local_ip, $local_port);
+          $r = socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
           $msg = $buf;
           $len = strlen($msg);
 

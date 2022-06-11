@@ -151,7 +151,14 @@ class PlotDaemon {
           $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
           socket_close($vfSock);
 
-          flog( "$local_ip:$local_port -- $buf Also sent $sentMst bytes to myshiptracking.com & $sentVf bytes to vesselfinder.com\n");
+          //Forward NMEA sentence to marinetraffic.comm
+          $mtSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+          //$msg = $buf;
+          //$len = strlen($msg);
+          $sentMt = socket_sendto($mtSock, $msg, $len, 0, '5.9.207.224', 6051);
+          socket_close($mtSock);
+
+          flog( "$local_ip:$local_port -- $buf Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
           /*
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 

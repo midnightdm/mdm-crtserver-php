@@ -151,7 +151,7 @@ class PlotDaemon {
           $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
           socket_close($vfSock);
 
-          flog( "$local_ip:$local_port -- $buf Also sent $sentMsg bytes to myshiptracking.com & $sentVf bytes to vesselfinder.com\n");
+          flog( "$local_ip:$local_port -- $buf Also sent $sentMst bytes to myshiptracking.com & $sentVf bytes to vesselfinder.com\n");
           /*
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 

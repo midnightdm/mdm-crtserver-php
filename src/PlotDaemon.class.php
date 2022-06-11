@@ -99,7 +99,7 @@ class PlotDaemon {
       //Reduce errors
       error_reporting(~E_WARNING);
       //Create a UDP sockets
-      if(!($socketInbound = socket_create(AF_INET, SOCK_DGRAM, 0))) {
+      if(!($aisMonSock = socket_create(AF_INET, SOCK_DGRAM, 0))) {
           $errorcode = socket_last_error();
           $errormsg = socket_strerror($errorcode);
           die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
@@ -120,7 +120,7 @@ class PlotDaemon {
       flog( "\033[41m *                                                              * \033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
       // Bind the source address
-      if( !socket_bind($socketInbound, $this->socket_address, $this->socket_port) ) {
+      if( !socket_bind($aisMonSock, $this->socket_address, $this->socket_port) ) {
           $errorcode = socket_last_error();
           $errormsg = socket_strerror($errorcode);
           die("Could not bind inbound socket : [$errorcode] $errormsg \n");
@@ -132,39 +132,47 @@ class PlotDaemon {
           //Do some communication, this loop can handle multiple clients
           flog("Waiting for data ... \n");
           //Receive some data
-          $r = socket_recvfrom($socketInbound, $buf, 512, 0, $local_ip, $local_port);
-          
-          //Send back the data to the decoder
+          $r = socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
+          $msg = $buf;
+          $len = strlen($msg);
+
+          //Send data to AIS the decoder
           $ais->process_ais_buf($buf);
 
           //Forward NMEA sentence to myshiptracking.com
           $mstSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-          $msg = $buf;
-          $len = strlen($msg);
-          $sentMst = socket_sendto($mstSock, $msg, $len, 0, '178.162.215.175', 31995);
-          socket_close($mstSock);
-
+          if($mstSock) {
+            $sentMst = socket_sendto($mstSock, $msg, $len, 0, '178.162.215.175', 31995);
+            socket_close($mstSock);
+          } else {
+            $sndMst = 0;
+          }
+          
           //Forward NMEA sentence to vesselfinder.com
           $vfSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-          //$msg = $buf;
-          //$len = strlen($msg);
-          $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
-          socket_close($vfSock);
+          if($vfSock) {
+            $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
+            socket_close($vfSock);
+          } else {
+            $sendVf = 0;
+          }
 
           //Forward NMEA sentence to marinetraffic.comm
           $mtSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-          //$msg = $buf;
-          //$len = strlen($msg);
-          $sentMt = socket_sendto($mtSock, $msg, $len, 0, '5.9.207.224', 6051);
-          socket_close($mtSock);
-
-          flog( "$local_ip:$local_port -- $buf Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
+          if($mtSock) {
+            $sentMt = socket_sendto($mtSock, $msg, $len, 0, '5.9.207.224', 6051);
+            socket_close($mtSock);
+          } else {
+            $sentMt = 0;
+          }
+          
+          flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
           /*
           //Since above process is a loop, you can't add any more below. 
           //Put further repeating instructions in THAT loop (MyAIS.class.php) 
           */
       }
-      socket_close($socketInbound);
+      socket_close($aisMonSock);
   }
 
 

@@ -130,7 +130,7 @@ class PlotDaemon {
       while($this->run==true) {
           //** This is Main Loop of this server for the UDP version ** 
           //Do some communication, this loop can handle multiple clients
-          flog("Waiting for data ... \n");
+          flog("Waiting for data on $this->socket_address:$this->socket_port ... \n");
           //Receive some data
           $r = socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
           $msg = $buf;

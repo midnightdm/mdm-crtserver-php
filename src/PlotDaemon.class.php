@@ -136,6 +136,10 @@ class PlotDaemon {
           $msg = $buf;
           $len = strlen($msg);
 
+          //Look for other UDP traffic
+          if(!str_contains($buf, '!AIVDM')) {
+            flog("\033[44m".$buf."\033[0m\r\n");
+          }
           //Send data to AIS the decoder
           $ais->process_ais_buf($buf);
 

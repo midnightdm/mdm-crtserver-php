@@ -34,13 +34,15 @@ require_once($path);
 // * * * Constant Definitions * * * 
 putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
 
-/* River orientation (Set one or the other in the 3rd position below for your app)
-    A North-South river setting employs lat to calculate upriver/downriver vessel direction.
-    An East-West river setting employs lon to calculate upriver/downriver vessel direction
+/* River orientation (Set one that is prevailing for your waypoints in the 5th position below for your app)
+    A North-South or South-North river setting employs lat to calculate upriver/downriver vessel direction.
+    An East-West or West-East river setting employs lon to calculate upriver/downriver vessel direction
 */
-define('NORTH_SOUTH', 0);
-define('EAST_WEST', 1);
-define('RIVER_ORIENTATION_SETTING', NORTH_SOUTH);
+define('NORTH_SOUTH', 0); //North is upriver, lat increases
+define('EAST_WEST',   1); //East is upriver, lon increases
+define('SOUTH_NORTH', 2); //South is upriver, lat decreases
+define('WEST_EAST',   3); //West is upriver, lon decreases
+define('RIVER_ORIENTATION_SETTING', NORTH_SOUTH); //Set Yours Here
 
 
 //Marker Alpha Lat is 3 mi upriver Lock 13

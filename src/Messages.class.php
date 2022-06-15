@@ -119,9 +119,9 @@ class Messages {
     $subscriber['endpoint']  = $userArr['subscription']['endpoint'];
     $subscriber['auth']      = $userArr['subscription']['auth'];
     $subscriber['p256dh']    = $userArr['subscription']['p256dh'];
-    
+    flog("getUrlBasedOn - ");
     $url = $this->getUrlBasedOn($event, $apubID);
-    flog(" getting url: ".$url." - ");
+    flog(" url: ".$url." - ");
     //Package message
     $message = [
 			"title"  => $messageTxt." -CRT",
@@ -217,7 +217,21 @@ class Messages {
     return $webPush;
     //return new WebPush($auth);
   }
+
+  function getUrlBasedOn($event, $apubID) {
+    $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
+    if(in_array($event, $filter)) {
+      $url = 'https://www.clintonrivertraffic.com/alerts/waypoint/'.$apubID;      
+    } else {
+      $url = 'https://www.clintonrivertraffic.com/live';
+    }
+    return $url;
+  }
+
+  
 }  
+
+// End of Class
 
 
 function createSubscription($data) {
@@ -229,14 +243,6 @@ function createWebPush($auth) {
   return new WebPush($auth, [86400, null, null, 1000]);
 }
 
-function getUrlBasedOn($event, $apubID) {
-  $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
-  if(in_array($event, $filter)) {
-    $url = 'https://www.clintonrivertraffic.com/alerts/waypoint/'.$apubID;      
-  } else {
-    $url = 'https://www.clintonrivertraffic.com/live';
-  }
-  return $url;
-}
+
 
 ?>

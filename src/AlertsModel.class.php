@@ -82,8 +82,7 @@ class AlertsModel extends Firestore {
         $userID = $document->id();
         
         if($user['subscription']['is_enabled']) {
-          if($user['alertMethod']=='notification') {  
-              flog( "pushTestNoticeTo(".$user['subscription']['auth'].")\n");         
+          if($user['alertMethod']=='notification') {         
               $this->pushTestNoticeTo($user);
           } elseif($user['alertMethod']=='email') {
               flog( "pushTestEmailTo(".$user['alertDest']."\n");

@@ -93,10 +93,11 @@ class AlertsModel extends Firestore {
           }
           
         }  
+        $this->resetUserNotificationTestRequest($userID);
       } else {
           flog( "Document ". $document->id(). " does not exist!\n");
       }
-      $this->resetUserNotificaitonTestRequest($userID);
+      
     }
   }
 

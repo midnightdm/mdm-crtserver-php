@@ -55,34 +55,6 @@ class Messages {
       }
     } while($tryAgain);
   }
-
-  function sendSMSes($messages) { //$messages needs to be assoc. array
-    $msgs = [];
-    foreach($messages as $m)  {   
-      $msg = new \ClickSend\Model\SmsMessage();
-      $msg->setBody($m['text']); 
-      $msg->setTo('+'.$m['phone']);
-      $msg->setSource("sdk");
-      $msgs[] = $msg;
-    }
-
-    // \ClickSend\Model\SmsMessageCollection | SmsMessageCollection model
-    $sms_messages = new \ClickSend\Model\SmsMessageCollection(); 
-    $sms_messages->setMessages($msgs);
-    $try = 0;
-    
-    do {
-      try {
-          $tryAgain = false;
-          $result = $this->smsApiInstance->smsSendPost($sms_messages);
-          return $result;
-      } catch (Exception $e) {
-          $tryAgain = true;      
-          echo 'Exception when calling SMSApi->smsSendPost: ', $e->getMessage(), PHP_EOL;
-      }
-    } while($tryAgain);
-    
-  }
   
   function sendOneEmail($address, $subject, $message) {
     $this->emailApiInstance->Subject = $subject;
@@ -113,22 +85,18 @@ class Messages {
   }
 
   function sendOneNotification($userArr, $messageTxt, $apubID, $event ) {  
-    flog("Tracer: sendOneNotification() - ");
     //Prepare subcription from user array. 
     $subscriber = array();
     $subscriber['endpoint']  = $userArr['subscription']['endpoint'];
     $subscriber['auth']      = $userArr['subscription']['auth'];
     $subscriber['p256dh']    = $userArr['subscription']['p256dh'];
-    flog("getUrlBasedOn - ");
     $url = $this->getUrlBasedOn($event, $apubID);
-    flog(" url: ".$url." - ");
     //Package message
     $message = [
 			"title"  => $messageTxt." -CRT",
       "icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
 			"url"   => $url
 		];
-    flog("package message - preparing subscription package\n");
     //Prepare subscription package  
     $data = [
       "contentEncoding" => "aesgcm",
@@ -139,42 +107,10 @@ class Messages {
       ]
     ];
     $subscription = createSubscription($data);
-
-		flog(" Prepared Message Text: ".json_encode($message)."\n");
+		//flog(" Prepared Message Text: ".json_encode($message)."\n");
     $report = $this->webPushInstance
       ->sendOneNotification($subscription, json_encode($message));
     return $report;
-  }
-
-  function sendNotifications($messages) { //$messages needs to be assoc. array
-    foreach($messages as $m) {
-      $result = $this->pusherApiInstance->publishToInterests(
-        array($m['to']),
-        array(
-          "fcm" => array(
-            "notification" => array(
-              "title" => $m['subject'],
-              "body"  => $m['text']
-            )
-          ),
-          "apns" => array("aps" => array(
-            "alert" => array(
-              "title" => $m['subject'],
-              "body" => $m['text']
-            )
-          )),
-          "web" => array(
-            "notification" => array(
-              "title" => $m['subject'],
-              "body" => $m['text']
-            )
-          )
-        )
-      );
-      return $result;
-      //For testing only
-      //echo "pusher response= ". var_dump($result);
-    }
   }
 
   public function initEmail() {
@@ -229,9 +165,7 @@ class Messages {
   }
 
   
-}  
-
-// End of Class
+}  // End of Class
 
 
 function createSubscription($data) {
@@ -242,7 +176,4 @@ function createWebPush($auth) {
   //2nd param sets options for TTL, urgency, topic, batchSize
   return new WebPush($auth, [86400, null, null, 1000]);
 }
-
-
-
 ?>

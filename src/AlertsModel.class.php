@@ -92,12 +92,12 @@ class AlertsModel extends Firestore {
               flog( "pushTestSmsTo(".$user['alertDest']."\n");
               $this->pushTestSmsTo($user);
           }
-          $this->resetUserNotificaitonTestRequest($userID);
+          
         }  
       } else {
           flog( "Document ". $document->id(). " does not exist!\n");
       }
-
+      $this->resetUserNotificaitonTestRequest($userID);
     }
   }
 

@@ -90,7 +90,7 @@ class AlertsModel extends Firestore {
               $this->pushTestEmailTo($user, $event, $liveObj);
           } elseif($user['alertMethod']=='sms') {
               flog( "pushTestSmsTo(".$user['alertDest']."\n");
-              $this->pushTestSmsTo($user, $event, $liveObj);
+              $this->pushTestSmsTo($user);
           }
           $this->resetUserNotificaitonTestRequest($userID);
         }  

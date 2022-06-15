@@ -223,7 +223,7 @@ class AlertsModel extends Firestore {
   public function pushTestNoticeTo($user) {
     //Prepare notification message
     $messageTxt = "This is a test message requested by the user.";
-    flog("Tracer: pushTestNoticeTo(". $user['subscription']['auth']. "\n");
+    flog("pushTestNoticeTo(". $user['subscription']['auth']. "\n");
     $report = $this->messageController->sendOneNotification($user, $messageTxt, 0, "test");
 
     if($report->isSuccess()) {

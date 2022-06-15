@@ -113,7 +113,7 @@ class Messages {
   }
 
   function sendOneNotification($userArr, $messageTxt, $apubID, $event ) {  
-    flog("Tracer: sendOneNotification()");
+    flog("Tracer: sendOneNotification() - ");
     //Prepare subcription from user array. 
     $subscriber = array();
     $subscriber['endpoint']  = $userArr['subscription']['endpoint'];
@@ -121,14 +121,14 @@ class Messages {
     $subscriber['p256dh']    = $userArr['subscription']['p256dh'];
     
     $url = $this->getUrlBasedOn($event, $apubID);
-
+    flog(" getting url: ".$url." - ");
     //Package message
     $message = [
 			"title"  => $messageTxt." -CRT",
       "icon"  => "https://www.clintonrivertraffic.com/images/favicon.png",
 			"url"   => $url
 		];
- 
+    flog("package message - preparing subscription package\n");
     //Prepare subscription package  
     $data = [
       "contentEncoding" => "aesgcm",
@@ -139,7 +139,8 @@ class Messages {
       ]
     ];
     $subscription = createSubscription($data);
-		//echo "Prepared Message Text: ".json_encode($message)."\n";
+
+		flog(" Prepared Message Text: ".json_encode($message)."\n");
     $report = $this->webPushInstance
       ->sendOneNotification($subscription, json_encode($message));
     return $report;

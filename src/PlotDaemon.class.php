@@ -253,6 +253,9 @@ class PlotDaemon {
                 sleep(3);
                 $this->VesselsModel->resetAlertTest();
               }
+              //Check DB for user request to sendTestNotification
+              $this->AlertsModel->testForUserNotificationTestRequest(); 
+
               //Check DB for admin command to stop daemon & run updates
               if($this->LiveScanModel->testExit()==true) {
                   flog( "Stopping plotserver at request of database.\n\n");

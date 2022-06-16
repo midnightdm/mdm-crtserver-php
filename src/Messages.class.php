@@ -106,10 +106,12 @@ class Messages {
         "p256dh" => $subscriber['p256dh']
       ]
     ];
+    $cleanedMsg = stripslashes(json_encode($message));
     $subscription = createSubscription($data);
-		//flog(" Prepared Message Text: ".json_encode($message)."\n");
+		flog(" Prepared Message Text: ".$cleanedMsg);
+
     $report = $this->webPushInstance
-      ->sendOneNotification($subscription, json_encode($message));
+      ->sendOneNotification($subscription, $cleanedMsg);
     return $report;
   }
 

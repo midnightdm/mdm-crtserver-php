@@ -31,6 +31,16 @@ class LiveScan {
   public $liveMarkerCharlieTS = null;
   public $liveMarkerDeltaWasReached = FALSE;
   public $liveMarkerDeltaTS = null;
+  //Added 4 more waypoints for QC site
+  public $liveMarkerEchoWasReached = FALSE;
+  public $liveMarkerEchoTS = null;
+  public $liveMarkerFoxtrotWasReached = FALSE;
+  public $liveMarkerFoxtrotTS = null;
+  public $liveMarkerGolfWasReached = FALSE;
+  public $liveMarkerGolfTS = null;
+  public $liveMarkerHotelWasReached = FALSE;
+  public $liveMarkerHotelTS = null;
+
   public $liveCallSign;
   public $isReloaded;
   public $triggerQueued;
@@ -272,6 +282,7 @@ class LiveScan {
     $data['liveSegment'] = $this->liveSegment;
     $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
     $data['type']       = $this->liveVessel->vesselType;
+    //Clinton Waypoints
     $data['liveMarkerAlphaWasReached'] = $this->liveMarkerAlphaWasReached;
     $data['liveMarkerAlphaTS'] = $this->liveMarkerAlphaTS;
     $data['liveMarkerBravoWasReached'] = $this->liveMarkerBravoWasReached;
@@ -280,6 +291,15 @@ class LiveScan {
     $data['liveMarkerCharlieTS'] = $this->liveMarkerCharlieTS;
     $data['liveMarkerDeltaWasReached'] = $this->liveMarkerDeltaWasReached;
     $data['liveMarkerDeltaTS'] = $this->liveMarkerDeltaTS;
+    //QC Waypoints
+    $data['liveMarkerEchoWasReached'] = $this->liveMarkerEchoWasReached;
+    $data['liveMarkerEchoTS'] = $this->liveMarkerEchoTS;
+    $data['liveMarkerGolfWasReached'] = $this->liveMarkerGolfWasReached;
+    $data['liveMarkerGolfTS'] = $this->liveMarkerGolfTS;
+    $data['liveMarkerFoxtrotWasReached'] = $this->liveMarkerFoxtrotWasReached;
+    $data['liveMarkerFoxtrotTS'] = $this->liveMarkerFoxtrotTS;
+    $data['liveMarkerHotelWasReached'] = $this->liveMarkerHotelWasReached;
+    $data['liveMarkerHotelTS'] = $this->liveMarkerHotelTS;
     $data['livePassageWasSaved'] = $this->livePassageWasSaved;
 
     $this->callBack->LiveScanModel->updateLiveScan($data);
@@ -352,6 +372,11 @@ class LiveScan {
     } else {
       $this->liveDirection = 'undetermined';
     }
+  }
+
+  public function testMarkerPassage() {
+    //Function to replace checkMarkerPassage()
+    
   }
 
   public function checkMarkerPassage() {

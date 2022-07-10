@@ -273,6 +273,14 @@ class AlertsModel extends Firestore {
         $status = "charlie";
     } elseif(str_starts_with($event, 'delta'   )) {
         $status = "delta";
+    } elseif(str_starts_with($event, 'echo'   )) {
+        $status = "echo";
+    } elseif(str_starts_with($event, 'foxtrot'   )) {
+        $status = "foxtrot";    
+    } elseif(str_starts_with($event, 'golf'   )) {
+        $status = "golf";    
+    } elseif(str_starts_with($event, 'hotel'   )) {
+        $status = "hotel";
     } elseif(str_starts_with($event, 'albany'  )) {
         $status = "albany";
     } elseif(str_starts_with($event, 'camanche')) {
@@ -294,6 +302,10 @@ class AlertsModel extends Firestore {
                         $evtDesc .= "Lock 13 "; break;
         case "charlie" : $evtDesc = "passed the Clinton RR drawbridge ";  break;
         case "delta" : $evtDesc = "crossed 3 mi S of drawbridge ";  break;
+        case "echo" : $evtDesc = "passed the I-80 bridge, LeClaire ";  break;
+        case "foxtrot" : $evtDesc = "is at Lock 14 ";  break;
+        case "golf" : $evtDesc = "is at Lock 15 ";  break;
+        case "hotel" : $evtDesc = "crossed the I-280 bridge ";  break;
         case "detect" : $evtDesc = "has been detected "; break;
         case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
         case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
@@ -319,6 +331,14 @@ class AlertsModel extends Firestore {
         $status = "charlie";
     } elseif(str_starts_with($event, 'delta'   )) {
         $status = "delta";
+    } elseif(str_starts_with($event, 'echo'   )) {
+        $status = "echo";
+    } elseif(str_starts_with($event, 'foxtrot' )) {
+        $status = "foxtrot";    
+    } elseif(str_starts_with($event, 'golf'   )) {
+        $status = "golf";    
+    } elseif(str_starts_with($event, 'hotel'   )) {
+        $status = "hotel";        
     } elseif(str_starts_with($event, 'albany'  )) {
         $status = "albany";
     } elseif(str_starts_with($event, 'camanche')) {
@@ -340,6 +360,10 @@ class AlertsModel extends Firestore {
                         $evtDesc .= "Lock 13 "; break;
         case "charlie" : $evtDesc = "passed the Clinton drawbridge ";  break;
         case "delta" : $evtDesc = "crossed 3 miles south of the Clinton drawbridge ";  break;
+        case "echo" : $evtDesc = "passed the Interstate 80 bridge in LeClaire ";  break;
+        case "foxtrot" : $evtDesc = "is at Lock 14 below Princeton ";  break;
+        case "golf" : $evtDesc = "is at Lock 15 in Davenport";  break;
+        case "hotel" : $evtDesc = "crossed the Intersate two-eighty bridge in Davenport ";  break;
         case "detect" : $evtDesc = "has been detected "; break;
         case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
         case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;

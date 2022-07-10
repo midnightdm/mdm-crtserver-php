@@ -68,5 +68,13 @@ class ZONE {
     public static $m538 = ["at marker 538 3 miles above Sabula drawbridge","at marker 538, 3 miles above the Sabula drawbridge"];
     public static $m539 = ["at marker 539 4 miles above Sabula drawbridge","at marker 539, 4 miles above the Sabula drawbridge"];
     public static $m540 = ["at marker 540 5 miles above Sabula drawbridge","at marker 540, 5 miles above the Sabula drawbridge"];
+    public static $malpha = ["3 miles north of Lock 13","3 miles N of Lock 13"];
+    public static $mbravo = ["Lock 13 by Fulton, Illinois","Lock 13, Fulton"];
+    public static $mcharlie = ["at Clinton's railroad drawbridge","RR drawbridge, Clinton"];
+    public static $mdelta = ["3 miles south of Clinton's railroad drawbridge","3 miles S of RR drawbridge"];
+    public static $mecho = ["passed the interstae 80 bridge in LeClaire","passed the I-80 bridge, LeClaire"];
+    public static $mfoxtrot = ["at Lock 14 by Princeton, Iowa","Lock 14, Princeton"];
+    public static $mgolf = ["at Lock 15 in Davenport","Lock 15, Davenport"];
+    public static $mhotel = ["passed the Interstate two-eighty bridge in Davenport","I-280 bridge, Davenport"];
 
 }

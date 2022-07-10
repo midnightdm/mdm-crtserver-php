@@ -136,7 +136,8 @@ class Location {
         if($this->live->liveDirection=="upriver") {
           $dir = "u";   $um  = $m;
         } else {
-          $dir = "d";   $um = ($m + 1); //To reflect that polygon entry was at upper mile line
+          $dir = "d";   
+          $um = is_int($m) ? ($m + 1) : $m; //To reflect that polygon entry was at upper mile line
         }
         $mileMarker = "m".$m;
         $this->description = ZONE::$$mileMarker;

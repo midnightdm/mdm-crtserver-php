@@ -143,8 +143,8 @@ class Location {
         $this->description = ZONE::$$mileMarker;
         $eventTS = time();
         $waypoint = false;
+        $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
         if(is_int($m)) { //Numbered mile marker zones
-          $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
           $event = "m".$m.$dir.$type;          
         } else {         //Named zones          
           //Concatanate event

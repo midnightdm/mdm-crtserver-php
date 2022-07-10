@@ -249,7 +249,7 @@ class LiveScan {
       $this->lookUpVessel();
     }
     $this->calculateLocation();
-    $this->checkMarkerPassage();
+    //$this->checkMarkerPassage(); Retired 7/10/22 after duties passed to calculateLocation()
     //And remove reload flag if set.
     if($this->isReloaded) {
       $this->insertNewRecord(); //Adds reload as new db record 
@@ -374,11 +374,7 @@ class LiveScan {
     }
   }
 
-  public function testMarkerPassage() {
-    //Function to replace checkMarkerPassage()
-    
-  }
-
+  //DEPRICATED 
   public function checkMarkerPassage() {
     flog("LiveScan::checkMarkerPassage()...\n");
     //For upriver Direction (Lat increasing)
@@ -492,6 +488,8 @@ class LiveScan {
     flog( "   ...No conditions met.\n\n");
   }
   
+  //END DEPRICATED
+
   public function lookUpVessel() {   
     flog( 'LiveScan::lookUpVessel() '.getNow()."\n");
     //See if Vessel data is available locally

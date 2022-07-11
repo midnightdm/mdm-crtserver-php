@@ -204,6 +204,25 @@ class Location {
     }
   }
 
+  public function getCurrentRegion() { //Returns "clinton" | "qc" | "outside"   
+    $polys = [
+      "clinton"=>[[-90.40382479466886,41.64720326378053],[-90.15589018585558,41.63905440118833],[-90.03647726615425,42.14497501389922],
+      [-90.25330455033844,42.17020580505001],[-90.40382479466886,41.64720326378053]],
+      "qc"=>[[-90.15918561340592,41.63731381803267],[-90.40375392359645,41.64698185704191],[-91.1443998108527,41.41024258877019],[-90.46229684338448,41.39866172374725],[-90.15918561340592,41.63731381803267]]
+    ];
+    $this->setPoint();
+    if($this->insidePoly($this->point, $polys["clinton"])) {
+      flog("Location::getCurrentRegion() = clinton \r\n");
+      return "clinton";
+    } else if($this->insidePoly($this->point, $polys["qc"])) {
+      flog("Location::getCurrentRegion() = qc\r\n");
+      return "qc";
+    } else {
+      flog("Location::getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
+      return "outside";
+    }
+  }
+
   public function insidePoly($point, $vs) {
       // ray-casting algorithm based on
       // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html

@@ -242,7 +242,7 @@ class LiveScan {
     
     $this->liveSpeed   = $speed;
     $this->liveCourse  = $course;
-    $this->liveSegment = $this->determineSegment($lat);
+    $this->liveSegment = $this->determineSegment($lat); 
     $this->liveName    = $name;
     $this->determineDirection();
     if($this->liveName=="" || str_contains($this->liveName, "@@") || (is_null($this->liveVessel) && $this->lookUpCount < 5)) {
@@ -250,6 +250,7 @@ class LiveScan {
     }
     $this->calculateLocation();
     //$this->checkMarkerPassage(); Retired 7/10/22 after duties passed to calculateLocation()
+    $this->liveRegion = $this->liveLocation->determineRegion(); //Added 7/10/22
     //And remove reload flag if set.
     if($this->isReloaded) {
       $this->insertNewRecord(); //Adds reload as new db record 
@@ -280,6 +281,7 @@ class LiveScan {
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
     $data['liveSegment'] = $this->liveSegment;
+    $data['liveRegion'] = $this->liveRegion;
     $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
     $data['type']       = $this->liveVessel->vesselType;
     //Clinton Waypoints
@@ -338,7 +340,6 @@ class LiveScan {
           $this->dirScore++;
         }
       }
-
     //When monitored river section runs east/west (W Hemisphere)
     } elseif(RIVER_ORIENTATION_SETTING==EAST_WEST) {
       //Downriver is when lon is decreasing
@@ -355,15 +356,6 @@ class LiveScan {
         }
       }
     }
-    
-
-
-    
-
-    
-
-
-
     //Set direction according to score
     if($this->dirScore > 0) {
       $this->liveDirection = 'upriver';
@@ -373,6 +365,7 @@ class LiveScan {
       $this->liveDirection = 'undetermined';
     }
   }
+
 
   //DEPRICATED 
   public function checkMarkerPassage() {

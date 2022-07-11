@@ -102,9 +102,6 @@ class PassagesModel extends Firestore {
             ->set($model, ['merge' => true]);
 
         flog( "\033[33m Passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n");
-
-        
-
     }
 
 }  

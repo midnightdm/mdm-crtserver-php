@@ -250,7 +250,10 @@ class LiveScan {
     }
     $this->calculateLocation();
     //$this->checkMarkerPassage(); Retired 7/10/22 after duties passed to calculateLocation()
-    $this->liveRegion = $this->liveLocation->determineRegion(); //Added 7/10/22
+    if($this->liveLocation != null) {
+      $this->liveRegion = $this->liveLocation->determineRegion(); //Added 7/10/22
+    }
+    
     //And remove reload flag if set.
     if($this->isReloaded) {
       $this->insertNewRecord(); //Adds reload as new db record 

@@ -204,7 +204,7 @@ class Location {
     }
   }
 
-  public function getCurrentRegion() { //Returns "clinton" | "qc" | "outside"   
+  public function determineRegion() { //Returns "clinton" | "qc" | "outside"   
     $polys = [
       "clinton"=>[[-90.40382479466886,41.64720326378053],[-90.15589018585558,41.63905440118833],[-90.03647726615425,42.14497501389922],
       [-90.25330455033844,42.17020580505001],[-90.40382479466886,41.64720326378053]],

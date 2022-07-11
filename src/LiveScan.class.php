@@ -600,17 +600,34 @@ class LiveScan {
     if($this->livePassageWasSaved || $this->liveIsLocal) {
       return true;
     }
-    //Save if at least 4 markers passed
-    $score = 0;
-    if($this->liveMarkerAlphaWasReached){   $score++; }
-    if($this->liveMarkerBravoWasReached){   $score++; } 
-    if($this->liveMarkerCharlieWasReached){ $score++; }
-    if($this->liveMarkerDeltaWasReached){   $score++; }
-      
-    if($score >3) {
-      $this->callBack->PassagesModel->savePassage($this);
-      $this->livePassageWasSaved = true;
-      return true;
+    //Clinton Region
+    if($this->liveRegion=="clinton") {
+      //Save if at least 4 markers passed
+      $score = 0;
+      if($this->liveMarkerAlphaWasReached){   $score++; }
+      if($this->liveMarkerBravoWasReached){   $score++; } 
+      if($this->liveMarkerCharlieWasReached){ $score++; }
+      if($this->liveMarkerDeltaWasReached){   $score++; }
+        
+      if($score >3) {
+        $this->callBack->PassagesModel->savePassageClinton($this);
+        $this->livePassageWasSaved = true;
+        return true;
+      }
+    //QC Region
+    } else if($this->liveRegion=="qc") {
+      //Save if at least 4 markers passed
+      $score = 0;
+      if($this->liveMarkerEchoWasReached){   $score++; }
+      if($this->liveMarkerFoxtrotReached){   $score++; } 
+      if($this->liveMarkerGolfWasReached){   $score++; }
+      if($this->liveMarkerHotelWasReached){  $score++; }
+        
+      if($score >3) {
+        $this->callBack->PassagesModel->savePassageQC($this);
+        $this->livePassageWasSaved = true;
+        return true;
+      }
     }
     if($overRide) {
       return true;

@@ -12,7 +12,7 @@ class PassagesModel extends Firestore {
         parent::__construct(['name' => 'Vessels']);
     }
 
-    public function savePassage($liveScanObj) {
+    public function savePassageClinton($liveScanObj) {
         $data['passageVesselID'] = $liveScanObj->liveVesselID;
         //$data['vesselName'] = $liveScanObj->liveName;
         //$data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
@@ -35,7 +35,7 @@ class PassagesModel extends Firestore {
             $data['passageMarkerCharlieTS']==null &&
             $data['passageMarkerDeltaTS'] ==null)
         {
-            flog( "No events to save for ".$liveScanObj->liveName.".\n");
+            flog( "No Clinton events to save for ".$liveScanObj->liveName.".\n");
             return;
         }
        
@@ -101,7 +101,102 @@ class PassagesModel extends Firestore {
             ->document('All')
             ->set($model, ['merge' => true]);
 
-        flog( "\033[33m Passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n");
+        flog( "\033[33m Clinton passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n");
     }
+
+
+
+    public function savePassageQC($liveScanObj) {
+      $data['passageVesselID'] = $liveScanObj->liveVesselID;
+      //$data['vesselName'] = $liveScanObj->liveName;
+      //$data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
+      $data['passageDirection']       = $liveScanObj->liveDirection;
+      $data['passageMarkerEchoTS']   = $liveScanObj->liveMarkerEchoTS;
+      $data['passageMarkerFoxtrotTS']   = $liveScanObj->liveMarkerFoxtrotTS;
+      $data['passageMarkerGolfTS'] = $liveScanObj->liveMarkerGolfTS;
+      $data['passageMarkerHotelTS']   = $liveScanObj->liveMarkerHotelTS;
+      if($liveScanObj->liveLocation instanceof Location) {
+        $data['passageEvents'] = $liveScanObj->liveLocation->events;
+      } else{
+        $data['passageEvents'] = [];
+      }
+      $offset = getTimeOffset();
+      
+      //Do not save if no events exist
+      if(count($data['passageEvents'])==0 &&  
+          $data['passageMarkerEchoTS']==null && 
+          $data['passageMarkerFoxtrotTS']==null &&
+          $data['passageMarkerGolfTS']==null &&
+          $data['passageMarkerHotelTS'] ==null)
+      {
+          flog( "No QC events to save for ".$liveScanObj->liveName.".\n");
+          return;
+      }
+     
+
+      //Default to today's date if no other found
+      $firstEventTS = time()+$offset;
+      //Determine passage date for label
+      //   Use first other event's date if no waypoint time
+      if(!is_int($data['passageMarkerGolfTS']) || !is_int($data['passageGolfTS'])) {
+        foreach($data['passageEvents'] as $event => $ts) {
+          //Test validity of ts value
+          if($ts>100000000) {
+            $firstEventTS = $ts+$offset;
+            break;
+          } 
+        }
+        
+      //Otherwise use first reached waypoint time    
+      } else {
+          $firstEventTS = $data['passageDirection'] == "upriver" ? intval($data['passageMarkerHotelTS'])+$offset : intval($data['passageMarkerEchoTS'])+$offset;
+      }
+          
+      //Build array for Passages by Date collection with added data
+      $data['date'] = date('Y-m-d', $firstEventTS); 
+      $data['vesselName'] = $liveScanObj->liveName;
+      $data['vesselImageUrl'] = $liveScanObj->liveVessel->vesselImageUrl;
+      
+      $month = date('Ym', $firstEventTS);
+      flog( "month=".$month.", ");
+      $day   = date('d' , $firstEventTS);
+      flog( "day=".$day."\n");
+      $passage = [
+          $day => [
+              'mmsi'.$data['passageVesselID'] => $data
+          ]
+      ];
+
+      //Build array for Passages All document update
+      $humanDate = date('M d, Y', $firstEventTS);
+      $model = [ $data['passageVesselID'] => [
+              "date" => $humanDate,
+              "id" => $liveScanObj->liveVesselID,
+              "image" => $liveScanObj->liveVessel->vesselImageUrl,
+              "name"  => $liveScanObj->liveName
+           ]
+      ];
+      
+      //Final error check for bogus month
+      if($month < 202001) {
+          flog( "Bogus month ".$month." for ".$liveScanObj->liveName.". Passage not saved.\n");
+          return;
+      }
+
+      $this->db->collection('Vessels')
+          ->document('mmsi'.$data['passageVesselID'])
+          ->set(['vesselPassages' => [ $data['date'] => $data] ] , ['merge' => true]);
+      
+      $this->db->collection('PassagesQC')
+          ->document($month)
+          ->set($passage, ['merge' => true]);
+      
+      $this->db->collection('PassagesQC')
+          ->document('All')
+          ->set($model, ['merge' => true]);
+
+      flog( "\033[33m QC passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n");
+  }
+
 
 }  

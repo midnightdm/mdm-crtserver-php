@@ -559,8 +559,8 @@ class LiveScan {
     //   $data['vesselImageUrl'] = $cs->no_image;
     // }
     
-    // $data['vesselID'] = $this->liveVesselID;
-    // $data['vesselName'] = $vesselName; 
+    $data['vesselID'] = $this->liveVesselID;
+    $data['vesselName'] = $vesselName; 
     
     //Additionally scrape rows 4, 6 & 8 for considered use
     //$callSign = $rows->item(4)->getElementsByTagName('td')->item(1)->textContent;

@@ -14,17 +14,29 @@ class PassagesModel extends Firestore {
 
     public function savePassageClinton($liveScanObj) {
         $data['passageVesselID'] = $liveScanObj->liveVesselID;
-        //$data['vesselName'] = $liveScanObj->liveName;
-        //$data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
         $data['passageDirection']       = $liveScanObj->liveDirection;
-        $data['passageMarkerAlphaTS']   = $liveScanObj->liveMarkerAlphaTS;
-        $data['passageMarkerBravoTS']   = $liveScanObj->liveMarkerBravoTS;
-        $data['passageMarkerCharlieTS'] = $liveScanObj->liveMarkerCharlieTS;
-        $data['passageMarkerDeltaTS']   = $liveScanObj->liveMarkerDeltaTS;
         if($liveScanObj->liveLocation instanceof Location) {
           $data['passageEvents'] = $liveScanObj->liveLocation->events;
+          foreach($liveScanObj->liveLocation->events as $event=>$ts) {
+            if(str_starts_with($event, 'alpha')) {
+              $data['passageMarkerAlphaTS']   = $ts;
+            }
+            if(str_starts_with($event, 'bravo')) {
+              $data['passageMarkerBravoTS']   = $ts;
+            }
+            if(str_starts_with($event, 'charlie')) {
+              $data['passageMarkerCharllieTS']   = $ts;
+            }
+            if(str_starts_with($event, 'delta')) {
+              $data['passageMarkerDeltaTS']   = $ts;
+            }
+          }
         } else{
           $data['passageEvents'] = [];
+          $data['passageMarkerAlphaTS']   = $liveScanObj->liveMarkerAlphaTS;
+          $data['passageMarkerBravoTS']   = $liveScanObj->liveMarkerBravoTS;
+          $data['passageMarkerCharlieTS'] = $liveScanObj->liveMarkerCharlieTS;
+          $data['passageMarkerDeltaTS']   = $liveScanObj->liveMarkerDeltaTS;
         }
         $offset = getTimeOffset();
         
@@ -108,17 +120,29 @@ class PassagesModel extends Firestore {
 
     public function savePassageQC($liveScanObj) {
       $data['passageVesselID'] = $liveScanObj->liveVesselID;
-      //$data['vesselName'] = $liveScanObj->liveName;
-      //$data['vesselImage'] = $liveScanObj->liveVessel->vesselImageUrl;
       $data['passageDirection']       = $liveScanObj->liveDirection;
-      $data['passageMarkerEchoTS']   = $liveScanObj->liveMarkerEchoTS;
-      $data['passageMarkerFoxtrotTS']   = $liveScanObj->liveMarkerFoxtrotTS;
-      $data['passageMarkerGolfTS'] = $liveScanObj->liveMarkerGolfTS;
-      $data['passageMarkerHotelTS']   = $liveScanObj->liveMarkerHotelTS;
       if($liveScanObj->liveLocation instanceof Location) {
         $data['passageEvents'] = $liveScanObj->liveLocation->events;
+        foreach($liveScanObj->liveLocation->events as $event=>$ts) {
+          if(str_starts_with($event, 'echo')) {
+            $data['passageMarkerEchoTS']   = $ts;
+          }
+          if(str_starts_with($event, 'foxtrot')) {
+            $data['passageMarkerFoxtrotTS']   = $ts;
+          }
+          if(str_starts_with($event, 'golf')) {
+            $data['passageMarkerGolfTS']   = $ts;
+          }
+          if(str_starts_with($event, 'hotel')) {
+            $data['passageMarkerHotelTS']   = $ts;
+          }
+        }
       } else{
         $data['passageEvents'] = [];
+        $data['passageMarkerEchoTS']   = $liveScanObj->liveMarkerEchoTS;
+        $data['passageMarkerFoxtrotTS']   = $liveScanObj->liveMarkerFoxtrotTS;
+        $data['passageMarkerGolfTS'] = $liveScanObj->liveMarkerGolfTS;
+        $data['passageMarkerHotelTS']   = $liveScanObj->liveMarkerHotelTS;
       }
       $offset = getTimeOffset();
       

@@ -498,16 +498,19 @@ class LiveScan {
       }
       return;
     }
+    return;  //Disabling further scraping until new data source found
     //Otherwise scrape data from a website
     $url = 'https://www.myshiptracking.com/vessels/';
     $q = $this->liveVesselID;
     flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
     $html = grab_page($url, $q);  
     //Edit segment from html string
-    $startPos = strpos($html, '<div class="vessels_main_data cell">');
+    //  $startPos = strpos($html, '<div class="vessels_main_data cell">');
+    $startPos = strpos($html, '<div class="card-body p-2 p-sm-3">'); //Update 7/13/22
     $clip     = substr($html, $startPos);
-    //flog( "substr clip: ".$clip);
-    $endPos   = (strpos($clip, '</tbody>')+8);
+    flog( "substr clip: ".$clip);
+    //  $endPos   = (strpos($clip, '</tbody>')+8);
+    $endPos   = (strpos($clip, '<div class="d-flex justify-content-center d-none d-md-block d-lg-none">'));
     $len      = strlen($clip);
     $edit     = substr($clip, 0, ($endPos-$len));   
     //Count lookup attempt
@@ -520,7 +523,7 @@ class LiveScan {
     $rows = $dom->getElementsByTagName('tr');
     //desired rows are 0, 5, 11 & 12
     try {
-      $vesselName  =  ucwords( strtolower( $rows->item(0)->getElementsByTagName('strong')->item(0)->textContent) );
+      $vesselName  =  ucwords( strtolower( $rows->item(0)->getElementsByTagName('h1')->item(0)->textContent) );
     } 
     catch (exception $e) {
       flog( "lookUpVessel() failed on vesselName with error ".$e->getMessage()."\n");

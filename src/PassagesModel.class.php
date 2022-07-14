@@ -15,6 +15,10 @@ class PassagesModel extends Firestore {
     public function savePassageClinton($liveScanObj) {
         $data['passageVesselID'] = $liveScanObj->liveVesselID;
         $data['passageDirection']       = $liveScanObj->liveDirection;
+        $data['passageMarkerAlphaTS']   = $liveScanObj->liveMarkerAlphaTS;
+        $data['passageMarkerBravoTS']   = $liveScanObj->liveMarkerBravoTS;
+        $data['passageMarkerCharlieTS'] = $liveScanObj->liveMarkerCharlieTS;
+        $data['passageMarkerDeltaTS']   = $liveScanObj->liveMarkerDeltaTS;
         if($liveScanObj->liveLocation instanceof Location) {
           $data['passageEvents'] = $liveScanObj->liveLocation->events;
           foreach($liveScanObj->liveLocation->events as $event=>$ts) {
@@ -33,10 +37,6 @@ class PassagesModel extends Firestore {
           }
         } else{
           $data['passageEvents'] = [];
-          $data['passageMarkerAlphaTS']   = $liveScanObj->liveMarkerAlphaTS;
-          $data['passageMarkerBravoTS']   = $liveScanObj->liveMarkerBravoTS;
-          $data['passageMarkerCharlieTS'] = $liveScanObj->liveMarkerCharlieTS;
-          $data['passageMarkerDeltaTS']   = $liveScanObj->liveMarkerDeltaTS;
         }
         $offset = getTimeOffset();
         

@@ -82,31 +82,40 @@ class VesselsModel extends Firestore {
       //echo "Vessel found in database: " . var_dump($data);
       return ["error"=>"Vessel ID is already in the database."];
     }
-    //Otherwise scrape data from a website
-    $url = 'https://www.myshiptracking.com/vessels/';
+    //Otherwise scrape data from a website UPDATED 7/13/22
+    $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
     $q = $vesselID;
     $html = grab_page($url, $q);  
+  
     //Edit segment from html string
-    $startPos = strpos($html,'<div class="vessels_main_data cell">');
+    $startPos = strpos($html,'<title>Ship ')+12;
     $clip     = substr($html, $startPos);
-    $endPos   = (strpos($clip, '</div>')+6);
+    $endPos   = (strpos($clip, ' Registered'));
     $len      = strlen($clip);
     $edit     = substr($clip, 0, ($endPos-$len));           
-    //Use DOM Document class
+    
+    //Isolate vessel type from parenthesis
+    $pstart   = strpos($edit, '(');
+    $pend     = strpos($edit, ')');
+    $type     = substr($edit, $pstart+1, $pend-1);
+    //Vessel name is first part
+    $name     = substr($edit, 0, $pstart-1);
+
+
+    /*/Use DOM Document class
     $dom = new DOMDocument();
-    @ $dom->loadHTML($edit);
+    @ $dom->loadHTML($html);
+    */
     //assign data gleened from mst table rows
     $data = [];
-    $rows = $dom->getElementsByTagName('tr');
-    //desired rows are 5, 11 & 12
-    $data['vesselType'] = $rows->item(5)->getElementsByTagName('td')->item(1)->textContent;
-    $data['vesselOwner'] = $rows->item(11)->getElementsByTagName('td')->item(1)->textContent;
-    $data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
-  
+    
+    $data['vesselType'] = $type;
+    //$data['vesselOwner'] = $rows->item(11)->getElementsByTagName('td')->item(1)->textContent;
+    //$data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
+      
     //Try for image
     try {
       if($this->cs->scrapeImage($vesselID)) {
-        //$endPoint = getEnv('AWS_ENDPOINT');
         $base = $this->cs->image_base;
         $data['vesselHasImage'] = true;
         $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $vesselID.'.jpg';      
@@ -125,14 +134,14 @@ class VesselsModel extends Firestore {
     $data['vesselRecordAddedTS'] = time();
     $data['vesselWatchOn']  = false;
     $data['vesselID']       = $vesselID;
-    $name                   = $rows->item(0)->getElementsByTagName('td')->item(1)->textContent;
+    
     //Test for no data returned which is probably bad vesselID 
     if($name=="---") {
       return ["error"=>"The provided Vessel ID was not found."];
     }
-    $data['vesselCallSign'] = $rows->item(4)->getElementsByTagName('td')->item(1)->textContent;
-    $size                   = $rows->item(6)->getElementsByTagName('td')->item(1)->textContent;
-    $data['vesselDraft']    = $rows->item(8)->getElementsByTagName('td')->item(1)->textContent;   
+    // $data['vesselCallSign'] = $rows->item(4)->getElementsByTagName('td')->item(1)->textContent;
+    // $size                   = $rows->item(6)->getElementsByTagName('td')->item(1)->textContent;
+    // $data['vesselDraft']    = $rows->item(8)->getElementsByTagName('td')->item(1)->textContent;   
     
     //Cleanup parsing needed for some data
     //$name     = trim(substr($name, $startPos)); //Remove white spaces
@@ -142,6 +151,7 @@ class VesselsModel extends Firestore {
     $name     = ucwords(strtolower($name)); //Change capitalization
     $data['vesselName'] = $name;
     //Format size string into seperate length and width
+    /*
     if($size=="---") {
       $data['vesselLength'] = "---";
       $data['vesselWidth'] = "---";
@@ -152,7 +162,7 @@ class VesselsModel extends Firestore {
       $sizeArr = explode(" ", $size); 
       $data['vesselWidth'] = trim($sizeArr[2])."m";
       $data['vesselLength'] = trim($sizeArr[0])."m";
-    }  
+    } */ 
     return $data;
   } 
 

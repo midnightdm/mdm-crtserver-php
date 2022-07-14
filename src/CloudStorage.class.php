@@ -55,8 +55,9 @@ class CloudStorage {
 
     public function scrapeImage($mmsi) {
         flog("CloudStorage::scrapeImage($mmsi)\n");
-        $url = 'https://www.myshiptracking.com/requests/getimage-normal/';
-        $imgData = grab_image($url.$mmsi.'.jpg');
+        //$url = 'https://www.myshiptracking.com/requests/getimage-normal/';
+        $url = 'https://photos.marinetraffic.com/ais/showphoto.aspx?mmsi='; //Updated 7/13/22
+        $imgData = grab_image($url.$mmsi);
         $strLen = strlen($imgData);
         flog('$imgData length test: '.$strLen." bytes\n");
         if(!$strLen) {

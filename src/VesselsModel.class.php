@@ -108,7 +108,6 @@ class VesselsModel extends Firestore {
     */
     //assign data gleened from mst table rows
     $data = [];
-    
     $data['vesselType'] = $type;
     //$data['vesselOwner'] = $rows->item(11)->getElementsByTagName('td')->item(1)->textContent;
     //$data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
@@ -126,7 +125,6 @@ class VesselsModel extends Firestore {
       }
     }
     catch (exception $e) {
-      //
       $data['vesselHasImage'] = false;
       $data['vesselImageUrl'] = $this->cs->no_image;
     }
@@ -139,9 +137,7 @@ class VesselsModel extends Firestore {
     if($name=="---") {
       return ["error"=>"The provided Vessel ID was not found."];
     }
-    // $data['vesselCallSign'] = $rows->item(4)->getElementsByTagName('td')->item(1)->textContent;
-    // $size                   = $rows->item(6)->getElementsByTagName('td')->item(1)->textContent;
-    // $data['vesselDraft']    = $rows->item(8)->getElementsByTagName('td')->item(1)->textContent;   
+ 
     
     //Cleanup parsing needed for some data
     //$name     = trim(substr($name, $startPos)); //Remove white spaces
@@ -150,19 +146,7 @@ class VesselsModel extends Firestore {
     $name     = str_replace('  ', ' ', $name); //Remove double space
     $name     = ucwords(strtolower($name)); //Change capitalization
     $data['vesselName'] = $name;
-    //Format size string into seperate length and width
-    /*
-    if($size=="---") {
-      $data['vesselLength'] = "---";
-      $data['vesselWidth'] = "---";
-    } else if(strpos($size, "x") === false) {
-      $data['vesselLength'] = $size;
-      $data['vesselWidth'] = $size;
-    } else {
-      $sizeArr = explode(" ", $size); 
-      $data['vesselWidth'] = trim($sizeArr[2])."m";
-      $data['vesselLength'] = trim($sizeArr[0])."m";
-    } */ 
+
     return $data;
   } 
 

@@ -8,19 +8,13 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 class Vessel {
   public $tags = array(
-    'vesselName', 'vesselID', 'vesselHasImage', 'vesselImageUrl','vesselCallSign', 'vesselType',  'vesselLength', 'vesselWidth', 'vesselDraft', 'vesselOwner', 'vesselBuilt'
+    'vesselName', 'vesselID', 'vesselHasImage', 'vesselImageUrl', 'vesselType'
   );
   public $vesselName;  
   public $vesselID;
   public $vesselHasImage;
   public $vesselImageUrl;
-  public $vesselCallSign;
   public $vesselType;
-  public $vesselLength;
-  public $vesselWidth;
-  public $vesselDraft;  
-  public $vesselOwner;
-  public $vesselBuilt;
   public $daemonCallback;
 
   public function __construct($dataArr, $daemonCB) {

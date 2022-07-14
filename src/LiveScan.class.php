@@ -41,16 +41,16 @@ class LiveScan {
   public $liveMarkerHotelWasReached = FALSE;
   public $liveMarkerHotelTS = null;
 
-  public $liveCallSign;
+  //public $liveCallSign;
   public $isReloaded;
   public $triggerQueued;
   public $triggerActivated;
-  public $liveEta;
+  //public $liveEta;
   public $liveSpeed;
   public $liveCourse;
-  public $liveLength;
-  public $liveWidth;
-  public $liveDraft;
+  //public $liveLength;
+  //public $liveWidth;
+  //public $liveDraft;
   public $livePassageWasSaved = false;
   public $liveIsLocal;
   public $callBack;
@@ -186,10 +186,10 @@ class LiveScan {
     $data['liveSegment'] = $this->liveSegment;
     $data['liveVesselID'] = $this->liveVesselID;
     $data['liveName'] = $this->liveName;
-    $data['liveLength'] = $this->liveLength;
-    $data['liveWidth'] = $this->liveWidth;
-    $data['liveDraft'] = $this->liveDraft;
-    $data['liveCallSign'] = $this->liveCallSign;
+    //$data['liveLength'] = $this->liveLength;
+    //$data['liveWidth'] = $this->liveWidth;
+    //$data['liveDraft'] = $this->liveDraft;
+    //$data['liveCallSign'] = $this->liveCallSign;
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
     $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
@@ -370,122 +370,6 @@ class LiveScan {
   }
 
 
-  //DEPRICATED 
-  public function checkMarkerPassage() {
-    flog("LiveScan::checkMarkerPassage()...\n");
-    //For upriver Direction (Lat increasing)
-    if($this->liveLastLat < (MARKER_DELTA_LAT - 1) || $this->liveLastLat > (MARKER_ALPHA_LAT + 1)) { 
-      return; //Skips further testing if lat jumped to a bogus value beyond local view.
-    } 
-    if($this->liveDirection == "upriver") {
-      if(!$this->liveMarkerDeltaWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_DELTA_LAT > $this->liveInitLat) && 
-      ($this->liveLastLat > MARKER_DELTA_LAT))   {       
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "deltau".$type;
-        //Pass to Location::verifyWaypointEvent() for verification
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          $this->liveMarkerDeltaWasReached = true;
-          $this->liveMarkerDeltaTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this);
-          flog("\33[42m      ...Delta waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
-        }
-        return;         
-      }
-      if(!$this->liveMarkerCharlieWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_CHARLIE_LAT > $this->liveInitLat) && ($this->liveLastLat > MARKER_CHARLIE_LAT)) {
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "charlieu".$type;
-        //Pass to Location::verifyWaypointEvent() for verification
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          //trigger an alert
-          $this->liveMarkerCharlieWasReached = true;
-          $this->liveMarkerCharlieTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          flog("\33[42m      ...Charlie waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
-        }
-        return;
-      }
-      if(!$this->liveMarkerBravoWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_BRAVO_LAT > $this->liveInitLat) && ($this->liveLastLat > MARKER_BRAVO_LAT)) {
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "bravou".$type;
-        //Pass to Location::verifyWaypointEvent() for verification
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          //trigger an alert
-          $this->liveMarkerBravoWasReached = true;
-          $this->liveMarkerBravoTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          flog("\33[42m      ...Bravo waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
-        }
-        return;
-      }
-      if(!$this->liveMarkerAlphaWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_ALPHA_LAT > $this->liveInitLat) && ($this->liveLastLat > MARKER_ALPHA_LAT)) {
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "alphau".$type;
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          //trigger an alert
-          $this->liveMarkerAlphaWasReached = true;
-          $this->liveMarkerAlphaTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          flog("\33[42m      ...Alpha waypoint was reached by ".$this->liveName." traveling Upriver.\033[0m\n\n");
-        }
-        return;
-      }
-    //For downriver direction (Lat decreasing)
-    } elseif ($this->liveDirection == "downriver") {
-      if(!$this->liveMarkerAlphaWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_ALPHA_LAT < $this->liveInitLat) && ($this->liveLastLat < MARKER_ALPHA_LAT)) {
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "alphad".$type;
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          //trigger an alert
-          $this->liveMarkerAlphaWasReached = true;
-          $this->liveMarkerAlphaTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          flog( "\33[42m      ...Alpha waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
-        }    
-        return;
-      }
-      if(!$this->liveMarkerBravoWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_BRAVO_LAT < $this->liveInitLat) && ($this->liveLastLat < MARKER_BRAVO_LAT)) {
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "bravod".$type;
-        //Pass to Location::verifyWaypointEvent() for verification
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          //trigger an alert
-          $this->liveMarkerBravoWasReached = true;
-          $this->liveMarkerBravoTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          flog( "\33[42m      ...Bravo waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
-        }       
-        return;
-      }
-      if(!$this->liveMarkerCharlieWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_CHARLIE_LAT < $this->liveInitLat) && ($this->liveLastLat < MARKER_CHARLIE_LAT)) {
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "charlied".$type;
-        //Pass to Location::verifyWaypointEvent() for verification
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          //trigger an alert
-          $this->liveMarkerCharlieWasReached = true;
-          $this->liveMarkerCharlieTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this); 
-          flog( "\33[42m      ...Charlie waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
-        }
-        return;
-      }
-      if(!$this->liveMarkerDeltaWasReached && ($this->liveInitLat != $this->liveLastLat) && (MARKER_DELTA_LAT < $this->liveInitLat) && ($this->liveLastLat < MARKER_DELTA_LAT)) {
-        $type  = strpos($this->liveVessel->vesselType, "assenger") ? "p" : "a";
-        $event = "deltad".$type;
-        //Pass to Location::verifyWaypointEvent() for verification
-        if($this->liveLocation->verifyWaypointEvent($event)) {
-          $this->liveMarkerDeltaWasReached = true;
-          $this->liveMarkerDeltaTS = $this->liveLastTS;
-          $this->callBack->AlertsModel->triggerEvent($event, $this);
-          flog( "\33[42m      ...Delta waypoint was reached by ".$this->liveName." traveling Downriver.\033[0m\n\n");
-        }       
-      }           
-    }
-    flog( "   ...No conditions met.\n\n");
-  }
-  
-  //END DEPRICATED
-
   public function lookUpVessel() {   
     flog( 'LiveScan::lookUpVessel() '.getNow()."\n");
     //See if Vessel data is available locally
@@ -498,103 +382,64 @@ class LiveScan {
       }
       return;
     }
-    //Disabling further scraping until new data source found
     
     //Otherwise scrape data from a website
-    $url = 'https://www.myshiptracking.com/vessels/';
+    $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
     $q = $this->liveVesselID;
     flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
-    //$html = grab_page($url, $q);  
+    $html = grab_page($url, $q);  
+    
     //Edit segment from html string
-    //  $startPos = strpos($html, '<div class="vessels_main_data cell">');
-    //$startPos = strpos($html, '<div class="card-body p-2 p-sm-3">'); //Update 7/13/22
-    //$clip     = substr($html, $startPos);
-    //flog( "substr clip: ".$clip);
-    //  $endPos   = (strpos($clip, '</tbody>')+8);
-    //$endPos   = (strpos($clip, '<div class="d-flex justify-content-center d-none d-md-block d-lg-none">'));
-    //$len      = strlen($clip);
-    //$edit     = substr($clip, 0, ($endPos-$len));   
+    $startPos = strpos($html,'<title>Ship ')+12;
+    $clip     = substr($html, $startPos);
+    $endPos   = (strpos($clip, ' Registered'));
+    $len      = strlen($clip);
+    $edit     = substr($clip, 0, ($endPos-$len));           
+    
+    //Isolate vessel type from parenthesis
+    $pstart   = strpos($edit, '(');
+    $pend     = strpos($edit, ')');
+    $type     = substr($edit, $pstart+1, $pend);
+    //Vessel name is first part
+    $name     = substr($edit, 0, $pstart-1); 
+    
     //Count lookup attempt
     $this->lookUpCount++;        
-    //Use DOM Document class
-    //$dom = new DOMDocument();
-    //@ $dom->loadHTML($edit);
+
     //assign data gleened from mst table rows
     $data = [];
-    //$rows = $dom->getElementsByTagName('tr');
-    //desired rows are 0, 5, 11 & 12
-    try {
-    //  $vesselName  =  ucwords( strtolower( $rows->item(0)->getElementsByTagName('h1')->item(0)->textContent) );
-    } 
-    catch (exception $e) {
-      flog( "lookUpVessel() failed on vesselName with error ".$e->getMessage()."\n");
-      $vesselName = $this->liveVesselID;
-    }
+    $data['vesselType'] = $type;
     
-    //$data['vesselType'] = $rows->item(5)->getElementsByTagName('td')->item(1)->textContent;
     //Filter Spare - Local Vessel
-    //if($data['vesselType']=="Spare - Local Vessel") {
-    //  $data['vesselType'] = "Local";
-    //}
-    
-    //$data['vesselOwner'] = $rows->item(11)->getElementsByTagName('td')->item(1)->textContent;
-    //$data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
+    if($data['vesselType']=="Spare - Local Vessel") {
+      $data['vesselType'] = "Local";
+    }
+
     //Try for image
-    // try {
-    //   //Upload to cloud bucket
-    //   $cs = new CloudStorage(); 
-    //   if($cs->scrapeImage($this->liveVesselID)) {
-    //     $base = $cs->image_base;
-    //     $data['vesselHasImage'] = true;
-    //     $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
-    //   } else {
-    //     $data['vesselHasImage'] = false;
-    //     $data['vesselImageUrl'] = $cs->no_image;
-    //     //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
-    //   }
-    // }
-    // catch (exception $e) {
-    //   //
-    //   $data['vesselHasImage'] = false;
-    //   $data['vesselImageUrl'] = $cs->no_image;
-    // }
-    
+    $cs = new CloudStorage(); 
+    try {      
+      if($cs->scrapeImage($this->liveVesselID)) {
+        $base = $cs->image_base;
+        $data['vesselHasImage'] = true;
+        $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
+      } else {
+        $data['vesselHasImage'] = false;
+        $data['vesselImageUrl'] = $cs->no_image;
+        //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
+      }
+    }
+    catch (exception $e) {
+      $data['vesselHasImage'] = false;
+      $data['vesselImageUrl'] = $cs->no_image;
+    }
+    $data['vesselRecordAddedTS'] = time();
     $data['vesselID'] = $this->liveVesselID;
+    $data['vesselWatchOn']  = false;
     $data['vesselName'] = $vesselName; 
     
-    //Additionally scrape rows 4, 6 & 8 for considered use
-    //$callSign = $rows->item(4)->getElementsByTagName('td')->item(1)->textContent;
-    //$size     = $rows->item(6)->getElementsByTagName('td')->item(1)->textContent;
-    //$draft    = $rows->item(8)->getElementsByTagName('td')->item(1)->textContent;
-    //Parse size into seperate length and width
-    // if($size=="---") {
-    //   $length = "---";
-    //   $width  = "---";
-    // } else if(strpos($size, "x") === false) {
-    //   $length  = $size;
-    //   $width   = $size;
-    // } else {
-    //   $sizeArr = explode(" ", $size); 
-    //   $width   = trim($sizeArr[2])."m";
-    //   $length  = trim($sizeArr[0])."m";
-    // }
-
-    //Use local data unless scraped is better
-    // $data['vesselCallSign'] = $this->liveCallSign=="unknown" ? $callsign : $this->liveCallSign;
-    // $data['vesselLength']   = $this->liveLength  =="0m"      ? $length   : $this->liveLength;
-    // $data['vesselWidth']    = $this->liveWidth   =="0m"      ? $width    : $this->liveWidth;
-    // $data['vesselDraft']    = $this->liveDraft   =="0.0m"    ? $draft    : $this->liveDraft;    
-    
-    $cs = new CloudStorage();
-    $data['vesselHasImage'] = false;
-    $data['vesselImageUrl'] = $cs->no_image;
     $this->liveVessel = new Vessel($data, $this->callBack);
-    // //In case scraped data replaced the local above, also update the live object
-    // $this->liveName     = $data['vesselName'];
-    // $this->liveCallSign = $data['vesselCallSign'];
-    // $this->liveLength   = $data['vesselLength'];
-    // $this->liveWidth    = $data['vesselWidth'];
-    // $this->liveDraft    = $data['vesselDraft'];
+    //In case scraped data replaced the local above, also update the live object
+    $this->liveName     = $data['vesselName'];    
   }  
 
   public function calculateLocation($suppressTrigger=false) {

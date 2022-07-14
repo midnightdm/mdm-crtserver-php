@@ -498,98 +498,103 @@ class LiveScan {
       }
       return;
     }
-    return;  //Disabling further scraping until new data source found
+    //Disabling further scraping until new data source found
+    
     //Otherwise scrape data from a website
     $url = 'https://www.myshiptracking.com/vessels/';
     $q = $this->liveVesselID;
     flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
-    $html = grab_page($url, $q);  
+    //$html = grab_page($url, $q);  
     //Edit segment from html string
     //  $startPos = strpos($html, '<div class="vessels_main_data cell">');
-    $startPos = strpos($html, '<div class="card-body p-2 p-sm-3">'); //Update 7/13/22
-    $clip     = substr($html, $startPos);
-    flog( "substr clip: ".$clip);
+    //$startPos = strpos($html, '<div class="card-body p-2 p-sm-3">'); //Update 7/13/22
+    //$clip     = substr($html, $startPos);
+    //flog( "substr clip: ".$clip);
     //  $endPos   = (strpos($clip, '</tbody>')+8);
-    $endPos   = (strpos($clip, '<div class="d-flex justify-content-center d-none d-md-block d-lg-none">'));
-    $len      = strlen($clip);
-    $edit     = substr($clip, 0, ($endPos-$len));   
+    //$endPos   = (strpos($clip, '<div class="d-flex justify-content-center d-none d-md-block d-lg-none">'));
+    //$len      = strlen($clip);
+    //$edit     = substr($clip, 0, ($endPos-$len));   
     //Count lookup attempt
     $this->lookUpCount++;        
     //Use DOM Document class
-    $dom = new DOMDocument();
-    @ $dom->loadHTML($edit);
+    //$dom = new DOMDocument();
+    //@ $dom->loadHTML($edit);
     //assign data gleened from mst table rows
     $data = [];
-    $rows = $dom->getElementsByTagName('tr');
+    //$rows = $dom->getElementsByTagName('tr');
     //desired rows are 0, 5, 11 & 12
     try {
-      $vesselName  =  ucwords( strtolower( $rows->item(0)->getElementsByTagName('h1')->item(0)->textContent) );
+    //  $vesselName  =  ucwords( strtolower( $rows->item(0)->getElementsByTagName('h1')->item(0)->textContent) );
     } 
     catch (exception $e) {
       flog( "lookUpVessel() failed on vesselName with error ".$e->getMessage()."\n");
       $vesselName = $this->liveVesselID;
     }
     
-    $data['vesselType'] = $rows->item(5)->getElementsByTagName('td')->item(1)->textContent;
+    //$data['vesselType'] = $rows->item(5)->getElementsByTagName('td')->item(1)->textContent;
     //Filter Spare - Local Vessel
-    if($data['vesselType']=="Spare - Local Vessel") {
-      $data['vesselType'] = "Local";
-    }
+    //if($data['vesselType']=="Spare - Local Vessel") {
+    //  $data['vesselType'] = "Local";
+    //}
     
-    $data['vesselOwner'] = $rows->item(11)->getElementsByTagName('td')->item(1)->textContent;
-    $data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
+    //$data['vesselOwner'] = $rows->item(11)->getElementsByTagName('td')->item(1)->textContent;
+    //$data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
     //Try for image
-    try {
-      //Upload to cloud bucket
-      $cs = new CloudStorage(); 
-      if($cs->scrapeImage($this->liveVesselID)) {
-        $base = $cs->image_base;
-        $data['vesselHasImage'] = true;
-        $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
-      } else {
-        $data['vesselHasImage'] = false;
-        $data['vesselImageUrl'] = $cs->no_image;
-        //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
-      }
-    }
-    catch (exception $e) {
-      //
-      $data['vesselHasImage'] = false;
-      $data['vesselImageUrl'] = $cs->no_image;
-    }
+    // try {
+    //   //Upload to cloud bucket
+    //   $cs = new CloudStorage(); 
+    //   if($cs->scrapeImage($this->liveVesselID)) {
+    //     $base = $cs->image_base;
+    //     $data['vesselHasImage'] = true;
+    //     $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
+    //   } else {
+    //     $data['vesselHasImage'] = false;
+    //     $data['vesselImageUrl'] = $cs->no_image;
+    //     //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
+    //   }
+    // }
+    // catch (exception $e) {
+    //   //
+    //   $data['vesselHasImage'] = false;
+    //   $data['vesselImageUrl'] = $cs->no_image;
+    // }
     
-    $data['vesselID'] = $this->liveVesselID;
-    $data['vesselName'] = $vesselName; 
+    // $data['vesselID'] = $this->liveVesselID;
+    // $data['vesselName'] = $vesselName; 
     
     //Additionally scrape rows 4, 6 & 8 for considered use
-    $callSign = $rows->item(4)->getElementsByTagName('td')->item(1)->textContent;
-    $size     = $rows->item(6)->getElementsByTagName('td')->item(1)->textContent;
-    $draft    = $rows->item(8)->getElementsByTagName('td')->item(1)->textContent;
+    //$callSign = $rows->item(4)->getElementsByTagName('td')->item(1)->textContent;
+    //$size     = $rows->item(6)->getElementsByTagName('td')->item(1)->textContent;
+    //$draft    = $rows->item(8)->getElementsByTagName('td')->item(1)->textContent;
     //Parse size into seperate length and width
-    if($size=="---") {
-      $length = "---";
-      $width  = "---";
-    } else if(strpos($size, "x") === false) {
-      $length  = $size;
-      $width   = $size;
-    } else {
-      $sizeArr = explode(" ", $size); 
-      $width   = trim($sizeArr[2])."m";
-      $length  = trim($sizeArr[0])."m";
-    }
+    // if($size=="---") {
+    //   $length = "---";
+    //   $width  = "---";
+    // } else if(strpos($size, "x") === false) {
+    //   $length  = $size;
+    //   $width   = $size;
+    // } else {
+    //   $sizeArr = explode(" ", $size); 
+    //   $width   = trim($sizeArr[2])."m";
+    //   $length  = trim($sizeArr[0])."m";
+    // }
 
     //Use local data unless scraped is better
-    $data['vesselCallSign'] = $this->liveCallSign=="unknown" ? $callsign : $this->liveCallSign;
-    $data['vesselLength']   = $this->liveLength  =="0m"      ? $length   : $this->liveLength;
-    $data['vesselWidth']    = $this->liveWidth   =="0m"      ? $width    : $this->liveWidth;
-    $data['vesselDraft']    = $this->liveDraft   =="0.0m"    ? $draft    : $this->liveDraft;    
+    // $data['vesselCallSign'] = $this->liveCallSign=="unknown" ? $callsign : $this->liveCallSign;
+    // $data['vesselLength']   = $this->liveLength  =="0m"      ? $length   : $this->liveLength;
+    // $data['vesselWidth']    = $this->liveWidth   =="0m"      ? $width    : $this->liveWidth;
+    // $data['vesselDraft']    = $this->liveDraft   =="0.0m"    ? $draft    : $this->liveDraft;    
+    
+    $cs = new CloudStorage();
+    $data['vesselHasImage'] = false;
+    $data['vesselImageUrl'] = $cs->no_image;
     $this->liveVessel = new Vessel($data, $this->callBack);
-    //In case scraped data replaced the local above, also update the live object
-    $this->liveName     = $data['vesselName'];
-    $this->liveCallSign = $data['vesselCallSign'];
-    $this->liveLength   = $data['vesselLength'];
-    $this->liveWidth    = $data['vesselWidth'];
-    $this->liveDraft    = $data['vesselDraft'];
+    // //In case scraped data replaced the local above, also update the live object
+    // $this->liveName     = $data['vesselName'];
+    // $this->liveCallSign = $data['vesselCallSign'];
+    // $this->liveLength   = $data['vesselLength'];
+    // $this->liveWidth    = $data['vesselWidth'];
+    // $this->liveDraft    = $data['vesselDraft'];
   }  
 
   public function calculateLocation($suppressTrigger=false) {

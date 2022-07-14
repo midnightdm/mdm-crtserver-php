@@ -97,7 +97,8 @@ class VesselsModel extends Firestore {
     //Isolate vessel type from parenthesis
     $pstart   = strpos($edit, '(');
     $pend     = strpos($edit, ')');
-    $type     = substr($edit, $pstart+1, $pend-2);
+    $type     = substr($edit, $pstart+1, ($pend-2));
+    $type     = str_replace(')', '', $type); 
     //Vessel name is first part
     $name     = substr($edit, 0, $pstart-1);
 

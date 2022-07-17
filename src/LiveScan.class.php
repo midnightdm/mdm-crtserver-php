@@ -58,9 +58,11 @@ class LiveScan {
   public $dirScore    = 0;
   public $reload;
   public $reloadTS;
+  public $lastDetectedTS;
 
   public function __construct($ts, $name, $id, $lat, $lon, $speed, $course, $cb, $reload=false, $reloadData=[]) {
     $this->callBack = $cb;
+    //Reload construct
     if ($reload) {
       foreach ($reloadData as $attribute => $value) {        
         //Skip loading DB string on reload, add object instead.
@@ -81,13 +83,13 @@ class LiveScan {
       $this->triggerQueued = false;
       $this->triggerActivated = true;
       //Delete db record pending update of new live data
-      $this->callBack->LiveScanModel->deleteLiveScan($this->liveVesselID);      
+      $this->callBack->LiveScanModel->deleteLiveScan($this->liveVesselID);
+    //New Construct        
     } else {
       $this->setTimestamp($ts, 'liveInitTS');
       $this->setTimestamp($ts, 'liveLastTS');
       $this->setTimestamp($ts, 'transponderTS');
       $this->liveName = $name;
-
       $this->liveVesselID = $id;
       $this->liveIsLocal = in_array($id, $this->callBack->localVesselFilter);      
       //Validate latitude and logitude values
@@ -102,27 +104,40 @@ class LiveScan {
       $this->liveCourse = $course;
       $this->liveSegment = $this->determineSegment($lat);     
       $this->lookUpVessel();
+      $newDetect = $this->testWhenVesselLastDetected();
+      if($newDetect) {
+        flog("\033[41m vesselLastDetectedTS has been updated for $this->liveName.\033[0m\n");
+      }
       //Use scraped vesselName if not provided by transponder
       if(strpos($this->liveName, strval($id))>-1) {
         $this->liveName = $this->liveVessel->vesselName;
       }
-      $validated = $this->insertNewRecord();
+      $recordInserted = $this->insertNewRecord();
       //Unset this construction if above failed
-      if(!$validated) {
+      if(!$recordInserted) {
         flog("\033[41m *  * Constructor stopped for vessel $id because insertNewRecord() failed.  *  * \033[0m\r\n");
         unset($this->callBack->liveScan['mmsi'.$id]);
         return;
       } 
-      //Test for previous detect, don't alert if within last 8 hours
-      $lastDetected = $this->callBack->VesselsModel->getVesselLastDetectedTS($id);
-     flog("lastDetected check = ".$lastDetected."\n");
-      if($lastDetected==false || ($ts-$lastDetected)>28800) {
-        $this->triggerQueued = true;
-        $this->triggerActivated = false;
-      } 
+           
     }   
   }
 
+  public function testWhenVesselLastDetected() {
+    //Test for previous detect, don't resave if within last 24 hours
+    $lastDetectedTS = $this->callBack->VesselsModel->getVesselLastDetectedTS($id);
+    if($lastDetected==false || ($ts-$lastDetected)>86400) {
+       //If not recent, put it in LiveScan
+       $this->lastDetectedTS = $lastDetectedTS;
+       //Then write to vessel record 
+       $this->callBack->VesselsModel->updateVessellastDetected($id,$ts);
+       return true;
+    }
+    return false; 
+  }
+
+
+  //Depricated Function Not Used
   public function checkDetectEventTrigger() {
     //Performs trigger when condtions met. (Created 2021-07-31)
     $event = strpos($this->liveVessel->vesselType, "assenger")>-1 ? "detectp" : "detecta";
@@ -151,6 +166,8 @@ class LiveScan {
       // flog("LiveScan::checkDetectEventTrigger() didn't pass conditional tests...\n      triggerQueued? $this->triggerQueued\n      NOT triggerActivated? $ta,\n      liveLocation NOT null?  $n\n\n");
     }
   }
+  //End Depricated Function
+
 
   public function setTimestamp($ts, $attribute) {
     $test = ['liveLastTS', 'liveInitTS', 'liveMarkerAlphaTS', 'liveMarkerBravoTS', 'liveMarkerCharlieTS', 'liveMarkerDeltaTS', 'transponderTS'];
@@ -190,6 +207,7 @@ class LiveScan {
     //$data['liveWidth'] = $this->liveWidth;
     //$data['liveDraft'] = $this->liveDraft;
     //$data['liveCallSign'] = $this->liveCallSign;
+    $data['lastDetectedTS'] = $this->lastDetectedTS;
     $data['liveSpeed'] = $this->liveSpeed;
     $data['liveCourse'] = $this->liveCourse;
     $data['imageUrl']   = $this->liveVessel->vesselImageUrl;

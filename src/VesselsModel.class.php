@@ -61,7 +61,7 @@ class VesselsModel extends Firestore {
     $date = date("F j, Y", $ts);
     $document = $this->db->collection('Passages')->document('All');
     $snapshot = $document->snapshot();
-    if($snapshot-exists()) {
+    if($snapshot->exists()) {
       $document->set([$vesselID => ['date' => $date ]], ['merge'=> true]);
     }
   }

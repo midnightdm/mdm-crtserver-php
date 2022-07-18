@@ -104,7 +104,7 @@ class LiveScan {
       $this->liveCourse = $course;
       $this->liveSegment = $this->determineSegment($lat);     
       $this->lookUpVessel();
-      $newDetect = $this->testWhenVesselLastDetected();
+      $newDetect = $this->testWhenVesselLastDetected($id);
       if($newDetect) {
         flog("\033[41m vesselLastDetectedTS has been updated for $this->liveName.\033[0m\n");
       }
@@ -123,14 +123,14 @@ class LiveScan {
     }   
   }
 
-  public function testWhenVesselLastDetected() {
+  public function testWhenVesselLastDetected($id) {
     //Test for previous detect, don't resave if within last 24 hours
     $lastDetectedTS = $this->callBack->VesselsModel->getVesselLastDetectedTS($id);
     if($lastDetected==false || ($ts-$lastDetected)>86400) {
        //If not recent, put it in LiveScan
        $this->lastDetectedTS = $lastDetectedTS;
        //Then write to vessel record 
-       $this->callBack->VesselsModel->updateVessellastDetected($id,$ts);
+       $this->callBack->VesselsModel->updateVesselLastDetected($id,$ts);
        return true;
     }
     return false; 

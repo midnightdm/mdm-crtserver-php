@@ -52,37 +52,41 @@ class Firestore {
     return FieldValue::serverTimestamp();
   }
    
-  public function stepApubID() {
+  public function stepApubID($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $apubID = $admin->data()['lastApubID'];
+    $field = $region == "qc"? 'lastQcApubID' : 'lastApubID'; 
+    $apubID = $admin->data()[$field];
     $apubID++;
     flog("stepApubID(): $apubID\n");
     $this->db->collection('Passages')
         ->document('Admin')
-        ->set(['lastApubID'=>$apubID], ['merge'=>true]);
+        ->set([$field=>$apubID], ['merge'=>true]);
     return $apubID;
   }
 
-  public function getApubID() {
+  public function getApubID($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $apubID = $admin->data()['lastApubID'];
+    $field = $region=='qc'? 'lastQcApubID' : 'lastApubID';
+    $apubID = $admin->data()[$field];
     return $apubID;
   }
 
-  public function stepVpubID() {
+  public function stepVpubID($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $vpubID = $admin->data()['lastVpubID'];
+    $field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
+    $vpubID = $admin->data()[$field];
     $vpubID++;
     flog("stepVpubID(): $vpubID\n");
     $this->db->collection('Passages')
         ->document('Admin')
-        ->set(['lastVpubID'=>$vpubID], ['merge'=>true]);
+        ->set([$field=>$vpubID], ['merge'=>true]);
     return $vpubID;
   }
    
-  public function getVpubID() {
+  public function getVpubID($refion) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $vpubID = $admin->data()['lastVpubID'];
+    $field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
+    $vpubID = $admin->data()[$field];
     return $vpubID;
   }
 

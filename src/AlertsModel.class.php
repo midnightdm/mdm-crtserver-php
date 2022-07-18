@@ -27,9 +27,13 @@ class AlertsModel extends Firestore {
       $this->cs = new CloudStorage();
   }
 
-  public function getAlertsAll() {
+  public function getAlertsAll($region) {
       flog("AlertsModel::getAlertsAll()\n");
-      $docRef = $this->db->collection('Alertpublish')->document('all');
+      switch($region) {
+        case "clinton": $collection = "Alertpublish"; break;
+        case "qc"     : $collection = "AlertpublishQC"; break;
+      }
+      $docRef = $this->db->collection($collection)->document('all');
       $snapshot = $docRef->snapshot();
       if($snapshot->exists()) {
           return $snapshot->data();
@@ -38,18 +42,34 @@ class AlertsModel extends Firestore {
       }  
   }
 
-  public function setAlertsAll($data) {
-      $this->db->collection('Alertpublish')->document('all')->set($data);
+  public function setAlertsAll($data, $region='clinton') {
+    switch($region) {
+      case "clinton": $collection = "Alertpublish"; break;
+      case "qc"     : $collection = "AlertpublishQC"; break;
+    }
+      $this->db->collection($collection)->document('all')->set($data);
   }
 
-  public function getAlertsPassenger() {
-      $docRef = $this->db->collection('Alertpublish')->document('passenger');
+  public function getAlertsPassenger($region='clinton') {
+    switch($region) {
+      case "clinton": $collection = "Alertpublish"; break;
+      case "qc"     : $collection = "AlertpublishQC"; break;
+    }
+      $docRef = $this->db->collection($collection)->document('passenger');
       $snapshot = $docRef->snapshot();
       if($snapshot->exists()) {
           return $snapshot->data();
       } else {
           return false;
       }
+  }
+
+  public function setAlertsPassenger($data, $region='clinton') {
+    switch($region) {
+      case "clinton": $collection = "Alertpublish"; break;
+      case "qc"     : $collection = "AlertpublishQC"; break;
+    }
+    $this->db->collection($collection)->document('passenger')->set($data);
   }
 
   public function voiceIsSet($file) {
@@ -63,10 +83,6 @@ class AlertsModel extends Firestore {
 
   public function setVoice($data) {
     $this->db->collection('Voice')->document($data['id'])->set($data);
-  }
-
-  public function setAlertsPassenger($data) {
-      $this->db->collection('Alertpublish')->document('passenger')->set($data);
   }
 
   public function testForUserNotificationTestRequest() {
@@ -96,8 +112,7 @@ class AlertsModel extends Firestore {
         $this->resetUserNotificationTestRequest($userID);
       } else {
           flog( "Document ". $document->id(). " does not exist!\n");
-      }
-      
+      }     
     }
   }
 
@@ -110,7 +125,8 @@ class AlertsModel extends Firestore {
 
   public function triggerEvent($event, $liveObj) {
       //Error check for valid event code
-      $codes = array("alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp","albany", "camanche", "beaverua", "beaverda", "m500ua", "m500up", "m500da", "m500dp",
+      $codes = array("alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp","albany", "camanche", "beaverua", "beaverda", 
+      "echoda", "echoua", "echodp", "echoup", "foxtrotda", "foxtrotua", "foxtrotup", "foxtrotua", "golfda", "golfua", "golfdp", "golfup", "hotelda", "hotelua","hoteldp","hotelup", "m500ua", "m500up", "m500da", "m500dp",
       "m501ua", "m501up", "m501da", "m501dp", "m502ua", "m502up", "m502da", "m502dp"," m503up", "m504up", "m505up", "m506up", "m507up","m508up","m509up", "m510up", "m511up", "m512up", "m513up", "m514up", "m515up", "m516up", "m517up", "m518up", "m519up", "m520up", "m521up", "m522up", "m523up","m524up", "m525up","m526up", "m527up", "m528up", "m529up", "m530up", "m531up", "m532up", "m533up", "m534up", "m535up", "m536up", "m537up", "m538up", "m539up", "m503dp", "m504dp", "m505dp", "m506dp", "m507dp", "m508dp", "m509dp", "m510dp","m511dp","m512dp","m513dp","m514dp","m515dp","m516dp","m517dp",  "m518dp","m519dp","m520dp","m521dp","m522dp","m523dp","m524dp","m525dp","m526dp","m527dp","m528dp","m529dp","m530dp","m531dp","m532dp","m533dp","m534dp","m535dp","m536dp","m537dp","m538dp","m539dp","m503ua","m504ua","m505ua","m506ua","m507ua","m508ua","m509ua","m510ua","m511ua","m512ua","m513ua","m514ua","m515ua","m516ua","m517ua", "m518ua","m519ua","m520ua","m521ua","m522ua","m523ua","m524ua","m525ua","m526ua","m527ua","m528ua","m529ua","m530ua","m531ua","m532ua","m533ua","m534ua","m535ua","m536ua","m537ua","m538ua","m539ua","m503da","m504da","m505da","m506da","m507da","m508da","m509da","m510da","m511da","m512da","m513da","m514da","m515da","m516da","m517da", "m518da","m519da","m520da","m521da","m522da","m523da","m524da","m525da","m526da","m527da","m528da","m529da","m530da","m531da","m532da","m533da","m534da","m535da","m536da","m537da","m538da","m539da", "sabula");
       
       if(!in_array($event, $codes)) {
@@ -119,7 +135,7 @@ class AlertsModel extends Firestore {
       }
 
       //Publish the event to the database if it passes waypoint type filter 
-      $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp"];
+      $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup"];
       if(in_array($event, $filter)) {
           flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") WAYPOINT PUBLISHED\033[0m\r\n");
           $this->publishAlertMessage($event, $liveObj);
@@ -145,7 +161,7 @@ class AlertsModel extends Firestore {
               if($user['subscription']['is_enabled']) {
                   if($user['alertMethod']=='notification') {  
                       flog( "pushNoticeTo(".$user['subscription']['auth'].") for event ".$event."\n"); 
-                      $apubID = $this->getApubID(); //Method in parent       
+                      $apubID = $this->getApubID($liveObj->liveRegion); //Method in parent       
                       $this->pushNoticeTo($user, $event, $apubID, $liveObj);
                   } elseif($user['alertMethod']=='email') {
                       flog( "pushEmailTo(".$user['alertDest'].") for event ".$event."\n");
@@ -382,8 +398,9 @@ class AlertsModel extends Firestore {
     flog("AlertsModel::publishAlertMessage(".$event.",".$liveScan->liveName.") ");
     //This function gets run by Event trigger methods of this class 
     $ts = time();
+    $region = $liveScan->liveRegion;
     $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
-    $apubID = $this->getApubID() + 1; //Method in parent
+    $apubID = $this->getApubID($region) + 1; //Method in parent
     $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
     $txt = $this->buildAlertMessage(
       $event, 
@@ -396,11 +413,7 @@ class AlertsModel extends Firestore {
       $liveScan->liveLocation->description[0]
     );
     //Build voice file name based on event, direction & vesselID
-    if(str_starts_with($event, 'detect' )) {
-      $voiceFileName = "t".substr($event,-1,1).$liveScan->liveVesselID.".mp3";
-    } else {
-      $voiceFileName = substr($event, 0,1).substr($event, -2,1).$liveScan->liveVesselID.".mp3";
-    }
+    $voiceFileName = substr($event, 0,1).substr($event, -2,1).$liveScan->liveVesselID.".mp3";
     flog( "  AlertsModel::publishAlertMessage() voiceFileName: $voiceFileName, apubID: $apubID\n");
     $apubVoiceUrl = $this->cs->image_base."voice/".$voiceFileName;
     //Build text for voice synthesis
@@ -430,29 +443,40 @@ class AlertsModel extends Firestore {
         'apubDir'=>$liveScan->liveDirection
     ];
     //Add new Alert document for perm record
-    $this->db->collection('Alertpublish')->document(strval($apubID))->set($data);
+    switch($region) {
+      case "qc":  
+        $collection = "AlertPublishQC"; 
+        $arrName = $type=='p' ? 'alertsPassengerQC':'alertsAllQC'; 
+        break;                     
+      case "clinton": 
+        $collection = "AlertPublish";
+        $arrName = $type=='p' ? 'alertsPassenger' : 'alertsAll';
+        break;
+    }
+    $this->db->collection($collection)->document(strval($apubID))->set($data);
     //Save new apubID to admin to trigger JS
-    $this->stepApubID();
-    //Also update collective alert list queue (a or p type)... 
-    $ref = $type=='p' ? 'alertsPassenger' : 'alertsAll';
-    $len = count($this->daemon->$ref);
-    flog("Last $ref obj in $len sized array before queue update:". var_dump($this->daemon->$ref[$len-1])."\n");
-    $this->daemon->$ref = objectQueue($this->daemon->$ref, $data, 20);
-    $len = count($this->daemon->$ref);
-    flog("Last $ref obj in $len sized array after queue update:". var_dump($this->daemon->$ref[$len-1])."\n");
+    $this->stepApubID($region);
+    //Also update collective alert list queue (a or p type)...
+    
+    $len = count($this->daemon->$arrName);
+    flog("Last $arrName obj in $len sized array before queue update:". var_dump($this->daemon->$arrName[$len-1])."\n");
+    $this->daemon->$arrName = objectQueue($this->daemon->$arrName, $data, 20);
+    $len = count($this->daemon->$arrName);
+    flog("Last $arrName obj in $len sized array after queue update:". var_dump($this->daemon->$arrName[$len-1])."\n");
     //...and save as db document
     $sref = $type=='p' ? 'setAlertsPassenger' : 'setAlertsAll';
-    $this->$sref($this->daemon->$ref);
+    $this->$sref($this->daemon->$arrName, $region);
     //Use updated array to write RSS files
-    $this->generateRss($type);
+    $this->generateRss($type, $region);
   }
 
 
   public function announcePassengerProgress($event, $liveScan) {
     //This function gets run by Event trigger methods of this class 
     $ts = time();
+    $region = $liveScan->liveRegion;
     $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
-    $vpubID = $this->getVpubID() + 1; //Method in parent
+    $vpubID = $this->getVpubID($region) + 1; //Method in parent
     $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
     if($type=='a') {
       trigger_error("Non passenger vessel sent to AlertsModel::announcePassengerProgress() function.");
@@ -488,9 +512,13 @@ class AlertsModel extends Firestore {
         'vpubDir'=>$liveScan->liveDirection
     ];
     //Add new db document for perm record
-    $this->db->collection('Voicepublish')->document(strval($vpubID))->set($data);
+    switch($region) {
+      case "qc":      $collection = "VoicePublishQC";  break;                     
+      case "clinton": $collection = "VoicePublish";    break;
+    }
+    $this->db->collection($collection)->document(strval($vpubID))->set($data);
     //Now save new vpubID to admin which trips JS event
-    $this->stepVpubID();
+    $this->stepVpubID($region);
 }
 
   public function generateVoice($fileName, $fullUrl, $text) {
@@ -522,22 +550,34 @@ class AlertsModel extends Firestore {
 
   }
 
-  public function generateRss($vt) { //a=any, p=passenger
+  public function generateRss($vt, $region) { //$vt Vessel Type a=any, p=passenger
       flog("AlertsModel::generateRss()\n");
       //Set vars based on type
       $head =  $vt == "p" ? "PASSENGER" : "ALL VESSELS";
       $label = $vt == "p" ? "passenger" : "all commercial";
-      $fileName = $vt == "p" ? "passenger.rss" : "any.rss";
-      $arrName = $vt == "p" ? "alertsPassenger" :"alertsAll";
-  
+      switch($region) {
+        case "clinton":
+          $fileName = $vt == "p" ? "passenger.rss" : "any.rss";
+          $arrName = $vt == "p" ? "alertsPassenger" :"alertsAll";
+          $crossing = "Clinton, Iowa";
+          $baseUrl = "https://www.clintonrivertraffic.com";
+          break;
+        case "qc":
+          $fileName = $vt == "p" ? "passengerQC.rss" : "anyQC.rss";
+          $arrName = $vt == "p" ? "alertsPassengerQC" :"alertsAllQC";
+          $crossing = "the Quad Cities";
+          $baseUrl = "https://www.qcrivertraffic.com";
+          break;
+      }  
       $documentArr = $this->daemon->$arrName;
 
       //Date building
       $str    = "D, j M Y G:i:s \C\D\T"; 
       $offset = getTimeOffset();
       $time   = time();
-      $firstTS  = $documentArr[0]['apubTS'];
-      $pubdate = date($str, ($firstTS+$offset));
+      $arrLen = count($documentArr);
+      $endTS  = $documentArr[$arrLen-1]['apubTS'];
+      $pubdate = date($str, ($endTS+$offset));
   
       //Begin building rss XML document
       $output = <<<_END
@@ -545,8 +585,8 @@ class AlertsModel extends Firestore {
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
     <title>Clinton River Traffic-$head</title>
-    <link>https://www.clintonrivertraffic.com</link>
-    <description>Waypoint crossing notifications for $label vessels passing Clinton, Iowa on the Mississippi river.</description>
+    <link>$baseUrl</link>
+    <description>Waypoint crossing notifications for $label vessels passing $crossing on the Mississippi river.</description>
     <language>en</language>
     <pubDate>$pubdate</pubDate>
 _END;
@@ -555,7 +595,7 @@ _END;
       foreach($documentArr as $data) {
           $vesselID  = $data['apubVesselID'];
           $alertID   = $data['apubID'];
-          $vesselLink = "https://www.clintonrivertraffic.com/alerts/waypoint/".$alertID;
+          $vesselLink = $baseUrl."/alerts/waypoint/".$alertID;
           $vesselName  = $data['apubVesselName'];
           $itemPubDate = date( $str, ($data['apubTS']+$offset) );
           $vesselImg  = $data['apubVesselImageUrl'];
@@ -573,61 +613,6 @@ _END;
       $this->cs->upload( $this->appPath.'/'. $fileName, basename($fileName));          
   }
 
-  public function saveLivescanJson() {
-    //new 3/18/22, disabled 3/27/22
-    $liveScan = $this->daemon->liveScan;
-    $liveArr = [];
-    foreach($liveScan as $live) {
-      $data = [];
-      $data['liveVesselID'] = $live->liveVesselID;
-      $data['liveName'] = $live->liveName;
-      $data['type']       = $live->liveVessel->vesselType;
-
-      $data['transponderTS'] = $live->transponderTS;
-      $data['liveLastTS'] = $live->liveLastTS;
-      $data['liveInitTS'] = $live->liveInitTS;
-      
-      $data['liveInitLat'] = $live->liveInitLat;
-      $data['liveLastLat'] = $live->liveLastLat;
-      $data['liveInitLon'] = $live->liveInitLon;
-      $data['liveLastLon'] = $live->liveLastLon;
-
-      $data['liveSpeed'] = $live->liveSpeed;
-      $data['liveCourse'] = $live->liveCourse;
-      $data['liveDirection'] = $live->liveDirection;
-      $data['liveSegment'] = $live->liveSegment;
-      if($live->liveLocation instanceof Location) {
-        $data['liveLocation'] = ucfirst($live->liveLocation->description[0]);
-        $data['liveEvent']  = $live->liveLocation->event;
-        $data['liveEvents'] = $live->liveLocation->events; //This is array
-      } else{
-        $data['liveLocation'] = "Location Not Calculated";
-        $data['liveEvent'] = "";
-        $data['liveEvents'] = [];
-      }
-
-      $data['imageUrl']   = $live->liveVessel->vesselImageUrl;
-      $data['liveLength'] = $live->liveLength;
-      $data['liveWidth'] = $live->liveWidth;
-      $data['liveDraft'] = $live->liveDraft;
-      $data['liveCallSign'] = $live->liveCallSign; 
-      $data['liveIsLocal'] = $live->liveIsLocal;
-
-      $data['liveMarkerAlphaWasReached'] = $live->liveMarkerAlphaWasReached;
-      $data['liveMarkerAlphaTS'] = $live->liveMarkerAlphaTS;
-      $data['liveMarkerBravoWasReached'] = $live->liveMarkerBravoWasReached;
-      $data['liveMarkerBravoTS'] = $live->liveMarkerBravoTS;
-      $data['liveMarkerCharlieWasReached'] = $live->liveMarkerCharlieWasReached;
-      $data['liveMarkerCharlieTS'] = $live->liveMarkerCharlieTS;
-      $data['liveMarkerDeltaWasReached'] = $live->liveMarkerDeltaWasReached;
-      $data['liveMarkerDeltaTS'] = $live->liveMarkerDeltaTS;
-      $data['livePassageWasSaved'] = $live->livePassageWasSaved;
-      $liveArr[] = $data;
-    }
-    $json     = json_encode($liveArr);
-    file_put_contents($this->appPath."/livescan.json", $json);
-    $this->cs->upload( $this->appPath."/livescan.json", "livescan.json");
-  }
 
   //Methods below were for sql based version of app 
 

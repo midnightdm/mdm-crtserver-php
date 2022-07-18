@@ -400,7 +400,7 @@ class PlotDaemon {
       //Sort by Date decending
       usort($passClinton, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
       //Enfore queue limit of 20
-      $this->alertsPassenger = array_slice($pass, 0, 20);
+      $this->alertsPassenger = array_slice($passClinton, 0, 20);
     } else {
       flog( "\033[41m *  PlotDaemon::reloadSavedAlertsPassenger('clinton') failed to get data.  * \033[0m\r\n");
     }
@@ -409,7 +409,7 @@ class PlotDaemon {
       //Sort by Date decending
       usort($passQC, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
       //Enfore queue limit of 20
-      $this->alertsPassengerQC = array_slice($pass, 0, 20);
+      $this->alertsPassengerQC = array_slice($passQC, 0, 20);
     } else {
       flog( "\033[41m *  PlotDaemon::reloadSavedAlertsPassenger('qc') failed to get data.  * \033[0m\r\n");
     }

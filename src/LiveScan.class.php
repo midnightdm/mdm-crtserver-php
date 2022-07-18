@@ -130,7 +130,7 @@ class LiveScan {
        //If not recent, put it in LiveScan
        $this->lastDetectedTS = $lastDetectedTS;
        //Then write to vessel record 
-       $this->callBack->VesselsModel->updateVesselLastDetected($id,$ts);
+       $this->callBack->VesselsModel->updateVesselLastDetectedTS($id,$ts);
        return true;
     }
     return false; 

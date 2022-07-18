@@ -71,8 +71,7 @@ class PlotDaemon {
       $this->dbHost = $config['dbHost'];
       $this->dbUser = $config['dbUser'];
       $this->dbPwd  = $config['dbPwd'];
-      $this->dbName = $config['dbName'];  
-      $this->region = $config['region']; 
+      $this->dbName = $config['dbName'];   
       $this->nonVesselFilter = $config['nonVesselFilter'];
       $this->localVesselFilter = $config['localVesselFilter'];
       $this->image_base = $config['image_base'];

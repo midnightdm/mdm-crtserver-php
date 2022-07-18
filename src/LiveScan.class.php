@@ -126,7 +126,7 @@ class LiveScan {
   public function testWhenVesselLastDetected($id,$ts) {
     //Test for previous detect, don't resave if within last 24 hours
     $lastDetectedTS = $this->callBack->VesselsModel->getVesselLastDetectedTS($id);
-    if($lastDetectedTS==false || ($ts-$lastDetected)>86400) {
+    if($lastDetectedTS==false || ($ts-$lastDetectedTS)>86400) {
        //If not recent, put it in LiveScan
        $this->lastDetectedTS = $lastDetectedTS;
        //Then write to vessel record 

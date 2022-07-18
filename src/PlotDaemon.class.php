@@ -372,28 +372,46 @@ class PlotDaemon {
 
   protected function reloadSavedAlertsAll() {
     flog("CRTDaemon::reloadSavedAlertsAll()\n");
-    $all =  $this->AlertsModel->getAlertsAll();
-    if($all !== false && is_array($all)) {
+    $allClinton =  $this->AlertsModel->getAlertsAll('clinton');
+    if($allClinton !== false && is_array($allClinton)) {
       //Sort by Date decending
-      usort($all, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
+      usort($allClinton, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
       //Enforce queue limit of 20
       $this->alertsAll = array_slice($all, 0, 20); 
     } else {
-      throw new Exception("reloadSavedAlertsAll() failed to get data.");
+      flog( "\033[41m *  PlotDaemon::reloadSavedAlertsAll('clinton') failed to get data.  * \033[0m\r\n");
+    }
+    $allQC = $this->alertsModel->getAlertsAll('qc');
+    if($allQC !== false && is_array($allQC)) {
+      //Sort by Date decending
+      usort($allQC, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
+      //Enforce queue limit of 20
+      $this->alertsAllQC = array_slice($allQC, 0, 20); 
+    } else {
+      flog( "\033[41m *  PlotDaemon::reloadSavedAlertsAll('qc') failed to get data.  * \033[0m\r\n");
     }
            
   }
 
   protected function reloadSavedAlertsPassenger() {
     flog("CRTDaemon::reloadSavedAlertsPassenger()\n");
-    $pass =  $this->AlertsModel->getAlertsPassenger();
-    if($pass !== false && is_array($pass)) {
+    $passClinton =  $this->AlertsModel->getAlertsPassenger('clinton');
+    if($passClinton !== false && is_array($passClinton)) {
       //Sort by Date decending
-      usort($pass, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
+      usort($passClinton, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
       //Enfore queue limit of 20
       $this->alertsPassenger = array_slice($pass, 0, 20);
     } else {
-      flog( "\033[41m *  PlotDaemon::reloadSavedAlertsPassenger() failed to get data.  * \033[0m\r\n");
+      flog( "\033[41m *  PlotDaemon::reloadSavedAlertsPassenger('clinton') failed to get data.  * \033[0m\r\n");
+    }
+    $passQC =  $this->AlertsModel->getAlertsPassenger('qc');
+    if($passQC !== false && is_array($passQC)) {
+      //Sort by Date decending
+      usort($passQC, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
+      //Enfore queue limit of 20
+      $this->alertsPassengerQC = array_slice($pass, 0, 20);
+    } else {
+      flog( "\033[41m *  PlotDaemon::reloadSavedAlertsPassenger('qc') failed to get data.  * \033[0m\r\n");
     }
   }
 

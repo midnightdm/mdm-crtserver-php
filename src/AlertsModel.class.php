@@ -445,11 +445,11 @@ class AlertsModel extends Firestore {
     //Add new Alert document for perm record
     switch($region) {
       case "qc":  
-        $collection = "AlertPublishQC"; 
+        $collection = "AlertpublishQC"; 
         $arrName = $type=='p' ? 'alertsPassengerQC':'alertsAllQC'; 
         break;                     
       case "clinton": 
-        $collection = "AlertPublish";
+        $collection = "Alertpublish";
         $arrName = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         break;
     }

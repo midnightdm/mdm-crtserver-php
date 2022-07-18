@@ -9,6 +9,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
  */
 
 class ZONE {
+    //In each array 0 is printed, 1 is spoken
     public static $m486 = ["at M-486 by I-74 bridge Bettendorf","at marker 486 by the I-74 bridge in Bettendorf"];
     public static $m487 = ["at M-487 Bettendorf 6.5 miles below Lock 14","at marker 487 in Bettendorf, 6.5 miles below Lock 14"];
     public static $m488 = ["at M-488 Bettendorf 5.5 miles below Lock 14","at marker 488 in Bettendorf, 5.5 miles below Lock 14"];
@@ -35,9 +36,9 @@ class ZONE {
     public static $m509 = ["at marker 509 by 3M plant 9 miles below Clinton drawbridge","at marker 509 near 3M, 9 miles below the Clinton drawbridge"];
     public static $m510 = ["at mile marker 510 8 miles below Clinton drawbridge", "at mile marker 510, 8 miles below the Clinton drawbridge"];
     public static $malbany = ["at Albany sandpit backwaters","in the Albany sandpit back-waters"];
-    public static $m511 = ["at marker 511 by Camanche 7 miles below Clinton drawbridge","at marker 511 by Camanche, 7 miles below the Clinton drawbridge"];
-    public static $m512 = ["at M-512 by Camanche marina 6 miles below Clinton drawbridge", "at marker 512 by Camanche marina, 6 miles below Clinton drawbridge"];
-    public static $mcamanche = ["In Camanche Harbor", "In Camanche Harbor"];
+    public static $m511 = ["at marker 511 by Camanche 7 miles below Clinton drawbridge","at marker 511 by Kuhmanch, 7 miles below the Clinton drawbridge"];
+    public static $m512 = ["at M-512 by Camanche marina 6 miles below Clinton drawbridge", "at marker 512 by Kuhmanch marina, 6 miles below Clinton drawbridge"];
+    public static $mcamanche = ["In Camanche Harbor", "In Kuhmanch Harbor"];
     public static $m513 = ["at M-513 Albany, IL 5 miles below Clinton drawbridge", "at marker 513 by Albany, 5 miles below the Clinton drawbridge"];
     public static $m514 = ["at M-514 Albany, IL 4 miles below Clinton drawbridge","at marker 514 by Albany, 4 miles below the Clinton drawbridge"];
     public static $m515 = ["at M-515 by Vans Landing 3 miles below Clinton drawbridge","at marker 515 by Vans Landing 3 miles below the Clinton drawbridge"];
@@ -68,13 +69,13 @@ class ZONE {
     public static $m538 = ["at marker 538 3 miles above Sabula drawbridge","at marker 538, 3 miles above the Sabula drawbridge"];
     public static $m539 = ["at marker 539 4 miles above Sabula drawbridge","at marker 539, 4 miles above the Sabula drawbridge"];
     public static $m540 = ["at marker 540 5 miles above Sabula drawbridge","at marker 540, 5 miles above the Sabula drawbridge"];
-    public static $malpha = ["3 miles north of Lock 13","3 miles N of Lock 13"];
-    public static $mbravo = ["Lock 13 by Fulton, Illinois","Lock 13, Fulton"];
-    public static $mcharlie = ["at Clinton's railroad drawbridge","RR drawbridge, Clinton"];
-    public static $mdelta = ["3 miles south of Clinton's railroad drawbridge","3 miles S of RR drawbridge"];
-    public static $mecho = ["passed the interstae 80 bridge in LeClaire","passed the I-80 bridge, LeClaire"];
-    public static $mfoxtrot = ["at Lock 14 by Princeton, Iowa","Lock 14, Princeton"];
-    public static $mgolf = ["at Lock 15 in Davenport","Lock 15, Davenport"];
-    public static $mhotel = ["passed the Interstate two-eighty bridge in Davenport","I-280 bridge, Davenport"];
+    public static $malpha = ["3 miles N of Lock 13", "3 miles north of Lock 13"];
+    public static $mbravo = ["Lock 13, Fulton", "Lock 13 by Fulton, Illinois"];
+    public static $mcharlie = ["RR drawbridge, Clinton", "at Clinton's railroad drawbridge"];
+    public static $mdelta = ["3 miles S of RR drawbridge","3 miles south of Clinton's railroad drawbridge"];
+    public static $mecho = ["passed the I-80 bridge, LeClaire", "passed the interstae 80 bridge in LeClaire"];
+    public static $mfoxtrot = ["Lock 14, Princeton","at Lock 14 by Princeton, Iowa"];
+    public static $mgolf = ["Lock 15, Davenport", "at Lock 15 in Davenport"];
+    public static $mhotel = ["I-280 bridge, Davenport", "passed the Interstate two-eighty bridge in Davenport"];
 
 }

@@ -377,7 +377,7 @@ class PlotDaemon {
       //Sort by Date decending
       usort($allClinton, fn($a, $b) => $b['apubTS'] - $a['apubTS']);
       //Enforce queue limit of 20
-      $this->alertsAll = array_slice($all, 0, 20); 
+      $this->alertsAll = array_slice($allClinton, 0, 20); 
     } else {
       flog( "\033[41m *  PlotDaemon::reloadSavedAlertsAll('clinton') failed to get data.  * \033[0m\r\n");
     }

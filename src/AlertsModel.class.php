@@ -513,8 +513,8 @@ class AlertsModel extends Firestore {
     ];
     //Add new db document for perm record
     switch($region) {
-      case "qc":      $collection = "VoicePublishQC";  break;                     
-      case "clinton": $collection = "VoicePublish";    break;
+      case "qc":      $collection = "VoicepublishQC";  break;                     
+      case "clinton": $collection = "Voicepublish";    break;
     }
     $this->db->collection($collection)->document(strval($vpubID))->set($data);
     //Now save new vpubID to admin which trips JS event

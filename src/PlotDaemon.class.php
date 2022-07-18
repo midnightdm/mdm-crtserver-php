@@ -381,7 +381,7 @@ class PlotDaemon {
     } else {
       flog( "\033[41m *  PlotDaemon::reloadSavedAlertsAll('clinton') failed to get data.  * \033[0m\r\n");
     }
-    $allQC = $this->alertsModel->getAlertsAll('qc');
+    $allQC = $this->AlertsModel->getAlertsAll('qc');
     if($allQC !== false && is_array($allQC)) {
       //Sort by Date decending
       usort($allQC, fn($a, $b) => $b['apubTS'] - $a['apubTS']);

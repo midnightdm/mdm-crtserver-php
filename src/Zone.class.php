@@ -70,12 +70,12 @@ class ZONE {
     public static $m539 = ["at marker 539 4 miles above Sabula drawbridge","at marker 539, 4 miles above the Sabula drawbridge"];
     public static $m540 = ["at marker 540 5 miles above Sabula drawbridge","at marker 540, 5 miles above the Sabula drawbridge"];
     public static $malpha = ["3 miles N of Lock 13", "3 miles north of Lock 13"];
-    public static $mbravo = ["Lock 13, Fulton", "at Lock 13 by Fulton, Illinois"];
-    public static $mcharlie = ["RR drawbridge, Clinton", "at Clinton's railroad drawbridge"];
+    public static $mbravo = ["at Lock 13, Fulton", "at Lock 13 by Fulton, Illinois"];
+    public static $mcharlie = ["at RR drawbridge, Clinton", "at Clinton's railroad drawbridge"];
     public static $mdelta = ["3 miles S of RR drawbridge","3 miles south of Clinton's railroad drawbridge"];
-    public static $mecho = ["passed the I-80 bridge, LeClaire", "at the interstate 80 bridge in LeClaire"];
-    public static $mfoxtrot = ["Lock 14, Princeton","at Lock 14 by Princeton, Iowa"];
-    public static $mgolf = ["Lock 15, Davenport", "at Lock 15 in Davenport"];
-    public static $mhotel = ["I-280 bridge, Davenport", "at the Interstate two-eighty bridge in Davenport"];
+    public static $mecho = ["at the I-80 bridge, LeClaire", "at the interstate 80 bridge in LeClaire"];
+    public static $mfoxtrot = ["at Lock 14, Princeton","at Lock 14 by Princeton, Iowa"];
+    public static $mgolf = ["at Lock 15, Davenport", "at Lock 15 in Davenport"];
+    public static $mhotel = ["at I-280 bridge, Davenport", "at the Interstate two-eighty bridge in Davenport"];
 
 }

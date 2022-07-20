@@ -281,37 +281,37 @@ class AlertsModel extends Firestore {
     $offset = getTimeOffset();
     //Parse event code to get status (and marker data)
     
-    if(str_starts_with($event, 'alpha'   )) { 
-        $status = "alpha";
-    } elseif(str_starts_with($event, 'bravo'   )) {
-        $status = "bravo";
-    } elseif(str_starts_with($event, 'charlie' )) {
-        $status = "charlie";
-    } elseif(str_starts_with($event, 'delta'   )) {
-        $status = "delta";
-    } elseif(str_starts_with($event, 'echo'   )) {
-        $status = "echo";
-    } elseif(str_starts_with($event, 'foxtrot'   )) {
-        $status = "foxtrot";    
-    } elseif(str_starts_with($event, 'golf'   )) {
-        $status = "golf";    
-    } elseif(str_starts_with($event, 'hotel'   )) {
-        $status = "hotel";
-    } elseif(str_starts_with($event, 'albany'  )) {
-        $status = "albany";
-    } elseif(str_starts_with($event, 'camanche')) {
-        $status = "camanche";
-    } elseif(str_starts_with($event, 'beaver' ) ) {
-        $status = "beaver";
-    } elseif(str_starts_with($event, 'detect' ) ) {
-        $status = "detect";
-    } elseif(str_starts_with($event, "m")) { 
-        $status = "marker"; 
-        $mile = substr(1,3);
-    } else { 
-        $status = "Not Resolved";
-    }
-    flog( "AlertsModel::buildAlertMessage() event: $event\n");
+    // if(str_starts_with($event, 'alpha'   )) { 
+    //     $status = "alpha";
+    // } elseif(str_starts_with($event, 'bravo'   )) {
+    //     $status = "bravo";
+    // } elseif(str_starts_with($event, 'charlie' )) {
+    //     $status = "charlie";
+    // } elseif(str_starts_with($event, 'delta'   )) {
+    //     $status = "delta";
+    // } elseif(str_starts_with($event, 'echo'   )) {
+    //     $status = "echo";
+    // } elseif(str_starts_with($event, 'foxtrot'   )) {
+    //     $status = "foxtrot";    
+    // } elseif(str_starts_with($event, 'golf'   )) {
+    //     $status = "golf";    
+    // } elseif(str_starts_with($event, 'hotel'   )) {
+    //     $status = "hotel";
+    // } elseif(str_starts_with($event, 'albany'  )) {
+    //     $status = "albany";
+    // } elseif(str_starts_with($event, 'camanche')) {
+    //     $status = "camanche";
+    // } elseif(str_starts_with($event, 'beaver' ) ) {
+    //     $status = "beaver";
+    // } elseif(str_starts_with($event, 'detect' ) ) {
+    //     $status = "detect";
+    // } elseif(str_starts_with($event, "m")) { 
+    //     $status = "marker"; 
+    //     $mile = substr(1,3);
+    // } else { 
+    //     $status = "Not Resolved";
+    // }
+    // flog( "AlertsModel::buildAlertMessage() event: $event\n");
     // switch($status) {
     //     case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;
     //     case "bravo" : $evtDesc = $direction=="downriver" ? "left " : " reached ";

@@ -319,7 +319,7 @@ class PlotDaemon {
         }
         flog( "   ...".$liveScanObj->liveName. " ".$len." events.\n");
         $liveScanObj->livePassageWasSaved = true;
-        //Put logic here to determine Clinton or QC passage save
+        //Determine Clinton or QC passage save
         if($liveScanObj->liveRegion == "clinton") {
          $this->PassagesModel->savePassageClinton($liveScanObj);
         } else if($liveScanObj->liveRegion == "qc") {

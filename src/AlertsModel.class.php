@@ -275,8 +275,8 @@ class AlertsModel extends Firestore {
       flog( $report); 
   }
 
-  public function buildAlertMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $location) {
-    $loc = ""; 
+  public function buildAlertMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $locDesc) {
+    //$loc = ""; 
     $str = "m/j/Y h:i:sa";
     $offset = getTimeOffset();
     //Parse event code to get status (and marker data)
@@ -311,84 +311,83 @@ class AlertsModel extends Firestore {
     } else { 
         $status = "Not Resolved";
     }
-    flog( "AlertsModel::buildAlertMessage() event: $event, status: $status\n");
-    switch($status) {
-        case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;
-        case "bravo" : $evtDesc = $direction=="downriver" ? "left " : " reached ";
-                        $evtDesc .= "Lock 13 "; break;
-        case "charlie" : $evtDesc = "passed the Clinton RR drawbridge ";  break;
-        case "delta" : $evtDesc = "crossed 3 mi S of drawbridge ";  break;
-        case "echo" : $evtDesc = "passed the I-80 bridge, LeClaire ";  break;
-        case "foxtrot" : $evtDesc = "is at Lock 14 ";  break;
-        case "golf" : $evtDesc = "is at Lock 15 ";  break;
-        case "hotel" : $evtDesc = "crossed the I-280 bridge ";  break;
-        case "detect" : $evtDesc = "has been detected "; break;
-        case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
-        case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
-        case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
-        case "marker" : $evtDesc = "is ".$location; break;
-    }
+    flog( "AlertsModel::buildAlertMessage() event: $event\n");
+    // switch($status) {
+    //     case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;
+    //     case "bravo" : $evtDesc = $direction=="downriver" ? "left " : " reached ";
+    //                     $evtDesc .= "Lock 13 "; break;
+    //     case "charlie" : $evtDesc = "passed the Clinton RR drawbridge ";  break;
+    //     case "delta" : $evtDesc = "crossed 3 mi S of drawbridge ";  break;
+    //     case "echo" : $evtDesc = "passed the I-80 bridge, LeClaire ";  break;
+    //     case "foxtrot" : $evtDesc = "is at Lock 14 ";  break;
+    //     case "golf" : $evtDesc = "is at Lock 15 ";  break;
+    //     case "hotel" : $evtDesc = "crossed the I-280 bridge ";  break;
+    //     case "detect" : $evtDesc = "has been detected "; break;
+    //     case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
+    //     case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
+    //     case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
+    //     case "marker" : $evtDesc = "is ".$location; break;
+    // }
     $txt  = str_replace('Vessel', '', $vesselType);
-    $txt .= " Vessel ".$vesselName." ".$evtDesc;
+    $txt .= " Vessel ".$vesselName." is ".$locDesc;
     $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
-    $txt .= ". ".date($str, ($ts+$offset)).$loc;
+    $txt .= ". ".date($str, ($ts+$offset));
     return $txt;
   }
 
-  public function buildVoiceMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $location) {
-    $loc = ""; 
-  
-    //Parse event code to get status (and marker data)  
-    if(str_starts_with($event, 'alpha'   )) { 
-        $status = "alpha";
-    } elseif(str_starts_with($event, 'bravo'   )) {
-        $status = "bravo";
-    } elseif(str_starts_with($event, 'charlie' )) {
-        $status = "charlie";
-    } elseif(str_starts_with($event, 'delta'   )) {
-        $status = "delta";
-    } elseif(str_starts_with($event, 'echo'   )) {
-        $status = "echo";
-    } elseif(str_starts_with($event, 'foxtrot' )) {
-        $status = "foxtrot";    
-    } elseif(str_starts_with($event, 'golf'   )) {
-        $status = "golf";    
-    } elseif(str_starts_with($event, 'hotel'   )) {
-        $status = "hotel";        
-    } elseif(str_starts_with($event, 'albany'  )) {
-        $status = "albany";
-    } elseif(str_starts_with($event, 'camanche')) {
-        $status = "camanche";
-    } elseif(str_starts_with($event, 'beaver' ) ) {
-        $status = "beaver";
-    } elseif(str_starts_with($event, 'detect' ) ) {
-        $status = "detect";
-    } elseif(str_starts_with($event, "m")) { 
-        $status = "marker"; 
-        $mile = substr(1,3);
-    } else { 
-        $status = "Not Resolved";
-    }
-    flog( "AlertsModel::buildVoiceMessage() event: $event, status: $status\n");
-    switch($status) {
-        case "alpha" : $evtDesc = "crossed 3 miles north of Lock 13 ";  break;
-        case "bravo" : $evtDesc = $direction=="downriver" ? " has left " : " has reached ";
-                        $evtDesc .= "Lock 13 "; break;
-        case "charlie" : $evtDesc = "passed the Clinton drawbridge ";  break;
-        case "delta" : $evtDesc = "crossed 3 miles south of the Clinton drawbridge ";  break;
-        case "echo" : $evtDesc = "passed the Interstate 80 bridge in LeClaire ";  break;
-        case "foxtrot" : $evtDesc = "is at Lock 14 below Princeton ";  break;
-        case "golf" : $evtDesc = "is at Lock 15 in Davenport";  break;
-        case "hotel" : $evtDesc = "crossed the Intersate two-eighty bridge in Davenport ";  break;
-        case "detect" : $evtDesc = "has been detected "; break;
-        case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
-        case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
-        case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
-        case "marker" : $evtDesc = "is ".$location; break;
-    }
+  public function buildVoiceMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $locDesc) {
+    // $loc = ""; 
+    // //Parse event code to get status (and marker data)  
+    // if(str_starts_with($event, 'alpha'   )) { 
+    //     $status = "alpha";
+    // } elseif(str_starts_with($event, 'bravo'   )) {
+    //     $status = "bravo";
+    // } elseif(str_starts_with($event, 'charlie' )) {
+    //     $status = "charlie";
+    // } elseif(str_starts_with($event, 'delta'   )) {
+    //     $status = "delta";
+    // } elseif(str_starts_with($event, 'echo'   )) {
+    //     $status = "echo";
+    // } elseif(str_starts_with($event, 'foxtrot' )) {
+    //     $status = "foxtrot";    
+    // } elseif(str_starts_with($event, 'golf'   )) {
+    //     $status = "golf";    
+    // } elseif(str_starts_with($event, 'hotel'   )) {
+    //     $status = "hotel";        
+    // } elseif(str_starts_with($event, 'albany'  )) {
+    //     $status = "albany";
+    // } elseif(str_starts_with($event, 'camanche')) {
+    //     $status = "camanche";
+    // } elseif(str_starts_with($event, 'beaver' ) ) {
+    //     $status = "beaver";
+    // } elseif(str_starts_with($event, 'detect' ) ) {
+    //     $status = "detect";
+    // } elseif(str_starts_with($event, "m")) { 
+    //     $status = "marker"; 
+    //     $mile = substr(1,3);
+    // } else { 
+    //     $status = "Not Resolved";
+    // }
+    // flog( "AlertsModel::buildVoiceMessage() event: $event, status: $status\n");
+    // switch($status) {
+    //     case "alpha" : $evtDesc = "crossed 3 miles north of Lock 13 ";  break;
+    //     case "bravo" : $evtDesc = $direction=="downriver" ? " has left " : " has reached ";
+    //                     $evtDesc .= "Lock 13 "; break;
+    //     case "charlie" : $evtDesc = "passed the Clinton drawbridge ";  break;
+    //     case "delta" : $evtDesc = "crossed 3 miles south of the Clinton drawbridge ";  break;
+    //     case "echo" : $evtDesc = "passed the Interstate 80 bridge in LeClaire ";  break;
+    //     case "foxtrot" : $evtDesc = "is at Lock 14 below Princeton ";  break;
+    //     case "golf" : $evtDesc = "is at Lock 15 in Davenport";  break;
+    //     case "hotel" : $evtDesc = "crossed the Intersate two-eighty bridge in Davenport ";  break;
+    //     case "detect" : $evtDesc = "has been detected "; break;
+    //     case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
+    //     case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
+    //     case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
+    //     case "marker" : $evtDesc = "is ".$location; break;
+    // }
     $txt = $direction=='undetermined' ? "" : "Traveling ".$direction.", ";
     $txt .= str_replace('vessel', '', $vesselType);
-    $txt .= " Vessel, ".$vesselName.", ".$evtDesc;
+    $txt .= " Vessel, ".$vesselName.", is ".$locDesc;
     $txt .= ".";
     return $txt;
   }

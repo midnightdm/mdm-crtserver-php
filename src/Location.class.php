@@ -133,13 +133,15 @@ class Location {
       if($inside) {
         $this->lastEvent   = $this->event;   //Save last event  before updating
         $this->lastEventTS = $this->eventTS; //Save time of last event update
+        //Use location data to build event code
         if($this->live->liveDirection=="upriver") {
           $dir = "u";   $um  = $m;
         } else {
           $dir = "d";   
-          $um = is_int($m) ? ($m + 1) : $m; //To reflect that polygon entry was at upper mile line
+          $um = is_int($m) ? ($m + 1) : $m; //Shows polygon entry at upper mile line for downriver movement
         }
         $mileMarker = "m".$m;
+        //desciption is an array containing [0] short text for status and [1] longer text for speech conversion
         $this->description = ZONE::$$mileMarker;
         $eventTS = time();
         $waypoint = false;

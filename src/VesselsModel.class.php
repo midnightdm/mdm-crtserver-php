@@ -35,14 +35,20 @@ class VesselsModel extends Firestore {
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
         $data = $snapshot->data();
-        if(isset($data['vesselLastDetectedTS'])) {
-          return $data['vesselLastDetectedTS'];
-        } else {
-          
+        $passages = [];
+        if(isset($data['vesselPassages'])) {
+          foreach($data['vesselsPassages'] as $date=>$obj) {
+            $passages[] = $date;
+          }
+          rsort($passages);
+          $dt = date_create($passages[0]);
+          $dtStr = $dt->format('D M j, Y');
+          flog("getVesselLastDetectedTS() ".$passages[0]." ".$dtStr);
+          return [$dt->getTimeStamp(), $dtStr];
+        } else {  
           flog( "\033[41m *  VesselsModel::getVesselLastDetectedTS() failed to find TS data.  * \033[0m\r\n"); 
           return false;
-        } 
-        
+        }      
     } else {
         return false;
     }

@@ -317,6 +317,13 @@ class PlotDaemon {
           $len = 0;
           flog( "\033[41m *  liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.  * \033[0m\r\n"); 
         }
+        //Unset vessel with bad data
+        if(!isset($liveScanObj->liveRegion)) {
+          $key = 'mmsi'.$obj->liveVesselID;
+          unset($this->liveScan[$key]);
+          flog("\033[41m *  liveScanObj for {$liveScanObj->liveName} has bad or missing data and was unset.  * \033[0m\r\n");
+          continue;
+        }
         flog( "   ...".$liveScanObj->liveName. " ".$len." events.\n");
         $liveScanObj->livePassageWasSaved = true;
         //Determine Clinton or QC passage save

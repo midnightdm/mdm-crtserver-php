@@ -23,6 +23,7 @@ class LiveScan {
   public $transponderTS = null;
   public $liveLocation = null;
   public $liveSegment = null;
+  public $liveRegion  = null;
   public $liveMarkerAlphaWasReached = FALSE;
   public $liveMarkerAlphaTS = null;
   public $liveMarkerBravoWasReached = FALSE;

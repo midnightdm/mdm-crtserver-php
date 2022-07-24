@@ -10,6 +10,27 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 class ZONE {
     //In each array 0 is printed, 1 is spoken
+    public static $m465 = ["at M-465, 3 mi below Monpelier, Iowa", "at marker 465, 3 miles below Montpelier, Iowa"];
+    public static $m466 = ["at M-466, 2 mi below Monpelier, Iowa", "at marker 466, two miles below Montpelier, Iowa"];
+    public static $m467 = ["at M-467, 1 mi below Monpelier, Iowa", "at marker 467, one mile below Montpelier, Iowa"];
+    public static $m468 = ["at M-468 by Montpelier, Iowa", "at marker 468 by Montpelier, Iowa"];
+    public static $m469 = ["at M-469 by the Cargill Salt dock", "at marker 469 by the Cargill Salt dock"];
+    public static $m470 = ["at M-470 2 mi below Buffalo, Iowa", "at marker 470, two miles below Buffalo, Iowa"];
+    public static $m471 = ["at M-471 1 mi below Buffalo, Iowa", "at marker 471, one mile below Buffalo, Iowa"];
+    public static $m472 = ["at M-472 in Buffalo, Iowa", "at marker 472 in Buffalo, Iowa"];
+    public static $m473 = ["at M-473 in Buffalo, Iowa", "at marker 473 in Buffalo, Iowa"];
+    public static $m474 = ["at M-474, 4 mi below the I-280 bridge", "at marker 474, 4 miles below the Interstate 280 bridge"];
+    public static $m475 = ["at M-475 by Linwood Mining", "at marker 475 by Linwood Mining"];
+    public static $m476 = ["at M-476 by Harvest States Co-op", "at marker 476 by Harvest States Co-op"];
+    public static $m477 = ["at M-477 by Horse Island", "at marker 477 by Horse Island"];
+    public static $m478 = ["at M-478 near the I-280 bridge", "at marker 478 near the Interstate 280 bridge"];
+    public static $m479 = ["at M-479 by the Rock River junction", "at marker 479 by the Rock River junction"];
+    public static $m480 = ["at M-480 by Credit Island Lodge", "at marker 480 by Credit Island Lodge"];
+    public static $m481 = ["at M-481 near the Nestle-Purina plant", "at marker 481 near the Nestle-Purina plant"];
+    public static $m482 = ["at M-482 between Lock 15 & Centennial Bridge", "at marker 482 between Lock 15 and the Centennial Bridge"];
+    public static $m483 = ["at M-483 <1 mi above Lock 15", "at marker 483 less than 1 mile above Lock 15"];
+    public static $m484 = ["at M-484 by Lindsay Park Yacht Club", "at marker 484 by Davenport's Lindsay Park Yacht Club"];
+    public static $m485 = ["at M-485 below I-74 bridge", "at marker 485 just below the I-74 bridge"];
     public static $m486 = ["at M-486 by I-74 bridge Bettendorf", "at marker 486 by the I-74 bridge in Bettendorf"];
     public static $m487 = ["at M-487 Bettendorf 6.5 miles below Lock 14", "at marker 487 in Bettendorf, 6.5 miles below Lock 14"];
     public static $m488 = ["at M-488 Bettendorf 5.5 miles below Lock 14", "at marker 488 in Bettendorf, 5.5 miles below Lock 14"];
@@ -77,5 +98,7 @@ class ZONE {
     public static $mfoxtrot = ["at Lock 14, Princeton","at Lock 14 by Princeton, Iowa"];
     public static $mgolf = ["at Lock 15, Davenport", "at Lock 15 in Davenport"];
     public static $mhotel = ["at I-280 bridge, Davenport", "at the Interstate two-eighty bridge in Davenport"];
+    public static $mlakepotter = ["at Sunset Marina, Rock Island", "at Lake Potter, the home of Sunset Marina in Rock Island"];
+    public static $mcredit_island_slough = ["in Davenport Harbor", "at Davenport Harbor in Credit Island Slough"];
 
 }

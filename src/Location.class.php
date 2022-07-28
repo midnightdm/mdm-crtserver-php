@@ -154,7 +154,7 @@ class Location {
     $urangeq = ['echo','foxtrot','lakepotter','credit_island_slough','golf','hotel',465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499];
     $drangeq = ['hotel','golf','lakepotter','credit_island_slough','foxtrot','echo',499,498,497,496,495,494,493,492,491,490,489,488,487,486,485,484,483,482,481,480,479,478,477,476,475,474,473,472,471,470,469,468,467,466,465];
     
-    $this->setPoint();
+    //$this->setPoint();
     $region = $this->determineRegion();
     //Set range by region and direction
     switch($region) {

@@ -160,7 +160,7 @@ class Location {
     switch($region) {
       case "clinton": $rg = "c"; break;
       case "qc"     : $rg = "q"; break;
-      case "outside": continue;
+      case "outside": return;
     }
     $rangeName  = $this->live->liveDirection=="upriver" ? "urange".$rg : "drange".$rg;
     flog("            ...range is $rangeName\n");

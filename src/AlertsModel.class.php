@@ -142,7 +142,7 @@ class AlertsModel extends Firestore {
       }    
       //If not otherwise published, but is passenger vessel push a voice annoucement
       else if(str_ends_with($event, 'p')) {
-        if(!is_set($liveObj->liveRegion) || $liveObj->liveRegion=="outside") {
+        if(!isset($liveObj->liveRegion) || $liveObj->liveRegion=="outside") {
           return false;
         }
         flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") PASSENGER VESSEL PROGRESS ACCOUNCEMENT\033[0m\r\n");

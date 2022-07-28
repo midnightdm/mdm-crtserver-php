@@ -37,7 +37,7 @@ class VesselsModel extends Firestore {
         $data = $snapshot->data();
         $passages = [];
         if(isset($data['vesselPassages'])) {
-          foreach($data['vesselsPassages'] as $date=>$obj) {
+          foreach($data['vesselPassages'] as $date=>$obj) {
             $passages[] = $date;
           }
           rsort($passages);

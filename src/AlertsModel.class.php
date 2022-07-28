@@ -511,7 +511,9 @@ class AlertsModel extends Firestore {
         'vpubDir'=>$liveScan->liveDirection
     ];
     //Add new db document for perm record
+    flog("announcePassengerProgress region is ".$region);
     switch($region) {
+      
       case "qc":      $collection = "VoicepublishQC";  break;                     
       case "clinton": $collection = "Voicepublish";    break;
     }

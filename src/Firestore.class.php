@@ -83,7 +83,7 @@ class Firestore {
     return $vpubID;
   }
    
-  public function getVpubID($refion) {
+  public function getVpubID($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
     $field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
     $vpubID = $admin->data()[$field];

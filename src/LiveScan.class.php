@@ -261,7 +261,7 @@ class LiveScan {
     
     $this->liveSpeed   = $speed;
     $this->liveCourse  = $course;
-    $this->liveSegment = $this->determineSegment($lat); 
+    
     $this->liveName    = $name;
     $this->determineDirection();
     if($this->liveName=="" || str_contains($this->liveName, "@@") || (is_null($this->liveVessel) && $this->lookUpCount < 5)) {
@@ -270,7 +270,8 @@ class LiveScan {
     $this->calculateLocation();
     //$this->checkMarkerPassage(); Retired 7/10/22 after duties passed to calculateLocation()
     if($this->liveLocation != null) {
-      $this->liveRegion = $this->liveLocation->determineRegion(); //Added 7/10/22
+      $this->liveRegion  = $this->liveLocation->determineRegion(); //Added 7/10/22
+      $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22
     }
     
     //And remove reload flag if set.
@@ -345,6 +346,7 @@ class LiveScan {
       return null;
     }
   }
+
 
   public function determineDirection() {
     //When monitored river section runs north/south (N Hemisphere)

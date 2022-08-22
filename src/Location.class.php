@@ -229,6 +229,8 @@ class Location {
             $tsConcat = "liveMarker".$wpName."TS";
             $this->live->$wsConcat = true;
             $this->live->$tsConcat = $eventTS;
+            $this->lastMM = $this->mm;
+            $this->mm = $mileMarker;
             flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Upriver.\033[0m\n\n");
           } else {
             flog( "\033[43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");
@@ -261,6 +263,23 @@ class Location {
       flog("Location::getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
       return "outside";
     }
+  }
+
+  public function determineSegment() { //Sets segment in Location obj and returns it
+    $segment = [
+      ['m465','m466','m467','m468','m469','m470','m471','m472','m473','m474','m475','m476','m477','m500', 'm501','m502','m503','m504','m505','m506','m507','m508','m509','m510','m511','m512','m513','m514'],
+      ['m478','m479','m480','m481','m482','m515','m516','m517','mcredit_island_slough','mlakepotter','mhotel','mdelta'],
+      ['m483','m484','m485','m486','m487','m488','m489','m490','m491','m492','m518','m519','m520','m521','m522','mcharlie','mgolf'],
+      ['m493','m494','m495','m523','m524','m525','mfoxtrot','mbravo'],
+      ['m496','m497','m498','m499','m526','m527','m528','m529','m530','m531','m532','m533','m534','m535','m536','m538','m539','mecho','malpha']
+    ];
+    for($i=0; $i<4; $i++) {
+      if(in_array($this->mm, $segment[$i])) {
+        $this->segment = $i;
+        return $i;
+      }
+    }
+    return "new";
   }
 
   public function insidePoly($point, $vs) {

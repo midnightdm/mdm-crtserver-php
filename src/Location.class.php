@@ -273,7 +273,7 @@ class Location {
       ['m493','m494','m495','m523','m524','m525','mfoxtrot','mbravo'],
       ['m496','m497','m498','m499','m526','m527','m528','m529','m530','m531','m532','m533','m534','m535','m536','m538','m539','mecho','malpha']
     ];
-    for($i=0; $i<4; $i++) {
+    for($i=0; $i<5; $i++) {
       if(in_array($this->mm, $segment[$i])) {
         $this->segment = $i;
         return $i;

@@ -223,14 +223,15 @@ class Location {
               $event = "hotel".$dir.$type;  break;            
           }           
         }
+        $this->lastMM = $this->mm;
+        $this->mm = $mileMarker;
         if($this->verifyWaypointEvent($event, $suppressTrigger)) {
           if($waypoint) {
             $wsConcat = "liveMarker".$wpName."WasReached";
             $tsConcat = "liveMarker".$wpName."TS";
             $this->live->$wsConcat = true;
             $this->live->$tsConcat = $eventTS;
-            $this->lastMM = $this->mm;
-            $this->mm = $mileMarker;
+           
             flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Upriver.\033[0m\n\n");
           } else {
             flog( "\033[43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");

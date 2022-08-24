@@ -103,7 +103,10 @@ class LiveScan {
       $this->liveInitLon = $lon;
       $this->liveSpeed = $speed;
       $this->liveCourse = $course;
-      $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22 $this->determineSegment($lat);     
+      //  liveSegment property deferred until first update
+      // if($this->liveLocation != null) {
+      //   $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22 $this->determineSegment($lat);  
+      // }  
       $this->lookUpVessel();
       $newDetect = $this->testWhenVesselLastDetected($id,$ts);
       if($newDetect) {

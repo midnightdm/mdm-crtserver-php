@@ -299,9 +299,20 @@ class PlotDaemon {
      *   Run by   MyAIS::decode_ais() on new LiveScan construction 
      *   and by   PlotDaemon::removeOldScans()
      */ 
-    $currentLiveScanLength = count($this->liveScan);
-    $this->LiveScanModel
-      ->updateLiveScanLength($currentLiveScanLength);
+    //$currentLiveScanLength = count($this->liveScan);
+    //$this->LiveScanModel
+    //  ->updateLiveScanLength($currentLiveScanLength);
+     
+    /* Updated 8/27/22 to test region and push quantity of vessels in each */
+     $c = 0;  $q = 0;
+     foreach($this->liveScan as $obj) {
+      if($obj->liveRegion=='clinton') {
+        $c++;
+      } else if($obj->liveRegion=='qc') {
+        $q++;
+      }
+      $this->liveScanModel->upateLiveScanLength(["clinton" => $c, "qc"=>$q]);
+     } 
     
   }
 

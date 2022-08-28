@@ -55,7 +55,10 @@ class LiveScanModel extends Firestore {
   }
 
   public function updateLiveScanLength($len) {
-    $dat = ["liveScanLength"=> $len ];
+    $dat = [
+      "liveScanLength"  => $len["clinton"], 
+      "liveScanLengthQC"=> $len["qc"]
+    ];
     $this->db
       ->collection('Passages')
       ->document('Admin')

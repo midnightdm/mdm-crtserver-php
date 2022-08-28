@@ -311,7 +311,7 @@ class PlotDaemon {
       } else if($obj->liveRegion=='qc') {
         $q++;
       }
-      $this->liveScanModel->upateLiveScanLength(["clinton" => $c, "qc"=>$q]);
+      $this->LiveScanModel->upateLiveScanLength(["clinton" => $c, "qc"=>$q]);
      } 
     
   }

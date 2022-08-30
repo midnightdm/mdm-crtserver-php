@@ -275,7 +275,6 @@ class Location {
       ['m496','m497','m498','m499','m526','m527','m528','m529','m530','m531','m532','m533','m534','m535','m536','m538','m539','mecho','malpha']
     ];
     for($i=0; $i<5; $i++) {
-      flog("TRACER: determineSegment loop = $i, mm = {$this->mm}");
       if(in_array($this->mm, $segment[$i])) {
         $this->segment = $i;
         return $i;

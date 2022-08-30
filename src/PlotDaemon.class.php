@@ -311,6 +311,7 @@ class PlotDaemon {
       } else if($obj->liveRegion=='qc') {
         $q++;
       }
+      flog("updateLiveScanLength() has $c clinton and $q qc vessels");
       $this->LiveScanModel->updateLiveScanLength(["clinton" => $c, "qc"=>$q]);
      } 
     

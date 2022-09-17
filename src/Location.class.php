@@ -199,6 +199,8 @@ class Location {
               $event = "albany";        break;
             case "sabula":
               $event = "sabula";        break;
+            case "joyce_slough_clinton": 
+              $event = "joyce_slough_clinton"; break;  
             case "alpha":
               $waypoint = true;         $wpName = "Alpha";
               $event = "alpha".$dir.$type;  break;
@@ -222,7 +224,9 @@ class Location {
               $event = "golf".$dir.$type;  break;
             case "hotel":
               $waypoint = true;         $wpName = "Hotel";
-              $event = "hotel".$dir.$type;  break;            
+              $event = "hotel".$dir.$type;  break;
+            default:
+              $event = $m;            
           }           
         }
         $this->lastMM = $this->mm;

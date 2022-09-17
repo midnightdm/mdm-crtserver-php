@@ -68,6 +68,7 @@ class ZONE {
     public static $mbeaver = ["In Beaver Slough, Clinton's industrial district", "in Beaver Slough, Clinton's industrial district"];
     public static $m518 = ["at marker 518, Clinton drawbridge", "at marker 518, Clinton's historic railroad drawbridge"];
     public static $m519 = ["at marker 519 near Clinton Marina","at marker 519 near the Clinton Marina"];
+    public statis $mjoyce_slough_clinton = ["at Joyce Slough in Clinton", "at Joyce Slough, home of Clinton Marina"]
     public static $m520 = ["at marker 520, Clinton's North bridge","at marker 520, Clinton's North bridge"];
     public static $m521 = ["at marker 521 1 mile above Clinton's North bridge","at marker 521, 1 mile above Clinton's North bridge"];
     public static $m522 = ["at marker 522 half mile below Lock 13","at marker 522 a half mile below Lock 13"];

@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "ext-grpc": "*",
         "google/cloud-firestore": "^1.19",
         "minishlink/web-push": "^6.0",

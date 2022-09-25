@@ -272,6 +272,22 @@ class Location {
     }
   }
 
+  public function determineCamera() { //Returns "A", "B" or false
+    $polys = [
+      "clintonWebcamA"=>[],
+      "clintonWebcamB"=>[]
+    ];
+    $this->setPoint();
+    if($this->insidePoly($this->point, $polys["clintonWebcamA"])) {
+      flog("Location::determineCamera() = clintonWebcamA");
+      return "A";
+    } else if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
+      flog("Location::determineCamera() = clintonWebcamB");
+      return "B";
+    }
+    return false;
+  }
+
   public function determineSegment() { //Sets segment in Location obj and returns it
     $segment = [
       ['m465','m466','m467','m468','m469','m470','m471','m472','m473','m474','m475','m476','m477','m500', 'm501','m502','msabula','m503','m504','m505','m506','m507','m508','m509','m510','m511','m512','m513','m514'],

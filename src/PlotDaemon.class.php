@@ -30,7 +30,7 @@ class PlotDaemon {
   public $rowsBefore;
   protected $run;
   public $lastCleanUp;
-  //public $lastDeletesCleanUp;
+  public $lastCameraSwitch;
   public $lastJsonSave;
   public $LiveScanModel;
   public $VesselsModel;
@@ -49,19 +49,20 @@ class PlotDaemon {
   public function setup() {
 
       $config = CONFIG_ARR;
+      $now    = time();
 
       $this->liveScan = array(); //LiveScan objects - the heart of this app - get stored here
       $this->alertsAll = array();
       $this->alertsPassenger = array();
       $this->rowsBefore = 0;
       $this->LiveScanModel = new LiveScanModel();
-      $this->VesselsModel = new VesselsModel();
-      $this->AlertsModel = new AlertsModel($this);
+      $this->VesselsModel  = new VesselsModel();
+      $this->AlertsModel   = new AlertsModel($this);
       $this->PassagesModel = new PassagesModel();
-      $this->lastCleanUp = time()-50; //Used to increment cleanup routine
-      //$this->lastDeletesCleanUp = time()-50;
-      $this->lastJsonSave = time()-10; //Used to increment liveScan.json save
-      $this->lastPassagesSave = time()-50;//Increments savePassages routine
+      $this->lastCleanUp      = $now-50; //Used to increment cleanup routine
+      $this->lastCameraSwitch = $now-50; //Prevents rapid camera switching if 2 vessels near
+      $this->lastJsonSave     = $now-10; //Used to increment liveScan.json save
+      $this->lastPassagesSave = $now-50;//Increments savePassages routine
       
       //Set values below in $config array in config.php
       $this->liveScanTimeout = intval($config['liveScanTimeout']); 

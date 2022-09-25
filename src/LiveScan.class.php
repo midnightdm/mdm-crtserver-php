@@ -275,6 +275,11 @@ class LiveScan {
     if($this->liveLocation != null) {
       $this->liveRegion  = $this->liveLocation->determineRegion(); //Added 7/10/22
       $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22
+      $camera = $this->liveLocation->determineCamera();           //Added 9/24/22
+      if($camera && ($this->callBack->lastCameraSwitch - $ts > 29)) {
+        $this->callBack->AlertsModel->setClCamera($camera);
+        $this->callBack->lastCameraSwitch = $ts;
+      }
     }
     
     //And remove reload flag if set.

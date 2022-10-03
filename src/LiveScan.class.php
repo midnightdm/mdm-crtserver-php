@@ -42,7 +42,7 @@ class LiveScan {
   public $liveMarkerHotelWasReached = FALSE;
   public $liveMarkerHotelTS = null;
 
-  //public $liveCallSign;
+  public $inCameraRange = FALSE;
   public $isReloaded;
   public $triggerQueued;
   public $triggerActivated;
@@ -70,6 +70,9 @@ class LiveScan {
         if($attribute=="liveLocation") {
           $this->liveLocation = null;
           continue;
+        }
+        if($attribute=="inCameraRange") {
+          $this->inCameraRange = false;
         }
         $this->$attribute = $value;
         if($attribute=='liveName') {
@@ -277,8 +280,11 @@ class LiveScan {
       $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22
       $camera = $this->liveLocation->determineCamera();           //Added 9/24/22
       if($camera && ($this->callBack->lastCameraSwitch - $ts > 29)) {
+        $this->inCameraRange = true;
         $this->callBack->AlertsModel->setClCamera($camera);
         $this->callBack->lastCameraSwitch = $ts;
+      } else {
+        $this->inCameraRange = false;
       }
     }
     
@@ -298,6 +304,7 @@ class LiveScan {
     $data['liveLastLat'] = $this->liveLastLat;
     $data['liveLastLon'] = $this->liveLastLon;
     $data['liveDirection'] = $this->liveDirection;
+    $data['inCameraRange'] = $this->inCameraRange;
     if($this->liveLocation instanceof Location) {
       $data['liveLocation'] = ucfirst($this->liveLocation->description[0]);
       $data['liveEvent']  = $this->liveLocation->event;
@@ -315,6 +322,7 @@ class LiveScan {
     $data['liveRegion'] = $this->liveRegion;
     $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
     $data['type']       = $this->liveVessel->vesselType;
+    
     //Clinton Waypoints
     $data['liveMarkerAlphaWasReached'] = $this->liveMarkerAlphaWasReached;
     $data['liveMarkerAlphaTS'] = $this->liveMarkerAlphaTS;

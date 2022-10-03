@@ -280,10 +280,10 @@ class Location {
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcamA"])) {
       flog("Location::determineCamera() = clintonWebcamA\n");
-      return "A";
+      return 'A';
     } else if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
       flog("Location::determineCamera() = clintonWebcamB\n");
-      return "B";
+      return 'B';
     }
     return false;
   }

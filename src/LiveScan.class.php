@@ -279,8 +279,9 @@ class LiveScan {
       $this->liveRegion  = $this->liveLocation->determineRegion(); //Added 7/10/22
       $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22
       $camera = $this->liveLocation->determineCamera();           //Added 9/24/22
-      flog("calculateLocation() found camera $camera\n");
+      
       if($camera && ($this->callBack->lastCameraSwitch - $ts > 29)) {
+        flog("calculateLocation() found camera $camera\n");
         $this->inCameraRange = true;
         $this->callBack->AlertsModel->setClCamera($camera);
         $this->callBack->lastCameraSwitch = $ts;

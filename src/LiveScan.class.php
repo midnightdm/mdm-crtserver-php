@@ -281,7 +281,7 @@ class LiveScan {
       $camera = $this->liveLocation->determineCamera();           //Added 9/24/22
       $cameraIsA = $camera==="A";
       $cameraIsB = $camera==="B";
-      $solution = $this->callBack->lastCameraSwitch - $ts > 29;
+      $solution =  $ts - $this->callBack->lastCameraSwitch > 29;
       flog("camera==A? $cameraIsA camera==B? $cameraIsB, lastCameraSwitch(".$this->callBack->lastCameraSwitch.") - ts($ts) > 29 ?".$solution."\n"); 
       if(($cameraIsA || $cameraIsB) && $solution) {
         flog("calculateLocation() found camera $camera\n");

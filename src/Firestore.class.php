@@ -91,7 +91,7 @@ class Firestore {
   }
 
   public function setClCamera($camera) {
-    if($camera != "A" || $camera != "B") {
+    if($camera != "A" && $camera != "B") {
       trigger_error("setClCamera() received invalid camera string. Must be 'A' or 'B', but  it was ".$camera."\n");
       return;
     }

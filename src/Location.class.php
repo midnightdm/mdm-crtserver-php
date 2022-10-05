@@ -177,8 +177,9 @@ class Location {
         if($this->live->liveDirection=="upriver") {
           $dir = "u";   $um  = $m;
         } else {
-          $dir = "d";   
-          $um = is_int($m) ? ($m + 1) : $m; //Shows polygon entry at upper mile line for downriver movement
+          $dir = "d";
+          //Offset ($m + 1) disabled 10/4/22 to test   
+          $um = is_int($m) ? ($m) : $m; //Shows polygon entry at upper mile line for downriver movement
         }
         $mileMarker = "m".$m;
         //desciption is an array containing [0] short text for status and [1] longer text for speech conversion

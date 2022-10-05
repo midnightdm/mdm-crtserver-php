@@ -8,7 +8,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 class Vessel {
   public $tags = array(
-    'vesselName', 'vesselID', 'vesselHasImage', 'vesselImageUrl', 'vesselType'
+    'vesselName', 'vesselID', 'vesselHasImage', 'vesselImageUrl', 'vesselType', 'vesselWatchOn'
   );
   public $vesselName;  
   public $vesselID;

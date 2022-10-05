@@ -282,12 +282,15 @@ class LiveScan {
       $cameraIsA = $camera==="A";
       $cameraIsB = $camera==="B";
       $solution =  $ts - $this->callBack->lastCameraSwitch > 29;
-      flog("camera==A? $cameraIsA camera==B? $cameraIsB, lastCameraSwitch(".$this->callBack->lastCameraSwitch.") - ts($ts) > 29 ?".$solution."\n"); 
-      if(($cameraIsA || $cameraIsB) && $solution) {
-        flog("calculateLocation() found camera $camera\n");
+      flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->callBack->lastCameraSwitch.")> 29 ?".$solution."\n"); 
+      if(($cameraIsA || $cameraIsB) ) {
+        flog("calculateLocation() found $name in camera $camera range.\n");
         $this->inCameraRange = true;
-        $this->callBack->AlertsModel->setClCamera($camera);
-        $this->callBack->lastCameraSwitch = $ts;
+        if($solution) { //When last cam switch 30+ sec ago
+          flog("calculateLocation() switching to camera $camera now.\n");
+          $this->callBack->AlertsModel->setClCamera($camera);
+          $this->callBack->lastCameraSwitch = $ts;
+        }
       } else {
         $this->inCameraRange = false;
       }
@@ -478,7 +481,7 @@ class LiveScan {
     $data['vesselRecordAddedTS'] = time();
     $data['vesselID'] = $this->liveVesselID;
     $data['vesselWatchOn']  = false;
-    $data['vesselName'] = $vesselName; 
+    $data['vesselName'] = $this->liveName; 
     
     $this->liveVessel = new Vessel($data, $this->callBack);
     //In case scraped data replaced the local above, also update the live object

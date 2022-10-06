@@ -15,14 +15,19 @@ class Vessel {
   public $vesselHasImage;
   public $vesselImageUrl;
   public $vesselType;
+  public $vesselWatchOn;
   public $daemonCallback;
 
   public function __construct($dataArr, $daemonCB) {
     $this->daemonCallback = $daemonCB;
     foreach($this->tags as $tag) {
       //echo '$'. 'dataArr[' . $tag . '] = ' . $dataArr[$tag];
-
-      $this->$tag = $dataArr[$tag];
+      if($tag=="vesselWatchOn" && !isset($dataArr["vesselWatchOn"])) {
+        $this->vesselWatchOn = false;
+      } else {
+        $this->$tag = $dataArr[$tag];
+      }
+      
     }
     $this->saveIfNew();
   }

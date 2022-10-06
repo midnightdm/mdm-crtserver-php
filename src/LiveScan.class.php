@@ -282,7 +282,7 @@ class LiveScan {
       $cameraIsA = $camera==="A";
       $cameraIsB = $camera==="B";
       $solution =  $ts - $this->callBack->lastCameraSwitch > 29;
-      flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->callBack->lastCameraSwitch.")> 29 ?".$solution."\n"); 
+      //flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->callBack->lastCameraSwitch.")> 29 ?".$solution."\n"); 
       if(($cameraIsA || $cameraIsB) ) {
         flog("calculateLocation() found $name in camera $camera range.\n");
         $this->inCameraRange = true;

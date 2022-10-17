@@ -60,6 +60,7 @@ class LiveScan {
   public $reload;
   public $reloadTS;
   public $lastDetectedTS;
+  public $lastVideoRecordedTS;
 
   public function __construct($ts, $name, $id, $lat, $lon, $speed, $course, $cb, $reload=false, $reloadData=[]) {
     $this->callBack = $cb;
@@ -291,6 +292,10 @@ class LiveScan {
           $this->callBack->AlertsModel->setClCamera($camera);
           $this->callBack->lastCameraSwitch = $ts;
         }
+        //Determine if in CamB video capture zone
+        if($camerIsB) {
+          $this->liveLocation->determineCaptureVideo();
+        }
       } else {
         $this->inCameraRange = false;
       }
@@ -321,6 +326,9 @@ class LiveScan {
       $data['liveLocation'] = "Location Not Calculated";
       $data['liveEvent'] = "";
       $data['liveEvents'] = [];
+    }
+    if(isset($this->lastVideoRecordedTS)) {
+      $data['lastVideoRecordedTS'] = $this->lastVideoRecordedTS;
     }
     $data['liveName'] = $this->liveName;
     $data['liveVesselID'] = $this->liveVesselID;

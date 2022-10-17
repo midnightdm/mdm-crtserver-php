@@ -289,6 +289,21 @@ class Location {
     return false;
   }
 
+  public function determineCaptureVideo() { //Returns nothing
+    $polys = [
+      "clintonWebcamB"=>[[-90.199523, 41.801946],[-90.193777, 41.803371],[-90.195863, 41.799123],[-90.199523, 41.801946]]
+    ];
+    $this->setPoint();
+    if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
+      $now = time();
+      if($now - $this->live->lastVideoRecordedTS > 86400) { //Limit is once daily
+        flog("Location::determineCaptureVideo() = $now\n");
+        $this->live->lastVideoRecordedTS = $now; 
+        $this->live->callBack->captureVideo($this->live->liveVesselId);    
+      }
+    }
+  }
+
   public function determineSegment() { //Sets segment in Location obj and returns it
     $segment = [
       ['m465','m466','m467','m468','m469','m470','m471','m472','m473','m474','m475','m476','m477','m500', 'm501','m502','msabula','m503','m504','m505','m506','m507','m508','m509','m510','m511','m512','m513','m514'],

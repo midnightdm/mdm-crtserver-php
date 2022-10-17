@@ -355,7 +355,7 @@ class PlotDaemon {
   public function captureVideo($vesselID) {
     flog("plotDaemon::captureVideo()\n");
     //Runs a local batch file which uses SSH to trigger an FFMPEG script on a remote server.
-    exec("C:/app/saveB.cmd $vesselID", &$outputArray);
+    exec("C:/app/saveB.cmd $vesselID", $outputArray);
     flog(implode("\n", $outputArray)."\n");
   }
 

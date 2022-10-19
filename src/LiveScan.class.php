@@ -126,8 +126,11 @@ class LiveScan {
         flog("\033[41m *  * Constructor stopped for vessel $id because insertNewRecord() failed.  *  * \033[0m\r\n");
         unset($this->callBack->liveScan['mmsi'.$id]);
         return;
-      } 
-           
+      }     
+    }
+    //Set 0 value if not set
+    if(!isset($this->lastVideoRecordedTS)) {
+      $this->lastVideoRecordedTS = 0;
     }   
   }
 

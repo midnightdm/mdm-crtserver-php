@@ -288,16 +288,15 @@ class LiveScan {
       $solution =  $ts - $this->callBack->lastCameraSwitch > 29;
       //flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->callBack->lastCameraSwitch.")> 29 ?".$solution."\n"); 
       if(($cameraIsA || $cameraIsB) ) {
-        flog("calculateLocation() found $name in camera $camera range.\n");
+        flog("calculateLocation() found $this->liveName in camera $camera range.\n");
         $this->inCameraRange = true;
         if($solution) { //When last cam switch 30+ sec ago
           flog("calculateLocation() switching to camera $camera now.\n");
           $this->callBack->AlertsModel->setClCamera($camera);
           $this->callBack->lastCameraSwitch = $ts;
-        }
-        //Determine if in CamB video capture zone
-        if($camerIsB) {
-          $this->liveLocation->determineCaptureVideo();
+          if($camera=="B") {
+            $this->liveLocation->determineCaptureVideo();
+          }
         }
       } else {
         $this->inCameraRange = false;

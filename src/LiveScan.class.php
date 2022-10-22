@@ -283,6 +283,7 @@ class LiveScan {
       $this->liveRegion  = $this->liveLocation->determineRegion(); //Added 7/10/22
       $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22
       $camera = $this->liveLocation->determineCamera();           //Added 9/24/22
+      //Do somethings with camera data
       $cameraIsA = $camera==="A";
       $cameraIsB = $camera==="B";
       $solution =  $ts - $this->callBack->lastCameraSwitch > 29;
@@ -294,13 +295,12 @@ class LiveScan {
           flog("calculateLocation() switching to camera $camera now.\n");
           $this->callBack->AlertsModel->setClCamera($camera);
           $this->callBack->lastCameraSwitch = $ts;
-          if($camera=="B") {
-            $this->liveLocation->determineCaptureVideo();
-          }
         }
       } else {
         $this->inCameraRange = false;
       }
+      //Test if vessel in video capture target area
+      $this->liveLocation->determineCaptureVideo();
     }
     
     //And remove reload flag if set.

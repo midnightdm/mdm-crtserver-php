@@ -290,19 +290,23 @@ class Location {
   }
 
   public function determineCaptureVideo() { //Returns nothing
-    flog("TRACER Location::determineCaptureVideo() ");
+    flog("Location::determineCaptureVideo() ");
     $polys = [
       "clintonWebcamB"=>[[-90.199523, 41.801946],[-90.193777, 41.803371],[-90.195863, 41.799123],[-90.199523, 41.801946]]
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
       $now = time();
-      flog(" is inside poly (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
+      flog(" is inside poly TRACER (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
       if($now - $this->live->lastVideoRecordedTS > 86400) { //Limit is once daily
         $this->live->lastVideoRecordedTS = $now; 
         $this->live->callBack->captureVideo($this->live->liveVesselId);
         flog(" is > 86400? TRUE");    
+      } else {
+        flog(" is > 86400? FALSE");
       }
+    } else {
+      flog("false");
     }
     flog("\n");
   }

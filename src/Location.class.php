@@ -300,7 +300,7 @@ class Location {
       flog(" is inside poly TRACER (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
       if($now - $this->live->lastVideoRecordedTS > 86400) { //Limit is once daily
         $this->live->lastVideoRecordedTS = $now; 
-        $this->live->callBack->captureVideo($this->live->liveVesselId);
+        $this->live->callBack->captureVideo($this->live->liveVesselID);
         flog(" is > 86400? TRUE");    
       } else {
         flog(" is > 86400? FALSE");

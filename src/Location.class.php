@@ -298,7 +298,7 @@ class Location {
     if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
       $now = time();
       flog(" is inside poly TRACER (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
-      if($now - $this->live->lastVideoRecordedTS > 86400) { //Limit is once daily
+      if($now - $this->live->lastVideoRecordedTS > 300) { //Limit 86400 is once daily [300 is 5 min for testing]
         $this->live->lastVideoRecordedTS = $now; 
         $this->live->callBack->captureVideo($this->live->liveVesselID);
         flog(" is > 86400? TRUE");    

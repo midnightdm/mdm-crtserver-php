@@ -137,8 +137,9 @@ class AlertsModel extends Firestore {
       //Publish the event to the database if it passes waypoint type filter 
       $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup"];
       if(in_array($event, $filter)) {
+        if($this->publishAlertMessage($event, $liveObj)) {
           flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") WAYPOINT PUBLISHED\033[0m\r\n");
-          $this->publishAlertMessage($event, $liveObj);
+        }
       }    
       //If not otherwise published, but is passenger vessel push a voice annoucement
       else if(str_ends_with($event, 'p')) {
@@ -400,6 +401,10 @@ class AlertsModel extends Firestore {
     flog("AlertsModel::publishAlertMessage(".$event.",".$liveScan->liveName.") ");
     //This function gets run by Event trigger methods of this class 
     $ts = time();
+    if(!isset($liveScan->liveRegion)) {
+      triger_error("AlertsModel::publishAlertMessage() liveScan object parameter is missing liveRegion data.\n");
+      return false;
+    }
     $region = $liveScan->liveRegion;
     $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
     $apubID = $this->getApubID($region) + 1; //Method in parent
@@ -470,6 +475,7 @@ class AlertsModel extends Firestore {
     $this->$sref($this->daemon->$arrName, $region);
     //Use updated array to write RSS files
     $this->generateRss($type, $region);
+    return true;
   }
 
 

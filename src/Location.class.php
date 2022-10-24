@@ -292,7 +292,12 @@ class Location {
   public function determineCaptureVideo() { //Returns nothing
     flog("Location::determineCaptureVideo() ");
     $polys = [
-      "clintonWebcamB"=>[[-90.199523, 41.801946],[-90.193777, 41.803371],[-90.195863, 41.799123],[-90.199523, 41.801946]]
+      "clintonWebcamB"=>[
+      [-90.192278, 41.803909],
+      [-90.191025, 41.802271],
+      [-90.195866, 41.799151],
+      [-90.201082, 41.801646],
+      [-90.192278, 41.803909]]
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {

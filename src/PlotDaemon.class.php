@@ -332,7 +332,7 @@ class PlotDaemon {
         }
         //Unset vessel with bad data
         if(!isset($liveScanObj->liveRegion)) {
-          $key = 'mmsi'.$obj->liveVesselID;
+          $key = 'mmsi'.$liveScanObj->liveVesselID;
           unset($this->liveScan[$key]);
           flog("\033[41m *  liveScanObj for {$liveScanObj->liveName} has bad or missing data and was unset.  * \033[0m\r\n");
           continue;

@@ -358,9 +358,13 @@ class PlotDaemon {
     $id   = $liveObj->liveVesselID;
     $name = str_replace([" ","."], "", $liveObj->liveName);
     $dir  = $liveObj->liveDirection;
+    //Pass command run to outside script to prevent process delay
+    $timer = popen("start /B php saveB.php $id $name $dir","r");
+    sleep(2);
+    pclose($timer);
 
-    exec("C:/app/saveB.cmd $id $name $dir", $outputArray);
-    flog(implode("\n", $outputArray)."\n");
+    //exec("C:/app/saveB.cmd $id $name $dir", $outputArray);
+    //flog(implode("\n", $outputArray)."\n");
   }
 
   protected function reloadSavedScans() {

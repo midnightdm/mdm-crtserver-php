@@ -402,7 +402,7 @@ class AlertsModel extends Firestore {
     //This function gets run by Event trigger methods of this class 
     $ts = time();
     if(!isset($liveScan->liveRegion)) {
-      triger_error("AlertsModel::publishAlertMessage() liveScan object parameter is missing liveRegion data.\n");
+      trigger_error("AlertsModel::publishAlertMessage() liveScan object parameter is missing liveRegion data.\n");
       return false;
     }
     $region = $liveScan->liveRegion;

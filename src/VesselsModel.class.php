@@ -8,10 +8,12 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 class VesselsModel extends Firestore {
   public $cs;
   public $image_base;
+  public $videoIsPassing;
 
   public function __construct() {
       parent::__construct(['name' => 'Vessels']);
       $this->cs = new CloudStorage();
+      $this->videoIsPassing = $this->getVideoIsPassing();
   }
 
   public function getVessel($vesselID) {
@@ -197,6 +199,34 @@ class VesselsModel extends Firestore {
     $this->db->collection('Passages')
     ->document('Admin')
     ->set(['vesselError'=> true, 'vesselStatusMsg' => $data['error'], 'formAwaitingReset'=> true],['merge'=>true]);
+  }
+
+
+  public function setVideoIsPassing($state) {
+    if(!is_bool($state)) {
+      trigger_error("VesselsModel::setVideoIsPassing value is not boolean.");
+      return;
+    }
+    if($state !== $this->videoIsPassing) {
+      $this->db->collection('Passages')
+      ->document('Admin')
+      ->set(['videoIsPassing'=> $state], ['merge'=>true]);
+      $this->videoIsPassing = $state;
+      flog("VesselsModel::setVideoIsPassing() updated.\n");
+    } else {
+      flog("VesselsModel::setVideoIsPassing() state unchanged.\n");
+    }
+    
+  }
+
+  public function getVideoIsPassing() {
+    $document = $this->db->collection('Passages')->document('Admin');
+    $snapshot = $document->snapshot();
+    if($snapshot->exists()) {
+      $data = $snapshot->data();
+      //Returns boolean value
+      return $data["videoIsPassing"];
+    }
   }
 }
 

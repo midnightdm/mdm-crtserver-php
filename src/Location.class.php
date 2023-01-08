@@ -317,6 +317,30 @@ class Location {
     flog("\n");
   }
 
+  public function determinePassingCamera() { //Returns nothing
+    flog("Location::determinePassingCamera() ");
+    $polys = [
+      "clintonWebcams"=>[
+        [-90.201650, 41.801466],
+        [-90.194279, 41.803250],
+        [-90.194258, 41.799582],
+        [-90.197659, 41.798569],
+        [-90.201650, 41.801466]
+      ]
+    ];
+    $this->setPoint();
+    if($this->insidePoly($this->point, $polys["clintonWebcams"])) {
+      flog(" is inside clintonWebcams poly.\n ");
+      //Set flag in Admin document
+      $this->live->callBack->VesselsModel->setVideoIsPassing(true);
+    } else {
+      $this->live->callBack->VesselsModel->setVideoIsPassing(false);
+      flog("false\n");
+      //Called method writes to db only on state change, not every loop.
+    }
+  }
+
+
   public function determineSegment() { //Sets segment in Location obj and returns it
     $segment = [
       ['m465','m466','m467','m468','m469','m470','m471','m472','m473','m474','m475','m476','m477','m500', 'm501','m502','msabula','m503','m504','m505','m506','m507','m508','m509','m510','m511','m512','m513','m514'],

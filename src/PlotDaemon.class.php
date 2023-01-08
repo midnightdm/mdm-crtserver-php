@@ -50,13 +50,13 @@ class PlotDaemon {
 
       $config = CONFIG_ARR;
       $now    = time();
-
+      
       $this->liveScan = array(); //LiveScan objects - the heart of this app - get stored here
       $this->alertsAll = array();
       $this->alertsPassenger = array();
       $this->rowsBefore = 0;
       $this->LiveScanModel = new LiveScanModel();
-      $this->VesselsModel  = new VesselsModel();
+      $this->VesselsModel  = new VesselsModel();  
       $this->AlertsModel   = new AlertsModel($this);
       $this->PassagesModel = new PassagesModel();
       $this->lastCleanUp      = $now-50; //Used to increment cleanup routine

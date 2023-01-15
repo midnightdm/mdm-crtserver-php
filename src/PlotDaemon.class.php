@@ -29,6 +29,8 @@ class PlotDaemon {
   public $rowsNow;
   public $rowsBefore;
   protected $run;
+  public $encoderEnabled = false;
+  public $encoderEnabledTS = null;
   public $lastCleanUp;
   public $lastCameraSwitch;
   public $lastJsonSave;
@@ -264,6 +266,19 @@ class PlotDaemon {
                   flog( "Stopping plotserver at request of database.\n\n");
                   $this->run = false;
               }
+              //Show screen reminder if live encoder is enabled.
+              if($this->encoderEnabled) {
+                $ts = new DateTime();
+                $duration = $ts->diff($this->encoderEnabledTS);
+                $formated = $duration->format('%h hours, %i minutes');
+
+                flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+                flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
+                flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
+                flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+              }
+
+
               //Do deletes according to test conditions
               if($deleteIt) {
                   $obj->savePassageIfComplete(true);          
@@ -280,6 +295,7 @@ class PlotDaemon {
               }
               //1-A) No, record is fresh, so keep in live.
               flog( "\r\n");
+
           }    
       }   
       $this->lastCleanUp = $now;
@@ -366,6 +382,28 @@ class PlotDaemon {
     //exec("C:/app/saveB.cmd $id $name $dir", $outputArray);
     //flog(implode("\n", $outputArray)."\n");
   }
+
+  public function enableEncoder() {
+    flog("plotDaemon::enableEncoder()\n");
+    $timer = popen("start /B php enable-encoder.php", "r");
+    sleep(2);
+    pclose($timer);
+    $this->encoderEnabled = true;
+    $this->encoderEnabledTS = new DateTime();
+
+  }
+
+  public function disableEncoder() {
+    flog("plotDaemon::disableEncoder()\n");
+    $timer = popen("start /B php disable-encoder.php", "r");
+    sleep(2);
+    pclose($timer);
+    $this->encoderEnabled = false;
+    $this->encoderEnabledTS = null;
+  }
+
+
+
 
   protected function reloadSavedScans() {
       flog( "CRTDaemon::reloadSavedScans() started ".getNow()."...\n");

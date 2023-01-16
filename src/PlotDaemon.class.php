@@ -50,36 +50,41 @@ class PlotDaemon {
 
   public function setup() {
 
-      $config = CONFIG_ARR;
-      $now    = time();
-      
-      $this->liveScan = array(); //LiveScan objects - the heart of this app - get stored here
-      $this->alertsAll = array();
-      $this->alertsPassenger = array();
-      $this->rowsBefore = 0;
-      $this->LiveScanModel = new LiveScanModel();
-      $this->VesselsModel  = new VesselsModel();  
-      $this->AlertsModel   = new AlertsModel($this);
-      $this->PassagesModel = new PassagesModel();
-      $this->lastCleanUp      = $now-50; //Used to increment cleanup routine
-      $this->lastCameraSwitch = $now-50; //Prevents rapid camera switching if 2 vessels near
-      $this->lastJsonSave     = $now-10; //Used to increment liveScan.json save
-      $this->lastPassagesSave = $now-50;//Increments savePassages routine
-      
-      //Set values below in $config array in config.php
-      $this->liveScanTimeout = intval($config['liveScanTimeout']); 
-      $this->cleanUpTimeout = intval($config['cleanUpTimeout']); 
-      $this->savePassagesTimeout = intval($config['savePassagesTimeout']);        
-      $this->errEmail = $config['errEmail']; 
-      $this->dbHost = $config['dbHost'];
-      $this->dbUser = $config['dbUser'];
-      $this->dbPwd  = $config['dbPwd'];
-      $this->dbName = $config['dbName'];   
-      $this->nonVesselFilter = $config['nonVesselFilter'];
-      $this->localVesselFilter = $config['localVesselFilter'];
-      $this->image_base = $config['image_base'];
-      $this->socket_address = $config['socket_address'];
-      $this->socket_port    = $config['socket_port'];      
+    $config = CONFIG_ARR;
+    $now    = time();
+    
+    $this->liveScan = array(); //LiveScan objects - the heart of this app - get stored here
+    $this->alertsAll = array();
+    $this->alertsPassenger = array();
+    $this->rowsBefore = 0;
+    $this->LiveScanModel = new LiveScanModel();
+    $this->VesselsModel  = new VesselsModel();  
+    $this->AlertsModel   = new AlertsModel($this);
+    $this->PassagesModel = new PassagesModel();
+    $this->lastCleanUp      = $now-50; //Used to increment cleanup routine
+    $this->lastCameraSwitch = $now-50; //Prevents rapid camera switching if 2 vessels near
+    $this->lastJsonSave     = $now-10; //Used to increment liveScan.json save
+    $this->lastPassagesSave = $now-50;//Increments savePassages routine
+    
+    //Set values below in $config array in config.php
+    $this->liveScanTimeout = intval($config['liveScanTimeout']); 
+    $this->cleanUpTimeout = intval($config['cleanUpTimeout']); 
+    $this->savePassagesTimeout = intval($config['savePassagesTimeout']);        
+    $this->errEmail = $config['errEmail']; 
+    $this->dbHost = $config['dbHost'];
+    $this->dbUser = $config['dbUser'];
+    $this->dbPwd  = $config['dbPwd'];
+    $this->dbName = $config['dbName'];   
+    $this->nonVesselFilter = $config['nonVesselFilter'];
+    $this->localVesselFilter = $config['localVesselFilter'];
+    $this->image_base = $config['image_base'];
+    $this->socket_address = $config['socket_address'];
+    $this->socket_port    = $config['socket_port']; 
+    
+    $this->encoderUrl = $config['encoderUrl'];
+    $this->streamUrl = $config['streamUrl'];
+    $this->streamPath = $config['streamPath'];
+    $this->streamKey = $config['streamKey'];
   }
 
   public function start() {
@@ -266,6 +271,14 @@ class PlotDaemon {
                   flog( "Stopping plotserver at request of database.\n\n");
                   $this->run = false;
               }
+              //Check database for enableEncoder flat
+              if($this->LiveScanModel->testForEncoderEnabled()) {
+                $this->enableEncoder();
+              } else {
+                $this->disableEncoder();
+              }
+
+
               //Show screen reminder if live encoder is enabled.
               if($this->encoderEnabled) {
                 $ts = new DateTime();
@@ -384,22 +397,60 @@ class PlotDaemon {
   }
 
   public function enableEncoder() {
-    flog("plotDaemon::enableEncoder()\n");
-    $timer = popen("start /B php enable-encoder.php", "r");
-    sleep(2);
-    pclose($timer);
-    $this->encoderEnabled = true;
-    $this->encoderEnabledTS = new DateTime();
+    if($this->encoderEnabled) {
+      return;
+    }
+    flog("plotDaemon::enableEncoder()\n");   
 
+    //Set Video options
+    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0";
+    $screen1 = grab_image($video);
+    //sleep(1);
+
+    //Set Audio options
+    $audio = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=audio&media_grp=1&audio_interface=0&audio_enctype=100&audio_bitrate=128000";
+    $screen2 = grab_image($audio);
+    //sleep(1);
+
+    //Update server with RTMP enabled
+    $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
+    $screen3 = grab_image($rtmp);
+    //sleep(1);
+    //Reboot server to activate
+    $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
+    $screen4 = grab_image($reboot);
+    if(str_contains($screen1, "uccess") && str_contains($screen2, "uccess") && str_contains($screen3, "uccess") && str_contains($screen4, "uccess")) {
+      $this->encoderEnabled = true;
+      $this->encoderEnabledTS = new DateTime();
+    }
   }
 
   public function disableEncoder() {
+    if(!$this->encoderEnabled) {
+      return;
+    }
     flog("plotDaemon::disableEncoder()\n");
-    $timer = popen("start /B php disable-encoder.php", "r");
-    sleep(2);
-    pclose($timer);
-    $this->encoderEnabled = false;
-    $this->encoderEnabledTS = null;
+    //Disable server url
+    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=0&onvif_sle=0";
+    $result1 = grab_image($disable);
+    //sleep(1);
+    //Reboot server to activate
+    $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
+    $result2 = grab_image($reboot);
+    if(str_contains($result1, "uccess") && str_contains($result2, "uccess")) {
+      $ts = new DateTime();
+      $duration = $ts->diff($this->encoderEnabledTS);
+      $formated = $duration->format('%h hours, %i minutes, %s seconds');
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *      Live Stream Encoder \033[5mDISABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
+      flog( "\033[41m *  *  *             Final Stream Duration was $formated                  * * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");     
+      $this->encoderEnabled = false;
+      $this->encoderEnabledTS = null;
+      $this->LiveScanModel->resetEncoderEnable();
+    } else {
+      flog("\033[41m plotDaemon::disableEncoder() function was run, but it did not receive a \"Success\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
+    }
   }
 
 

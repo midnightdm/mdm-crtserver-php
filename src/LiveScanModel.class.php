@@ -54,6 +54,26 @@ class LiveScanModel extends Firestore {
     return false;
   }
 
+  public function testForEncoderEnabled() {
+    $document = $this->db->collection('Passages')
+        ->document('Admin');
+    $snapshot = $document->snapshot();
+    if($snapshot->exists()) {
+        $data = $snapshot->data();
+        if($data['encoderEnabled']==true) {
+            return true;
+        }
+        return false;   
+    }
+    return false;
+  }
+
+  public function resetEncoderEnable() {
+    $this->db->collection('Passages')
+    ->document('Admin')
+    ->set(['encoderEnable'=> false],['merge'=>true]);
+  }   
+
   public function updateLiveScanLength($len) {
     $dat = [
       "liveScanLength"  => $len["clinton"], 

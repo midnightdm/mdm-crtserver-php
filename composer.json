@@ -19,7 +19,7 @@
     "require": {
         "php": "^8.0",
         "ext-grpc": "*",
-        "google/cloud-firestore": "^1.19",
+        "google/cloud-firestore": "^1.27",
         "minishlink/web-push": "^6.0",
         "phpmailer/phpmailer": "^6.5",
         "clicksend/clicksend-php": "^5.0",

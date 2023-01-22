@@ -49,7 +49,6 @@ class PlotDaemon {
 
 
   public function setup() {
-
     $config = CONFIG_ARR;
     $now    = time();
     
@@ -85,6 +84,8 @@ class PlotDaemon {
     $this->streamUrl = $config['streamUrl'];
     $this->streamPath = $config['streamPath'];
     $this->streamKey = $config['streamKey'];
+    $this->encoderUsr = $config['encoderUsr'];
+    $this->encoderPwd = $config['encoderPwd'];
   }
 
   public function start() {
@@ -404,21 +405,21 @@ class PlotDaemon {
 
     //Set Video options
     $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0";
-    $screen1 = grab_image($video);
+    $screen1 = grab_protected($video, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
 
     //Set Audio options
     $audio = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=audio&media_grp=1&audio_interface=0&audio_enctype=100&audio_bitrate=128000";
-    $screen2 = grab_image($audio);
+    $screen2 = grab_protected($audio, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
 
     //Update server with RTMP enabled
     $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
-    $screen3 = grab_image($rtmp);
+    $screen3 = grab_protected($rtmp, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
-    $screen4 = grab_image($reboot);
+    $screen4 = grab_protected($reboot, $this->encoderUsr, $this->encoderPwd);
     if(str_contains($screen1, "uccess") && str_contains($screen2, "uccess") && str_contains($screen3, "uccess") && str_contains($screen4, "uccess")) {
       $this->encoderEnabled = true;
       $this->encoderEnabledTS = new DateTime();
@@ -432,11 +433,11 @@ class PlotDaemon {
     flog("plotDaemon::disableEncoder()\n");
     //Disable server url
     $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=0&onvif_sle=0";
-    $result1 = grab_image($disable);
+    $result1 = grab_protected($disable, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
-    $result2 = grab_image($reboot);
+    $result2 = grab_protected($reboot);
     if(str_contains($result1, "uccess") && str_contains($result2, "uccess")) {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);

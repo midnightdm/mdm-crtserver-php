@@ -99,6 +99,20 @@ function grab_image($url){
 	return curl_exec($ch); 
 }
 
+function grab_protected($url, $user, $pw){
+	$ch = curl_init ();
+  $ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0';
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_USERAGENT, $ua);
+  curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+  curl_setopt($ch, CURLOPT_USERPWD, $user.":".$pw);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+	curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+  curl_setopt($ch, CURLOPT_URL, $url);
+	return curl_exec($ch); 
+}
+
 //function to post to page using cURL
 function post_page($url, $data=array('postvar1' => 'value1')) {
   

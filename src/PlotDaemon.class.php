@@ -404,7 +404,7 @@ class PlotDaemon {
     flog("plotDaemon::enableEncoder()\n");   
 
     //Set Video options
-    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0";
+    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
     $screen1 = grab_protected($video, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
 
@@ -432,7 +432,7 @@ class PlotDaemon {
     }
     flog("plotDaemon::disableEncoder()\n");
     //Disable server url
-    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=0&onvif_sle=0";
+    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&rtmp_sle=0";
     $result1 = grab_protected($disable, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
     //Reboot server to activate

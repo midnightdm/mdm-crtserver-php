@@ -68,7 +68,8 @@ class PlotDaemon {
     //Set values below in $config array in config.php
     $this->liveScanTimeout = intval($config['liveScanTimeout']); 
     $this->cleanUpTimeout = intval($config['cleanUpTimeout']); 
-    $this->savePassagesTimeout = intval($config['savePassagesTimeout']);        
+    $this->savePassagesTimeout = intval($config['savePassagesTimeout']);  
+    $this->socketDataTimer = 0;      
     $this->errEmail = $config['errEmail']; 
     $this->dbHost = $config['dbHost'];
     $this->dbUser = $config['dbUser'];
@@ -130,11 +131,14 @@ class PlotDaemon {
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
+    
     // Set socket receive timeout
     $timeOutVal = array("sec"=>10, "usec"=>0); 
     if(!socket_set_option($aisMonSock, SOL_SOCKET, SO_RCVTIMEO, $timeOutVal)) {
       trigger_error("Unable to set timeout option on socket.");
     }
+
+
     // Bind the source address
     if( !socket_bind($aisMonSock, $this->socket_address, $this->socket_port) ) {
         $errorcode = socket_last_error();
@@ -145,21 +149,17 @@ class PlotDaemon {
 
     while($this->run==true) {
       //** This is Main Loop of this server for the UDP version ** 
+      
       //Do some communication, this loop can handle multiple clients        
       flog("Waiting for data on $this->socket_address:$this->socket_port ... \n");
       //Receive some data
-      $msgWasSkipped = false;
-      try {
-        $r = socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
-      }
-      catch(\Error $ex) {
-        flog("Exception caught for data timeout: $ex");
-        $msgWasSkipped = true;
-      }
       
-      //$msgWasSkipped = $buf==null; //True when no buffer output
-    
-      //Skip buffer processing if socket receive timed out.
+      
+      @socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
+      sleep(1);
+      $msgWasSkipped = $buf==null; //True when no buffer output
+      
+      //Skip buffer processing if socket receive timed out.    
       if(!$msgWasSkipped) {
         $msg = $buf;
         $len = strlen($msg);
@@ -203,7 +203,7 @@ class PlotDaemon {
         }
         
         flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
-      } else {
+      }else {
         flog("The data waiting timed out.  Proceeding with rest of loop.\n");
       }
       //Things to do on each loop besides UDP data handling

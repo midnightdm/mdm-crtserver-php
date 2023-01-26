@@ -148,11 +148,19 @@ class PlotDaemon {
       //Do some communication, this loop can handle multiple clients        
       flog("Waiting for data on $this->socket_address:$this->socket_port ... \n");
       //Receive some data
-      $r = @socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
-      $msgWasSkipped = $buf==null; //True when no buffer output
+      $msgWasSkipped = false;
+      try {
+        $r = socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
+      }
+      catch(\Error $ex) {
+        flog("Exception caught for data timeout: $ex");
+        $msgWasSkipped = true;
+      }
+      
+      //$msgWasSkipped = $buf==null; //True when no buffer output
     
       //Skip buffer processing if socket receive timed out.
-      if(!$mgsWasSkipped) {
+      if(!$msgWasSkipped) {
         $msg = $buf;
         $len = strlen($msg);
         //Look for other UDP traffic

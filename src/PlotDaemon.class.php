@@ -133,7 +133,7 @@ class PlotDaemon {
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
     
     // Set socket receive timeout
-    $timeOutVal = array("sec"=>10, "usec"=>0); 
+    $timeOutVal = array("sec"=>90, "usec"=>0); 
     if(!socket_set_option($aisMonSock, SOL_SOCKET, SO_RCVTIMEO, $timeOutVal)) {
       trigger_error("Unable to set timeout option on socket.");
     }
@@ -204,7 +204,7 @@ class PlotDaemon {
         
         flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
       }else {
-        flog("The data waiting timed out.  Proceeding with rest of loop.\n");
+        flog("     ... No data received for $timeOutVal->sec seconds.  Proceeding with rest of loop.\n");
       }
       //Things to do on each loop besides UDP data handling
 

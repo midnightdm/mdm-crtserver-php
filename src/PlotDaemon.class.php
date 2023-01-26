@@ -89,117 +89,120 @@ class PlotDaemon {
   }
 
   public function start() {
-      flog( " Starting mdm-crt2-server\n\n");  
-      flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
-      
-      $this->setup();
-      $this->run = true;
-      $this->reloadSavedScans();
-      sleep(3);
-      $this->reloadSavedAlertsAll();
-      sleep(3);       
-      $this->reloadSavedAlertsPassenger(); 
-      sleep(3);
-      $this->updateLiveScanLength();
-      $this->run();
+    flog( " Starting mdm-crt2-server\n\n");  
+    flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
+    
+    $this->setup();
+    $this->run = true;
+    $this->reloadSavedScans();
+    sleep(3);
+    $this->reloadSavedAlertsAll();
+    sleep(3);       
+    $this->reloadSavedAlertsPassenger(); 
+    sleep(3);
+    $this->updateLiveScanLength();
+    $this->run();
   }
 
   protected function run() {
-      $ais = new MyAIS($this);      
+    $ais = new MyAIS($this);      
 
-      //Reduce errors
-      error_reporting(~E_WARNING);
-      //Create a UDP sockets
-      if(!($aisMonSock = socket_create(AF_INET, SOCK_DGRAM, 0))) {
-          $errorcode = socket_last_error();
-          $errormsg = socket_strerror($errorcode);
-          die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
+    //Reduce errors
+    error_reporting(~E_WARNING);
+    //Create a UDP sockets
+    if(!($aisMonSock = socket_create(AF_INET, SOCK_DGRAM, 0))) {
+        $errorcode = socket_last_error();
+        $errormsg = socket_strerror($errorcode);
+        die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
+    }
+    flog( "Socket created \n");
+
+
+    //A run once message for Brian at start up to enable companion app
+    flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
+    flog( "\033[41m *                       A T T E N T I O N,                     * \033[0m\r\n");
+    flog( "\033[41m *                           B R I A N                          * \033[0m\r\n");
+    flog( "\033[41m *                                                              * \033[0m\r\n");
+    flog( "\033[41m *  Ensure you have AISMon running.                             * \033[0m\r\n");
+    flog( "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n");
+    flog( "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n");
+    flog( "\033[41m *           192.168.1.172:10111                                    * \033[0m\r\n");
+    flog( "\033[41m *                                                              * \033[0m\r\n");
+    flog( "\033[41m *                                                              * \033[0m\r\n");
+    flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
+    // Set socket receive timeout
+    $timeOutVal = array("sec"=>10, "usec"=>0); 
+    if(!socket_set_option($aisMonSock, SOL_SOCKET, SO_RCVTIMEO, $timeOutVal)) {
+      trigger_error("Unable to set timeout option on socket.");
+    }
+    // Bind the source address
+    if( !socket_bind($aisMonSock, $this->socket_address, $this->socket_port) ) {
+        $errorcode = socket_last_error();
+        $errormsg = socket_strerror($errorcode);
+        die("Could not bind inbound socket : [$errorcode] $errormsg \n");
+    }
+    flog( "Socket bind OK \n");
+
+    while($this->run==true) {
+      //** This is Main Loop of this server for the UDP version ** 
+      //Do some communication, this loop can handle multiple clients        
+      flog("Waiting for data on $this->socket_address:$this->socket_port ... \n");
+      //Receive some data
+      $r = @socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
+      $msgWasSkipped = $buf==null; //True when no buffer output
+    
+      //Skip buffer processing if socket receive timed out.
+      if(!$mgsWasSkipped) {
+        $msg = $buf;
+        $len = strlen($msg);
+        //Look for other UDP traffic
+        if(!str_contains($buf, '!AIVDM')) {
+          flog("\033[44m".$buf."\033[0m\r\n");
+        }
+        //Send data to AIS the decoder
+        $ais->process_ais_buf($buf);
+        /* process_ais_buf calls process_ais_raw
+            process_ais_raw calls process_ais_itu
+            process_ais_itu calls decode_ais which has custom extention
+            decode_ais calls back LiveScan objects in the array plotDaemon->liveScan
+        */
+
+        //Forward NMEA sentence to myshiptracking.com
+        $mstSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+        if($mstSock) {
+          $sentMst = socket_sendto($mstSock, $msg, $len, 0, '178.162.215.175', 31995);
+          socket_close($mstSock);
+        } else {
+          $sndMst = 0;
+        }
+        
+        //Forward NMEA sentence to vesselfinder.com
+        $vfSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+        if($vfSock) {
+          $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
+          socket_close($vfSock);
+        } else {
+          $sendVf = 0;
+        }
+
+        //Forward NMEA sentence to marinetraffic.comm
+        $mtSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+        if($mtSock) {
+          $sentMt = socket_sendto($mtSock, $msg, $len, 0, '5.9.207.224', 6051);
+          socket_close($mtSock);
+        } else {
+          $sentMt = 0;
+        }
+        
+        flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
+      } else {
+        flog("The data waiting timed out.  Proceeding with rest of loop.\n");
       }
-      flog( "Socket created \n");
+      //Things to do on each loop besides UDP data handling
 
-
-      //A run once message for Brian at start up to enable companion app
-      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
-      flog( "\033[41m *                       A T T E N T I O N,                     * \033[0m\r\n");
-      flog( "\033[41m *                           B R I A N                          * \033[0m\r\n");
-      flog( "\033[41m *                                                              * \033[0m\r\n");
-      flog( "\033[41m *  Ensure you have AISMon running.                             * \033[0m\r\n");
-      flog( "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n");
-      flog( "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n");
-      flog( "\033[41m *           192.168.1.172:10111                                    * \033[0m\r\n");
-      flog( "\033[41m *                                                              * \033[0m\r\n");
-      flog( "\033[41m *                                                              * \033[0m\r\n");
-      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
-      // Set socket receive timeout
-      $timeOutVal = array("sec"=>10, "usec"=>0); 
-      if(!socket_set_option($aisMonSock, SOL_SOCKET, SO_RCVTIMEO, $timeOutVal)) {
-        trigger_error("Unable to set timeout option on socket.");
-      }
-      // Bind the source address
-      if( !socket_bind($aisMonSock, $this->socket_address, $this->socket_port) ) {
-          $errorcode = socket_last_error();
-          $errormsg = socket_strerror($errorcode);
-          die("Could not bind inbound socket : [$errorcode] $errormsg \n");
-      }
-      flog( "Socket bind OK \n");
-
-
-      while($this->run==true) {
-          //** This is Main Loop of this server for the UDP version ** 
-          //Do some communication, this loop can handle multiple clients        
-          flog("Waiting for data on $this->socket_address:$this->socket_port ... \n");
-          //Receive some data
-          $r = socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
-          flog("socket_recvfrom returned ".$r."\n");
-          $msg = $buf;
-          $len = strlen($msg);
-
-          //Look for other UDP traffic
-          if(!str_contains($buf, '!AIVDM')) {
-            flog("\033[44m".$buf."\033[0m\r\n");
-          }
-          //Send data to AIS the decoder
-          $ais->process_ais_buf($buf);
-          /* process_ais_buf calls process_ais_raw
-             process_ais_raw calls process_ais_itu
-             process_ais_itu calls decode_ais which has custom extention
-             decode_ais calls back LiveScan objects in the array plotDaemon->liveScan
-          */
-
-          //Forward NMEA sentence to myshiptracking.com
-          $mstSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-          if($mstSock) {
-            $sentMst = socket_sendto($mstSock, $msg, $len, 0, '178.162.215.175', 31995);
-            socket_close($mstSock);
-          } else {
-            $sndMst = 0;
-          }
-          
-          //Forward NMEA sentence to vesselfinder.com
-          $vfSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-          if($vfSock) {
-            $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
-            socket_close($vfSock);
-          } else {
-            $sendVf = 0;
-          }
-
-          //Forward NMEA sentence to marinetraffic.comm
-          $mtSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-          if($mtSock) {
-            $sentMt = socket_sendto($mtSock, $msg, $len, 0, '5.9.207.224', 6051);
-            socket_close($mtSock);
-          } else {
-            $sentMt = 0;
-          }
-          
-          flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
-          /*
-          //Since above process is a loop, you can't add any more below. 
-          //Put further repeating instructions in THAT loop (MyAIS.class.php) 
-          */
-      }
-      socket_close($aisMonSock);
+      //End of main loop
+    }
+    socket_close($aisMonSock);
   }
 
 

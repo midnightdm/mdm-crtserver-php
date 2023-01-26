@@ -130,6 +130,11 @@ class PlotDaemon {
       flog( "\033[41m *                                                              * \033[0m\r\n");
       flog( "\033[41m *                                                              * \033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
+      // Set socket receive timeout
+      $timeOutVal = array("sec"=>10, "usec"=>0); 
+      if(!socket_set_option($aisMonSock, SOL_SOCKET, SO_RCVTIMEO, $timeOutVal)) {
+        trigger_error("Unable to set timeout option on socket.");
+      }
       // Bind the source address
       if( !socket_bind($aisMonSock, $this->socket_address, $this->socket_port) ) {
           $errorcode = socket_last_error();
@@ -138,12 +143,14 @@ class PlotDaemon {
       }
       flog( "Socket bind OK \n");
 
+
       while($this->run==true) {
           //** This is Main Loop of this server for the UDP version ** 
-          //Do some communication, this loop can handle multiple clients
+          //Do some communication, this loop can handle multiple clients        
           flog("Waiting for data on $this->socket_address:$this->socket_port ... \n");
           //Receive some data
           $r = socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
+          flog("socket_recvfrom returned ".$r."\n");
           $msg = $buf;
           $len = strlen($msg);
 
@@ -153,6 +160,11 @@ class PlotDaemon {
           }
           //Send data to AIS the decoder
           $ais->process_ais_buf($buf);
+          /* process_ais_buf calls process_ais_raw
+             process_ais_raw calls process_ais_itu
+             process_ais_itu calls decode_ais which has custom extention
+             decode_ais calls back LiveScan objects in the array plotDaemon->liveScan
+          */
 
           //Forward NMEA sentence to myshiptracking.com
           $mstSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);

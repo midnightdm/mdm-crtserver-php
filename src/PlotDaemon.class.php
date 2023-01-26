@@ -204,7 +204,7 @@ class PlotDaemon {
         
         flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
       }else {
-        flog("     ... No data received for $timeOutVal->sec seconds.  Proceeding with rest of loop.\n");
+        flog("     ... No data received for ".$timeOutVal['sec']." seconds.  Proceeding with rest of loop.\n");
       }
       //Things to do on each loop besides UDP data handling
 

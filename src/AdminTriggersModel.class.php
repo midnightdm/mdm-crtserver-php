@@ -21,7 +21,7 @@ class AdminTriggersModel extends Firestore {
       $document = $this->db->collection('Passages')->document('Admin');
       $snapshot = $document->snapshot();
       if($snapshot->exists()) {
-        $this->adminData = $snapshot->data;
+        $this->adminData = $snapshot->data();
         $this->dataTS = $now;
         return true;
       }

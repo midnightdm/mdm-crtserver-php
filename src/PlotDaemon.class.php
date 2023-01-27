@@ -207,7 +207,16 @@ class PlotDaemon {
         flog("     ... No data received for ".$timeOutVal['sec']." seconds.  Proceeding with rest of loop.\n");
       }
       //Things to do on each loop besides UDP data handling
-
+			
+      //Remove old scans every 3 minutes
+			$now = time();
+			flog( ($now- $this->lastCleanUp). ">" .$this->cleanUpTimeout. "=".($now- $this->lastCleanUp) > $this->cleanUpTimeout);
+			if( ($now- $this->lastCleanUp) > $this->cleanUpTimeout) {
+				$this->removeOldScans(); 
+			}
+			//Save scans to db at interval set within
+			$this->saveAllScans();
+      
       //End of main loop
     }
     socket_close($aisMonSock);

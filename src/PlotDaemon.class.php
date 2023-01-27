@@ -222,6 +222,11 @@ class PlotDaemon {
 
   public function removeOldScans() {
     $now = time(); 
+    flog("           now: ".$now."\n");
+    flog("-  lastCleanUp: ".$this->lastCleanUp."\n");
+    flog("________________________________________\n:");
+    flog("        Equals: ".$now-$this->lastCleanUp."\n");
+    flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
     if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
       //Only perform once every few min to reduce db queries
       flog( "PlotDaemon::removeOldScans()... \n");     

@@ -315,7 +315,7 @@ class PlotDaemon {
 
       //Check DB for admin command to test Alert trigger
       $alertData = $this->AdminTriggersModel->checkForAlertTest();      
-      if($alertData['go']) {
+      if($alertData['go']==true) {
         flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
         flog( "\033[41m *  *  *       Test Event: ".$alertData['event']."  *  *  *  *  *\n");
         flog( "\033[41m *  *  *       Test Key:    ".$alertData['key']."*  *  *  *\n");       

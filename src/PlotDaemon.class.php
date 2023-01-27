@@ -153,7 +153,7 @@ class PlotDaemon {
       //** This is Main Loop of this server for the UDP version ** 
       
       //Do some communication, this loop can handle multiple clients        
-      flog("Waiting for data on $this->socket_address:$this->socket_port ... \n");
+      flog("\nWaiting for data on $this->socket_address:$this->socket_port ... \n");
       //Receive some data
       
       

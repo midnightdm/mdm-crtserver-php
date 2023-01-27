@@ -129,7 +129,7 @@ class PlotDaemon {
     flog( "\033[41m *  Ensure you have AISMon running.                             * \033[0m\r\n");
     flog( "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n");
     flog( "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n");
-    flog( "\033[41m *           192.168.1.172:10111                                    * \033[0m\r\n");
+    flog( "\033[41m *           192.168.1.172:10111                                * \033[0m\r\n");
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");

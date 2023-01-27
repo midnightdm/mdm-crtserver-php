@@ -159,41 +159,45 @@ class VesselsModel extends Firestore {
     return $data;
   } 
 
-  public function resetAddVessel() {
-    $this->db->collection('Passages')
-    ->document('Admin')
-    ->set(['vesselError'=> false, 'vesselStatusMsg' => "Ready for your input.", 'formAwaitingReset'=> true],['merge'=>true]);
-  }    
+  //Moved to AdminTriggers Model
+  // public function resetAddVessel() {
+  //   $this->db->collection('Passages')
+  //   ->document('Admin')
+  //   ->set(['vesselError'=> false, 'vesselStatusMsg' => "Ready for your input.", 'formAwaitingReset'=> true],['merge'=>true]);
+  // }    
 
-  public function testForAddVessel() {
-    $document = $this->db->collection('Passages')
-        ->document('Admin');
-    $snapshot = $document->snapshot();
-    if($snapshot->exists()) {
-      $data = $snapshot->data();
-      if($data['vesselStatusMsg']=="Process pending. This could take up to 3 minutes.") {
-        return $data['vesselID'];
-      }
-    } else {
-      return false;
-    }
-  }
+  //Moved to AdminTriggersModel
+  // public function testForAddVessel() {
+  //   $document = $this->db->collection('Passages')
+  //       ->document('Admin');
+  //   $snapshot = $document->snapshot();
+  //   if($snapshot->exists()) {
+  //     $data = $snapshot->data();
+  //     if($data['vesselStatusMsg']=="Process pending. This could take up to 3 minutes.") {
+  //       return $data['vesselID'];
+  //     }
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  public function checkForAlertTest() {
-    $document = $this->db->collection('Passages')->document('Admin');
-    $snapshot = $document->snapshot();
-    if($snapshot->exists()) {
-      $data = $snapshot->data();
-      return $data;
-    }
-  }
+//Moved to AdminTriggers Model
+  // public function checkForAlertTest() {
+  //   $document = $this->db->collection('Passages')->document('Admin');
+  //   $snapshot = $document->snapshot();
+  //   if($snapshot->exists()) {
+  //     $data = $snapshot->data();
+  //     return $data;
+  //   }
+  // }
 
-  public function resetAlertTest() {
-    flog("   VesselsModel::resetAlertTest()\n");
-    $this->db->collection('Passages')
-    ->document('Admin')
-    ->set(['alertTestDo' => false ],['merge'=>true]);
-  }
+//Moved to AdminTriggers Model
+  // public function resetAlertTest() {
+  //   flog("   VesselsModel::resetAlertTest()\n");
+  //   $this->db->collection('Passages')
+  //   ->document('Admin')
+  //   ->set(['alertTestDo' => false ],['merge'=>true]);
+  // }
 
   public function reportVesselError($data) {
     $this->db->collection('Passages')

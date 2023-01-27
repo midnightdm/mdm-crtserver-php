@@ -35,6 +35,7 @@ class PlotDaemon {
   public $lastCameraSwitch;
   public $lastJsonSave;
   public $LiveScanModel;
+  public $AdminTriggersModel;
   public $VesselsModel;
   public $alertsAll;
   public $alertsPassenger;
@@ -57,6 +58,7 @@ class PlotDaemon {
     $this->alertsPassenger = array();
     $this->rowsBefore = 0;
     $this->LiveScanModel = new LiveScanModel();
+    $this->AdminTriggersModel = new AdminTriggersModel();
     $this->VesselsModel  = new VesselsModel();  
     $this->AlertsModel   = new AlertsModel($this);
     $this->PassagesModel = new PassagesModel();
@@ -207,15 +209,10 @@ class PlotDaemon {
         flog("     ... No data received for ".$timeOutVal['sec']." seconds.  Proceeding with rest of loop.\n");
       }
       //Things to do on each loop besides UDP data handling
-			
-      //Remove old scans every 3 minutes
-			$now = time();
-			//flog( ($now- $this->lastCleanUp). ">" .$this->cleanUpTimeout. "=".($now- $this->lastCleanUp) > $this->cleanUpTimeout);
-			if( ($now- $this->lastCleanUp) > $this->cleanUpTimeout) {
-				$this->removeOldScans(); 
-			}
-			//Save scans to db at interval set within
+		
+      $this->removeOldScans(); 
 			$this->saveAllScans();
+      $this->adminCommands();
       
       //End of main loop
     }
@@ -267,66 +264,7 @@ class PlotDaemon {
                 }
             }
         }
-
-        /* Admin commands MOVED to new RemoteTriggers class called in plotDaemon main loop */
-
-        //Check DB for admin command to scrape new vessel
-        $mmsi = $this->VesselsModel->testForAddVessel();
-        if($mmsi) {
-            flog("Admin request received to add vessel ".$mmsi);
-            $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
-            flog(" ".$vesselData['vesselName']);
-            //Test for error
-            if(isset($vesselData['error'])) {
-                $this->VesselsModel->reportVesselError($vesselData);
-                flog("There was an error: ".$vesselData['error']."\n");
-            } else {
-                $this->VesselsModel->insertVessel($vesselData);
-                $this->VesselsModel->resetAddVessel();
-                flog("Added vessel ".$vesselData['vesselName']."\n");
-            }
-        }
-        //Check DB for admin command to test Alert trigger
-        $alertData = $this->VesselsModel->checkForAlertTest();
-        $key = $alertData['alertTestKey'];
-        
-        if($alertData['alertTestDo']) {
-          flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
-          flog( "\033[41m *  *  *       Test Event: ".$alertData['alertTestEvent']."  *  *  *  *  *\n");
-          flog( "\033[41m *  *  *       Test Key:    $key  *  *  *  *\n");
-          
-          $this->AlertsModel->triggerEvent($alertData['alertTestEvent'], $this->liveScan[$key]);
-          sleep(3);
-          $this->VesselsModel->resetAlertTest();
-        }
-        //Check DB for user request to sendTestNotification
-        $this->AlertsModel->testForUserNotificationTestRequest(); 
-
-        //Check DB for admin command to stop daemon & run updates
-        if($this->LiveScanModel->testExit()==true) {
-            flog( "Stopping plotserver at request of database.\n\n");
-            $this->run = false;
-        }
-        //Check database for enableEncoder flat
-        if($this->LiveScanModel->testForEncoderEnabled()) {
-          $this->enableEncoder();
-        } else {
-          $this->disableEncoder();
-        }
-
-        //Show screen reminder if live encoder is enabled.
-        if($this->encoderEnabled) {
-          $ts = new DateTime();
-          $duration = $ts->diff($this->encoderEnabledTS);
-          $formated = $duration->format('%h hours, %i minutes');
-
-          flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-          flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
-          flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
-          flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-        }
-        /*  [End of removed section]  */
-
+        /* Admin commands MOVED to own function */
         //Do deletes according to test conditions
         if($deleteIt) {
             $obj->savePassageIfComplete(true);          
@@ -347,6 +285,67 @@ class PlotDaemon {
     }   
     $this->lastCleanUp = $now;
   } 
+
+  public function adminCommands() {
+    //Runs on same timing as removeOldScans(), but only that function resets the timer.
+    $now = time(); 
+    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
+      //Check DB for new vessel ID to scrape
+      $mmsi = $this->AdminTriggersModel->testForAddVessel();
+      if($mmsi) {
+          flog("Admin request received to add vessel ".$mmsi);
+          $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
+          flog(" ".$vesselData['vesselName']);
+          //Test for error
+          if(isset($vesselData['error'])) {
+              $this->VesselsModel->reportVesselError($vesselData);
+              flog("There was an error: ".$vesselData['error']."\n");
+          } else {
+              $this->VesselsModel->insertVessel($vesselData);
+              $this->AdminTriggersModel->resetAddVessel();
+              flog("Added vessel ".$vesselData['vesselName']."\n");
+          }
+      }
+
+      //Check DB for admin command to test Alert trigger
+      $alertData = $this->AdminTriggersModel->checkForAlertTest();      
+      if($alertData['go']) {
+        flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
+        flog( "\033[41m *  *  *       Test Event: ".$alertData['event']."  *  *  *  *  *\n");
+        flog( "\033[41m *  *  *       Test Key:    ".$alertData['key']."*  *  *  *\n");       
+        $this->AlertsModel->triggerEvent($alertData['event'], $this->liveScan[$alertData['key']]);
+        sleep(3);
+        $this->AdminTriggersModel->resetAlertTest();
+      }
+
+      //Check DB for user request to sendTestNotification
+      $this->AlertsModel->testForUserNotificationTestRequest(); 
+
+      //Check DB for admin command to stop daemon & run updates
+      if($this->AdminTriggersModel->testExit()) {
+          flog( "Stopping plotserver at request of database.\n\n");
+          $this->run = false;
+      }
+      //Check database for enableEncoder flat
+      if($this->AdminTriggersModel->testForEncoderEnabled()) {
+        $this->enableEncoder();
+      } else {
+        $this->disableEncoder();
+      }
+
+      //Show screen reminder if live encoder is enabled.
+      if($this->encoderEnabled) {
+        $ts = new DateTime();
+        $duration = $ts->diff($this->encoderEnabledTS);
+        $formated = $duration->format('%h hours, %i minutes');
+
+        flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+        flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
+        flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
+        flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+      }
+    }
+  }
 
   //Not used as of 3/27/22 in favor of cloud API
   public function saveLivescanJson() {
@@ -382,9 +381,9 @@ class PlotDaemon {
   }
 
   public function saveAllScans() {
-      $now = time();
-      if(($now - $this->lastPassagesSave) > $this->savePassagesTimeout) {
-          flog( "Writing passages to db...\n");
+    $now = time();
+    if(($now - $this->lastPassagesSave) > $this->savePassagesTimeout) {
+      flog( "Writing passages to db...\n");
       $scans = count($this->liveScan);
       foreach($this->liveScan as $liveScanObj) {
         if($liveScanObj->liveLocation instanceof Location) {
@@ -412,7 +411,7 @@ class PlotDaemon {
       }
       $this->lastPassagesSave = $now;
       flog( "Finished saving ".$scans." live vessels to passages.\n");
-      }
+    }
   }
 
   public function captureVideo($liveObj) {

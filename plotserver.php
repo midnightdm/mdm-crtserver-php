@@ -14,6 +14,7 @@ include_once('src/PlotDaemon.class.php');
 include_once('src/Firestore.class.php');
 include_once('src/LiveScan.class.php');
 include_once('src/LiveScanModel.class.php');
+include_once('src/AdminTriggersModel.class.php');
 include_once('src/Vessels.class.php');
 include_once('src/VesselsModel.class.php');
 include_once('src/crtfunctions_helper.php');

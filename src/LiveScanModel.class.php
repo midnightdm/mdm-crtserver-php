@@ -34,45 +34,49 @@ class LiveScanModel extends Firestore {
         ->set($live, ["merge"=> true]);
   }
 
+  //Replaced in AdminTriggersModel
   public function resetExit() {
     $this->db->collection('Passages')
     ->document('Admin')
     ->set(['exit'=> false],['merge'=>true]);
   }    
 
-  public function testExit() {
-    $document = $this->db->collection('Passages')
-        ->document('Admin');
-    $snapshot = $document->snapshot();
-    if($snapshot->exists()) {
-        $data = $snapshot->data();
-        if($data['exit']==true) {
-            return true;
-        }
-        return false;   
-    }
-    return false;
-  }
+  //Replaced in AdminTriggersModel
+  // public function testExit() {
+  //   $document = $this->db->collection('Passages')
+  //       ->document('Admin');
+  //   $snapshot = $document->snapshot();
+  //   if($snapshot->exists()) {
+  //       $data = $snapshot->data();
+  //       if($data['exit']==true) {
+  //           return true;
+  //       }
+  //       return false;   
+  //   }
+  //   return false;
+  // }
 
-  public function testForEncoderEnabled() {
-    $document = $this->db->collection('Passages')
-        ->document('Admin');
-    $snapshot = $document->snapshot();
-    if($snapshot->exists()) {
-        $data = $snapshot->data();
-        if($data['encoderEnabled']==true) {
-            return true;
-        }
-        return false;   
-    }
-    return false;
-  }
+  //Replaced in AdminTriggersModel
+  // public function testForEncoderEnabled() {
+  //   $document = $this->db->collection('Passages')
+  //       ->document('Admin');
+  //   $snapshot = $document->snapshot();
+  //   if($snapshot->exists()) {
+  //       $data = $snapshot->data();
+  //       if($data['encoderEnabled']==true) {
+  //           return true;
+  //       }
+  //       return false;   
+  //   }
+  //   return false;
+  // }
 
-  public function resetEncoderEnable() {
-    $this->db->collection('Passages')
-    ->document('Admin')
-    ->set(['encoderEnable'=> false],['merge'=>true]);
-  }   
+  //Replaced in AdminTriggersModel
+  // public function resetEncoderEnable() {
+  //   $this->db->collection('Passages')
+  //   ->document('Admin')
+  //   ->set(['encoderEnable'=> false],['merge'=>true]);
+  // }   
 
   public function updateLiveScanLength($len) {
     $dat = [

@@ -206,7 +206,7 @@ class PlotDaemon {
         
         flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
       }else {
-        flog("     ... No data received for ".$timeOutVal['sec']." seconds.  Proceeding with rest of loop.\n");
+        flog("   ... No data received for ".$timeOutVal['sec']." seconds.\n       Proceeding with rest of loop.\n");
       }
       //Things to do on each loop besides UDP data handling
       
@@ -229,7 +229,7 @@ class PlotDaemon {
     // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
     // if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
     //Only perform once every few min to reduce db queries
-    flog( "PlotDaemon::removeOldScans()... \n");     
+    flog( "         PlotDaemon::removeOldScans()... \n");     
     foreach($this->liveScan as $key => $obj) {  
       //Test age of transponder update [changed from move update 3/3/22].  
       $deleteIt = false;       
@@ -295,7 +295,7 @@ class PlotDaemon {
     //Runs on same timing as removeOldScans(), but only that function resets the timer.
     $now = time(); 
     if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
-      flog("PlotDaemon::adminCommands()...\n");
+      flog("         PlotDaemon::adminCommands()...\n");
       //Check DB for new vessel ID to scrape
       $mmsi = $this->AdminTriggersModel->testForAddVessel();
       if($mmsi) {

@@ -210,7 +210,7 @@ class PlotDaemon {
 			
       //Remove old scans every 3 minutes
 			$now = time();
-			flog( ($now- $this->lastCleanUp). ">" .$this->cleanUpTimeout. "=".($now- $this->lastCleanUp) > $this->cleanUpTimeout);
+			//flog( ($now- $this->lastCleanUp). ">" .$this->cleanUpTimeout. "=".($now- $this->lastCleanUp) > $this->cleanUpTimeout);
 			if( ($now- $this->lastCleanUp) > $this->cleanUpTimeout) {
 				$this->removeOldScans(); 
 			}
@@ -224,127 +224,128 @@ class PlotDaemon {
 
 
   public function removeOldScans() {
-      $now = time(); 
-      if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
-          //Only perform once every few min to reduce db queries
-          flog( "PlotDaemon::removeOldScans()... \n");     
-          foreach($this->liveScan as $key => $obj) {  
-              //Test age of transponder update [changed from move update 3/3/22].  
-              $deleteIt = false;       
-              flog( "   ... Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
-              if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
-                  /*1-A) Yes, then 
-                    *     2-Q) Is it near the edge of receiving range?
-                    *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
-                  if(($obj->liveLastLat > MARKER_ALPHA_LAT || $obj->liveLastLat < MARKER_DELTA_LAT)) {
-                      //    2-A) Yes, then save it to passages table
-                      flog( "is near edge of range.\r\n");
-                      $deleteIt = true;
-                  } else {
-                      //    2-A) No.
-                      flog( "is NOT near edge of range.\r\n");
-                      //        3-Q) Is record older than 15 minutes?
-                      if ($now - $obj->transponderTS > 900) {
-                          //      3-A) Yes
-                          flog( "The record is 15 minutes old");
-                          //      4-Q) Is vessel parked?
-                          if(intval(rtrim($obj->liveSpeed, "kts"))<1) {
-                              //    4-A) Yes, then keep in live.
-                              flog( ", but vessel is parked, so keeping in live");
-                          } else {
-                              //    4-A) No, speed is interupted value.
-                              flog( " with no updates so delete it.\r\n");
-                              $deleteIt = true;
-                          }
-                          //Check for stale reload time [Added 10/2/21]
-                          if(($now - $obj->reloadTS) > 900) {
-                              flog( ", but vessel was reloaded with no new updates. Deleting it.\r\n");
-                              $deleteIt = true;
-                          }
-                      } else {
-                          //      3-A) No, then keep waiting.
-                          flog( " keeping in live.\r\n");
-                      }
-                  }
-              }
-              //Check DB for admin command to scrape new vessel
-              $mmsi = $this->VesselsModel->testForAddVessel();
-              if($mmsi) {
-                  flog("Admin request received to add vessel ".$mmsi);
-                  $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
-                  flog(" ".$vesselData['vesselName']);
-                  //Test for error
-                  if(isset($vesselData['error'])) {
-                      $this->VesselsModel->reportVesselError($vesselData);
-                      flog("There was an error: ".$vesselData['error']."\n");
-                  } else {
-                      $this->VesselsModel->insertVessel($vesselData);
-                      $this->VesselsModel->resetAddVessel();
-                      flog("Added vessel ".$vesselData['vesselName']."\n");
-                  }
-              }
-              //Check DB for admin command to test Alert trigger
-              $alertData = $this->VesselsModel->checkForAlertTest();
-              $key = $alertData['alertTestKey'];
-              
-              if($alertData['alertTestDo']) {
-                flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
-                flog( "\033[41m *  *  *       Test Event: ".$alertData['alertTestEvent']."  *  *  *  *  *\n");
-                flog( "\033[41m *  *  *       Test Key:    $key  *  *  *  *\n");
-                
-                $this->AlertsModel->triggerEvent($alertData['alertTestEvent'], $this->liveScan[$key]);
-                sleep(3);
-                $this->VesselsModel->resetAlertTest();
-              }
-              //Check DB for user request to sendTestNotification
-              $this->AlertsModel->testForUserNotificationTestRequest(); 
-
-              //Check DB for admin command to stop daemon & run updates
-              if($this->LiveScanModel->testExit()==true) {
-                  flog( "Stopping plotserver at request of database.\n\n");
-                  $this->run = false;
-              }
-              //Check database for enableEncoder flat
-              if($this->LiveScanModel->testForEncoderEnabled()) {
-                $this->enableEncoder();
+    $now = time(); 
+    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
+      //Only perform once every few min to reduce db queries
+      flog( "PlotDaemon::removeOldScans()... \n");     
+      foreach($this->liveScan as $key => $obj) {  
+        //Test age of transponder update [changed from move update 3/3/22].  
+        $deleteIt = false;       
+        flog( "   ... Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
+        if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
+          /*1-A) Yes, then 
+            *     2-Q) Is it near the edge of receiving range?
+            *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
+          if(($obj->liveLastLat > MARKER_ALPHA_LAT || $obj->liveLastLat < MARKER_DELTA_LAT)) {
+            //    2-A) Yes, then save it to passages table
+            flog( "is near edge of range.\r\n");
+            $deleteIt = true;
+          } else {
+            //    2-A) No.
+            flog( "is NOT near edge of range.\r\n");
+            //        3-Q) Is record older than 15 minutes?
+            if ($now - $obj->transponderTS > 900) {
+              //      3-A) Yes
+              flog( "The record is 15 minutes old");
+              //      4-Q) Is vessel parked?
+              if(intval(rtrim($obj->liveSpeed, "kts"))<1) {
+                  //    4-A) Yes, then keep in live.
+                  flog( ", but vessel is parked, so keeping in live");
               } else {
-                $this->disableEncoder();
+                  //    4-A) No, speed is interupted value.
+                  flog( " with no updates so delete it.\r\n");
+                  $deleteIt = true;
               }
-
-
-              //Show screen reminder if live encoder is enabled.
-              if($this->encoderEnabled) {
-                $ts = new DateTime();
-                $duration = $ts->diff($this->encoderEnabledTS);
-                $formated = $duration->format('%h hours, %i minutes');
-
-                flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-                flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
-                flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
-                flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+              //Check for stale reload time [Added 10/2/21]
+              if(($now - $obj->reloadTS) > 900) {
+                  flog( ", but vessel was reloaded with no new updates. Deleting it.\r\n");
+                  $deleteIt = true;
               }
+                } else {
+                    //      3-A) No, then keep waiting.
+                    flog( " keeping in live.\r\n");
+                }
+            }
+        }
 
+        /* Admin commands MOVED to new RemoteTriggers class called in plotDaemon main loop */
 
-              //Do deletes according to test conditions
-              if($deleteIt) {
-                  $obj->savePassageIfComplete(true);          
-                  flog( 'Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n");
-                  if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
-                      //Table delete was sucessful, remove object from array
-                      $key = 'mmsi'.$obj->liveVesselID;
-                      flog("Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
-                      unset($this->liveScan[$key]);
-                      $this->updateLiveScanLength();
-                  } else {
-                      error_log('Error deleting LiveScan ' . $obj->liveVesselID);
-                  }
-              }
-              //1-A) No, record is fresh, so keep in live.
-              flog( "\r\n");
+        //Check DB for admin command to scrape new vessel
+        $mmsi = $this->VesselsModel->testForAddVessel();
+        if($mmsi) {
+            flog("Admin request received to add vessel ".$mmsi);
+            $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
+            flog(" ".$vesselData['vesselName']);
+            //Test for error
+            if(isset($vesselData['error'])) {
+                $this->VesselsModel->reportVesselError($vesselData);
+                flog("There was an error: ".$vesselData['error']."\n");
+            } else {
+                $this->VesselsModel->insertVessel($vesselData);
+                $this->VesselsModel->resetAddVessel();
+                flog("Added vessel ".$vesselData['vesselName']."\n");
+            }
+        }
+        //Check DB for admin command to test Alert trigger
+        $alertData = $this->VesselsModel->checkForAlertTest();
+        $key = $alertData['alertTestKey'];
+        
+        if($alertData['alertTestDo']) {
+          flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
+          flog( "\033[41m *  *  *       Test Event: ".$alertData['alertTestEvent']."  *  *  *  *  *\n");
+          flog( "\033[41m *  *  *       Test Key:    $key  *  *  *  *\n");
+          
+          $this->AlertsModel->triggerEvent($alertData['alertTestEvent'], $this->liveScan[$key]);
+          sleep(3);
+          $this->VesselsModel->resetAlertTest();
+        }
+        //Check DB for user request to sendTestNotification
+        $this->AlertsModel->testForUserNotificationTestRequest(); 
 
-          }    
-      }   
-      $this->lastCleanUp = $now;
+        //Check DB for admin command to stop daemon & run updates
+        if($this->LiveScanModel->testExit()==true) {
+            flog( "Stopping plotserver at request of database.\n\n");
+            $this->run = false;
+        }
+        //Check database for enableEncoder flat
+        if($this->LiveScanModel->testForEncoderEnabled()) {
+          $this->enableEncoder();
+        } else {
+          $this->disableEncoder();
+        }
+
+        //Show screen reminder if live encoder is enabled.
+        if($this->encoderEnabled) {
+          $ts = new DateTime();
+          $duration = $ts->diff($this->encoderEnabledTS);
+          $formated = $duration->format('%h hours, %i minutes');
+
+          flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+          flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
+          flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
+          flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+        }
+        /*  [End of removed section]  */
+
+        //Do deletes according to test conditions
+        if($deleteIt) {
+            $obj->savePassageIfComplete(true);          
+            flog( 'Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n");
+            if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
+                //Table delete was sucessful, remove object from array
+                $key = 'mmsi'.$obj->liveVesselID;
+                flog("Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
+                unset($this->liveScan[$key]);
+                $this->updateLiveScanLength();
+            } else {
+                error_log('Error deleting LiveScan ' . $obj->liveVesselID);
+            }
+        }
+        //1-A) No, record is fresh, so keep in live.
+        flog( "\r\n");
+      }    
+    }   
+    $this->lastCleanUp = $now;
   } 
 
   //Not used as of 3/27/22 in favor of cloud API

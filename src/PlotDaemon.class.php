@@ -209,10 +209,10 @@ class PlotDaemon {
         flog("     ... No data received for ".$timeOutVal['sec']." seconds.  Proceeding with rest of loop.\n");
       }
       //Things to do on each loop besides UDP data handling
-		
+      
+      $this->adminCommands();		
       $this->removeOldScans(); 
 			$this->saveAllScans();
-      $this->adminCommands();
       
       //End of main loop
     }
@@ -222,12 +222,12 @@ class PlotDaemon {
 
   public function removeOldScans() {
     $now = time(); 
-    flog("           now: ".$now."\n");
-    flog("-  lastCleanUp: ".$this->lastCleanUp."\n");
-    flog("________________________________________\n:");
-    flog("        Equals: ".$now-$this->lastCleanUp."\n");
-    flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
-    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
+    // flog("           now: ".$now."\n");
+    // flog("-  lastCleanUp: ".$this->lastCleanUp."\n");
+    // flog("________________________________________\n:");
+    // flog("        Equals: ".$now-$this->lastCleanUp."\n");
+    // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
+    // if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
       //Only perform once every few min to reduce db queries
       flog( "PlotDaemon::removeOldScans()... \n");     
       foreach($this->liveScan as $key => $obj) {  

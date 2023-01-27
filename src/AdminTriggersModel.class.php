@@ -64,7 +64,7 @@ class AdminTriggersModel extends Firestore {
     
   public function testForAddVessel() {
     if($this->getAdminDocument()) {
-      if($this->adminData['vesselsStatusMsg']=="Process pending. This could take up to 3 minutes.") {
+      if($this->adminData['vesselStatusMsg']=="Process pending. This could take up to 3 minutes.") {
         return $this->adminData['vesselID'];
       }
       return false;

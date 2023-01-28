@@ -243,9 +243,11 @@ class PlotDaemon {
           } else {
               error_log('\n        Error deleting LiveScan ' . $obj->liveVesselID);
           }
+      } else {
+        flog(" = NONE\n");
       }
       //1-A) No, record is fresh, so keep in live.
-      flog(" = NONE\n");
+     
     }  
     $this->lastCleanUp = $now;  
   }   

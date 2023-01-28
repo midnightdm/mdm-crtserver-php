@@ -86,7 +86,7 @@ class AlertsModel extends Firestore {
   }
 
   public function checkForUserNotificationTestRequest() {
-    flog("      • AlertsModel::checkForUserNotificationTestRequest()\n");
+    flog("      • AlertsModel::checkForUserNotificationTestRequest()");
     $ref = $this->db->collection('user_devices');
     $query = $ref->where("alertTestRequest", "==", true);  
     $documents = $query->documents();
@@ -115,7 +115,12 @@ class AlertsModel extends Firestore {
           flog( "Document ". $document->id(). " does not exist!\n");
       }     
     }
-    flog("          $count notification tests pushed\n");
+    if($count) {
+      flog("\n          $count notification tests pushed\n");
+    } else {
+      flog(" = NONE\n");
+    }
+    
   }
 
   public function resetUserNotificationTestRequest($userID) {

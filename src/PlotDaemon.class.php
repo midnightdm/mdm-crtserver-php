@@ -249,7 +249,7 @@ class PlotDaemon {
         flog(" Not Deleted\n");
       }
       //1-A) No, record is fresh, so keep in live.
-     
+      flog("\n");
     }  
     $this->lastCleanUp = $now;  
   }   

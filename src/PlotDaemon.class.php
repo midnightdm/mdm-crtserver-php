@@ -222,7 +222,7 @@ class PlotDaemon {
             }
             //Check for stale reload time [Added 10/2/21]
             if(($now - $obj->reloadTS) > 900) {
-                flog( ", but vessel was reloaded with no new updates. Deleting it.\r\n");
+                flog( ", but vessel was reloaded with no new updates. Deleting it.");
                 $deleteIt = true;
             }
               } else {
@@ -239,7 +239,7 @@ class PlotDaemon {
           if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
               //Table delete was sucessful, remove object from array
               $key = 'mmsi'.$obj->liveVesselID;
-              flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
+              flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.");
               //unset($this->liveScan[$key]); [Moved to below]
               $this->updateLiveScanLength();
           } else {

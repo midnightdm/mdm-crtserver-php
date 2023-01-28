@@ -502,7 +502,7 @@ class PlotDaemon {
   protected function checkDbForDaemonReset() {
     flog("      • checkDbForDaemonReset()");
     if($this->AdminTriggersModel->testExit()) {
-      flog( "\n        Stopping plotserver at request of database.\n\n");
+      flog( "\n          \033[41mRestarting plotserver at request of database.\033[0m\n");
       $this->run = false;
     } else {
       flog(" = NONE\n");

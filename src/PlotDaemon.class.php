@@ -233,7 +233,7 @@ class PlotDaemon {
       //Do deletes according to test conditions
       if($deleteIt) {
           $obj->savePassageIfComplete(true);          
-          flog( "\n      • Deleting old livescan record for ".$obj->liveName ." ".getNow()."\n");
+          flog( "\n      • Deleting old livescan record for ".$obj->liveName ." ".getNow());
           if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
               //Table delete was sucessful, remove object from array
               $key = 'mmsi'.$obj->liveVesselID;

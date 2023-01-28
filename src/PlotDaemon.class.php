@@ -189,11 +189,11 @@ class PlotDaemon {
     // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
     // if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
     //Only perform once every few min to reduce db queries
-    flog( "         PlotDaemon::removeOldScans()... \n");     
+    flog( "    PlotDaemon::removeOldScans()... \n");     
     foreach($this->liveScan as $key => $obj) {  
       //Test age of transponder update [changed from move update 3/3/22].  
       $deleteIt = false;       
-      flog( "   ... Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
+      flog( "      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
       if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
         /*1-A) Yes, then 
           *     2-Q) Is it near the edge of receiving range?
@@ -233,15 +233,15 @@ class PlotDaemon {
       //Do deletes according to test conditions
       if($deleteIt) {
           $obj->savePassageIfComplete(true);          
-          flog( 'Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n");
+          flog( '      • Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n");
           if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
               //Table delete was sucessful, remove object from array
               $key = 'mmsi'.$obj->liveVesselID;
-              flog("Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
+              flog("          Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
               unset($this->liveScan[$key]);
               $this->updateLiveScanLength();
           } else {
-              error_log('Error deleting LiveScan ' . $obj->liveVesselID);
+              error_log('        Error deleting LiveScan ' . $obj->liveVesselID);
           }
       }
       //1-A) No, record is fresh, so keep in live.

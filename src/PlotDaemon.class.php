@@ -244,7 +244,7 @@ class PlotDaemon {
               error_log('\n        Error deleting LiveScan ' . $obj->liveVesselID);
           }
       } else {
-        flog(" = NONE\n");
+        flog(" Not Deleted\n");
       }
       //1-A) No, record is fresh, so keep in live.
      
@@ -417,7 +417,7 @@ class PlotDaemon {
     //Filter UDP traffic by NMEA prefix
     if(!str_contains($buf, '!AIVDM')) {
       //Non-NMEA data is private message. It gets logged in blue & not forwarded.
-      flog("  \033[44m".$buf."\033[0m\n");
+      flog("    \033[44m".$buf."\033[0m");
     } else {
       flog("    $buf\n");
       //Send data to AIS the decoder

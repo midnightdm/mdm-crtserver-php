@@ -82,7 +82,7 @@ class MyAIS extends AIS {
       $course = $ro->cog;
       $ts   = $ro->ts;
             
-			flog("Decoded: ".$id." ".$ts."\n");
+			flog("    Decoded MMSI: ".$id." TS: ".$ts."\n");
 
       if(isset($this->plotDaemon->liveScan[$key])) {
         //Update liveScan object only if data is new

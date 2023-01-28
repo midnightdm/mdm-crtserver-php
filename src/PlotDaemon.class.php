@@ -173,6 +173,7 @@ class PlotDaemon {
       $this->adminCommands();	 //Uses removeOldScans() timer	
       $this->removeOldScans(); //Resets the timer shared by adminCommands() 
 			$this->saveAllScans();   //Has its own interval timer
+      flog(getNow());
       //*                                                                      *
       //*                          End of main loop                            *
       //*                                                                      *

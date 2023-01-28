@@ -190,73 +190,74 @@ class PlotDaemon {
     // flog("________________________________________\n:");
     // flog("        Equals: ".$now-$this->lastCleanUp."\n");
     // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
-    // if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
-    //Only perform once every few min to reduce db queries
-    flog( "    PlotDaemon::removeOldScans()");     
-    foreach($this->liveScan as $key => $obj) {  
-      //Test age of transponder update [changed from move update 3/3/22].  
-      $deleteIt = false;       
-      flog( "\n      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
-      if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
-        /*1-A) Yes, then 
-          *     2-Q) Is it near the edge of receiving range?
-          *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
-        if(($obj->liveLastLat > MARKER_ALPHA_LAT || $obj->liveLastLat < MARKER_DELTA_LAT)) {
-          //    2-A) Yes, then save it to passages table
-          flog( "is near edge of range.\r\n");
-          $deleteIt = true;
-        } else {
-          //    2-A) No.
-          flog( "is NOT near edge of range.\r\n");
-          //        3-Q) Is record older than 15 minutes?
-          if ($now - $obj->transponderTS > 900) {
-            //      3-A) Yes
-            flog( "          The record is 15 minutes old");
-            //      4-Q) Is vessel parked?
-            if(intval(rtrim($obj->liveSpeed, "kts"))<1) {
-                //    4-A) Yes, then keep in live.
-                flog( ", but vessel is parked, so keeping in live");
-            } else {
-                //    4-A) No, speed is interupted value.
-                flog( " with no updates so delete it.");
-                $deleteIt = true;
-            }
-            //Check for stale reload time [Added 10/2/21]
-            if(($now - $obj->reloadTS) > 900) {
-                flog( ", but vessel was reloaded with no new updates. Deleting it.");
-                $deleteIt = true;
-            }
-              } else {
-                  //      3-A) No, then keep waiting.
-                  flog( " keeping in live.\r\n");
-              }
-          }
-      }
-      /* Admin commands MOVED to own function */
-      //Do deletes according to test conditions
-      if($deleteIt) {
-          $obj->savePassageIfComplete(true);          
-          flog( "\n      • Deleting old livescan record for ".$obj->liveName ." ".getNow());
-          if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
-              //Table delete was sucessful, remove object from array
-              $key = 'mmsi'.$obj->liveVesselID;
-              flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.");
-              //unset($this->liveScan[$key]); [Moved to below]
-              $this->updateLiveScanLength();
+    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
+      //Only perform once every few min to reduce db queries
+      flog( "    PlotDaemon::removeOldScans()");     
+      foreach($this->liveScan as $key => $obj) {  
+        //Test age of transponder update [changed from move update 3/3/22].  
+        $deleteIt = false;       
+        flog( "\n      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
+        if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
+          /*1-A) Yes, then 
+            *     2-Q) Is it near the edge of receiving range?
+            *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
+          if(($obj->liveLastLat > MARKER_ALPHA_LAT || $obj->liveLastLat < MARKER_DELTA_LAT)) {
+            //    2-A) Yes, then save it to passages table
+            flog( "is near edge of range.\r\n");
+            $deleteIt = true;
           } else {
-              error_log("\n        Error deleting LiveScan " . $obj->liveVesselID);
-          }
-          unset($this->liveScan[$key]);
-      } else {
-        flog(" Not Deleted\n");
+            //    2-A) No.
+            flog( "is NOT near edge of range.\r\n");
+            //        3-Q) Is record older than 15 minutes?
+            if ($now - $obj->transponderTS > 900) {
+              //      3-A) Yes
+              flog( "          The record is 15 minutes old");
+              //      4-Q) Is vessel parked?
+              if(intval(rtrim($obj->liveSpeed, "kts"))<1) {
+                  //    4-A) Yes, then keep in live.
+                  flog( ", but vessel is parked, so keeping in live");
+              } else {
+                  //    4-A) No, speed is interupted value.
+                  flog( " with no updates so delete it.");
+                  $deleteIt = true;
+              }
+              //Check for stale reload time [Added 10/2/21]
+              if(($now - $obj->reloadTS) > 900) {
+                  flog( ", but vessel was reloaded with no new updates. Deleting it.");
+                  $deleteIt = true;
+              }
+                } else {
+                    //      3-A) No, then keep waiting.
+                    flog( " keeping in live.\r\n");
+                }
+            }
+        }
+        /* Admin commands MOVED to own function */
+        //Do deletes according to test conditions
+        if($deleteIt) {
+            $obj->savePassageIfComplete(true);          
+            flog( "\n      • Deleting old livescan record for ".$obj->liveName ." ".getNow());
+            if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
+                //Table delete was sucessful, remove object from array
+                $key = 'mmsi'.$obj->liveVesselID;
+                flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.");
+                //unset($this->liveScan[$key]); [Moved to below]
+                $this->updateLiveScanLength();
+            } else {
+                error_log("\n        Error deleting LiveScan " . $obj->liveVesselID);
+            }
+            unset($this->liveScan[$key]);
+        } else {
+          flog(" Not Deleted\n");
+        }
+        //1-A) No, record is fresh, so keep in live.
+        flog("\n");
       }
-      //1-A) No, record is fresh, so keep in live.
-      flog("\n");
+      if(!count($this->liveScan)) {
+        flog(" = NONE\n");
+      }  
+      $this->lastCleanUp = $now;  
     }
-    if(!count($this->liveScan)) {
-      flog(" = NONE\n");
-    }  
-    $this->lastCleanUp = $now;  
   }   
     
 

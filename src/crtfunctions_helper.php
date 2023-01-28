@@ -154,7 +154,12 @@ function objectQueue($arr, $add, $size=20) { //Returns updated $arr
 }
 
 function errorHandler($type, $msg, $file=null, $line=null) {
+  //Ignore warning socket timeout produces
   if( str_contains($msg, "socket_recvfrom(): Unable to recvfrom") ) {
+    return;
+  }
+  //Ignore clicksend version incompatibility with php 8
+  if( str_contains($msg, "#[\ReturnTypeWillChange]") ) {
     return;
   } 
   flog("\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n");

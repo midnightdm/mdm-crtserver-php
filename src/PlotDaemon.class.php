@@ -210,14 +210,14 @@ class PlotDaemon {
           //        3-Q) Is record older than 15 minutes?
           if ($now - $obj->transponderTS > 900) {
             //      3-A) Yes
-            flog( "The record is 15 minutes old");
+            flog( "          The record is 15 minutes old");
             //      4-Q) Is vessel parked?
             if(intval(rtrim($obj->liveSpeed, "kts"))<1) {
                 //    4-A) Yes, then keep in live.
                 flog( ", but vessel is parked, so keeping in live");
             } else {
                 //    4-A) No, speed is interupted value.
-                flog( " with no updates so delete it.\r\n");
+                flog( " with no updates so delete it.");
                 $deleteIt = true;
             }
             //Check for stale reload time [Added 10/2/21]
@@ -243,7 +243,7 @@ class PlotDaemon {
               unset($this->liveScan[$key]);
               $this->updateLiveScanLength();
           } else {
-              error_log('\n        Error deleting LiveScan ' . $obj->liveVesselID);
+              error_log("\n        Error deleting LiveScan " . $obj->liveVesselID);
           }
       } else {
         flog(" Not Deleted\n");

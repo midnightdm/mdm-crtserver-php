@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e737903d802dcef89cdef6f793fab36",
+    "content-hash": "cf8412df9d5e837d5ce43979939097db",
     "packages": [
         {
             "name": "brick/math",
@@ -433,16 +433,16 @@
         },
         {
             "name": "google/cloud-firestore",
-            "version": "v1.20.4",
+            "version": "v1.27.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-firestore.git",
-                "reference": "2db8b6a5b59f22e5fe4cc82f86906fc0dfeee10e"
+                "reference": "5b71d3b03a0893ff4b89c09282b78b02e1017781"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-firestore/zipball/2db8b6a5b59f22e5fe4cc82f86906fc0dfeee10e",
-                "reference": "2db8b6a5b59f22e5fe4cc82f86906fc0dfeee10e",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-firestore/zipball/5b71d3b03a0893ff4b89c09282b78b02e1017781",
+                "reference": "5b71d3b03a0893ff4b89c09282b78b02e1017781",
                 "shasum": ""
             },
             "require": {
@@ -453,9 +453,11 @@
             },
             "require-dev": {
                 "erusev/parsedown": "^1.6",
-                "phpdocumentor/reflection": "^3.0",
-                "phpunit/phpunit": "^4.8|^5.0",
-                "squizlabs/php_codesniffer": "2.*"
+                "phpdocumentor/reflection": "^3.0||^4.0",
+                "phpspec/prophecy": "^1.10.3",
+                "phpunit/phpunit": "^4.8|^5.0|^8.0",
+                "squizlabs/php_codesniffer": "2.*",
+                "yoast/phpunit-polyfills": "^1.0"
             },
             "suggest": {
                 "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
@@ -479,11 +481,11 @@
             "license": [
                 "Apache-2.0"
             ],
-            "description": "Cloud Firestore client for PHP",
+            "description": "Cloud Firestore Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-firestore/tree/v1.20.4"
+                "source": "https://github.com/googleapis/google-cloud-php-firestore/tree/v1.27.2"
             },
-            "time": "2022-01-31T21:39:13+00:00"
+            "time": "2023-01-27T18:26:22+00:00"
         },
         {
             "name": "google/cloud-storage",
@@ -2721,9 +2723,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4",
+        "php": "^8.0",
         "ext-grpc": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.3.0"
 }

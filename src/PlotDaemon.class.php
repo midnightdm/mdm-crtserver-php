@@ -109,7 +109,7 @@ class PlotDaemon {
 
   protected function run() {
     //Runtime initialization
-    $ais = new MyAIS($this);      
+    $this->ais = new MyAIS($this);      
     //Reduce errors
     error_reporting(~E_WARNING);
     //Create the default UDP socket for receiving AIS NMEA data
@@ -428,7 +428,7 @@ class PlotDaemon {
     } else {
       flog("    $buf\n");
       //Send data to AIS the decoder
-      $ais->process_ais_buf($buf);
+      $this->ais->process_ais_buf($buf);
       /* process_ais_buf calls process_ais_raw
          process_ais_raw calls process_ais_itu
          process_ais_itu calls decode_ais which has custom extention

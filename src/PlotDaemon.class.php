@@ -189,11 +189,11 @@ class PlotDaemon {
     // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
     // if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
     //Only perform once every few min to reduce db queries
-    flog( "    PlotDaemon::removeOldScans()... \n");     
+    flog( "    PlotDaemon::removeOldScans()");     
     foreach($this->liveScan as $key => $obj) {  
       //Test age of transponder update [changed from move update 3/3/22].  
       $deleteIt = false;       
-      flog( "      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
+      flog( "\n      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
       if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
         /*1-A) Yes, then 
           *     2-Q) Is it near the edge of receiving range?
@@ -233,19 +233,19 @@ class PlotDaemon {
       //Do deletes according to test conditions
       if($deleteIt) {
           $obj->savePassageIfComplete(true);          
-          flog( '      • Deleting old livescan record for '.$obj->liveName .' '.getNow()."\n");
+          flog( "\n      • Deleting old livescan record for ".$obj->liveName ." ".getNow()."\n");
           if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
               //Table delete was sucessful, remove object from array
               $key = 'mmsi'.$obj->liveVesselID;
-              flog("          Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
+              flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
               unset($this->liveScan[$key]);
               $this->updateLiveScanLength();
           } else {
-              error_log('        Error deleting LiveScan ' . $obj->liveVesselID);
+              error_log('\n        Error deleting LiveScan ' . $obj->liveVesselID);
           }
       }
       //1-A) No, record is fresh, so keep in live.
-      flog( "\r\n");
+      flog(" = NONE\n");
     }  
     $this->lastCleanUp = $now;  
   }   
@@ -456,26 +456,28 @@ class PlotDaemon {
   }
 
   protected function checkDbForInputVessels() {
-    flog("      • checkDbForInputVessels()\n");
+    flog("      • checkDbForInputVessels()");
     $mmsi = $this->AdminTriggersModel->testForAddVessel();
     if($mmsi) {
-      flog("        Admin request received to add vessel ".$mmsi);
+      flog("\n        Admin request received to add vessel ".$mmsi);
       $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
       flog(" ".$vesselData['vesselName']);
       //Test for error
       if(isset($vesselData['error'])) {
           $this->VesselsModel->reportVesselError($vesselData);
-          flog("        There was an error: ".$vesselData['error']."\n");
+          flog("\n        There was an error: ".$vesselData['error']."\n");
       } else {
           $this->VesselsModel->insertVessel($vesselData);
           $this->AdminTriggersModel->resetAddVessel();
-          flog("        Added vessel ".$vesselData['vesselName']."\n");
+          flog("\n        Added vessel ".$vesselData['vesselName']."\n");
       }
+    } else {
+      flog(" = NONE\n");
     }
   }
 
   protected function checkDbForAlertSimulation() {
-    flog("      • checkDbForAlertSimulation()\n");
+    flog("      • checkDbForAlertSimulation()");
     $alertData = $this->AdminTriggersModel->checkForAlertTest();
     if($alertData && $alertData['go']==true) {
       flog( "\n\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
@@ -484,19 +486,23 @@ class PlotDaemon {
       $this->AlertsModel->triggerEvent($alertData['event'], $this->liveScan[$alertData['key']]);
       sleep(3);
       $this->AdminTriggersModel->resetAlertTest();
+    } else {
+      flog(" = NONE\n");
     }
   }
 
   protected function checkDbForDaemonReset() {
-    flog("      • checkDbForDaemonReset()\n");
+    flog("      • checkDbForDaemonReset()");
     if($this->AdminTriggersModel->testExit()) {
-      flog( "        Stopping plotserver at request of database.\n\n");
+      flog( "\n        Stopping plotserver at request of database.\n\n");
       $this->run = false;
+    } else {
+      flog(" = NONE\n");
     }
   }
 
   protected function checkDbForEncoderEnable() {
-    flog("      • checkDbForEncoderEnable()\n");
+    flog("      • checkDbForEncoderEnable()");
     if($this->AdminTriggersModel->testForEncoderEnabled()) {
       $this->enableEncoder();
     } else {
@@ -512,6 +518,8 @@ class PlotDaemon {
       flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
       flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+    } else {
+      flog(" = NONE\n");
     }
   }
 

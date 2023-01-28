@@ -100,10 +100,10 @@ class AdminTriggersModel extends Firestore {
           'event'=>$this->adminData['alertTestEvent']
         );
       }
-      flog("          checkForAlertTest() was false\n");
+      flog(" = NONE\n");
       return false;
     }
-    flog("          checkForAlertTest() couldn't get Admin Document\n");
+    flog("\n          checkForAlertTest() couldn't get Admin Document\n");
     return false;
   }
 

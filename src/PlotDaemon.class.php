@@ -108,18 +108,17 @@ class PlotDaemon {
   }
 
   protected function run() {
+    //Runtime initialization
     $ais = new MyAIS($this);      
-
     //Reduce errors
     error_reporting(~E_WARNING);
-    //Create a UDP sockets
+    //Create the default UDP socket for receiving AIS NMEA data
     if(!($aisMonSock = socket_create(AF_INET, SOCK_DGRAM, 0))) {
         $errorcode = socket_last_error();
         $errormsg = socket_strerror($errorcode);
         die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
     }
     flog( "Socket created \n");
-
 
     //A run once message for Brian at start up to enable companion app
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
@@ -140,7 +139,6 @@ class PlotDaemon {
       trigger_error("Unable to set timeout option on socket.");
     }
 
-
     // Bind the source address
     if( !socket_bind($aisMonSock, $this->socket_address, $this->socket_port) ) {
         $errorcode = socket_last_error();
@@ -150,71 +148,33 @@ class PlotDaemon {
     flog( "Socket bind OK \n");
 
     while($this->run==true) {
-      //** This is Main Loop of this server for the UDP version ** 
+      //*********************************************************************** 
+      //*                                                                     *
+      //*                  This is MAIN LOOP of this server                   * 
+      //*                                                                     *
       
       //Do some communication, this loop can handle multiple clients        
+      flog("------------------------------------------------------------------\n");
       flog("\nWaiting for data on $this->socket_address:$this->socket_port ... \n");
-      //Receive some data
-      
-      
+      //Receive some data (Silent error flag no longer works in PHP 8)      
       @socket_recvfrom($aisMonSock, $buf, 512, 0, $local_ip, $local_port);
-      sleep(1);
+      //  sleep(1); [Necessary?]
       $msgWasSkipped = $buf==null; //True when no buffer output
-      
-      //Skip buffer processing if socket receive timed out.    
+      //Skip buffer processing if the socket receive timed out.    
       if(!$msgWasSkipped) {
-        $msg = $buf;
-        $len = strlen($msg);
-        //Look for other UDP traffic
-        if(!str_contains($buf, '!AIVDM')) {
-          flog("\033[44m".$buf."\033[0m\r\n");
-        }
-        //Send data to AIS the decoder
-        $ais->process_ais_buf($buf);
-        /* process_ais_buf calls process_ais_raw
-            process_ais_raw calls process_ais_itu
-            process_ais_itu calls decode_ais which has custom extention
-            decode_ais calls back LiveScan objects in the array plotDaemon->liveScan
-        */
-
-        //Forward NMEA sentence to myshiptracking.com
-        $mstSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-        if($mstSock) {
-          $sentMst = socket_sendto($mstSock, $msg, $len, 0, '178.162.215.175', 31995);
-          socket_close($mstSock);
-        } else {
-          $sndMst = 0;
-        }
-        
-        //Forward NMEA sentence to vesselfinder.com
-        $vfSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-        if($vfSock) {
-          $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
-          socket_close($vfSock);
-        } else {
-          $sendVf = 0;
-        }
-
-        //Forward NMEA sentence to marinetraffic.comm
-        $mtSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-        if($mtSock) {
-          $sentMt = socket_sendto($mtSock, $msg, $len, 0, '5.9.207.224', 6051);
-          socket_close($mtSock);
-        } else {
-          $sentMt = 0;
-        }
-        
-        flog( "$local_ip:$local_port -- $buf  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
+        $this->processBuffer($buf, $local_ip, $local_port);       
       }else {
-        flog("   ... No data received for ".$timeOutVal['sec']." seconds.\n       Proceeding with rest of loop.\n");
+        flog("  No data received for ".$timeOutVal['sec']." seconds.\n    Proceeding with rest of loop.\n");
       }
-      //Things to do on each loop besides UDP data handling
-      
-      $this->adminCommands();		
-      $this->removeOldScans(); 
-			$this->saveAllScans();
-      
-      //End of main loop
+      //Resuming here if above was skipped with
+      //    things to do on each loop besides UDP data handling
+      $this->adminCommands();	 //Uses removeOldScans() timer	
+      $this->removeOldScans(); //Resets the timer shared by adminCommands() 
+			$this->saveAllScans();   //Has its own interval timer
+      //*                                                                      *
+      //*                          End of main loop                            *
+      //*                                                                      *
+      //************************************************************************ 
     }
     socket_close($aisMonSock);
   }
@@ -295,61 +255,17 @@ class PlotDaemon {
     //Runs on same timing as removeOldScans(), but only that function resets the timer.
     $now = time(); 
     if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
-      flog("         PlotDaemon::adminCommands()...\n");
+      flog("    PlotDaemon::adminCommands()...\n");
       //Check DB for new vessel ID to scrape
-      $mmsi = $this->AdminTriggersModel->testForAddVessel();
-      if($mmsi) {
-          flog("Admin request received to add vessel ".$mmsi);
-          $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
-          flog(" ".$vesselData['vesselName']);
-          //Test for error
-          if(isset($vesselData['error'])) {
-              $this->VesselsModel->reportVesselError($vesselData);
-              flog("There was an error: ".$vesselData['error']."\n");
-          } else {
-              $this->VesselsModel->insertVessel($vesselData);
-              $this->AdminTriggersModel->resetAddVessel();
-              flog("Added vessel ".$vesselData['vesselName']."\n");
-          }
-      }
-
+      $this->checkDbForInputVessels();
       //Check DB for admin command to test Alert trigger
-      $alertData = $this->AdminTriggersModel->checkForAlertTest();
-      if($alertData && $alertData['go']==true) {
-        flog( "\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
-        flog( "\033[41m *  *  *       Test Event: ".$alertData['event']."  *  *  *  *  *\n");
-        flog( "\033[41m *  *  *       Test Key:    ".$alertData['key']."*  *  *  *\n");       
-        $this->AlertsModel->triggerEvent($alertData['event'], $this->liveScan[$alertData['key']]);
-        sleep(3);
-        $this->AdminTriggersModel->resetAlertTest();
-      }
-
+      $this->checkDbForAlertSimulation();
       //Check DB for user request to sendTestNotification
-      $this->AlertsModel->testForUserNotificationTestRequest(); 
-
+      $this->AlertsModel->checkForUserNotificationTestRequest(); 
       //Check DB for admin command to stop daemon & run updates
-      if($this->AdminTriggersModel->testExit()) {
-          flog( "Stopping plotserver at request of database.\n\n");
-          $this->run = false;
-      }
-      //Check database for enableEncoder flat
-      if($this->AdminTriggersModel->testForEncoderEnabled()) {
-        $this->enableEncoder();
-      } else {
-        $this->disableEncoder();
-      }
-
-      //Show screen reminder if live encoder is enabled.
-      if($this->encoderEnabled) {
-        $ts = new DateTime();
-        $duration = $ts->diff($this->encoderEnabledTS);
-        $formated = $duration->format('%h hours, %i minutes');
-
-        flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-        flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
-        flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
-        flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-      }
+      $this->checkDbForDaemonReset();
+      //Check database for enableEncoder flag
+      $this->checkDbForEncoderEnable();
     }
   }
 
@@ -439,7 +355,7 @@ class PlotDaemon {
     if($this->encoderEnabled) {
       return;
     }
-    flog("plotDaemon::enableEncoder()\n");   
+    flog("          plotDaemon::enableEncoder()\n");   
 
     //Set Video options
     $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
@@ -468,7 +384,7 @@ class PlotDaemon {
     if(!$this->encoderEnabled) {
       return;
     }
-    flog("plotDaemon::disableEncoder()\n");
+    flog("          plotDaemon::disableEncoder()\n");
     //Disable server url
     $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&rtmp_sle=0";
     $result1 = grab_protected($disable, $this->encoderUsr, $this->encoderPwd);
@@ -492,7 +408,112 @@ class PlotDaemon {
     }
   }
 
+  protected function processBuffer($buf, $local_ip, $local_port) {
+    $msg = $buf;
+    $len = strlen($msg);
+    flog("  UDP packet received on $local_ip:$local_port =\n$buf");
+    //Filter UDP traffic by NMEA prefix
+    if(!str_contains($buf, '!AIVDM')) {
+      //Non-NMEA data is private message. It gets logged in blue & not forwarded.
+      flog("\033[44m".$buf."\033[0m\r\n");
+    } else {
+      //Send data to AIS the decoder
+      $ais->process_ais_buf($buf);
+      /* process_ais_buf calls process_ais_raw
+         process_ais_raw calls process_ais_itu
+         process_ais_itu calls decode_ais which has custom extention
+         decode_ais calls back LiveScan objects in the array plotDaemon->liveScan
+      */
 
+      //Forward NMEA sentence to myshiptracking.com
+      $mstSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+      if($mstSock) {
+        $sentMst = socket_sendto($mstSock, $msg, $len, 0, '178.162.215.175', 31995);
+        socket_close($mstSock);
+      } else {
+        $sndMst = 0;
+      }
+
+      //Forward NMEA sentence to vesselfinder.com
+      $vfSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+      if($vfSock) {
+        $sentVf = socket_sendto($vfSock, $msg, $len, 0, 'ais.vesselfinder.com', 5616);
+        socket_close($vfSock);
+      } else {
+        $sendVf = 0;
+      }
+
+      //Forward NMEA sentence to marinetraffic.comm
+      $mtSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+      if($mtSock) {
+        $sentMt = socket_sendto($mtSock, $msg, $len, 0, '5.9.207.224', 6051);
+        socket_close($mtSock);
+      } else {
+        $sentMt = 0;
+      }
+      flog( "  Also sent $sentMst bytes to myshiptracking.com, $sentVf bytes to vesselfinder.com & $sentMt bytes to marinetraffic.com\n");
+    }
+  }
+
+  protected function checkDbForInputVessels() {
+    flog("      • checkDbForInputVessels()\n");
+    $mmsi = $this->AdminTriggersModel->testForAddVessel();
+    if($mmsi) {
+      flog("        Admin request received to add vessel ".$mmsi);
+      $vesselData = $this->VesselsModel->lookUpVessel($mmsi);
+      flog(" ".$vesselData['vesselName']);
+      //Test for error
+      if(isset($vesselData['error'])) {
+          $this->VesselsModel->reportVesselError($vesselData);
+          flog("        There was an error: ".$vesselData['error']."\n");
+      } else {
+          $this->VesselsModel->insertVessel($vesselData);
+          $this->AdminTriggersModel->resetAddVessel();
+          flog("        Added vessel ".$vesselData['vesselName']."\n");
+      }
+    }
+  }
+
+  protected function checkDbForAlertSimulation() {
+    flog("      • checkDbForAlertSimulation()\n");
+    $alertData = $this->AdminTriggersModel->checkForAlertTest();
+    if($alertData && $alertData['go']==true) {
+      flog( "\n\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
+      flog( "\033[41m *  *  *       Test Event: ".$alertData['event']."  *  *  *  *  *\n");
+      flog( "\033[41m *  *  *       Test Key:    ".$alertData['key']."*  *  *  *\n\n");       
+      $this->AlertsModel->triggerEvent($alertData['event'], $this->liveScan[$alertData['key']]);
+      sleep(3);
+      $this->AdminTriggersModel->resetAlertTest();
+    }
+  }
+
+  protected function checkDbForDaemonReset() {
+    flog("      • checkDbForDaemonReset()\n");
+    if($this->AdminTriggersModel->testExit()) {
+      flog( "        Stopping plotserver at request of database.\n\n");
+      $this->run = false;
+    }
+  }
+
+  protected function checkDbForEncoderEnable() {
+    flog("      • checkDbForEncoderEnable()\n");
+    if($this->AdminTriggersModel->testForEncoderEnabled()) {
+      $this->enableEncoder();
+    } else {
+      $this->disableEncoder();
+    }
+     //Show screen reminder if live encoder is enabled.
+    if($this->encoderEnabled) {
+      $ts = new DateTime();
+      $duration = $ts->diff($this->encoderEnabledTS);
+      $formated = $duration->format('%h hours, %i minutes');
+
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
+      flog( "\033[41m *  *  *             Stream Duration = $formated                  * * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+    }
+  }
 
 
   protected function reloadSavedScans() {

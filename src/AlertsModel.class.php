@@ -85,7 +85,8 @@ class AlertsModel extends Firestore {
     $this->db->collection('Voice')->document($data['id'])->set($data);
   }
 
-  public function testForUserNotificationTestRequest() {
+  public function checkForUserNotificationTestRequest() {
+    flog("      • AlertsModel::checkForUserNotificationTestRequest()\n");
     $ref = $this->db->collection('user_devices');
     $query = $ref->where("alertTestRequest", "==", true);  
     $documents = $query->documents();
@@ -101,10 +102,10 @@ class AlertsModel extends Firestore {
           if($user['alertMethod']=='notification') {         
               $this->pushTestNoticeTo($user);
           } elseif($user['alertMethod']=='email') {
-              flog( "pushTestEmailTo(".$user['alertDest']."\n");
+              flog( "        pushTestEmailTo(".$user['alertDest']."\n");
               $this->pushTestEmailTo($user, $event, $liveObj);
           } elseif($user['alertMethod']=='sms') {
-              flog( "pushTestSmsTo(".$user['alertDest']."\n");
+              flog( "        pushTestSmsTo(".$user['alertDest']."\n");
               $this->pushTestSmsTo($user);
           }
           
@@ -114,6 +115,7 @@ class AlertsModel extends Firestore {
           flog( "Document ". $document->id(). " does not exist!\n");
       }     
     }
+    flog("        $count notification tests pushed\n");
   }
 
   public function resetUserNotificationTestRequest($userID) {

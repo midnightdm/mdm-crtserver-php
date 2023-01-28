@@ -240,11 +240,12 @@ class PlotDaemon {
               //Table delete was sucessful, remove object from array
               $key = 'mmsi'.$obj->liveVesselID;
               flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.\n");
-              unset($this->liveScan[$key]);
+              //unset($this->liveScan[$key]); [Moved to below]
               $this->updateLiveScanLength();
           } else {
               error_log("\n        Error deleting LiveScan " . $obj->liveVesselID);
           }
+          unset($this->liveScan[$key]);
       } else {
         flog(" Not Deleted\n");
       }

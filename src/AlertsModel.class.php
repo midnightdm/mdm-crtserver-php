@@ -115,7 +115,7 @@ class AlertsModel extends Firestore {
           flog( "Document ". $document->id(). " does not exist!\n");
       }     
     }
-    flog("        $count notification tests pushed\n");
+    flog("          $count notification tests pushed\n");
   }
 
   public function resetUserNotificationTestRequest($userID) {

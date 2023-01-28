@@ -15,6 +15,7 @@ class AdminTriggersModel extends Firestore {
   }
 
   public function getAdminDocument() {
+    flog("          AdminTriggersModel::getAdminDocument()\n");
     $now = time();
     //Read from DB if not just done.
     if($this->dataTS===null || $now-$this->dataTS >10) {
@@ -23,10 +24,14 @@ class AdminTriggersModel extends Firestore {
       if($snapshot->exists()) {
         $this->adminData = $snapshot->data();
         $this->dataTS = $now;
+        flog("            updated document retrieved\n");
         return true;
       }
+      flog("            no document snapshot\n");
       return false;
-    } 
+    }
+    flog("            stored document used\n");
+    return true;
   }
 
   public function testExit() {
@@ -98,7 +103,7 @@ class AdminTriggersModel extends Firestore {
       flog("          checkForAlertTest() was false\n");
       return false;
     }
-    flog("        checkForAlertTest() couldn't get Admin Document\n");
+    flog("          checkForAlertTest() couldn't get Admin Document\n");
     return false;
   }
 

@@ -250,6 +250,9 @@ class PlotDaemon {
       }
       //1-A) No, record is fresh, so keep in live.
       flog("\n");
+    }
+    if(!count($this->liveScan)) {
+      flog(" = NONE\n");
     }  
     $this->lastCleanUp = $now;  
   }   

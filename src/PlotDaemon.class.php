@@ -166,6 +166,8 @@ class PlotDaemon {
       }else {
         flog("  No data received for ".$timeOutVal['sec']." seconds.\n    Proceeding with rest of loop.\n");
       }
+      //Reset buffer
+      $buf = null;
       //Resuming here if above was skipped with
       //    things to do on each loop besides UDP data handling
       $this->adminCommands();	 //Uses removeOldScans() timer	
@@ -489,9 +491,8 @@ class PlotDaemon {
       $this->AlertsModel->triggerEvent($alertData['event'], $this->liveScan[$alertData['key']]);
       sleep(3);
       $this->AdminTriggersModel->resetAlertTest();
-    } else {
-      flog(" = NONE\n");
-    }
+    } 
+    //No else here because AdminTriggersModel::checkForAlertTest() does flog of result.
   }
 
   protected function checkDbForDaemonReset() {

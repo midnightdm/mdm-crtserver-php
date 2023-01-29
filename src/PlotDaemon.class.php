@@ -196,7 +196,7 @@ class PlotDaemon {
     // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
     if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
       //Only perform once every few min to reduce db queries
-      flog( "    PlotDaemon::removeOldScans()");     
+      flog( "    PlotDaemon::removeOldScans()   ");     
       foreach($this->liveScan as $key => $obj) {  
         //Test age of transponder update [changed from move update 3/3/22].  
         $deleteIt = false;       
@@ -473,7 +473,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForInputVessels() {
-    flog("      • checkDbForInputVessels()");
+    flog("      • checkDbForInputVessels()   ");
     $mmsi = $this->AdminTriggersModel->testForAddVessel();
     if($mmsi) {
       flog("\n        Admin request received to add vessel ".$mmsi);
@@ -508,7 +508,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForDaemonReset() {
-    flog("      • checkDbForDaemonReset()");
+    flog("      • checkDbForDaemonReset()    ");
     if($this->AdminTriggersModel->testExit()) {
       flog( " = \033[41mTRUE -> Restarting plotserver\033[0m\n");
       $this->run = false;
@@ -518,7 +518,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForEncoderEnable() {
-    flog("      • checkDbForEncoderEnable()");
+    flog("      • checkDbForEncoderEnable()  ");
     if($this->AdminTriggersModel->testForEncoderEnabled()) {
       $this->enableEncoder();
     } else {

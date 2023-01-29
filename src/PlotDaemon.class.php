@@ -317,25 +317,26 @@ class PlotDaemon {
   }
 
   public function saveAllScans() {
+    flog("    saveAllScan()");
     $now = time();
     if(($now - $this->lastPassagesSave) > $this->savePassagesTimeout) {
-      flog( "Writing passages to db...\n");
+      flog( "\n      Writing passages to db");
       $scans = count($this->liveScan);
       foreach($this->liveScan as $liveScanObj) {
         if($liveScanObj->liveLocation instanceof Location) {
           $len = count($liveScanObj->liveLocation->events);
         } else {
           $len = 0;
-          flog( "\033[41m *  liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.  * \033[0m\r\n"); 
+          flog( "\n          •\033[41m *  liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.  * \033[0m"); 
         }
         //Unset vessel with bad data
         if(!isset($liveScanObj->liveRegion)) {
           $key = 'mmsi'.$liveScanObj->liveVesselID;
           unset($this->liveScan[$key]);
-          flog("\033[41m *  liveScanObj for {$liveScanObj->liveName} has bad or missing data and was unset.  * \033[0m\r\n");
+          flog("\n          •\033[41m *  liveScanObj for {$liveScanObj->liveName} has bad or missing data and was unset.  * \033[0m");
           continue;
         }
-        flog( "   ...".$liveScanObj->liveName. " ".$len." events.\n");
+        flog( "\n          • ".$liveScanObj->liveName. " ".$len." events.");
         $liveScanObj->livePassageWasSaved = true;
         //Determine Clinton or QC passage save
         if($liveScanObj->liveRegion == "clinton") {
@@ -346,10 +347,11 @@ class PlotDaemon {
         //$this->PassagesModel->savePassage($liveScanObj);
       }
       $this->lastPassagesSave = $now;
-      flog( "Finished saving ".$scans." live vessels to passages.\n");
+      flog( "\n      Finished saving ".$scans." live vessels to passages.\n");
     }
   }
 
+  //UNUSED
   public function captureVideo($liveObj) {
     flog("plotDaemon::captureVideo()\n");
     //Runs a local batch file which uses SSH to trigger an FFMPEG script on a remote server.

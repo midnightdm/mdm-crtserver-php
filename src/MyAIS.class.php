@@ -100,16 +100,7 @@ class MyAIS extends AIS {
             $this->plotDaemon->updateLiveScanLength();
         } 
       }
-      /* This section moved to PlotDaemon /
-			//Remove old scans every 3 minutes
-			$now = time();
-			flog( ($now- $this->plotDaemon->lastCleanUp). ">" .$this->plotDaemon->cleanUpTimeout. "=".($now- $this->plotDaemon->lastCleanUp) > $this->plotDaemon->cleanUpTimeout);
-			if( ($now- $this->plotDaemon->lastCleanUp) > $this->plotDaemon->cleanUpTimeout) {
-				$this->plotDaemon->removeOldScans(); 
-			}
-			//Save scans to db at interval set within
-			$this->plotDaemon->saveAllScans();
-      // [End of moved section] */
+      
     }
     /*                  End of custom CRT code           *
       * * * * * * * * * * * * * * * * * * * * * * * * * * */

@@ -83,7 +83,7 @@ class MyAIS extends AIS {
       $ts   = $ro->ts;
       $hTime = date("H:i:s", ($ts+getTimeOffset()));
             
-			flog("    Decoded MMSI: $id TS: $ts ($hTime)\n);
+			flog("    Decoded MMSI: $id TS: $ts ($hTime).\n");
 
       if(isset($this->plotDaemon->liveScan[$key])) {
         //Update liveScan object only if data is new

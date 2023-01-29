@@ -153,7 +153,8 @@ class PlotDaemon {
       //*                  This is MAIN LOOP of this server                   * 
       //*                                                                     *
       
-      //Do some communication, this loop can handle multiple clients        
+      //Do some communication, this loop can handle multiple clients
+      flog("--- \033[1;31 Stream ENABLED\033[0m -----------------------------------------------\n");        
       flog("------------------------------------------------------------------\n");
       flog("\nWaiting for data on $this->socket_address:$this->socket_port ... \n");
       //Receive some data (Silent error flag no longer works in PHP 8)      
@@ -504,7 +505,7 @@ class PlotDaemon {
   protected function checkDbForDaemonReset() {
     flog("      • checkDbForDaemonReset()");
     if($this->AdminTriggersModel->testExit()) {
-      flog( "\n          \033[41mRestarting plotserver at request of database.\033[0m\n");
+      flog( " = \033[41mTRUE -> Restarting plotserver\033[0m\n");
       $this->run = false;
     } else {
       flog(" = NONE\n");

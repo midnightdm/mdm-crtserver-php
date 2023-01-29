@@ -317,9 +317,9 @@ class PlotDaemon {
   }
 
   public function saveAllScans() {
-    flog("    saveAllScan()");
     $now = time();
     if(($now - $this->lastPassagesSave) > $this->savePassagesTimeout) {
+      flog("    saveAllScans()");
       flog( "\n      Writing passages to db");
       $scans = count($this->liveScan);
       foreach($this->liveScan as $liveScanObj) {

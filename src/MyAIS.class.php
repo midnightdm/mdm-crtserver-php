@@ -81,21 +81,22 @@ class MyAIS extends AIS {
       $lon   = $ro->lon;
       $course = $ro->cog;
       $ts   = $ro->ts;
+      $hTime = date("H:i:s", ($ts+getTimeOffset()));
             
-			flog("    Decoded MMSI: ".$id." TS: ".$ts."\n");
+			flog("    Decoded MMSI: $id TS: $ts ($hTime)\n);
 
       if(isset($this->plotDaemon->liveScan[$key])) {
         //Update liveScan object only if data is new
         if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
           $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course);
-          flog( "livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
+          flog( "    livePlot[$key]->update(".date("F j, Y, g:i:s a", ($ts+getTimeOffset())).", ".$name
             .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");					  
         }  
       } else {
         //Skip river marker numbers & void bad lat data
         if($id < 990000000 && $id > 100000000 && $lat > 1) {
             $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon);
-            flog( "NEW liveScan[$key] (".date("F j, Y, g:i a", ($ts+getTimeOffset())).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
+            flog( "    NEW liveScan[$key] (".date("F j, Y, g:i a", ($ts+getTimeOffset())).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");
             $this->plotDaemon->updateLiveScanLength();
         } 
       }

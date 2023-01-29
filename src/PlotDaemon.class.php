@@ -154,7 +154,7 @@ class PlotDaemon {
       //*                                                                     *
       
       //Do some communication, this loop can handle multiple clients
-      flog("--- \033[1;31; Stream ENABLED\033[0m -----------------------------------------------\n");        
+      flog("--- \033[1;31mStream ENABLED\033[0m -----------------------------------------------\n");        
       flog("------------------------------------------------------------------\n");
       flog("\nWaiting for data on $this->socket_address:$this->socket_port ... \n");
       //Receive some data (Silent error flag no longer works in PHP 8)      

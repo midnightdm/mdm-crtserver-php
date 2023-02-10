@@ -369,9 +369,10 @@ class PlotDaemon {
 
   public function enableEncoder() {
     if($this->encoderEnabled) {
+      flog("          plotDaemon::enableEncoder() -> already enabled\n");
       return;
     }
-    flog("          plotDaemon::enableEncoder()\n");   
+    flog("          plotDaemon::enableEncoder() -> starting\n");   
 
     //Set Video options
     $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
@@ -398,9 +399,10 @@ class PlotDaemon {
 
   public function disableEncoder() {
     if(!$this->encoderEnabled) {
+      flog("          plotDaemon::disableEncoder() -> disabled alrady\n");
       return;
     }
-    flog("          plotDaemon::disableEncoder()\n");
+    flog("          plotDaemon::disableEncoder() -> disabling now\n");
     //Disable server url
     $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&rtmp_sle=0";
     $result1 = grab_protected($disable, $this->encoderUsr, $this->encoderPwd);

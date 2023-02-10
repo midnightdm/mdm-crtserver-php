@@ -394,12 +394,13 @@ class PlotDaemon {
     if(str_contains($screen1, "uccess") && str_contains($screen2, "uccess") && str_contains($screen3, "uccess") && str_contains($screen4, "uccess")) {
       $this->encoderEnabled = true;
       $this->encoderEnabledTS = new DateTime();
+      flog("          Encoder enable success!\n")
     }
   }
 
   public function disableEncoder() {
     if(!$this->encoderEnabled) {
-      flog("          plotDaemon::disableEncoder() -> disabled alrady\n");
+      flog("          plotDaemon::disableEncoder() -> disabled already\n");
       return;
     }
     flog("          plotDaemon::disableEncoder() -> disabling now\n");

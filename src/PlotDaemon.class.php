@@ -534,7 +534,7 @@ class PlotDaemon {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes');
-      $flength  = $x; //compensate spacing 
+      //$flength  = $x; //compensate spacing 
 
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m                     *  *  *\033[0m\r\n");

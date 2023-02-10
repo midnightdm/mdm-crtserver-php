@@ -396,7 +396,7 @@ class PlotDaemon {
       $this->encoderEnabledTS = new DateTime();
       flog("          Encoder enable success!\n");
     } else {
-      flog ("          Encoder enable failure: $screen1, $screen2, $screen3, $screen4 \n);
+      flog ("          Encoder enable failure: $screen1, $screen2, $screen3, $screen4 \n");
     }
   }
 

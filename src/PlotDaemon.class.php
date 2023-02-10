@@ -418,8 +418,8 @@ class PlotDaemon {
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes, %s seconds');
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-      flog( "\033[41m *  *  *      Live Stream Encoder \033[5mDISABLED\033[0m\033[41m    *  *  *  *  * \033[0m\r\n");
-      flog( "\033[41m *  *  *             Final Stream Duration was $formated                  * * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *      Live Stream Encoder \033[5mDISABLED\033[0m\033[41m              *  *  *  *  * \033[0m\r\n");
+      flog( "\033[41m *  *  *             Final Stream Duration was $formated              * * * *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");     
       $this->encoderEnabled = false;
       $this->encoderEnabledTS = null;

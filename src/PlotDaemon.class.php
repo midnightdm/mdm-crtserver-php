@@ -391,7 +391,7 @@ class PlotDaemon {
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
     $screen4 = grab_protected($reboot, $this->encoderUsr, $this->encoderPwd);
-    if(str_contains($screen1, "uccess") && str_contains($screen2, "uccess") && str_contains($screen3, "uccess") && str_contains($screen4, "uccess")) {
+    if(str_contains($screen1, "ucceed") && str_contains($screen2, "ucceed") && str_contains($screen3, "ucceed") && str_contains($screen4, "ucceed")) {
       $this->encoderEnabled = true;
       $this->encoderEnabledTS = new DateTime();
       flog("          Encoder enable success!\n");
@@ -413,7 +413,7 @@ class PlotDaemon {
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
     $result2 = grab_protected($reboot);
-    if(str_contains($result1, "uccess") && str_contains($result2, "uccess")) {
+    if(str_contains($result1, "ucceed") && str_contains($result2, "ucceed")) {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes, %s seconds');
@@ -425,7 +425,7 @@ class PlotDaemon {
       $this->encoderEnabledTS = null;
       $this->LiveScanModel->resetEncoderEnable();
     } else {
-      flog("\033[41m plotDaemon::disableEncoder() function was run, but it did not receive a \"Success\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
+      flog("\033[41m plotDaemon::disableEncoder() function was run, but it did not receive a \"succeed\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
     }
   }
 

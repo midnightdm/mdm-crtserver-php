@@ -412,7 +412,7 @@ class PlotDaemon {
     //sleep(1);
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
-    $result2 = grab_protected($reboot);
+    $result2 = grab_protected($reboot, $this->encoderUsr, $this->encoderPwd);
     if(str_contains($result1, "succeed") && str_contains($result2, "succeed")) {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);

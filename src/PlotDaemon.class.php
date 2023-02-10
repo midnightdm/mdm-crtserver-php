@@ -423,7 +423,7 @@ class PlotDaemon {
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");     
       $this->encoderEnabled = false;
       $this->encoderEnabledTS = null;
-      $this->LiveScanModel->resetEncoderEnable();
+      //$this->LiveScanModel->resetEncoderEnable();
     } else {
       flog("\033[41m plotDaemon::disableEncoder() function was run, but it did not receive a \"succeed\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
     }

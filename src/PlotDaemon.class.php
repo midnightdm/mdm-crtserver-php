@@ -535,10 +535,10 @@ class PlotDaemon {
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes');
 
-      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-      flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m              *  *  *  *  * \033[0m\r\n");
-      flog( "\033[41m *  *  *             Stream Duration = $formated              * * * *\033[0m\r\n");
-      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *   YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m                    *  *  * \033[0m\r\n");
+      flog( "\033[41m *  *  *             Stream Duration = $formated               * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
     } else {
       flog(" = NONE\n");
     }

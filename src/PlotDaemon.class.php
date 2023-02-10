@@ -394,7 +394,7 @@ class PlotDaemon {
     if(str_contains($screen1, "uccess") && str_contains($screen2, "uccess") && str_contains($screen3, "uccess") && str_contains($screen4, "uccess")) {
       $this->encoderEnabled = true;
       $this->encoderEnabledTS = new DateTime();
-      flog("          Encoder enable success!\n")
+      flog("          Encoder enable success!\n");
     }
   }
 

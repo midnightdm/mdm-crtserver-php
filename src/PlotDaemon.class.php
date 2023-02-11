@@ -486,7 +486,7 @@ class PlotDaemon {
       } else {
         $sentMt = 0;
       }
-      flog( "  Also sent $sentMst bytes to myshiptracking.com, vesselfinder.com &  marinetraffic.com\n");
+      flog( "  Also sent $sentMst bytes to myshiptracking, vesselfinder &  marinetraffic\n");
     }
   }
 

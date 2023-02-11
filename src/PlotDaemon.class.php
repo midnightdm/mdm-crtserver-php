@@ -414,7 +414,7 @@ class PlotDaemon {
   public function disableEncoder() {
     if(!$this->encoderEnabled) {
       //flog("\n          plotDaemon::disableEncoder() -> disabled already\n");
-      return;
+      return false;
     }
     flog("\n          plotDaemon::disableEncoder() -> disabling now\n");
     //Disable server url
@@ -437,8 +437,10 @@ class PlotDaemon {
       $this->encoderEnabled = false;
       $this->encoderEnabledTS = null;
       $this->AdminTriggersModel->resetEncoderEnabled();
+      return true;
     } else {
       flog("\033[41m plotDaemon::disableEncoder() function was run, but it did not receive a \"succeed\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
+      return false;
     }
   }
 
@@ -540,7 +542,7 @@ class PlotDaemon {
     if($this->AdminTriggersModel->testForEncoderStart()) {
       $this->enableEncoder();
     } else {
-      $this->disableEncoder();
+      $wasJustDisabled = $this->disableEncoder();
     }
      //Show screen reminder if live encoder is enabled.
     if($this->encoderEnabled) {
@@ -554,6 +556,9 @@ class PlotDaemon {
       flog( "\033[41m *  *  *             Stream Duration = $formated $padding           *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
     } else {
+      if($wasJustDisabled) {
+        return; //Skips msg below when disableEncoder gives its own msg
+      }
       flog("  = DISABLED\n");
     }
   }

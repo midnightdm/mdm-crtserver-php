@@ -554,7 +554,7 @@ class PlotDaemon {
       flog( "\033[41m *  *  *             Stream Duration = $formated $padding           *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
     } else {
-      flog(" = DISABLED\n");
+      flog("  = DISABLED\n");
     }
   }
 

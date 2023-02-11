@@ -429,8 +429,8 @@ class PlotDaemon {
       $flength  = strlen($formated); //compensate spacing 
       $padding  = $flength==31 ? "": " ";
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-      flog( "\033[41m *  *  *      Live Stream Encoder \033[5mDISABLED\033[0m\033[41m              *  *  *  *  * \033[0m\r\n");
-      flog( "\033[41m *  *  *             Final Stream Duration was $formated $padding            * * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *      Live Stream Encoder DISABLED\033[0m\033[41m          *  *  *  *  * \033[0m\r\n");
+      flog( "\033[41m *  *  *   Final Stream Duration was $formated $padding       * * * *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
       flog("flength was $flength\n");//remove after testing     
       $this->encoderEnabled = false;

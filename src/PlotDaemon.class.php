@@ -104,7 +104,7 @@ class PlotDaemon {
     $this->reloadSavedAlertsPassenger(); 
     sleep(3);
     $this->updateLiveScanLength();
-    $this->adminCommands();
+    $this->checkDbForEncoderStart();
     $this->run();
   }
 

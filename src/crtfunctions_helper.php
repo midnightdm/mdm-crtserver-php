@@ -163,7 +163,7 @@ function errorHandler($type, $msg, $file=null, $line=null) {
     return;
   }
   //Ignore Firestore Writebatch error
-  if( str_contains($msg, "ERROR: 16384: Google\Cloud\Firestore\WriteBatch")) {
+  if( str_contains($msg, "Google\\Cloud\\Firestore\\WriteBatch")) {
     return;
   } 
   flog("\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n");

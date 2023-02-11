@@ -429,10 +429,9 @@ class PlotDaemon {
       $flength  = strlen($formated); //compensate spacing 
       $padding  = $flength==31 ? "": " ";
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
-      flog( "\033[41m *  *  *          Live Stream Encoder DISABLED\033[0m\033[41m         *  *  *  *  * \033[0m\r\n");
-      flog( "\033[41m *  *  *   Final Stream Duration was $formated $padding  * * * *\033[0m\r\n");
-      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
-      flog("flength was $flength\n");//remove after testing     
+      flog( "\033[41m *  *  *             Live Stream Encoder DISABLED\033[0m\033[41m           *  *  *  *  * \033[0m\r\n");
+      flog( "\033[41m *  *  *  Final Stream Duration was $formated $padding  * * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
       $this->encoderEnabled = false;
       $this->encoderEnabledTS = null;
       $this->AdminTriggersModel->resetEncoderEnabled();
@@ -552,7 +551,6 @@ class PlotDaemon {
       flog( "\033[41m *  *  *            YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m            *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *             Stream Duration = $formated $padding           *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
-      flog("flength was : $flength\n");//Remove after test
     } else {
       flog(" = NONE\n");
     }

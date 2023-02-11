@@ -413,7 +413,7 @@ class PlotDaemon {
 
   public function disableEncoder() {
     if(!$this->encoderEnabled) {
-      flog("\n          plotDaemon::disableEncoder() -> disabled already\n");
+      //flog("\n          plotDaemon::disableEncoder() -> disabled already\n");
       return;
     }
     flog("\n          plotDaemon::disableEncoder() -> disabling now\n");
@@ -431,8 +431,8 @@ class PlotDaemon {
       $flength  = strlen($formated); //compensate spacing 
       $padding  = $flength==31 ? "": " ";
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
-      flog( "\033[41m *  *  *                Live Stream Encoder DISABLED\033[0m\033[41m                 *  *  * \033[0m\r\n");
-      flog( "\033[41m *  *  *  Final Stream Duration was $formated $padding  * * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *                Live Stream Encoder DISABLED\033[0m\033[41m                  *  *  * \033[0m\r\n");
+      flog( "\033[41m *  *  *  Final Stream Duration was $formated $padding  *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
       $this->encoderEnabled = false;
       $this->encoderEnabledTS = null;
@@ -554,7 +554,7 @@ class PlotDaemon {
       flog( "\033[41m *  *  *             Stream Duration = $formated $padding           *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
     } else {
-      flog(" = NONE\n");
+      flog(" = DISABLED\n");
     }
   }
 

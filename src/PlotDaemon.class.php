@@ -269,7 +269,7 @@ class PlotDaemon {
   public function adminCommands() {
     //Runs on same timing as removeOldScans(), but only that function resets the timer.
     $now = time(); 
-    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
+    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout-10) {
       flog("    PlotDaemon::adminCommands()...\n");
       //Check DB for new vessel ID to scrape
       $this->checkDbForInputVessels();

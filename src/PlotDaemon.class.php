@@ -104,6 +104,7 @@ class PlotDaemon {
     $this->reloadSavedAlertsPassenger(); 
     sleep(3);
     $this->updateLiveScanLength();
+    $this->adminCommands();
     $this->run();
   }
 
@@ -279,7 +280,7 @@ class PlotDaemon {
       //Check DB for admin command to stop daemon & run updates
       $this->checkDbForDaemonReset();
       //Check database for enableEncoder flag
-      $this->checkDbForEncoderEnable();
+      $this->checkDbForEncoderStart();
     }
   }
 
@@ -368,6 +369,13 @@ class PlotDaemon {
   }
 
   public function enableEncoder() {
+    //Check for reload
+    $test = $this->AdminTriggersModel->testForEncoderEnabled();
+    if($test['state']) {
+      $this->encoderEnabled = true;
+      $this->encoderEnabledTS = new DateTime();
+      $this->encoderEnabledTS->setTimestamp($test['ts']);
+    }
     if($this->encoderEnabled) {
       flog("          plotDaemon::enableEncoder() -> already enabled\n");
       return;
@@ -394,6 +402,7 @@ class PlotDaemon {
     if(str_contains($screen1, "succeed") && str_contains($screen2, "succeed") && str_contains($screen3, "succeed") && str_contains($screen4, "succeed")) {
       $this->encoderEnabled = true;
       $this->encoderEnabledTS = new DateTime();
+      $this->AdminTriggersModel->setEncoderEnabledTrue();
       flog("          Encoder enable success!\n");
     } else {
       flog ("          Encoder enable failure: $screen1, $screen2, $screen3, $screen4 \n");
@@ -417,13 +426,16 @@ class PlotDaemon {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes, %s seconds');
+      $flength  = count($formated); //compensate spacing 
+      $padding  = $flength==31 ? "": " ";
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *      Live Stream Encoder \033[5mDISABLED\033[0m\033[41m              *  *  *  *  * \033[0m\r\n");
-      flog( "\033[41m *  *  *             Final Stream Duration was $formated              * * * *\033[0m\r\n");
-      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");     
+      flog( "\033[41m *  *  *             Final Stream Duration was $formated $padding            * * * *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *  *\033[0m\r\n");
+      flog("flength was $flength\n");//remove after testing     
       $this->encoderEnabled = false;
       $this->encoderEnabledTS = null;
-      //$this->LiveScanModel->resetEncoderEnable();
+      $this->AdminTriggersModel->resetEncoderEnabled();
     } else {
       flog("\033[41m plotDaemon::disableEncoder() function was run, but it did not receive a \"succeed\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
     }
@@ -522,9 +534,9 @@ class PlotDaemon {
     }
   }
 
-  protected function checkDbForEncoderEnable() {
-    flog("      • checkDbForEncoderEnable()  ");
-    if($this->AdminTriggersModel->testForEncoderEnabled()) {
+  protected function checkDbForEncoderStart() {
+    flog("      • checkDbForEncoderStart()  ");
+    if($this->AdminTriggersModel->testForEncoderStart()) {
       $this->enableEncoder();
     } else {
       $this->disableEncoder();
@@ -534,12 +546,13 @@ class PlotDaemon {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes');
-      //$flength  = $x; //compensate spacing 
-
+      $flength  = count($formated); //compensate spacing 
+      $padding  = $flength==19 ? "": " ";
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *            YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m            *  *  *\033[0m\r\n");
-      flog( "\033[41m *  *  *             Stream Duration = $formated             *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *             Stream Duration = $formated $padding           *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
+      flog("flength was : $flength\n");//Remove after test
     } else {
       flog(" = NONE\n");
     }

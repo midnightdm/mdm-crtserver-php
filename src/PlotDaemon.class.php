@@ -566,7 +566,7 @@ class PlotDaemon {
   }
 
   protected function checkLivescanForWatchedVessels() {
-    flog("      • checkLivescanForWatchedVessels()   ");
+    flog("      • checkLivescanForWatchedVessels()");
     if(!count($this->liveScan)) {
       flog(" = NONE\n");
       return;

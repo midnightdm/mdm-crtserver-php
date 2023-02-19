@@ -54,7 +54,7 @@ class LiveScan {
   //public $liveDraft;
   public $livePassageWasSaved = false;
   public $liveIsLocal;
-  public $callBack;
+  public $PlotDaemon;
   public $lookUpCount = 0;
   public $dirScore    = 0;
   public $reload;
@@ -62,8 +62,8 @@ class LiveScan {
   public $lastDetectedTS;
   public $lastVideoRecordedTS;
 
-  public function __construct($ts, $name, $id, $lat, $lon, $speed, $course, $cb, $reload=false, $reloadData=[]) {
-    $this->callBack = $cb;
+  public function __construct($ts, $name, $id, $lat, $lon, $speed, $course, $pd, $reload=false, $reloadData=[]) {
+    $this->PlotDaemon = $pd;
     //Reload construct
     if ($reload) {
       foreach ($reloadData as $attribute => $value) {        
@@ -88,7 +88,7 @@ class LiveScan {
       $this->triggerQueued = false;
       $this->triggerActivated = true;
       //Delete db record pending update of new live data
-      $this->callBack->LiveScanModel->deleteLiveScan($this->liveVesselID);
+      $this->PlotDaemon->LiveScanModel->deleteLiveScan($this->liveVesselID);
     //New Construct        
     } else {
       $this->setTimestamp($ts, 'liveInitTS');
@@ -96,10 +96,10 @@ class LiveScan {
       $this->setTimestamp($ts, 'transponderTS');
       $this->liveName = $name;
       $this->liveVesselID = $id;
-      $this->liveIsLocal = in_array($id, $this->callBack->localVesselFilter);      
+      $this->liveIsLocal = in_array($id, $this->PlotDaemon->localVesselFilter);      
       //Validate latitude and logitude values
       if(!$this->validateLatitude($lat) || !$this->validateLongitude($lon)) {
-        unset($this->callBack->liveScan['mmsi'.$id]);
+        unset($this->PlotDaemon->liveScan['mmsi'.$id]);
         flog("\033[41m *  * Constructor stopped for vessel $id because of a bad initial position value: $lat, $lon.  *  * \033[0m\r\n");
         return;
       }
@@ -124,7 +124,7 @@ class LiveScan {
       //Unset this construction if above failed
       if(!$recordInserted) {
         flog("\033[41m *  * Constructor stopped for vessel $id because insertNewRecord() failed.  *  * \033[0m\r\n");
-        unset($this->callBack->liveScan['mmsi'.$id]);
+        unset($this->PlotDaemon->liveScan['mmsi'.$id]);
         return;
       }     
     }
@@ -136,12 +136,12 @@ class LiveScan {
 
   public function testWhenVesselLastDetected($id,$ts) {
     //Test for previous detect, don't resave if within last 24 hours
-    $lastDetectedTS = $this->callBack->VesselsModel->getVesselLastDetectedTS($id);
+    $lastDetectedTS = $this->PlotDaemon->VesselsModel->getVesselLastDetectedTS($id);
     if($lastDetectedTS==false || ($ts-$lastDetectedTS[0])>86400) {
        //If not recent, put date string in LiveScan
        $this->lastDetectedTS = $lastDetectedTS[1];
        //Then write date TS to vessel record 
-       $this->callBack->VesselsModel->updateVesselLastDetectedTS($id,$ts);
+       $this->PlotDaemon->VesselsModel->updateVesselLastDetectedTS($id,$ts);
        return true;
     }
     return false; 
@@ -161,14 +161,14 @@ class LiveScan {
       $this->liveLocation != null) 
     {
       flog("Calling VesselsModel->updateVesselLastDetectedTS.\n");
-      $this->callBack->VesselsModel->updateVesselLastDetectedTS($this->liveVesselID, time());
+      $this->PlotDaemon->VesselsModel->updateVesselLastDetectedTS($this->liveVesselID, time());
       
 
       if($this->liveLocation->verifyWaypointEvent($event)) {
         //trigger an alert
         $this->triggerQueued = false;
         $this->triggerActivated = true;
-        $this->callBack->AlertsModel->triggerEvent($event, $this);
+        $this->PlotDaemon->AlertsModel->triggerEvent($event, $this);
         flog("\033[42m \033[30m       ...ALERT BY ".$this->liveName."\033[0m\n");
       }
 
@@ -225,7 +225,7 @@ class LiveScan {
     $data['type']       = $this->liveVessel->vesselType;
     $data['liveIsLocal'] = $this->liveIsLocal;
     flog('Inserting new livescan record for '.$this->liveName .' '.getNow()."\n"); 
-    $this->callBack->LiveScanModel->insertLiveScan($data);
+    $this->PlotDaemon->LiveScanModel->insertLiveScan($data);
     return true;
   }
 
@@ -286,15 +286,15 @@ class LiveScan {
       //Do somethings with camera data
       $cameraIsA = $camera==="A";
       $cameraIsB = $camera==="B";
-      $solution =  $ts - $this->callBack->lastCameraSwitch > 29;
-      //flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->callBack->lastCameraSwitch.")> 29 ?".$solution."\n"); 
+      $solution =  $ts - $this->PlotDaemon->lastCameraSwitch > 29;
+      //flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->PlotDaemon->lastCameraSwitch.")> 29 ?".$solution."\n"); 
       if(($cameraIsA || $cameraIsB) ) {
         flog("calculateLocation() found $this->liveName in camera $camera range.\n");
         $this->inCameraRange = true;
         if($solution) { //When last cam switch 30+ sec ago
           flog("calculateLocation() switching to camera $camera now.\n");
-          $this->callBack->AlertsModel->setClCamera($camera);
-          $this->callBack->lastCameraSwitch = $ts;
+          $this->PlotDaemon->AlertsModel->setClCamera($camera);
+          $this->PlotDaemon->lastCameraSwitch = $ts;
         }
       } else {
         $this->inCameraRange = false;
@@ -361,7 +361,7 @@ class LiveScan {
     $data['liveMarkerHotelTS'] = $this->liveMarkerHotelTS;
     $data['livePassageWasSaved'] = $this->livePassageWasSaved;
 
-    $this->callBack->LiveScanModel->updateLiveScan($data);
+    $this->PlotDaemon->LiveScanModel->updateLiveScan($data);
   }
 
   public function determineSegment($lat) {
@@ -381,6 +381,55 @@ class LiveScan {
     }
   }
 
+
+  public function determineEncoderStartConditions() {
+    //Has determination score reached the deactivation threshold with encoder enabled?
+    if($this->PlotDaemon->encoderEnabled && $this->PlotDaemon->encoderEnabledScore < 1) {
+      //Yes, then send deactivation command to the database
+      $this->PlotServer->AdminTriggersModel->resetEncoderStart();
+      flog("\n        resetEncoderStart()");
+      return;
+    }
+    //Has live stream exceeded timeout value?
+    $now = time();
+    if($this->PlotDaemon->encoderEnabled && $now - $this->PlotDaemon->encoderEnabledTS > $this->PlotDaemon->encoderTimeoutValue) {
+      //Yes, then decrease determination score. 
+      $this->PlotDaemon->encoderEnabledScore--;
+      flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
+      return
+    }//No, then test other conditions
+    //Is this vessel on the target list? 
+    if(!in_array(strval($this->liveVesselID), $this->PlotDaemon->encoderWatchList, true)) {
+      return; //No, done
+    } //Yes, continue
+    //Is vessel in watch area (based on travel direction)?
+    $isInWatchArea = false;
+    if($this->liveDirection=="upriver") {
+      if(in_array($this->liveLocation->mm, $this->PlotDaemon->encoderUpriverWatch)) {
+        $isInWatchArea = true;
+      } 
+    } else if($this->liveDirection == "downriver") {
+      if(in_array($this->liveLocation->mm, $this->PlotDaemon->encoderDnriverWatch)) {
+        $isInWatchArea = true
+      }
+    }
+    if(!$isInWatchArea) { 
+      //No, then we're done, but demerit if encoder is on.
+      if($this->PlotDaemon->encoderEnabled) {
+        $this->PlotDaemon->encoderEnabledScore--;
+        flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
+      }
+    } //Yes, continue
+    //Has the determination score reached activation threshold?
+    if($this->PlotDaemon->encoderEnabledScore > 2) {
+      //Yes, then send activation command to the database
+      $this->PlotServer->AdminTriggersModel->setEncoderStart();
+      flog("\n        running setEncoderStart()");
+      return;
+    } //No, then increase determination score. Maybe activation next round.
+    $this->PlotDaemon->encoderEnabledScore++;
+    flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
+  }
 
   public function determineDirection() {
     //When monitored river section runs north/south (N Hemisphere)
@@ -428,9 +477,9 @@ class LiveScan {
   public function lookUpVessel() {   
     flog( 'LiveScan::lookUpVessel() '.getNow()."\n");
     //See if Vessel data is available locally
-    if($data = $this->callBack->VesselsModel->getVessel($this->liveVesselID)) {
+    if($data = $this->PlotDaemon->VesselsModel->getVessel($this->liveVesselID)) {
       //flog( "Vessel found in database: " . var_dump($data));
-      $this->liveVessel = new Vessel($data, $this->callBack);
+      $this->liveVessel = new Vessel($data, $this->PlotDaemon);
       //Give saved vesselName to live if it has none or number only
       if($this->liveName == "" || strpos($this->liveName, '[')  || str_contains($this->liveName, "@@")) {
         $this->liveName = $this->liveVessel->vesselName;
@@ -493,7 +542,7 @@ class LiveScan {
     $data['vesselWatchOn']  = false;
     $data['vesselName'] = $this->liveName; 
     
-    $this->liveVessel = new Vessel($data, $this->callBack);
+    $this->liveVessel = new Vessel($data, $this->PlotDaemon);
     //In case scraped data replaced the local above, also update the live object
     $this->liveName     = $data['vesselName'];    
   }  
@@ -519,7 +568,7 @@ class LiveScan {
       if($this->liveMarkerDeltaWasReached){   $score++; }
         
       if($score >3) {
-        $this->callBack->PassagesModel->savePassageClinton($this);
+        $this->PlotDaemon->PassagesModel->savePassageClinton($this);
         $this->livePassageWasSaved = true;
         return true;
       }
@@ -533,7 +582,7 @@ class LiveScan {
       if($this->liveMarkerHotelWasReached){  $score++; }
         
       if($score >3) {
-        $this->callBack->PassagesModel->savePassageQC($this);
+        $this->PlotDaemon->PassagesModel->savePassageQC($this);
         $this->livePassageWasSaved = true;
         return true;
       }

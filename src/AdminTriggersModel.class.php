@@ -74,7 +74,19 @@ class AdminTriggersModel extends Firestore {
     $this->db->collection('Passages')
     ->document('Admin')
     ->set(['encoderEnabled'=> false, 'encoderStart'=>false],['merge'=>true]);
-  }   
+  }
+  
+  public function setEncoderStart() {
+    $this->db->collection('Passages')
+    ->document('Admin')
+    ->set(['encoderStart'=>true],['merge'=>true]);
+  }
+
+  public function resetEncoderStart() {
+    $this->db->collection('Passages')
+    ->document('Admin')
+    ->set(['encoderStart'=>false],['merge'=>true]);
+  }
 
   public function setEncoderEnabledTrue() {
     $now = time();

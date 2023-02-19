@@ -21,7 +21,7 @@ class Location {
 
 
   public function __construct($livescan) {
-    $this->live = $livescan; //Callback
+    $this->live = $livescan; //PlotDaemon
     $this->mm   = "new";
     $this->event = "new";
     $this->events = [];
@@ -243,7 +243,7 @@ class Location {
           } else {
             flog( "\033[43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");
           }
-          $this->live->callBack->AlertsModel->triggerEvent($this->event, $this->live);
+          $this->live->PlotDaemon->AlertsModel->triggerEvent($this->event, $this->live);
         }
         break;        
       }  
@@ -306,7 +306,7 @@ class Location {
       flog(" is inside poly TRACER (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
       if($now - $this->live->lastVideoRecordedTS > 300) { //Limit 86400 is once daily [300 is 5 min for testing]
         $this->live->lastVideoRecordedTS = $now; 
-        $this->live->callBack->captureVideo($this->live);
+        $this->live->PlotDaemon->captureVideo($this->live);
         flog(" is > 86400? TRUE");    
       } else {
         flog(" is > 86400? FALSE");
@@ -332,9 +332,9 @@ class Location {
     if($this->insidePoly($this->point, $polys["clintonWebcams"])) {
       flog(" is inside clintonWebcams poly.\n ");
       //Set flag in Admin document
-      $this->live->callBack->VesselsModel->setVideoIsPassing(true);
+      $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(true);
     } else {
-      $this->live->callBack->VesselsModel->setVideoIsPassing(false);
+      $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(false);
       flog("false\n");
       //Called method writes to db only on state change, not every loop.
     }

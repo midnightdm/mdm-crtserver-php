@@ -31,6 +31,8 @@ class PlotDaemon {
   protected $run;
   public $encoderEnabled = false;
   public $encoderEnabledTS = null;
+  public $encoderEnabledScore = 0;
+
   public $lastCleanUp;
   public $lastCameraSwitch;
   public $lastJsonSave;
@@ -53,42 +55,46 @@ class PlotDaemon {
     $config = CONFIG_ARR;
     $now    = time();
     
-    $this->liveScan = array(); //LiveScan objects - the heart of this app - get stored here
-    $this->alertsAll = array();
-    $this->alertsPassenger = array();
-    $this->rowsBefore = 0;
-    $this->LiveScanModel = new LiveScanModel();
-    $this->AdminTriggersModel = new AdminTriggersModel();
-    $this->VesselsModel  = new VesselsModel();  
-    $this->AlertsModel   = new AlertsModel($this);
-    $this->PassagesModel = new PassagesModel();
-    $this->lastCleanUp      = $now-50; //Used to increment cleanup routine
-    $this->lastCameraSwitch = $now-50; //Prevents rapid camera switching if 2 vessels near
-    $this->lastJsonSave     = $now-10; //Used to increment liveScan.json save
-    $this->lastPassagesSave = $now-50;//Increments savePassages routine
+    $this->liveScan            = array(); //LiveScan objects - the heart of this app - get stored here
+    $this->alertsAll           = array();
+    $this->alertsPassenger     = array();
+    $this->rowsBefore          = 0;
+    $this->LiveScanModel       = new LiveScanModel();
+    $this->AdminTriggersModel  = new AdminTriggersModel();
+    $this->VesselsModel        = new VesselsModel();  
+    $this->AlertsModel         = new AlertsModel($this);
+    $this->PassagesModel       = new PassagesModel();
+    $this->lastCleanUp         = $now-50; //Used to increment cleanup routine
+    $this->lastCameraSwitch    = $now-50; //Prevents rapid camera switching if 2 vessels near
+    $this->lastJsonSave        = $now-10; //Used to increment liveScan.json save
+    $this->lastPassagesSave    = $now-50; //Increments savePassages routine
     
     //Set values below in $config array in config.php
-    $this->liveScanTimeout = intval($config['liveScanTimeout']); 
-    $this->cleanUpTimeout = intval($config['cleanUpTimeout']); 
+    $this->liveScanTimeout     = intval($config['liveScanTimeout']); 
+    $this->cleanUpTimeout      = intval($config['cleanUpTimeout']); 
     $this->savePassagesTimeout = intval($config['savePassagesTimeout']);  
-    $this->socketDataTimer = 0;      
-    $this->errEmail = $config['errEmail']; 
-    $this->dbHost = $config['dbHost'];
-    $this->dbUser = $config['dbUser'];
-    $this->dbPwd  = $config['dbPwd'];
-    $this->dbName = $config['dbName'];   
-    $this->nonVesselFilter = $config['nonVesselFilter'];
-    $this->localVesselFilter = $config['localVesselFilter'];
-    $this->image_base = $config['image_base'];
-    $this->socket_address = $config['socket_address'];
-    $this->socket_port    = $config['socket_port']; 
+    $this->socketDataTimer     = 0;
+    $this->errEmail            = $config['errEmail']; 
+    $this->dbHost              = $config['dbHost'];
+    $this->dbUser              = $config['dbUser'];
+    $this->dbPwd               = $config['dbPwd'];
+    $this->dbName              = $config['dbName'];   
+    $this->nonVesselFilter     = $config['nonVesselFilter'];
+    $this->localVesselFilter   = $config['localVesselFilter'];
+    $this->image_base          = $config['image_base'];
+    $this->socket_address      = $config['socket_address'];
+    $this->socket_port         = $config['socket_port']; 
     
-    $this->encoderUrl = $config['encoderUrl'];
-    $this->streamUrl = $config['streamUrl'];
-    $this->streamPath = $config['streamPath'];
-    $this->streamKey = $config['streamKey'];
-    $this->encoderUsr = $config['encoderUsr'];
-    $this->encoderPwd = $config['encoderPwd'];
+    $this->encoderUrl          = $config['encoderUrl'];
+    $this->streamUrl           = $config['streamUrl'];
+    $this->streamPath          = $config['streamPath'];
+    $this->streamKey           = $config['streamKey'];
+    $this->encoderUsr          = $config['encoderUsr'];
+    $this->encoderPwd          = $config['encoderPwd'];
+    $this->encoderWatchList    = $config['encoderWatchList'];
+    $this->encoderUpriverWatch = $config['encoderUpriverWatch'];
+    $this->encoderDnriverWatch = $config['encoderDnriverWatch'];
+    $this->encoderTimeoutValue = $config['encoderTimeoutValue']; //Seconds
   }
 
   public function start() {
@@ -248,12 +254,12 @@ class PlotDaemon {
                 //Table delete was sucessful, remove object from array
                 $key = 'mmsi'.$obj->liveVesselID;
                 flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.");
-                //unset($this->liveScan[$key]); [Moved to below]
                 $this->updateLiveScanLength();
             } else {
                 error_log("\n        Error deleting LiveScan " . $obj->liveVesselID);
             }
             unset($this->liveScan[$key]);
+
         } else {
           flog(" Not Deleted\n");
         }
@@ -281,6 +287,8 @@ class PlotDaemon {
       $this->AlertsModel->checkForUserNotificationTestRequest(); 
       //Check DB for admin command to stop daemon & run updates
       $this->checkDbForDaemonReset();
+      //Test whether to turn on enableEncoder flag in db
+      $this->checkLivescanForWatchedVessels();
       //Check database for enableEncoder flag
       $this->checkDbForEncoderStart();
     }
@@ -297,14 +305,6 @@ class PlotDaemon {
   }
 
   public function updateLiveScanLength() {
-    /* Write liveScan obj quantity to 'Passages/Admin' after any insert or delete
-     *   Run by   MyAIS::decode_ais() on new LiveScan construction 
-     *   and by   PlotDaemon::removeOldScans()
-     */ 
-    //$currentLiveScanLength = count($this->liveScan);
-    //$this->LiveScanModel
-    //  ->updateLiveScanLength($currentLiveScanLength);
-     
     /* Updated 8/27/22 to test region and push quantity of vessels in each */
      $c = 0;  $q = 0;
      foreach($this->liveScan as $obj) {
@@ -377,6 +377,7 @@ class PlotDaemon {
       $this->encoderEnabled = true;
       $this->encoderEnabledTS = new DateTime();
       $this->encoderEnabledTS->setTimestamp($test['ts']);
+      $this->encoderEnabledScore = 5;
     }
     if($this->encoderEnabled) {
       flog("\n          plotDaemon::enableEncoder() -> already enabled\n");
@@ -436,6 +437,7 @@ class PlotDaemon {
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
       $this->encoderEnabled = false;
       $this->encoderEnabledTS = null;
+      $this->encoderEnabledScore = 0;
       $this->AdminTriggersModel->resetEncoderEnabled();
       return true;
     } else {
@@ -563,6 +565,16 @@ class PlotDaemon {
     }
   }
 
+  protected function checkLivescanForWatchedVessels() {
+    flog("      • checkLivescanForWatchedVessels()   ");
+    if(!count($this->liveScan)) {
+      flog("        NONE");
+      return;
+    }
+    foreach($this->liveScan as $key => $liveObj) {
+      $liveObj->determineEncoderStartConditions();
+    }
+  }
 
   protected function reloadSavedScans() {
       flog( "CRTDaemon::reloadSavedScans() started ".getNow()."...\n");

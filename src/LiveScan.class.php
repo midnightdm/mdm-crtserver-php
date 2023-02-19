@@ -410,7 +410,7 @@ class LiveScan {
       } 
     } else if($this->liveDirection == "downriver") {
       if(in_array($this->liveLocation->mm, $this->PlotDaemon->encoderDnriverWatch)) {
-        $isInWatchArea = true
+        $isInWatchArea = true;
       }
     }
     if(!$isInWatchArea) { 

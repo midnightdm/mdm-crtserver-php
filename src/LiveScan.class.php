@@ -396,7 +396,7 @@ class LiveScan {
       //Yes, then decrease determination score. 
       $this->PlotDaemon->encoderEnabledScore--;
       flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
-      return
+      return;
     }//No, then test other conditions
     //Is this vessel on the target list? 
     if(!in_array(strval($this->liveVesselID), $this->PlotDaemon->encoderWatchList, true)) {

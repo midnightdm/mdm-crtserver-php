@@ -176,8 +176,8 @@ class PlotDaemon {
       $msgWasSkipped = $buf==null; //True when no buffer output
       //Skip buffer processing if the socket receive timed out.    
       if(!$msgWasSkipped) {
-        //strip \n from end of $buf
-        $buf = str_replace("\n", '', $buf);
+        //DON'T strip \n from end of $buf. It breaks AIS decoding which needs it.
+        //$buf = str_replace("\n", '', $buf);
         $this->processBuffer($buf, $local_ip, $local_port);       
       }else {
         flog("  No data received for ".$timeOutVal['sec']." seconds.\n    Proceeding with rest of loop.\n");
@@ -454,13 +454,14 @@ class PlotDaemon {
   protected function processBuffer($buf, $local_ip, $local_port) {
     $msg = $buf;
     $len = strlen($msg);
+    $cpy = str_replace("\n", '', $buf);
     flog("  UDP packet received on $local_ip:$local_port =\n");
     //Filter UDP traffic by NMEA prefix
     if(!str_contains($buf, '!AIVDM')) {
       //Non-NMEA data is private message. It gets logged in blue & not forwarded.
-      flog("    \033[44m".$buf."\033[0m");
+      flog("    \033[44m".$cpy."\033[0m");
     } else {
-      flog("    $buf\n");
+      flog("    $cpy\n");
       //Send data to AIS the decoder
       flog("Sending data to the decoder...\n");
       $this->ais->process_ais_buf($buf);

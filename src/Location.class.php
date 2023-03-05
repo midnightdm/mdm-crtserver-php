@@ -317,8 +317,8 @@ class Location {
     flog("\n");
   }
 
-  public function determinePassingCamera() { //Returns nothing
-    flog("      Location::determinePassingCamera() ");
+  public function determineIfPassingCamera() { //Returns nothing
+    flog("      Location::determineIfPassingCamera() ");
     $polys = [
       "clintonWebcams"=>[
         [-90.201650, 41.801466],
@@ -330,11 +330,11 @@ class Location {
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcams"])) {
-      flog(" = inside clintonWebcams poly.\n ");
+      flog(" -> inside clintonWebcams poly.\n ");
       //Set flag in Admin document
       $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(true);
     } else {
-      flog("= false\n");
+      flog("= FALSE\n");
       $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(false);
       //Called method writes to db only on state change, not every loop.
     }

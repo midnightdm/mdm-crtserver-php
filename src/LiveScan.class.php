@@ -300,7 +300,7 @@ class LiveScan {
         $this->inCameraRange = false;
       }
       //Test if vessel in video capture target area
-      $this->liveLocation->determinePassingCamera();
+      $this->liveLocation->determineIfPassingCamera();
     }
     
     //And remove reload flag if set.

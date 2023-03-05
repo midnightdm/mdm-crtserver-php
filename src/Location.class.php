@@ -262,13 +262,13 @@ class Location {
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clinton"])) {
-      flog("      getCurrentRegion() = CLINTON \r\n");
+      flog("        getCurrentRegion() = CLINTON \r\n");
       return "clinton";
     } else if($this->insidePoly($this->point, $polys["qc"])) {
-      flog("      getCurrentRegion() = QC \r\n");
+      flog("        getCurrentRegion() = QC \r\n");
       return "qc";
     } else {
-      flog("      getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
+      flog("        getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
       return "outside";
     }
   }
@@ -318,7 +318,7 @@ class Location {
   }
 
   public function determinePassingCamera() { //Returns nothing
-    flog("        Location::determinePassingCamera() ");
+    flog("      Location::determinePassingCamera() ");
     $polys = [
       "clintonWebcams"=>[
         [-90.201650, 41.801466],
@@ -378,7 +378,7 @@ class Location {
   }
 
   public function verifyWaypointEvent($event, $supressTrigger=false) {
-      flog( "      ::verifyWaypointEvent()...\n");
+      flog( "      verifyWaypointEvent()...\n");
       $status = $this->updateEventStatus($event, $supressTrigger);
       if($status) {
           //Push new event to array and do updates

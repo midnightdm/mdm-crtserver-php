@@ -208,7 +208,7 @@ class PlotDaemon {
     // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
     if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
       //Only perform once every few min to reduce db queries
-      flog( "    PlotDaemon::removeOldScans()   \n");     
+      flog( "    PlotDaemon::removeOldScans()...   \n");     
       foreach($this->liveScan as $key => $obj) {  
         //Test age of transponder update [changed from move update 3/3/22].  
         $deleteIt = false;       

@@ -386,7 +386,7 @@ class LiveScan {
     //Has determination score reached the deactivation threshold with encoder enabled?
     if($this->PlotDaemon->encoderEnabled && $this->PlotDaemon->encoderEnabledScore < 1) {
       //Yes, then send deactivation command to the database
-      $this->PlotServer->AdminTriggersModel->resetEncoderStart();
+      $this->PlotDaemon->AdminTriggersModel->resetEncoderStart();
       flog("\n        resetEncoderStart()");
       return;
     }

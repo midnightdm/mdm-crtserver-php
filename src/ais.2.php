@@ -114,7 +114,8 @@ class AIS {
 	}
 
 	function process_ais_itu($_itu, $_len, $_filler, $aux /*, $ais_ch*/) {
-		GLOBAL $port; // tcpip port...
+		flog("process_ais_itu() was run.\n");
+    GLOBAL $port; // tcpip port...
 		static $debug_counter = 0;
 		
 		$aisdata168='';//six bit array of ascii characters
@@ -134,6 +135,7 @@ class AIS {
 	// char* - AIS \r terminated string
 	// TCP based streams which send messages in full can use this instead of calling process_ais_buf
 	function process_ais_raw($rawdata, $aux = '') { // return int
+    flog("process_ais_raw() was run.\n");
 		static $num_seq; // 1 to 9
 		static $seq; // 1 to 9
 		static $pseq; // previous seq
@@ -224,6 +226,7 @@ class AIS {
 
 	// incoming data from serial or IP comms
 	function process_ais_buf($ibuf) {
+    flog("process_ais_buf() was run.\n");
 		static $cbuf = "";
 		$cbuf = $cbuf.$ibuf;
 		$last_pos = 0;

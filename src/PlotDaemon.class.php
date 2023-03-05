@@ -462,6 +462,7 @@ class PlotDaemon {
     } else {
       flog("    $buf\n");
       //Send data to AIS the decoder
+      flog("Sending data to the decoder...\n");
       $this->ais->process_ais_buf($buf);
       /* process_ais_buf calls process_ais_raw
          process_ais_raw calls process_ais_itu

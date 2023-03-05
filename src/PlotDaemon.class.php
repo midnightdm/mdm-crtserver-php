@@ -502,7 +502,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForInputVessels() {
-    flog("      * checkDbForInputVessels()   ");
+    flog("      * checkDbForInputVessels()  ");
     $mmsi = $this->AdminTriggersModel->testForAddVessel();
     if($mmsi) {
       flog("\n        Admin request received to add vessel ".$mmsi);

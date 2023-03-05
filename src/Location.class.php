@@ -393,24 +393,24 @@ class Location {
 
   public function updateEventStatus($event, $suppressTrigger=false) {
       if($suppressTrigger) {
-          flog( "\033[33m        • updateEventStatus() = TRIGGER SUPPRESSED \033[0m\n");
+          flog( "\033[33m        * updateEventStatus() = TRIGGER SUPPRESSED \033[0m\n");
           return false;
       }
       if($event == $this->lastEvent) {
-          flog( "\033[33m        • updateEventStatus() = SAME AS LAST EVENT\033[0m\n");
+          flog( "\033[33m        * updateEventStatus() = SAME AS LAST EVENT\033[0m\n");
           return false;
       }
       //Is this event in array already?
       if(isset($this->events[$event])) {
-          flog( "\033[33m        • updateEventStatus() = EVENT IN ARRAY ALREADY\033[0m\n");
+          flog( "\033[33m        * updateEventStatus() = EVENT IN ARRAY ALREADY\033[0m\n");
           return false;
       }
       //Reject update if one just happened
       if((time() - $this->lastEventTS) < 60) {
-          flog( "\033[33m        • updateEventStatus() = EVENT < 60 OLD \033[0m\n");
+          flog( "\033[33m        * updateEventStatus() = EVENT < 60 OLD \033[0m\n");
           return false;
       }
-      flog( "\033[33m        • updateEventStatus() = $event EVENT IS AUTHENTIC\033[0m\n");        
+      flog( "\033[33m        * updateEventStatus() = $event EVENT IS AUTHENTIC\033[0m\n");        
       return true;
   }
     

@@ -212,7 +212,7 @@ class PlotDaemon {
       foreach($this->liveScan as $key => $obj) {  
         //Test age of transponder update [changed from move update 3/3/22].  
         $deleteIt = false;       
-        flog( "      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
+        flog( "      * Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
         if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
           /*1-A) Yes, then 
             *     2-Q) Is it near the edge of receiving range?
@@ -252,7 +252,7 @@ class PlotDaemon {
         //Do deletes according to test conditions
         if($deleteIt) {
             $obj->savePassageIfComplete(true);          
-            flog( "\n      • Deleting old livescan record for ".$obj->liveName ." ".getNow());
+            flog( "\n      * Deleting old livescan record for ".$obj->liveName ." ".getNow());
             if($this->LiveScanModel->deleteLiveScan($obj->liveVesselID)) {
                 //Table delete was sucessful, remove object from array
                 $key = 'mmsi'.$obj->liveVesselID;
@@ -333,16 +333,16 @@ class PlotDaemon {
           $len = count($liveScanObj->liveLocation->events);
         } else {
           $len = 0;
-          flog( "\n          •\033[41m *  liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.  * \033[0m"); 
+          flog( "\n          *\033[41m *  liveScanObj for {$liveScanObj->liveName} is missing its 'Location' data object.  * \033[0m"); 
         }
         //Unset vessel with bad data
         if(!isset($liveScanObj->liveRegion)) {
           $key = 'mmsi'.$liveScanObj->liveVesselID;
           unset($this->liveScan[$key]);
-          flog("\n          •\033[41m *  liveScanObj for {$liveScanObj->liveName} has bad or missing data and was unset.  * \033[0m");
+          flog("\n          *\033[41m *  liveScanObj for {$liveScanObj->liveName} has bad or missing data and was unset.  * \033[0m");
           continue;
         }
-        flog( "\n          • ".$liveScanObj->liveName. " ".$len." events.");
+        flog( "\n          * ".$liveScanObj->liveName. " ".$len." events.");
         $liveScanObj->livePassageWasSaved = true;
         //Determine Clinton or QC passage save
         if($liveScanObj->liveRegion == "clinton") {
@@ -502,7 +502,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForInputVessels() {
-    flog("      • checkDbForInputVessels()   ");
+    flog("      * checkDbForInputVessels()   ");
     $mmsi = $this->AdminTriggersModel->testForAddVessel();
     if($mmsi) {
       flog("\n        Admin request received to add vessel ".$mmsi);
@@ -523,7 +523,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForAlertSimulation() {
-    flog("      • checkDbForAlertSimulation()");
+    flog("      * checkDbForAlertSimulation()");
     $alertData = $this->AdminTriggersModel->checkForAlertTest();
     if($alertData && $alertData['go']==true) {
       flog( "\n\033[41m *  *  *       Alert Simulation Triggered      *  *  *  *  * \033[0m\r\n"); 
@@ -537,7 +537,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForDaemonReset() {
-    flog("      • checkDbForDaemonReset()    ");
+    flog("      * checkDbForDaemonReset()    ");
     if($this->AdminTriggersModel->testExit()) {
       flog( " = \033[41mTRUE -> Restarting plotserver\033[0m\n");
       $this->run = false;
@@ -547,7 +547,7 @@ class PlotDaemon {
   }
 
   protected function checkDbForEncoderStart() {
-    flog("      • checkDbForEncoderStart()  ");
+    flog("      * checkDbForEncoderStart()  ");
     if($this->AdminTriggersModel->testForEncoderStart()) {
       $this->enableEncoder();
     } else {
@@ -573,7 +573,7 @@ class PlotDaemon {
   }
 
   protected function checkLivescanForWatchedVessels() {
-    flog("      • checkLivescanForWatchedVessels()");
+    flog("      * checkLivescanForWatchedVessels()");
     if(!count($this->liveScan)) {
       flog(" = NONE\n");
       return;

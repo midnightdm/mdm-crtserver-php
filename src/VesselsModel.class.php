@@ -169,7 +169,7 @@ class VesselsModel extends Firestore {
 
   public function setVideoIsPassing($state) {
     if(!is_bool($state)) {
-      trigger_error("VesselsModel::setVideoIsPassing value is not boolean.");
+      trigger_error("      VesselsModel::setVideoIsPassing value is not boolean.");
       return;
     }
     if($state !== $this->videoIsPassing) {
@@ -177,9 +177,9 @@ class VesselsModel extends Firestore {
       ->document('Admin')
       ->set(['videoIsPassing'=> $state], ['merge'=>true]);
       $this->videoIsPassing = $state;
-      flog("\nVesselsModel::setVideoIsPassing() = UPDATED\n");
+      flog("\n      VesselsModel::setVideoIsPassing() = UPDATED\n");
     } else {
-      flog("\nVesselsModel::setVideoIsPassing() = UNCHANGED\n");
+      flog("\n      VesselsModel::setVideoIsPassing() = UNCHANGED\n");
     }
     
   }

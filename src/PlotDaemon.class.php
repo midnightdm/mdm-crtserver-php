@@ -518,7 +518,7 @@ class PlotDaemon {
           flog("\n        Added vessel ".$vesselData['vesselName']."\n");
       }
     } else {
-      flog(" = NONE\n");
+      flog("  = NONE\n");
     }
   }
 

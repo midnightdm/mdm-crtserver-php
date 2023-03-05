@@ -423,7 +423,7 @@ class LiveScan {
     //Has the determination score reached activation threshold?
     if($this->PlotDaemon->encoderEnabledScore > 2) {
       //Yes, then send activation command to the database
-      $this->PlotServer->AdminTriggersModel->setEncoderStart();
+      $this->PlotServer->AdminTriggersModel->setEncoderStart($this);
       flog("\n        running setEncoderStart()");
       return;
     } //No, then increase determination score. Maybe activation next round.

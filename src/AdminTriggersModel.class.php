@@ -53,7 +53,11 @@ class AdminTriggersModel extends Firestore {
   public function testForEncoderEnabled() {
     if($this->getAdminDocument()) {
       if($this->adminData['encoderEnabled']==true) {
-        return ['state' => true, 'ts' => $this->adminData['encoderEnabledTS']];
+        return ['state' => true, 
+                'ts' => $this->adminData['encoderEnabledTS'], 
+                'vesselID'=> $this->adminData['encoderEnablerID'],
+                'vesselDir'=> $this->adminData['encoderEnablerVesselDir']
+              ];
       }
       return ['state'=> false, 'ts' => null];
     }
@@ -76,10 +80,13 @@ class AdminTriggersModel extends Firestore {
     ->set(['encoderEnabled'=> false, 'encoderStart'=>false],['merge'=>true]);
   }
   
-  public function setEncoderStart() {
+  public function setEncoderStart($liveObj) {
     $this->db->collection('Passages')
     ->document('Admin')
-    ->set(['encoderStart'=>true],['merge'=>true]);
+    ->set(['encoderStart'=>true, 
+           'encoderEnablerID' => $liveObj->liveVesselID,
+           'encoderEnablerDir'=> $liveObj->liveDirection
+          ],['merge'=>true]);
   }
 
   public function resetEncoderStart() {
@@ -92,7 +99,9 @@ class AdminTriggersModel extends Firestore {
     $now = time();
     $this->db->collection('Passages')
     ->document('Admin')
-    ->set(['encoderEnabled'=> true, 'encoderEnabledTS'=>$now],['merge'=>true]);
+    ->set(['encoderEnabled'   => true,
+           'encoderEnabledTS' => $now, 
+          ],['merge'=>true]);
   }
 
     

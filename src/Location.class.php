@@ -32,7 +32,7 @@ class Location {
   }
 
   public function calculate($suppressTrigger=false) {
-    flog( "Location::calculate()...\n");
+    flog( "      Location::calculate()\n");
     //Define points of polygons represenating geographic zones
 
 
@@ -165,7 +165,7 @@ class Location {
       case "outside": return;
     }
     $rangeName  = $this->live->liveDirection=="upriver" ? "urange".$rg : "drange".$rg;
-    flog("            ...range is $rangeName\n");
+    //flog("            ...range is $rangeName\n");
     $range = $$rangeName;
 
     foreach($range as $m) {
@@ -262,13 +262,13 @@ class Location {
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clinton"])) {
-      flog("Location::getCurrentRegion() = clinton \r\n");
+      flog("      • getCurrentRegion() = CLINTON \r\n");
       return "clinton";
     } else if($this->insidePoly($this->point, $polys["qc"])) {
-      flog("Location::getCurrentRegion() = qc\r\n");
+      flog("      • getCurrentRegion() = QC \r\n");
       return "qc";
     } else {
-      flog("Location::getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
+      flog("      • getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
       return "outside";
     }
   }
@@ -318,7 +318,7 @@ class Location {
   }
 
   public function determinePassingCamera() { //Returns nothing
-    flog("Location::determinePassingCamera() ");
+    flog("        • determinePassingCamera() ");
     $polys = [
       "clintonWebcams"=>[
         [-90.201650, 41.801466],
@@ -330,12 +330,12 @@ class Location {
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcams"])) {
-      flog(" is inside clintonWebcams poly.\n ");
+      flog(" = inside clintonWebcams poly.\n ");
       //Set flag in Admin document
       $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(true);
     } else {
       $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(false);
-      flog("false\n");
+      flog("= false\n");
       //Called method writes to db only on state change, not every loop.
     }
   }
@@ -378,7 +378,7 @@ class Location {
   }
 
   public function verifyWaypointEvent($event, $supressTrigger=false) {
-      flog( "   Location::verifyWaypointEvent()...\n");
+      flog( "      ::verifyWaypointEvent()...\n");
       $status = $this->updateEventStatus($event, $supressTrigger);
       if($status) {
           //Push new event to array and do updates
@@ -393,24 +393,24 @@ class Location {
 
   public function updateEventStatus($event, $suppressTrigger=false) {
       if($suppressTrigger) {
-          flog( "\033[33m      ...Location::updateEventStatus() TRIGGER SUPPRESSED \033[0m\n");
+          flog( "\033[33m        • updateEventStatus() = TRIGGER SUPPRESSED \033[0m\n");
           return false;
       }
       if($event == $this->lastEvent) {
-          flog( "\033[33m      ...Location::updateEventStatus() SAME AS LAST EVENT\033[0m\n");
+          flog( "\033[33m        • updateEventStatus() = SAME AS LAST EVENT\033[0m\n");
           return false;
       }
       //Is this event in array already?
       if(isset($this->events[$event])) {
-          flog( "\033[33m      ...Location::updateEventStatus() EVENT IN ARRAY ALREADY\033[0m\n");
+          flog( "\033[33m        • updateEventStatus() = EVENT IN ARRAY ALREADY\033[0m\n");
           return false;
       }
       //Reject update if one just happened
       if((time() - $this->lastEventTS) < 60) {
-          flog( "\033[33m      ...Location::updateEventStatus() EVENT < 60 OLD \033[0m\n");
+          flog( "\033[33m        • updateEventStatus() = EVENT < 60 OLD \033[0m\n");
           return false;
       }
-      flog( "\033[33m      ...Location::updateEventStatus($event) EVENT IS AUTHENTIC\033[0m\n");        
+      flog( "\033[33m        • updateEventStatus() = $event EVENT IS AUTHENTIC\033[0m\n");        
       return true;
   }
     

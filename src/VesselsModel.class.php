@@ -216,9 +216,9 @@ class VesselsModel extends Firestore {
       ->document('Admin')
       ->set(['videoIsPassing'=> $state], ['merge'=>true]);
       $this->videoIsPassing = $state;
-      flog("VesselsModel::setVideoIsPassing() updated.\n");
+      flog("\nVesselsModel::setVideoIsPassing() = UPDATED\n");
     } else {
-      flog("VesselsModel::setVideoIsPassing() state unchanged.\n");
+      flog("\nVesselsModel::setVideoIsPassing() = UNCHANGED\n");
     }
     
   }

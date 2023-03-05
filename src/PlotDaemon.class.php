@@ -208,11 +208,11 @@ class PlotDaemon {
     // flog("cleanUpTimeout: ".$this->cleanUpTimeout."\n");
     if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
       //Only perform once every few min to reduce db queries
-      flog( "    PlotDaemon::removeOldScans()   ");     
+      flog( "    PlotDaemon::removeOldScans()   \n");     
       foreach($this->liveScan as $key => $obj) {  
         //Test age of transponder update [changed from move update 3/3/22].  
         $deleteIt = false;       
-        flog( "\n      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
+        flog( "      • Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
         if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
           /*1-A) Yes, then 
             *     2-Q) Is it near the edge of receiving range?

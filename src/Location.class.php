@@ -262,13 +262,13 @@ class Location {
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clinton"])) {
-      flog("      • getCurrentRegion() = CLINTON \r\n");
+      flog("      getCurrentRegion() = CLINTON \r\n");
       return "clinton";
     } else if($this->insidePoly($this->point, $polys["qc"])) {
-      flog("      • getCurrentRegion() = QC \r\n");
+      flog("      getCurrentRegion() = QC \r\n");
       return "qc";
     } else {
-      flog("      • getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
+      flog("      getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
       return "outside";
     }
   }
@@ -280,17 +280,17 @@ class Location {
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcamA"])) {
-      flog("Location::determineCamera() = clintonWebcamA\n");
+      flog("      Location::determineCamera() = clintonWebcamA\n");
       return 'A';
     } else if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
-      flog("Location::determineCamera() = clintonWebcamB\n");
+      flog("      Location::determineCamera() = clintonWebcamB\n");
       return 'B';
     }
     return false;
   }
 
   public function determineCaptureVideo() { //Returns nothing
-    flog("Location::determineCaptureVideo() ");
+    flog("      Location::determineCaptureVideo() ");
     $polys = [
       "clintonWebcamB"=>[
         [-90.192278, 41.803909],
@@ -303,7 +303,7 @@ class Location {
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
       $now = time();
-      flog(" is inside poly TRACER (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
+      flog(" is inside poly (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
       if($now - $this->live->lastVideoRecordedTS > 300) { //Limit 86400 is once daily [300 is 5 min for testing]
         $this->live->lastVideoRecordedTS = $now; 
         $this->live->PlotDaemon->captureVideo($this->live);
@@ -318,7 +318,7 @@ class Location {
   }
 
   public function determinePassingCamera() { //Returns nothing
-    flog("        • determinePassingCamera() ");
+    flog("        Location::determinePassingCamera() ");
     $polys = [
       "clintonWebcams"=>[
         [-90.201650, 41.801466],
@@ -334,8 +334,8 @@ class Location {
       //Set flag in Admin document
       $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(true);
     } else {
-      $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(false);
       flog("= false\n");
+      $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(false);
       //Called method writes to db only on state change, not every loop.
     }
   }

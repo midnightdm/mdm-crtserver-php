@@ -340,7 +340,7 @@ class AlertsModel extends Firestore {
     //     case "marker" : $evtDesc = "is ".$location; break;
     // }
     $txt  = str_replace('Vessel', '', $vesselType);
-    $txt .= " Vessel ".$vesselName." is ".$locDesc;
+    $txt .= " Vessel ".$vesselName." was ".$locDesc;
     $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
     $txt .= ". ".date($str, ($ts+$offset));
     return $txt;

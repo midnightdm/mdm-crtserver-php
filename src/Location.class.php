@@ -298,7 +298,7 @@ class Location {
       flog("      Location::determineCamera() = sawmillRight\n");
       return ['name' => 'C', 'zoom' => 3];
     }
-    return false;
+    return ['name'=> false, 'zoom'=>0];
   }
 
   public function determineCaptureVideo() { //Returns nothing

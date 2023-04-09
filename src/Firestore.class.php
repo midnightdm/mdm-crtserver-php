@@ -91,11 +91,11 @@ class Firestore {
   }
 
   public function setClCamera($camera) {
-    if($camera != "A" && $camera != "B") {
-      trigger_error("setClCamera() received invalid camera string. Must be 'A' or 'B', but  it was ".$camera."\n");
+    if($camera['name'] != "A" && $camera['name'] != "B" && $camera['name'] != 'C') {
+      trigger_error("setClCamera() received invalid camera name. Must be 'A', 'B' or 'C' but  it was ".$camera['name']."\n");
       return;
     }
-    $admin = $this->db->collection('Passages')->document('Admin')->set(["webcamNumCl"=>$camera],["merge"=>true]);
+    $admin = $this->db->collection('Passages')->document('Admin')->set([ "webcamNumCl"=>$camera['name'], 'webcamZoomCl'=> $camera['zoom'] ], ["merge"=>true]);
     flog("setClCamera updated to ".$camera."\n");
   }
 

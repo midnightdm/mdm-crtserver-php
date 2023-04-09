@@ -284,15 +284,16 @@ class LiveScan {
       $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22
       $camera = $this->liveLocation->determineCamera();           //Added 9/24/22
       //Do somethings with camera data
-      $cameraIsA = $camera==="A";
-      $cameraIsB = $camera==="B";
+      $cameraIsA = $camera['name']==="A";
+      $cameraIsB = $camera['name']==="B";
+      $cameraIsC = $camera['name']==="C";
       $solution =  $ts - $this->PlotDaemon->lastCameraSwitch > 29;
       //flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->PlotDaemon->lastCameraSwitch.")> 29 ?".$solution."\n"); 
-      if(($cameraIsA || $cameraIsB) ) {
-        flog("calculateLocation() found $this->liveName in camera $camera range.\n");
+      if(($cameraIsA || $cameraIsB || $cameraIsC) ) {
+        flog("calculateLocation() found {$this->liveName} in camera {$camera['name']} range.\n");
         $this->inCameraRange = true;
         if($solution) { //When last cam switch 30+ sec ago
-          flog("calculateLocation() switching to camera $camera now.\n");
+          flog("calculateLocation() switching to camera {$camera['name']}, zoom {$camera['zoom']} now.\n");
           $this->PlotDaemon->AlertsModel->setClCamera($camera);
           $this->PlotDaemon->lastCameraSwitch = $ts;
         }

@@ -273,18 +273,30 @@ class Location {
     }
   }
 
-  public function determineCamera() { //Returns "A", "B" or false
+  public function determineCamera() { //Refactored 4/9/23 to include sawmill camera & its zoom. Returns name "A", "B" or "C"; zoom 0, 1, 2 or 3; or false
     $polys = [
       "clintonWebcamA"=>[[-90.19574154245394,41.79894380177605],[-90.19848987767594,41.80275731583387],[-90.2110598422512,41.80023522493453],[-90.20863976055016,41.79535621390145],[-90.19574154245394,41.79894380177605]],
-      "clintonWebcamB"=>[[-90.18665777418799,41.80172331446524],[-90.18241924324515,41.80447550087962],[-90.18382325251146,41.80785938852225],[-90.19848702798852,41.80279497988711],[-90.19566956157554,41.79887548569596],[-90.18665777418799,41.80172331446524]]
+      "clintonWebcamB"=>[[-90.18665777418799,41.80172331446524],[-90.18241924324515,41.80447550087962],[-90.18382325251146,41.80785938852225],[-90.19848702798852,41.80279497988711],[-90.19566956157554,41.79887548569596],[-90.18665777418799,41.80172331446524]],
+      "sawmillCenter"=>[[-90.1669740996215,41.87264028722591],[-90.17329738191796,41.8732111879936],[-90.17419440469216,41.86903267384908],[-90.16874637550174,41.86810264395464],[-90.1669740996215,41.87264028722591]],
+      "sawmillLeft"=>[[-90.16501264098754,41.87894741988096],[-90.17251063427827,41.87884147250501],[-90.17346424255584,41.87325543214909],[-90.16695583176345,41.87265837618259],[-90.16501264098754,41.87894741988096]],
+      "sawmillRight"=>[[-90.16874241651087,41.86806324116959],[-90.17419031585581,41.86905063197391],[-90.17650722879176,41.86370945812324],[-90.17059025504298,41.86313198828161],[-90.16874241651087,41.86806324116959]]
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clintonWebcamA"])) {
       flog("      Location::determineCamera() = clintonWebcamA\n");
-      return 'A';
+      return ['name' => 'A', 'zoom' => 0];
     } else if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
       flog("      Location::determineCamera() = clintonWebcamB\n");
-      return 'B';
+      return ['name' => 'B', 'zoom' => 0];
+    }  else if($this->insidePoly($this->point, $polys["sawmillCenter"])) {
+      flog("      Location::determineCamera() = sawmillCenter\n");
+      return ['name' => 'C', 'zoom' => 2];
+    }  else if($this->insidePoly($this->point, $polys["sawmillLeft"])) {
+      flog("      Location::determineCamera() = sawmillLeft\n");
+      return ['name' => 'C', 'zoom' => 1];
+    }  else if($this->insidePoly($this->point, $polys["sawmillRight"])) {
+      flog("      Location::determineCamera() = sawmillRight\n");
+      return ['name' => 'C', 'zoom' => 3];
     }
     return false;
   }

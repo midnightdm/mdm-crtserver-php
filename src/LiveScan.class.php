@@ -117,7 +117,7 @@ class LiveScan {
         flog("\033[41m vesselLastDetectedTS has been updated for $this->liveName.\033[0m\n");
       }
       //Use scraped vesselName if not provided by transponder
-      if(strpos($this->liveName, strval($id))>-1) {
+      if(strpos($this->liveName, strval($id))>-1 || $this->liveName==="") {
         $this->liveName = $this->liveVessel->vesselName;
       }
       $recordInserted = $this->insertNewRecord();
@@ -137,7 +137,7 @@ class LiveScan {
   public function testWhenVesselLastDetected($id,$ts) {
     //Test for previous detect, don't resave if within last 24 hours
     $lastDetectedTS = $this->PlotDaemon->VesselsModel->getVesselLastDetectedTS($id);
-    if($lastDetectedTS==false || ($ts-$lastDetectedTS[0])>86400) {
+    if($lastDetectedTS!==false && ($ts-$lastDetectedTS[0])>86400) {
        //If not recent, put date string in LiveScan
        $this->lastDetectedTS = $lastDetectedTS[1];
        //Then write date TS to vessel record 
@@ -518,7 +518,7 @@ class LiveScan {
     
     //Filter Spare - Local Vessel
     if($data['vesselType']=="Spare - Local Vessel") {
-      $data['vesselType'] = "Local";
+      $data['vesselType'] = "Towing";
     }
 
     //Try for image
@@ -541,7 +541,7 @@ class LiveScan {
     $data['vesselRecordAddedTS'] = time();
     $data['vesselID'] = $this->liveVesselID;
     $data['vesselWatchOn']  = false;
-    $data['vesselName'] = $this->liveName; 
+    $data['vesselName'] = $name; 
     
     $this->liveVessel = new Vessel($data, $this->PlotDaemon);
     //In case scraped data replaced the local above, also update the live object

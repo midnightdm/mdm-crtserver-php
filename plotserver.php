@@ -15,6 +15,7 @@ include_once('src/crtfunctions_helper.php');
 
 //Check Config for aisTestMode which limits some dependencies
 if(!$config['aisTestMode']) {
+    echo "NORMAL MDOE";
     include_once('src/Firestore.class.php');
     include_once('src/LiveScan.class.php');
     include_once('src/LiveScanModel.class.php');
@@ -28,6 +29,8 @@ if(!$config['aisTestMode']) {
     include_once('src/Messages.class.php');
     include_once('src/CloudStorage.class.php');
     include_once('src/TextToSpeech.class.php');
+} else {
+    echo "AIS TEST MODE";
 }
 
 set_error_handler('errorHandler', E_ALL);

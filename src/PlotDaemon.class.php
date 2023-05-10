@@ -149,7 +149,7 @@ class PlotDaemon {
     flog( "\033[41m *  Ensure you have AISMon running.                             * \033[0m\r\n");
     flog( "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n");
     flog( "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n");
-    flog( "\033[41m *           $ipandport                                * \033[0m\r\n");
+    flog( "\033[41m *               $ipandport                                * \033[0m\r\n");
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
@@ -527,7 +527,7 @@ class PlotDaemon {
    $msg = $buf;
     $len = strlen($msg);
     $cpy = str_replace("\n", '', $buf);
-    flog("  UDP packet received on $local_ip:$local_port =\n");
+    flog("  UDP packet received on $local_ip:$local_port = $len bytes\n");
     //Filter UDP traffic by NMEA prefix
     if(!str_contains($buf, '!AIVDM')) {
       //Non-NMEA data is private message. It gets logged in blue & not forwarded.

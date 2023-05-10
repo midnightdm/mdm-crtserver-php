@@ -23,12 +23,15 @@ if(!isset($strJsonFileContents)) {
 }
 
 
+
+
 /**
  * This is a custom library to interact with the firebase firestore cloud db
  */
 class Firestore {
   protected $db;
   protected $name;
+  public $projectID = $config['cloud_projectID'];
 
   public function __construct($collection) {
     //echo var_dump($collection);
@@ -36,7 +39,7 @@ class Firestore {
     flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n"); 
     $this->db = new FirestoreClient([
         'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
-        'projectId'=> $config['cloud_projectID']
+        'projectId'=> $this->projectID 
     ]);    
   }
 

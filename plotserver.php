@@ -14,7 +14,7 @@ include_once('src/PlotDaemon.class.php');
 include_once('src/crtfunctions_helper.php');
 
 //Check Config for aisTestMode which limits some dependencies
-if(!$config['aisTestMode']) {
+if($config['aisTestMode']===false) {
     echo "NORMAL MDOE";
     include_once('src/Firestore.class.php');
     include_once('src/LiveScan.class.php');

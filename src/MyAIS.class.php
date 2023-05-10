@@ -18,8 +18,8 @@ class MyAIS extends AIS {
 
     }
 	// This function is Overridable and is called by process_ais_itu(...) method
-	function decode_ais($_aisdata, $_aux) {
-    //flog("decode_ais() was run.\n");
+	function decode_ais($_aisdata, $isTest=false) {
+      flog("decode_ais() was run. isTest value = $isTest\n");
 		$ro = new stdClass(); // return object
 		$ro->cls = 0; // AIS class undefined, also indicate unparsed msg
 		$ro->name = '';
@@ -84,7 +84,13 @@ class MyAIS extends AIS {
       $ts   = $ro->ts;
       $hTime = date("H:i:s", ($ts+getTimeOffset()));
             
-			flog("    Decoded MMSI: ".$id." TS: ".$ts." (".$hTime.")\n");
+      flog("    Decoded MMSI: ".$id." TS: ".$ts." (".$hTime.")\n");
+
+      if($isTest) { //Skip db saving in test mode and just flog info
+         $dateStr = date("F j, Y, g:i:s a", ($ts+getTimeOffset()));
+         flog("TEST MODE -> $dateStr $name $id $lat $lon $speed $course\r\n");
+         return $ro;
+      }
 
       if(isset($this->plotDaemon->liveScan[$key])) {
         //Update liveScan object only if data is new

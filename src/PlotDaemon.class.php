@@ -87,7 +87,7 @@ class PlotDaemon {
     $this->image_base          = $config['image_base'];
     $this->socket_address      = $config['socket_address'];
     $this->socket_port         = $config['socket_port']; 
-    
+       
     $this->encoderUrl          = $config['encoderUrl'];
     $this->streamUrl           = $config['streamUrl'];
     $this->streamPath          = $config['streamPath'];
@@ -103,7 +103,15 @@ class PlotDaemon {
   public function start() {
     flog( " Starting mdm-crt2-server\n\n");  
     flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
-    
+    if($config['aisTestMode']) {
+      flog("     Using aisTestMode.\n      Firestore Database will not be used.\n       Vessel info will flog only.\r\n");
+      $this->aisTestMode = true;
+      $this->socket_address      = $config['socket_address'];
+      $this->socket_port         = $config['socket_port'];
+      $this->run = true;
+      $this->run();
+      return;
+    }
     $this->setup();
     $this->run = true;
     $this->reloadSavedScans();
@@ -129,6 +137,7 @@ class PlotDaemon {
         die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
     }
     flog( "Socket created \n");
+    $ipandport = $config['socket_address'].":".$config['socket_port'];
 
     //A run once message for Brian at start up to enable companion app
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
@@ -138,7 +147,7 @@ class PlotDaemon {
     flog( "\033[41m *  Ensure you have AISMon running.                             * \033[0m\r\n");
     flog( "\033[41m *      - Enable 'UDP Output'                                   * \033[0m\r\n");
     flog( "\033[41m *      - Add the following to IP:port                          * \033[0m\r\n");
-    flog( "\033[41m *           192.168.1.172:10111                                * \033[0m\r\n");
+    flog( "\033[41m *           $ipandport                                * \033[0m\r\n");
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *                                                              * \033[0m\r\n");
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n\r\n");
@@ -178,17 +187,27 @@ class PlotDaemon {
       if(!$msgWasSkipped) {
         //DON'T strip \n from end of $buf. It breaks AIS decoding which needs it.
         //$buf = str_replace("\n", '', $buf);
-        $this->processBuffer($buf, $local_ip, $local_port);       
+        //Use test mode buffer if set
+        if($this->aisTestMode) {
+            $this->processBufferTestMode($buf, $local_ip, $local_port);  
+        } else {
+            $this->processBuffer($buf, $local_ip, $local_port);   
+        }
+
+             
       }else {
         flog("  No data received for ".$timeOutVal['sec']." seconds.\n    Proceeding with rest of loop.\n");
       }
       //Reset buffer
       $buf = null;
       //Resuming here if above was skipped with
-      //    things to do on each loop besides UDP data handling
-      $this->adminCommands();	 //Uses removeOldScans() timer	
-      $this->removeOldScans(); //Resets the timer shared by adminCommands() 
-			$this->saveAllScans();   //Has its own interval timer
+      //    things to do on each loop besides UDP data handling (Skip if aisTestMode)
+      if(!$this->aisTestMode) {
+         $this->adminCommands();	 //Uses removeOldScans() timer	
+         $this->removeOldScans(); //Resets the timer shared by adminCommands() 
+         $this->saveAllScans();   //Has its own interval timer
+      }
+
       flog("                                               ".getNow()."\n");
       //*                                                                      *
       //*                          End of main loop                            *
@@ -464,7 +483,7 @@ class PlotDaemon {
       flog("    $cpy\n");
       //Send data to AIS the decoder
 
-      $this->ais->process_ais_buf($buf);
+      $this->ais->process_ais_buf($buf, false);
       /* process_ais_buf calls process_ais_raw
          process_ais_raw calls process_ais_itu
          process_ais_itu calls decode_ais which has custom extention
@@ -500,6 +519,30 @@ class PlotDaemon {
       flog( "  Also sent $sentMst bytes to myshiptracking, vesselfinder & marinetraffic\n");
     }
   }
+
+
+  protected function processBufferTestMode($buf, $local_ip, $local_port) {
+   $msg = $buf;
+    $len = strlen($msg);
+    $cpy = str_replace("\n", '', $buf);
+    flog("  UDP packet received on $local_ip:$local_port =\n");
+    //Filter UDP traffic by NMEA prefix
+    if(!str_contains($buf, '!AIVDM')) {
+      //Non-NMEA data is private message. It gets logged in blue & not forwarded.
+      flog("    \033[44m".$cpy."\033[0m");
+    } else {
+      flog("    $cpy\n");
+      //Send data to AIS the decoder
+
+      $this->ais->process_ais_buf($buf, true); //isTest condition = true
+      /* process_ais_buf calls process_ais_raw
+         process_ais_raw calls process_ais_itu
+         process_ais_itu calls decode_ais which has custom extention
+         decode_ais calls back LiveScan objects in the array plotDaemon->liveScan
+      */
+    }
+  }
+
 
   protected function checkDbForInputVessels() {
     flog("      * checkDbForInputVessels()  ");

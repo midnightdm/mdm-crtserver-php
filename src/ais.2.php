@@ -110,10 +110,10 @@ class AIS {
 
 	// This function is Overidable
 	// function for decoding the AIS Message ITU Payload
-	function decode_ais($_aisdata, $_aux) {
+	function decode_ais($_aisdata, $isTest) {
 	}
 
-	function process_ais_itu($_itu, $_len, $_filler, $aux /*, $ais_ch*/) {
+	function process_ais_itu($_itu, $_len, $_filler, $isTest /*, $ais_ch*/) {
 		//flog("process_ais_itu() was run.\n");
     GLOBAL $port; // tcpip port...
 		static $debug_counter = 0;
@@ -129,12 +129,12 @@ class AIS {
 			$aisdata168 .=$bit6;
 		}
 		//echo $aisdata168 . "<br/>";
-		$this->decode_ais($aisdata168, $aux);
+		$this->decode_ais($aisdata168, $isTest);
 	}
 
 	// char* - AIS \r terminated string
 	// TCP based streams which send messages in full can use this instead of calling process_ais_buf
-	function process_ais_raw($rawdata, $aux = '') { // return int
+	function process_ais_raw($rawdata, $isTest) { // return int
     //flog("process_ais_raw() was run.\n");
 		static $num_seq; // 1 to 9
 		static $seq; // 1 to 9
@@ -217,7 +217,7 @@ class AIS {
 					if ($num_seq != 1) { // test
 						//echo $rawdata;
 					}
-					return $this->process_ais_itu($itu, strlen($itu), $filler, $aux /*, $ais_ch*/);
+					return $this->process_ais_itu($itu, strlen($itu), $filler, $isTest /*, $ais_ch*/);
 				}
 			} // end process raw AIS string (checksum passed)
 		}
@@ -225,7 +225,7 @@ class AIS {
 	}
 
 	// incoming data from serial or IP comms
-	function process_ais_buf($ibuf) {
+	function process_ais_buf($ibuf, $isTest=false) {
     //flog("process_ais_buf() was run.\n");
 		static $cbuf = "";
 		$cbuf = $cbuf.$ibuf;
@@ -236,7 +236,7 @@ class AIS {
 			if ( ($end = strpos($cbuf,"\r\n", $start)) !== FALSE) { //TBD need to trim?
 				$tst = substr($cbuf, $start - 3, ($end - $start + 3));
 				//DEBUG echo "[$start $end $tst]\n";
-				$this->process_ais_raw( $tst, "" );
+				$this->process_ais_raw( $tst, $isTest );
 				$last_pos = $end + 1;
 			}
 			else break;

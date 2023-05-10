@@ -31,10 +31,13 @@ if(!isset($strJsonFileContents)) {
 class Firestore {
   protected $db;
   protected $name;
-  public $projectID = $config['cloud_projectID'];
+  public $projectID;
+  
+  
 
   public function __construct($collection) {
     //echo var_dump($collection);
+    $this->projectID = $config['cloud_projectID'];
     $this->name = $collection['name'];
     flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n"); 
     $this->db = new FirestoreClient([

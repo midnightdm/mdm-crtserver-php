@@ -36,7 +36,7 @@ class Firestore {
     flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n"); 
     $this->db = new FirestoreClient([
         'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
-        'projectId'=> 'mdm-qcrt-demo-1'
+        'projectId'=> $config['cloud_projectID']
     ]);    
   }
 

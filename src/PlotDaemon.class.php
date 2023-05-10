@@ -34,6 +34,7 @@ class PlotDaemon {
   public $encoderEnabledScore = 0;
   public $encoderEnablerVesselID = null;
   public $encoderEnablerVesselDir = null;
+  public $aisTestMode;
 
   public $lastCleanUp;
   public $lastCameraSwitch;
@@ -138,7 +139,7 @@ class PlotDaemon {
         die("Couldn't create inbound socket: [$errorcode] $errormsg \n");
     }
     flog( "Socket created \n");
-    $ipandport = $config['socket_address'].":".$config['socket_port'];
+    $ipandport = $this->socket_address.":".$this->socket_port;
 
     //A run once message for Brian at start up to enable companion app
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 

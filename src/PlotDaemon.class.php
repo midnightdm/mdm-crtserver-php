@@ -105,6 +105,7 @@ class PlotDaemon {
     flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
     if($config['aisTestMode']) {
       flog("     Using aisTestMode.\n      Firestore Database will not be used.\n       Vessel info will flog only.\r\n");
+      $config = CONFIG_ARR;
       $this->aisTestMode = true;
       $this->socket_address      = $config['socket_address'];
       $this->socket_port         = $config['socket_port'];

@@ -11,20 +11,24 @@ include_once('config.php');
 include_once('src/ais.2.php');
 include_once('src/MyAIS.class.php');
 include_once('src/PlotDaemon.class.php');
-include_once('src/Firestore.class.php');
-include_once('src/LiveScan.class.php');
-include_once('src/LiveScanModel.class.php');
-include_once('src/AdminTriggersModel.class.php');
-include_once('src/Vessels.class.php');
-include_once('src/VesselsModel.class.php');
 include_once('src/crtfunctions_helper.php');
-include_once('src/Zone.class.php');
-include_once('src/Location.class.php');
-include_once('src/AlertsModel.class.php');
-include_once('src/PassagesModel.class.php');
-include_once('src/Messages.class.php');
-include_once('src/CloudStorage.class.php');
-include_once('src/TextToSpeech.class.php');
+
+//Check Config for aisTestMode which limits some dependencies
+if(!$config['aisTestMode']) {
+    include_once('src/Firestore.class.php');
+    include_once('src/LiveScan.class.php');
+    include_once('src/LiveScanModel.class.php');
+    include_once('src/AdminTriggersModel.class.php');
+    include_once('src/Vessels.class.php');
+    include_once('src/VesselsModel.class.php');
+    include_once('src/Zone.class.php');
+    include_once('src/Location.class.php');
+    include_once('src/AlertsModel.class.php');
+    include_once('src/PassagesModel.class.php');
+    include_once('src/Messages.class.php');
+    include_once('src/CloudStorage.class.php');
+    include_once('src/TextToSpeech.class.php');
+}
 
 set_error_handler('errorHandler', E_ALL);
 

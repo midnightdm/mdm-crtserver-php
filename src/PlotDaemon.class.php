@@ -532,6 +532,7 @@ class PlotDaemon {
     if(!str_contains($buf, '!AIVDM')) {
       //Non-NMEA data is private message. It gets logged in blue & not forwarded.
       flog("    \033[44m".$cpy."\033[0m");
+      flog("    $cpy\n");
     } else {
       flog("    $cpy\n");
       //Send data to AIS the decoder

@@ -3,7 +3,7 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FieldValue;
-$config = CONFIG_ARR;
+//$config = CONFIG_ARR;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  *                                                     *

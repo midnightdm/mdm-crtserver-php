@@ -534,15 +534,14 @@ class PlotDaemon {
       flog("    \033[44m $cpy \033[0m\n");
       //flog("    $cpy\n");
     } else {
-      flog("    $cpy\n");
       //Send data to AIS the decoder
-
       $this->ais->process_ais_buf($buf, true); //isTest condition = true
       /* process_ais_buf calls process_ais_raw
          process_ais_raw calls process_ais_itu
          process_ais_itu calls decode_ais which has custom extention
          decode_ais calls back LiveScan objects in the array plotDaemon->liveScan
       */
+      flog("    $cpy\n");
     }
   }
 

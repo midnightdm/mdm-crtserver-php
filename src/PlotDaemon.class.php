@@ -530,11 +530,11 @@ class PlotDaemon {
     flog("  UDP packet received on $local_ip:$local_port = $len bytes\n");
     //Filter UDP traffic by NMEA prefix
     if(!str_contains($buf, '!AIVDM')) {
-      //Non-NMEA data is private message. It gets logged in blue & not forwarded.
-      flog("    \033[44m $cpy \033[0m\n");
-      //flog("    $cpy\n");
+        //Non-NMEA data is private message. It gets logged in blue & not forwarded.
+        flog("    \033[44m $cpy \033[0m\n");
+        //flog("    $cpy\n");
     } else {
-        flog("    $cpy\n");  
+        flog("    $br $cpy\n");  
         //Send data to AIS the decoder
         $this->ais->process_ais_buf($buf, true); //isTest condition = true
       /* process_ais_buf calls process_ais_raw

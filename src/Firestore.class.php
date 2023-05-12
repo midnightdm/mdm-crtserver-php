@@ -103,7 +103,7 @@ class Firestore {
       return;
     }
     $admin = $this->db->collection('Passages')->document('Admin')->set([ "webcamNumCl"=>$camera['name'], 'webcamZoomCl'=> $camera['zoom'] ], ["merge"=>true]);
-    flog("setClCamera updated to ".$camera."\n");
+    flog("setClCamera updated to ".$camera['name']."\n");
   }
 
 }

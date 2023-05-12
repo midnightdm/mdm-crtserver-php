@@ -534,6 +534,7 @@ class PlotDaemon {
         flog("    \033[44m $cpy \033[0m\n");
         //flog("    $cpy\n");
     } else {
+        $br = str_contains($buf, "\n") ? 'true' : 'false';
         flog("    $br $cpy\n");  
         //Send data to AIS the decoder
         $this->ais->process_ais_buf($buf, true); //isTest condition = true

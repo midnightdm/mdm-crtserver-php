@@ -535,7 +535,7 @@ class PlotDaemon {
       //flog("    $cpy\n");
     } else {
       //Send data to AIS the decoder
-      $this->ais->process_ais_buf($buf."\n", true); //isTest condition = true
+      $this->ais->process_ais_buf($buf, true); //isTest condition = true
       /* process_ais_buf calls process_ais_raw
          process_ais_raw calls process_ais_itu
          process_ais_itu calls decode_ais which has custom extention

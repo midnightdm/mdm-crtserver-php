@@ -19,7 +19,7 @@ class MyAIS extends AIS {
     }
 	// This function is Overridable and is called by process_ais_itu(...) method
 	function decode_ais($_aisdata, $isTest=false) {
-      flog("decode_ais() isTest=".(string)$isTest.")\n");
+      //flog("decode_ais() isTest=".(string)$isTest.")\n");
 		$ro = new stdClass(); // return object
 		$ro->cls = 0; // AIS class undefined, also indicate unparsed msg
 		$ro->name = '';

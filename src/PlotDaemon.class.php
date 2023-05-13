@@ -538,7 +538,7 @@ class PlotDaemon {
         flog("    $br[0] $cpy\n");  
         //Send data to AIS the decoder
         if(!$br[1]) {
-            $buf .= "\n";
+            $buf = $buf.EOL;
         }
         $this->ais->process_ais_buf($buf, true); //isTest condition = true
       /* process_ais_buf calls process_ais_raw

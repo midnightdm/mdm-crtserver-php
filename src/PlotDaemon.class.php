@@ -534,12 +534,10 @@ class PlotDaemon {
         flog("    \033[44m $cpy \033[0m\n");
         //flog("    $cpy\n");
     } else {
-        $br = str_contains($buf, "\n") ? ['true', true] : ['false', false];
-        flog("    $br[0] $cpy\n");  
+        
+        flog("     $cpy\n");  
         //Send data to AIS the decoder
-        if(!$br[1]) {
-            $buf = $buf.PHP_EOL;
-        }
+        
         $this->ais->process_ais_buf($buf, true); //isTest condition = true
       /* process_ais_buf calls process_ais_raw
          process_ais_raw calls process_ais_itu

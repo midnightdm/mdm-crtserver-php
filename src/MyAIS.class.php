@@ -82,12 +82,13 @@ class MyAIS extends AIS {
       $lon   = $ro->lon;
       $course = $ro->cog;
       $ts   = $ro->ts;
-      $hTime = date("H:i:s", ($ts+getTimeOffset()));
+      $offset = getTimeOffset();
+      $hTime = date("H:i:s", ($ts+$offset));
             
-      flog("    Decoded MMSI: ".$id." TS: ".$ts." (".$hTime.")\n");
+      flog("    TS: ".$ts." Offset: ".$offset." (".$hTime.")\n");
 
       if($isTest) { //Skip db saving in test mode and just flog info
-         $dateStr = date("F j, Y, g:i:s a", ($ts+getTimeOffset()));
+         $dateStr = date("F j, Y, g:i:s a", ($ts+$offset));
          flog("TEST MODE -> $dateStr $name $id $lat $lon $speed $course\r\n");
          return $ro;
       }

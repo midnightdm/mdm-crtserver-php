@@ -295,7 +295,7 @@ class Location {
     {
         $this->live->PlotDaemon->AdminTriggersModel->setClCamsAreDisabled();
         flog("      Location::determineCamera() = Clinton cams disabled, using Waypoint slides instead\n");
-        return ['name' => '0', 'zoom' => 0]; 
+        return ['name' => false, 'zoom' => 0]; 
     } else {
         //If at least one cam is working. Re-enable video if off
         if($this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClAllCamsAreDisabled']) {
@@ -359,6 +359,7 @@ class Location {
             return ['name' => 'A', 'zoom' => 0];  
         }
     }
+    return ['name'=> false, 'zoom'=>0];
 
         /* [section replaced by checks for substutute cameras above]
         if($this->insidePoly($this->point, $polys["clintonWebcamA"])) {

@@ -104,6 +104,18 @@ class AdminTriggersModel extends Firestore {
           ],['merge'=>true]);
   }
 
+
+  public function setClCamsAreDisabled() {
+    $this->db->collection('Passages')
+    ->document('Admin')
+    ->set(['showClVideoOn'   => false, 'webcamClAllCamsAreDisabled' => true],['merge'=>true]);
+  }
+
+  public function setClCamsAreEnabled() {
+    $this->db->collection('Passages')
+    ->document('Admin')
+    ->set(['showClVideoOn'   => true, 'webcamClAllCamsAreDisabled' => false],['merge'=>true]);
+  }
     
   public function testForAddVessel() {
     if($this->getAdminDocument()) {

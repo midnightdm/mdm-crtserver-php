@@ -308,7 +308,7 @@ class Location {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamA\n");
             return ['name' => 'A', 'zoom' => 0];
-        } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClBIsDisabled']){
+        } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClbIsDisabled']){
             flog("      Location::determineCamera() = clintonWebcamA disabled, using B instead\n");
             return ['name' => 'B', 'zoom' => 0];
         } else {
@@ -318,7 +318,7 @@ class Location {
     }
 
     if($isInCamB) {
-        if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClBIsDisabled']){
+        if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClbIsDisabled']){
             flog("      Location::determineCamera() = clintonWebcamB\n");
             return ['name' => 'B', 'zoom' => 0];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {

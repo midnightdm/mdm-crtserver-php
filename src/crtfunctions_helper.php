@@ -27,7 +27,7 @@ function getTimeOffset($ts="") {
 }
 
 function getNow($dateString="Y-m-d H:i:s") {  
-  return date($dateString, (time()+getTimeOffset()));
+  return date($dateString, time());
 }
 
 function getYesterdayRange() {

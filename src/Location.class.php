@@ -262,13 +262,13 @@ class Location {
     ];
     $this->setPoint();
     if($this->insidePoly($this->point, $polys["clinton"])) {
-      flog("        getCurrentRegion() = CLINTON \r\n");
+      flog("        determineRegion() = CLINTON \r\n");
       return "clinton";
     } else if($this->insidePoly($this->point, $polys["qc"])) {
-      flog("        getCurrentRegion() = QC \r\n");
+      flog("        determineRegion() = QC \r\n");
       return "qc";
     } else {
-      flog("        getCurrentRegion() = \33[42m NOT IN REGION \033[0m\r\n");
+      flog("        determineRegion() = \33[42m NOT IN REGION \033[0m\r\n");
       return "outside";
     }
   }

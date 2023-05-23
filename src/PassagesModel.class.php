@@ -41,11 +41,7 @@ class PassagesModel extends Firestore {
         $offset = getTimeOffset();
         
         //Do not save if no events exist
-        if(count($data['passageEvents'])==0 &&  
-            $data['passageMarkerAlphaTS']==null && 
-            $data['passageMarkerBravoTS']==null &&
-            $data['passageMarkerCharlieTS']==null &&
-            $data['passageMarkerDeltaTS'] ==null)
+        if(count($data['passageEvents'])==0 )
         {
             flog( "No Clinton events to save for ".$liveScanObj->liveName.".\n");
             return;
@@ -147,11 +143,8 @@ class PassagesModel extends Firestore {
       $offset = getTimeOffset();
       
       //Do not save if no events exist
-      if(count($data['passageEvents'])==0 &&  
-          $data['passageMarkerEchoTS']==null && 
-          $data['passageMarkerFoxtrotTS']==null &&
-          $data['passageMarkerGolfTS']==null &&
-          $data['passageMarkerHotelTS'] ==null)
+      if(count($data['passageEvents'])==0)  
+         
       {
           flog( "No QC events to save for ".$liveScanObj->liveName.".\n");
           return;

@@ -18,8 +18,8 @@ class MyAIS extends AIS {
 
     }
 	// This function is Overridable and is called by process_ais_itu(...) method
-	function decode_ais($_aisdata, $isTest=false) {
-      //flog("decode_ais() isTest=".(string)$isTest.")\n");
+	function decode_ais($_aisdata, $isTestMode=false) {
+      //flog("decode_ais() isTest=".(string)$isTestMode.")\n");
 		$ro = new stdClass(); // return object
 		$ro->cls = 0; // AIS class undefined, also indicate unparsed msg
 		$ro->name = '';
@@ -87,23 +87,23 @@ class MyAIS extends AIS {
             
       //flog("    TS: ".$ts." Offset: ".$offset." (".$hTime.")\n");
 
-      if($isTest) { //Skip db saving in test mode and just flog info
-         $dateStr = date("F j, Y, g:i:s a", $ts);
-         flog("TEST MODE -> $dateStr $name $id $lat $lon $speed $course\r\n");
-         return $ro;
-      }
+    //   if($isTestMode) { //Skip db saving in test mode and just flog info
+    //      $dateStr = date("F j, Y, g:i:s a", $ts);
+    //      flog("TEST MODE -> $dateStr $name $id $lat $lon $speed $course\r\n");
+    //      return $ro;
+    //   }
 
       if(isset($this->plotDaemon->liveScan[$key])) {
         //Update liveScan object only if data is new
         if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
-          $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course);
+          $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course, $isTestMode);
           flog( "    livePlot[$key]->update(".date("F j, Y, g:i:s a", $ts).", ".$name
             .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");					  
         }  
       } else {
         //Skip river marker numbers & void bad lat data
         if($id < 990000000 && $id > 100000000 && $lat > 1) {
-            $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon);
+            $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon, $isTestMode);
             flog( "    NEW liveScan[$key] (".date("F j, Y, g:i a", $ts).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");            
             $this->plotDaemon->updateLiveScanLength();
         } 

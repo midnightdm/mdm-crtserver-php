@@ -62,7 +62,7 @@ class LiveScan {
   public $lastDetectedTS;
   public $lastVideoRecordedTS;
 
-  public function __construct($ts, $name, $id, $lat, $lon, $speed, $course, $pd, $reload=false, $reloadData=[]) {
+  public function __construct($ts, $name, $id, $lat, $lon, $speed, $course, $pd, $reload=false, $reloadData=[], $isTestMode=false) {
     $this->PlotDaemon = $pd;
     //Reload construct
     if ($reload) {
@@ -119,6 +119,11 @@ class LiveScan {
       //Use scraped vesselName if not provided by transponder
       if(strpos($this->liveName, strval($id))>-1 || $this->liveName==="") {
         $this->liveName = $this->liveVessel->vesselName;
+      }
+      //Skip DB writes in Test Mode
+      if($isTestMode) {
+        flog("LiveScan::construct() skipping DB writes\n");
+        return;
       }
       $recordInserted = $this->insertNewRecord();
       //Unset this construction if above failed
@@ -229,7 +234,7 @@ class LiveScan {
     return true;
   }
 
-  public function update($ts, $name, $id, $lat, $lon, $speed, $course) {
+  public function update($ts, $name, $id, $lat, $lon, $speed, $course, $isTestMode=false) {
     //Function run by run() in crtDaemon.class.php
     //Is this first update after init?
     if($this->liveLastLat == null) {
@@ -303,7 +308,11 @@ class LiveScan {
       //Test if vessel in video capture target area
       $this->liveLocation->determineIfPassingCamera();
     }
-    
+    //Skip DB access in test mode
+    if($isTestMode) {
+        flog("update() skipping DB\n");
+        return;
+    }
     //And remove reload flag if set.
     if($this->isReloaded) {
       $this->insertNewRecord(); //Adds reload as new db record 

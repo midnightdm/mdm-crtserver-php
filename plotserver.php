@@ -5,6 +5,8 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 ini_set("log_errors", 1);
 ini_set("error_log", "/tmp/php-error.log");
 
+//Make the config array available globally
+define('CONFIG_ARR', $config);
 
 //Load all the dependencies
 include_once('config.php');
@@ -72,8 +74,7 @@ define('AIS_LOG_PATH', 'AISMon.log');
 define('API_POST_URL', getenv('MDM_CRT_PLOT_POST'));
 define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
 
-//Make the config array available globally
-define('CONFIG_ARR', $config);
+
 
 //This is the active part of the app. It creates the daemon object then starts the loop.
 $plotDaemon = new PlotDaemon();

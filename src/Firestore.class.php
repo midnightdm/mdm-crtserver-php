@@ -5,6 +5,7 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FieldValue;
 
 //define('CONFIG_ARR', $config);
+//global $config;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  *                                                     *
@@ -38,7 +39,7 @@ class Firestore {
 
   public function __construct($collection) {
     //echo var_dump($collection);
-    $this->projectID = CONFIG_ARR['cloud_projectID'];
+    $this->projectID = $config['cloud_projectID'];
     $this->name = $collection['name'];
     flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n"); 
     $this->db = new FirestoreClient([

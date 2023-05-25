@@ -55,8 +55,11 @@ class PlotDaemon {
   public $image_base;
 
 
+  public function __construct() {
+    global $config;   
+  }
+
   public function setup() {
-    $config = CONFIG_ARR;
     $now    = time();
     
     $this->liveScan            = array(); //LiveScan objects - the heart of this app - get stored here
@@ -103,7 +106,6 @@ class PlotDaemon {
   }
 
   public function start() {
-    $config = CONFIG_ARR;
     flog( " Starting mdm-crt2-server\n\n");  
     flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
     if($config['aisTestMode']==true) {

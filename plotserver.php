@@ -5,11 +5,13 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
 ini_set("log_errors", 1);
 ini_set("error_log", "/tmp/php-error.log");
 
-//Make the config array available globally
-define('CONFIG_ARR', $config);
+
 
 //Load all the dependencies
 include_once('config.php');
+//Make the config array available globally
+//define('CONFIG_ARR', $config);
+
 include_once('src/ais.2.php');
 include_once('src/MyAIS.class.php');
 include_once('src/PlotDaemon.class.php');
@@ -77,7 +79,7 @@ define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
 
 
 //This is the active part of the app. It creates the daemon object then starts the loop.
-$plotDaemon = new PlotDaemon();
+$plotDaemon = new PlotDaemon($config);
 $plotDaemon->start();
 
 /*  The remainer of the script is disabled unless debugging  */

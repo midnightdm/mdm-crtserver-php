@@ -79,7 +79,7 @@ define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
 
 
 //This is the active part of the app. It creates the daemon object then starts the loop.
-$plotDaemon = new PlotDaemon();
+$plotDaemon = new PlotDaemon($config);
 $plotDaemon->start();
 
 /*  The remainer of the script is disabled unless debugging  */

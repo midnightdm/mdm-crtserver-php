@@ -35,7 +35,7 @@ class PlotDaemon {
   public $encoderEnablerVesselID = null;
   public $encoderEnablerVesselDir = null;
   public $aisTestMode;
-  public $config;
+  
 
   public $lastCleanUp;
   public $lastCameraSwitch;
@@ -56,7 +56,7 @@ class PlotDaemon {
 
 
   public function setup() {
-    $this->config = CONFIG_ARR;
+    $config = CONFIG_ARR;
     $now    = time();
     
     $this->liveScan            = array(); //LiveScan objects - the heart of this app - get stored here
@@ -74,43 +74,43 @@ class PlotDaemon {
     $this->lastJsonSave        = $now-10; //Used to increment liveScan.json save
     $this->lastPassagesSave    = $now-50; //Increments savePassages routine
     
-    //Set values below in $this->config array in config.php
-    $this->liveScanTimeout     = intval($this->config['liveScanTimeout']); 
-    $this->cleanUpTimeout      = intval($this->config['cleanUpTimeout']); 
-    $this->savePassagesTimeout = intval($this->config['savePassagesTimeout']);  
+    //Set values below in $config array in config.php
+    $this->liveScanTimeout     = intval($config['liveScanTimeout']); 
+    $this->cleanUpTimeout      = intval($config['cleanUpTimeout']); 
+    $this->savePassagesTimeout = intval($config['savePassagesTimeout']);  
     $this->socketDataTimer     = 0;
-    $this->errEmail            = $this->config['errEmail']; 
-    $this->dbHost              = $this->config['dbHost'];
-    $this->dbUser              = $this->config['dbUser'];
-    $this->dbPwd               = $this->config['dbPwd'];
-    $this->dbName              = $this->config['dbName'];   
-    $this->nonVesselFilter     = $this->config['nonVesselFilter'];
-    $this->localVesselFilter   = $this->config['localVesselFilter'];
-    $this->image_base          = $this->config['image_base'];
-    $this->socket_address      = $this->config['socket_address'];
-    $this->socket_port         = $this->config['socket_port']; 
+    $this->errEmail            = $config['errEmail']; 
+    $this->dbHost              = $config['dbHost'];
+    $this->dbUser              = $config['dbUser'];
+    $this->dbPwd               = $config['dbPwd'];
+    $this->dbName              = $config['dbName'];   
+    $this->nonVesselFilter     = $config['nonVesselFilter'];
+    $this->localVesselFilter   = $config['localVesselFilter'];
+    $this->image_base          = $config['image_base'];
+    $this->socket_address      = $config['socket_address'];
+    $this->socket_port         = $config['socket_port']; 
        
-    $this->encoderUrl          = $this->config['encoderUrl'];
-    $this->streamUrl           = $this->config['streamUrl'];
-    $this->streamPath          = $this->config['streamPath'];
-    $this->streamKey           = $this->config['streamKey'];
-    $this->encoderUsr          = $this->config['encoderUsr'];
-    $this->encoderPwd          = $this->config['encoderPwd'];
-    $this->encoderWatchList    = $this->config['encoderWatchList'];
-    $this->encoderUpriverWatch = $this->config['encoderUpriverWatch'];
-    $this->encoderDnriverWatch = $this->config['encoderDnriverWatch'];
-    $this->encoderTimeoutValue = $this->config['encoderTimeoutValue']; //Seconds
+    $this->encoderUrl          = $config['encoderUrl'];
+    $this->streamUrl           = $config['streamUrl'];
+    $this->streamPath          = $config['streamPath'];
+    $this->streamKey           = $config['streamKey'];
+    $this->encoderUsr          = $config['encoderUsr'];
+    $this->encoderPwd          = $config['encoderPwd'];
+    $this->encoderWatchList    = $config['encoderWatchList'];
+    $this->encoderUpriverWatch = $config['encoderUpriverWatch'];
+    $this->encoderDnriverWatch = $config['encoderDnriverWatch'];
+    $this->encoderTimeoutValue = $config['encoderTimeoutValue']; //Seconds
   }
 
   public function start() {
-    $this->config = CONFIG_ARR;
+    $config = CONFIG_ARR;
     flog( " Starting mdm-crt2-server\n\n");  
     flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
-    if($this->config['aisTestMode']) {
+    if($config['aisTestMode']==true) {
         flog("     Using aisTestMode.\n      Firestore Database will not be used.\n       Vessel info will flog only.\r\n");
         $this->aisTestMode = true;
-        $this->socket_address      = $this->config['socket_address'];
-        $this->socket_port         = $this->config['socket_port'];
+        $this->socket_address      = $config['socket_address'];
+        $this->socket_port         = $config['socket_port'];
     //    $this->run = true;
     //    $this->run();
     //    return;

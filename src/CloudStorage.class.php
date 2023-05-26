@@ -27,7 +27,8 @@ class CloudStorage {
     public $image_base;
     public $no_image; 
 
-    public function __construct() {
+    public function __construct($caller='unspecified') {
+        flog("INIT: CloudStorage caleld by $caller\n");
         global $config;
         $this->appPath = $config['appPath'];
         $this->bucketName = $config['cloud_bucket_name'];

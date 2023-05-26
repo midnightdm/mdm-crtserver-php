@@ -19,12 +19,13 @@ class AlertsModel extends Firestore {
   
   public function __construct($daemonCallback) {
       parent::__construct(['name' => 'Alertpublish']);
+      flog("INIT: AlertsModel\n");
       global $config;
       $this->appPath = $config['appPath'];
       //Initialize Messages contoller
       $this->messageController = new Messages();
       $this->daemon = $daemonCallback;
-      $this->cs = new CloudStorage();
+      $this->cs = new CloudStorage('AlertsModel');
   }
 
   public function getAlertsAll($region) {

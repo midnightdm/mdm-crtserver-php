@@ -24,6 +24,7 @@ class Messages {
   public $msg;
 
   function __construct() {
+    flog("INIT: Messages\n");
     // Configure HTTP basic authorization: BasicAuth
     $this->config = ClickSend\Configuration::getDefaultConfiguration()
       ->setUsername(getEnv('MDM_CRT_ERR_EML'))

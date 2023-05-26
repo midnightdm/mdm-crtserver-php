@@ -531,7 +531,7 @@ class LiveScan {
     }
 
     //Try for image
-    $cs = new CloudStorage(); 
+    $cs = new CloudStorage('lookUpVessel() in LiveScan'); 
     try {      
       if($cs->scrapeImage($this->liveVesselID)) {
         $base = $cs->image_base;

@@ -44,7 +44,7 @@ $path =  'vendor/autoload.php';
 require_once($path);
 
 // * * * Constant Definitions * * * 
-putenv('GOOGLE_APPLICATION_CREDENTIALS=c:\app\mdm-qcrt-demo-1-f28500aebc1a.json');
+putenv('GOOGLE_APPLICATION_CREDENTIALS='.$config['appPath']. '/mdm-qcrt-demo-1-f28500aebc1a.json');
 
 /* River orientation (Set one that is prevailing for your waypoints in the 5th position below for your app)
     A North-South or South-North river setting employs lat to calculate upriver/downriver vessel direction.

@@ -9,6 +9,7 @@ class LiveScanModel extends Firestore {
 
   public function __construct() {
       parent::__construct(['name' => 'LiveScan']);
+      flog("INIT: LiveScanModel\n");
   }
 
   public function getAllLiveScans() {

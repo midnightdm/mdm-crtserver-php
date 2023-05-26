@@ -10,6 +10,7 @@ class PassagesModel extends Firestore {
 
     public function __construct() {
         parent::__construct(['name' => 'Vessels']);
+        flog("INIT: PassagesModel\n");
     }
 
     public function savePassageClinton($liveScanObj) {

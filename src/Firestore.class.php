@@ -43,7 +43,7 @@ class Firestore {
     global $config;
     $this->projectID = $config['cloud_projectID'];
     $this->name = $collection['name'];
-    flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n"); 
+    flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']." collection: ". $this->name ."\n"); 
     $this->db = new FirestoreClient([
         'keyFile' => GOOGLE_APPLICATION_CREDENTIALS,
         'projectId'=> $this->projectID 

@@ -24,11 +24,14 @@ class Messages {
   public $msg;
 
   function __construct() {
-    flog("INIT: Messages\n");
+    $username = getEnv('MDM_CRT_ERR_EML');
+    $password = getEnv('CLICKSEND_KEY');
+    flog("INIT: Messages ClickSend U: $username P: $password\n");
     // Configure HTTP basic authorization: BasicAuth
     $this->config = ClickSend\Configuration::getDefaultConfiguration()
-      ->setUsername(getEnv('MDM_CRT_ERR_EML'))
-      ->setPassword(getEnv('CLICKSEND_KEY'));
+      ->setUsername($username)
+      ->setPassword($password);
+    
     $this->smsApiInstance = new ClickSend\Api\SMSApi(new GuzzleHttp\Client(),$this->config);
     $this->emailApiInstance = $this->initEmail();
     //$this->pusherApiInstance = $this->initPusher();

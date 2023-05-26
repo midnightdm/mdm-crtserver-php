@@ -17,7 +17,8 @@ use Google\Cloud\Firestore\FieldValue;
 
 //echo $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
 if(!isset($strJsonFileContents)) {
-  $path =  $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
+  //$path =  $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
+  $path = $config['appPath'] . "/" . $config['firestore_json_file'];
   flog("INIT: Firestore loading json from $path \n"); 
   $strJsonFileContents = file_get_contents($path);
   //Convert into array & Put into CONSTANT

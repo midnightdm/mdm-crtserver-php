@@ -11,7 +11,6 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed: Messages.cl
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-//use Pusher\PushNotifications\PushNotifications;
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
 
@@ -19,7 +18,6 @@ class Messages {
   public $config;
   public $smsApiInstance;
   public $emailApiInstance;
-  //public $pusherApiInstance;
   public $webPushInstance;
   public $msg;
 
@@ -34,7 +32,7 @@ class Messages {
     
     $this->smsApiInstance = new ClickSend\Api\SMSApi(new GuzzleHttp\Client(),$this->config);
     $this->emailApiInstance = $this->initEmail();
-    //$this->pusherApiInstance = $this->initPusher();
+
     $this->webPushInstance = $this->initWebPush();
   }
   
@@ -134,16 +132,6 @@ class Messages {
     $mail->Password = getEnv('CRT_GMAIL_PASSWORD');
     $mail->SetFrom(getEnv('CRT_GMAIL_USERNAME'));
     return $mail;
-  }
-
-  public function initPusher() {
-
-    return new PushNotifications(
-      array(
-        "instanceId" => getEnv('PUSHER_INSTANCE_ID'),
-        "secretKey"  => getEnv('PUSHER_SECRET_KEY')
-      )
-    );
   }
 
   public function initWebPush() {

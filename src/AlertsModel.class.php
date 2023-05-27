@@ -667,6 +667,7 @@ _END;
       }
   }
 
+  /* DEPRICATED 
   public function generateAlertLogNotif($pusherResponse, $notifMessages) {
       //Gets run by generateAlertMessages() method of this class to document response from sms host
       $now = time();
@@ -690,7 +691,7 @@ _END;
       $db->prepare($sql)->execute($data);
       }
   }
-
+  */
 
   public function generateAlertLogEmail($clickSendResponse, $emailMessages ) {
       //Gets run by generateAlertMessages() method of this class to document phpMailer process. clickSend host portion is depreciated

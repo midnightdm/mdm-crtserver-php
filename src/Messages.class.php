@@ -23,7 +23,7 @@ class Messages {
   public $msg;
 
   function __construct($config) {
-    $plotserverConfig = $config;
+    $this->plotserverConfig = $config;
     $username = $plotserverConfig['errEmail'];
     $password = $plotserverConfig['clicksendKey'];
     flog("INIT: Messages ClickSend U: $username P: $password\n");

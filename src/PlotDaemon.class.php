@@ -84,10 +84,10 @@ class PlotDaemon {
     $this->savePassagesTimeout = intval($this->config['savePassagesTimeout']);  
     $this->socketDataTimer     = 0;
     $this->errEmail            = $this->config['errEmail']; 
-    $this->dbHost              = $this->config['dbHost'];
-    $this->dbUser              = $this->config['dbUser'];
-    $this->dbPwd               = $this->config['dbPwd'];
-    $this->dbName              = $this->config['dbName'];   
+    //$this->dbHost              = $this->config['dbHost'];
+    //$this->dbUser              = $this->config['dbUser'];
+    //$this->dbPwd               = $this->config['dbPwd'];
+    //$this->dbName              = $this->config['dbName'];   
     $this->nonVesselFilter     = $this->config['nonVesselFilter'];
     $this->localVesselFilter   = $this->config['localVesselFilter'];
     $this->image_base          = $this->config['image_base'];

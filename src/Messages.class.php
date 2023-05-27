@@ -15,22 +15,25 @@ use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
 
 class Messages {
-  public $config;
+  public $clicksendConfig;
+  public $plotserverConfig;
   public $smsApiInstance;
   public $emailApiInstance;
   public $webPushInstance;
   public $msg;
 
   function __construct() {
-    $username = getEnv('MDM_CRT_ERR_EML');
-    $password = getEnv('CLICKSEND_KEY');
+    global $config;
+    $plotserverConfig = $config;
+    $username = $plotserverConfig['errEmail'];
+    $password = $plotserverConfig['clicksendKey'];
     flog("INIT: Messages ClickSend U: $username P: $password\n");
     // Configure HTTP basic authorization: BasicAuth
-    $this->config = ClickSend\Configuration::getDefaultConfiguration()
+    $this->clicksendConfig = ClickSend\Configuration::getDefaultConfiguration()
       ->setUsername($username)
       ->setPassword($password);
     
-    $this->smsApiInstance = new ClickSend\Api\SMSApi(new GuzzleHttp\Client(),$this->config);
+    $this->smsApiInstance = new ClickSend\Api\SMSApi(new GuzzleHttp\Client(),$this->clicksendConfig);
     $this->emailApiInstance = $this->initEmail();
 
     $this->webPushInstance = $this->initWebPush();
@@ -128,9 +131,9 @@ class Messages {
     $mail->Port = "587";
     $mail->SMTPKeepAlive = true;
     //$mail->isHTML(true);
-    $mail->Username = getEnv('CRT_GMAIL_USERNAME');
-    $mail->Password = getEnv('CRT_GMAIL_PASSWORD');
-    $mail->SetFrom(getEnv('CRT_GMAIL_USERNAME'));
+    $mail->Username = $this->plotserverConfig['gmailUsername']; //getEnv('CRT_GMAIL_USERNAME');
+    $mail->Password = $this->plotserverConfig['gmailPassword']; //getEnv('CRT_GMAIL_PASSWORD');
+    $mail->SetFrom($this->plotserverConfig['gmailUsername']);
     return $mail;
   }
 
@@ -138,9 +141,9 @@ class Messages {
     //Prepare VAPID package and initialize WebPush
     $auth = array(
 			'VAPID' => array(
-				'subject' => 'https://www.clintonrivertraffic.com',
-				'publicKey' => getenv('MDM_VKEY_PUB'),
-				'privateKey' => getenv('MDM_VKEY_PRI') 
+				'subject' => $this->plotserverConfig['vapidSubject'], //'https://www.clintonrivertraffic.com',
+				'publicKey' => $this->plotserverConfig['vkeyPub'], //getenv('MDM_VKEY_PUB'),
+				'privateKey' => $this->plotserverConfig['vkeyPri'] //getenv('MDM_VKEY_PRI') 
 			)
 		);	
     $webPush = createWebPush($auth);

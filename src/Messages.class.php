@@ -22,8 +22,7 @@ class Messages {
   public $webPushInstance;
   public $msg;
 
-  function __construct() {
-    global $config;
+  function __construct($config) {
     $plotserverConfig = $config;
     $username = $plotserverConfig['errEmail'];
     $password = $plotserverConfig['clicksendKey'];

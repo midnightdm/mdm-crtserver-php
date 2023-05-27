@@ -23,7 +23,7 @@ class AlertsModel extends Firestore {
       global $config;
       $this->appPath = $config['appPath'];
       //Initialize Messages contoller
-      $this->messageController = new Messages();
+      $this->messageController = new Messages($config);
       $this->daemon = $daemonCallback;
       $this->cs = new CloudStorage('AlertsModel');
   }

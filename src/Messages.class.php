@@ -24,8 +24,8 @@ class Messages {
 
   function __construct($config) {
     $this->plotserverConfig = $config;
-    $username = $plotserverConfig['errEmail'];
-    $password = $plotserverConfig['clicksendKey'];
+    $username = $this->plotserverConfig['errEmail'];
+    $password = $this->plotserverConfig['clicksendKey'];
     flog("INIT: Messages ClickSend U: $username P: $password\n");
     // Configure HTTP basic authorization: BasicAuth
     $this->clicksendConfig = ClickSend\Configuration::getDefaultConfiguration()

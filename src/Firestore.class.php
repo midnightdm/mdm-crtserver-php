@@ -17,7 +17,6 @@ use Google\Cloud\Firestore\FieldValue;
 
 //echo $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
 if(!isset($strJsonFileContents)) {
-  //$path =  $_SERVER['DOCUMENT_ROOT'] . $config['firestore_json_file'];
   $path = $config['appPath'] . "/" . $config['firestore_json_file'];
   flog("INIT: Firestore loading json from $path \n"); 
   $strJsonFileContents = file_get_contents($path);
@@ -41,6 +40,13 @@ class Firestore {
   public function __construct($collection) {
     //echo var_dump($collection);
     global $config;
+
+
+
+
+
+
+
     $this->projectID = $config['cloud_projectID'];
     $this->name = $collection['name'];
     flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']." collection: ". $this->name ."\n"); 

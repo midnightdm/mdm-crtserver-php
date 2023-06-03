@@ -105,7 +105,10 @@ class MyAIS extends AIS {
         if($id < 990000000 && $id > 100000000 && $lat > 1) {
             $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon, $isTestMode);
             flog( "    NEW liveScan[$key] (".date("F j, Y, g:i a", $ts).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");            
-            $this->plotDaemon->updateLiveScanLength();
+            //Update LiveScanLength if NOT in test mode
+            if(!$isTestMode) { 
+                $this->plotDaemon->updateLiveScanLength();
+            }
         } 
       }
       

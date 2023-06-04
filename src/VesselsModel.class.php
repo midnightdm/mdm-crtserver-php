@@ -12,7 +12,7 @@ class VesselsModel extends Firestore {
 
   public function __construct() {
       parent::__construct(['name' => 'Vessels']);
-      flog("INIT: VesselsModel\n");
+      //flog("INIT: VesselsModel\n");
       $this->cs = new CloudStorage('VesselsModel');
       $this->videoIsPassing = $this->getVideoIsPassing();
   }

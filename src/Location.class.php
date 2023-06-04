@@ -521,7 +521,7 @@ class Location {
 
   public function isNewWaypoint($waypoint, $suppressTrigger=false) {
     flog( "      isNewWaypoint()...\n");
-    $status = $this->isAuthenticWaypoint($event, $suppressTrigger);
+    $status = $this->isAuthenticWaypoint($waypoint, $suppressTrigger);
     if($status) {
         //Push new waypoint to array and do updates
         $this->lastWaypoint = $this->waypoint;     

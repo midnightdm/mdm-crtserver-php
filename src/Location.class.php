@@ -18,6 +18,10 @@ class Location {
   public $eventTS; 
   public $lastEvent;
   public $lastEventTS;
+  public $waypoint;
+  public $waypoints; //array
+  public $lastWaypoint;
+  public $lastWaypointTS;
 
 
   public function __construct($livescan) {
@@ -25,6 +29,8 @@ class Location {
     $this->mm   = "new";
     $this->event = "new";
     $this->events = [];
+    $this->waypoints = [];
+    
   }
 
   public function setPoint() {
@@ -80,14 +86,6 @@ class Location {
 
       "credit_island_slough"=>[[-90.63134741941096,41.48485323562083],[-90.62120203043624,41.48797893652774],[-90.61548073260025,41.49230296379835],[-90.60887864874843,41.50279539867355],[-90.61216663721751,41.50665860975543],[-90.61909167271669,41.50337113210738],[-90.63134741941096,41.48485323562083]],
 
-      "echo"=>[[-90.3629940774167,41.57612132335647],[-90.36217706847489,41.57632071175892],[-90.36661112456599,41.58337050916753],[-90.36715827747643,41.58323092264241],[-90.3629940774167,41.57612132335647]],
-
-      "foxtrot"=>[[-90.40234831475011,41.57399148505885],[ -90.40192049550757,41.57352528493669],[ -90.40009228575911,41.57424706811361],[ -90.39527617109974,41.56831545610599],[ -90.39443749164592,41.56860912427832],[-90.39950148227493,41.57443709497309],[-90.39712058888212,41.57532498004248],[-90.39793087734567,41.57595248689903],[-90.40234831475011,41.57399148505885]],
-
-      "golf"=>[[-90.57119718322605,41.5197727920422],[ -90.5673840975264,41.51607446962929],[ -90.56162979231036,41.51941134974355],[ -90.56211369554093,41.51984963255459],[ -90.56609663118097,41.51809415925702],[ -90.56796101611982,41.52079186696324],[ -90.57119718322605,41.5197727920422]],
-
-      "hotel"=>[[-90.62941710558779,41.47628754238154],[ -90.62844683491804,41.4770208382132],[ -90.63455074455194,41.4814587920874],[ -90.63545057217139,41.48103548137976],[ -90.62941710558779,41.47628754238154]],
-
       500=>[[-90.3480736269221,  41.63971945269969],  [-90.33817941381621,41.63955239006518], [-90.33649979303949, 41.65484790099703],  [-90.34380831321272, 41.65683003496228]  ],
       501=>[[-90.34380831321272, 41.65683003496228],  [-90.33649979303949,41.65484790099703], [-90.3286147300638,  41.66790001449647],  [-90.33988256792307, 41.66828476005874]  ],
       502=>[[-90.33988256792307, 41.66828476005874],  [-90.3286147300638,41.66790001449647],  [-90.32843393740198, 41.6798418644646],   [-90.33882199131011, 41.68036827724283]  ],
@@ -134,30 +132,23 @@ class Location {
 
       "albany"=>[[-90.27515035952995,41.75674530469114],  [-90.25720788319468,41.76494014559641],  [-90.25782420656908,41.76892319694783],  [-90.2681668076286,41.76756818218026], [-90.27837794161196,41.7647960627926],  [-90.27515035952995,41.75674530469114] ],
 
-
       "camanche"=>[[-90.24411274997723,41.7867227592737],[-90.24052772077873,41.79191920668919],[-90.24483821902118,41.79315328700208],[-90.24866415680138,41.78655999605407],[-90.24948281326756,41.78435425727831],[-90.24892321653469,41.78381433943699],[-90.24411274997723,41.7867227592737]],
 
       "beaver"=> [[-90.23294839981214, 41.79808538536009], [-90.22701749141592,41.80756903332713], [-90.21559749792131, 41.81230821223932], [-90.20557127592812, 41.81802061899466], [-90.19441158230757, 41.82295207417607], [-90.1852557317826, 41.82723424579132], [-90.1864738578501, 41.82944337432793], [-90.19083424544831, 41.82723719598464], [-90.19632708046788, 41.82542118488396], [-90.20330171463473, 41.82315092259923], [-90.21080006723422, 41.81912672727466], [-90.21638017690674, 41.81568600506505], [-90.22631847832557, 41.81192101655164], [-90.23652024451495, 41.80341254671695], [-90.23852907095876, 41.79282295356613], [-90.2343452764614, 41.79288804500343], [-90.23294839981214, 41.79808538536009]],
 
-      "sabula"=> [[-90.16917288193625,42.06032208154448],[-90.16901335882697,42.06274636281189],[-90.17070309171807,42.06250890705313],[-90.17166206922242,42.0620511009892],[-90.17118231549374,42.06072880609142],[-90.17220933933675,42.05793152988566],[-90.1706795005182,42.05769432506564],[-90.16917288193625,42.06032208154448] ],
+      "sabula"=> [[-90.16917288193625,42.06032208154448],[-90.16901335882697,42.06274636281189],[-90.17070309171807,42.06250890705313],[-90.17166206922242,42.0620511009892],[-90.17118231549374,42.06072880609142],[-90.17220933933675,42.05793152988566],[-90.1706795005182,42.05769432506564],[-90.16917288193625,42.06032208154448] ]
 
-      "alpha"=>[[-90.18175807981993,41.93844045624406],[-90.10727770274339,41.93882767095748],[-90.10758290312427,41.94061272536801],[-90.18173172439252,41.94109215813975],[-90.18175807981993,41.93844045624406]],
-
-      "bravo"=>[[-90.17384402924193,41.89723456537121],[-90.16139831396862,41.89740471269587],[-90.15436694723829,41.89574701405598],[-90.1527173408855,41.89887716376366],[-90.16033335309578,41.89951309880558],[-90.16894635958988,41.89940369517984],[-90.17320673261528,41.89797039505211],[-90.17384402924193,41.89723456537121]],
-
-      "charlie"=>[[-90.18691306733906,41.83569685872726],[-90.16888090651308,41.8359038974395],[-90.16905537691486,41.83688562511055],[-90.18689095019816,41.83662425531738],[-90.18691306733906,41.83569685872726]],
-
-      "delta"=>[[-90.21429864522167,41.79989690763232],[-90.18786002625238,41.79993804296918],[-90.18791890792576,41.80114586913619],[-90.21418401179969,41.80113158192712],[-90.21429864522167,41.79989690763232]],
 
     ];
             
-    $urangec = [500,501,502,503,504,505,506,507,508,509,510,'albany',511,512,'camanche',513,514,'delta',515,516,517, 'beaver','charlie', 518,519,'joyce_slough_clinton', 520,521,522,'bravo',523,524,525,'alpha',526,527,528,529,530,531,532,533,534,'sabula',535,536,537,538,539];
-    $drangec = [539,538,537,536,535,'sabula',534,533,532,531,530,529,528,527,526,'alpha',525,524,523,'bravo',522,521,520,'joyce_slough_clinton',519,518,'charlie','beaver', 517,516,515,'delta',514,513,'camanche',512,511,'albany',510,509,508,507,506,505,504,503,502,501,500,499,498,497,496,495,'echo','foxtrot','golf','hotel'];
-    $urangeq = ['echo','foxtrot','lakepotter','credit_island_slough','golf','hotel',465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499];
-    $drangeq = ['hotel','golf','lakepotter','credit_island_slough','foxtrot','echo',499,498,497,496,495,494,493,492,491,490,489,488,487,486,485,484,483,482,481,480,479,478,477,476,475,474,473,472,471,470,469,468,467,466,465];
+    $urangec = [500,501,502,503,504,505,506,507,508,509,510,'albany',511,512,'camanche',513,514,515,516,517, 'beaver', 518,519,'joyce_slough_clinton', 520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,'sabula',535,536,537,538,539];
+    $drangec = [539,538,537,536,535,'sabula',534,533,532,531,530,529,528,527,526,525,524,523,522,521,520,'joyce_slough_clinton',519,518,'beaver', 517,516,515,514,513,'camanche',512,511,'albany',510,509,508,507,506,505,504,503,502,501,500,499,498,497,496,495];
+    $urangeq = ['lakepotter','credit_island_slough',465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499];
+    $drangeq = ['lakepotter','credit_island_slough',499,498,497,496,495,494,493,492,491,490,489,488,487,486,485,484,483,482,481,480,479,478,477,476,475,474,473,472,471,470,469,468,467,466,465];
     
     //$this->setPoint();
     $region = $this->determineRegion();
+    
     //Set range by region and direction
     switch($region) {
       case "clinton": $rg = "c"; break;
@@ -168,11 +159,11 @@ class Location {
     //flog("            ...range is $rangeName\n");
     $range = $$rangeName;
 
+    $wp     = $this->determineWaypoint($suppressTrigger);
+
     foreach($range as $m) {
-      $inside = $this->insidePoly($this->point, $polys[$m]);   
+      $inside = $this->isInsidePoly($this->point, $polys[$m]);   
       if($inside) {
-        $this->lastEvent   = $this->event;   //Save last event  before updating
-        $this->lastEventTS = $this->eventTS; //Save time of last event update
         //Use location data to build event code
         if($this->live->liveDirection=="upriver") {
           $dir = "u";   $um  = $m;
@@ -185,7 +176,6 @@ class Location {
         //desciption is an array containing [0] short text for status and [1] longer text for speech conversion
         $this->description = ZONE::$$mileMarker;
         $eventTS = time();
-        $waypoint = false;
         $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
         if(is_int($m)) { //Numbered mile marker zones
           $event = "m".$m.$dir.$type;          
@@ -202,48 +192,15 @@ class Location {
               $event = "sabula";        break;
             case "joyce_slough_clinton": 
               $event = "joyce_slough_clinton"; break;  
-            case "alpha":
-              $waypoint = true;         $wpName = "Alpha";
-              $event = "alpha".$dir.$type;  break;
-            case "bravo":
-              $waypoint = true;         $wpName = "Bravo";
-              $event = "bravo".$dir.$type;  break;
-            case "charlie":
-              $waypoint = true;         $wpName = "Charlie";
-              $event = "charlie".$dir.$type;  break;
-            case "delta":
-              $waypoint = true;         $wpName = "Delta";
-              $event = "delta".$dir.$type;  break;
-            case "echo":
-              $waypoint = true;         $wpName = "Echo";
-              $event = "echo".$dir.$type;  break;
-            case "foxtrot":
-              $waypoint = true;         $wpName = "Foxtrot";
-              $event = "foxtrot".$dir.$type;  break;
-            case "golf":
-              $waypoint = true;         $wpName = "Golf";
-              $event = "golf".$dir.$type;  break;
-            case "hotel":
-              $waypoint = true;         $wpName = "Hotel";
-              $event = "hotel".$dir.$type;  break;
             default:
               $event = $m;            
           }           
         }
         $this->lastMM = $this->mm;
         $this->mm = $mileMarker;
-        if($this->verifyWaypointEvent($event, $suppressTrigger)) {
-          if($waypoint) {
-            $wsConcat = "liveMarker".$wpName."WasReached";
-            $tsConcat = "liveMarker".$wpName."TS";
-            $this->live->$wsConcat = true;
-            $this->live->$tsConcat = $eventTS;
-           
-            flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Upriver.\033[0m\n\n");
-          } else {
-            flog( "\033[43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");
-          }
-          $this->live->PlotDaemon->AlertsModel->triggerEvent($this->event, $this->live);
+        if($this->isNewEvent($event, $suppressTrigger)) {
+            flog( "\033[43m   ...".$this->live->liveName." at ".$event.".\033[0m\n\n");  
+            $this->live->PlotDaemon->AlertsModel->triggerEvent($this->event, $this->live);
         }
         break;        
       }  
@@ -254,6 +211,78 @@ class Location {
     }
   }
 
+
+
+
+  public function determineWaypoint() {
+    $order = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel"];
+    
+    $uppolys = [
+        "alpha"=>[[-90.18175807981993,41.93844045624406],[-90.10727770274339,41.93882767095748],[-90.1101870716209,41.95419516583935],[-90.18037280493806,41.9581122371572],[-90.18175807981993,41.93844045624406]],
+        "bravo"=>[[-90.17384402924193,41.89723456537121],[-90.16139831396862,41.89740471269587],[-90.15576676739707,41.89351051784009],[-90.15150895061544,41.90301603971255],[-90.16373919373072,41.90338521344362],[-90.16894635958988,41.89940369517984],[-90.17320673261528,41.89797039505211],[-90.17384402924193,41.89723456537121]],
+        "charlie"=>[[-90.1864769246679,41.83594420662106],[-90.16944526162933,41.83608109650705],[-90.16947457995353,41.85004013577833],[-90.18252421835456,41.85025384278654],[-90.1864769246679,41.83594420662106]],
+        "delta"=>[[-90.21429864522167,41.79989690763232],[-90.17539739092251,41.79972232963831],[-90.1836240759211,41.80911418702139],[-90.21418401179969,41.80113158192712],[-90.21429864522167,41.79989690763232]],
+        
+        "echo"=>[[-90.3629940774167,41.57612132335647],[-90.3569378981675,41.5789128376834],[-90.35459710773206,41.58740275625333],[-90.36715827747643,41.58323092264241],[-90.3629940774167,41.57612132335647]],
+        "foxtrot"=>[[-90.40234831475011,41.57399148505885],[-90.40192049550757,41.57352528493669],[-90.40009228575911,41.57424706811361],[-90.39527617109974,41.56831545610599],[-90.38792035230348,41.57137232977288],[-90.39272266858319,41.5757209697276],[-90.39413867412868,41.57805243644815],[-90.39793087734567,41.57595248689903],[-90.40234831475011,41.57399148505885]],
+        "golf"=>[[-90.57119718322605,41.5197727920422],[-90.56957251022988,41.51493838303466],[-90.56162979231036,41.51941134974355],[-90.56211369554093,41.51984963255459],[-90.56609663118097,41.51809415925702],[-90.56796101611982,41.52079186696324],[-90.57119718322605,41.5197727920422]],
+        "hotel"=>[[-90.62941710558779,41.47628754238154],[-90.61969128010372,41.48105768955362],[-90.62519884641524,41.48689561961041],[-90.63545057217139,41.48103548137976],[-90.62941710558779,41.47628754238154]]
+    ];
+
+    $dnpolys = [
+        "alpha"=>[[-90.18023171081028,41.92822620690882],[-90.12922378161221,41.92585784562771],[-90.10794316028831,41.94046140766186],[-90.18141896112733,41.93969472685462],[-90.18023171081028,41.92822620690882]],
+        "bravo"=>[[-90.17384402924193,41.89723456537121],[-90.16139831396862,41.89740471269587],[-90.15576676739707,41.89351051784009],[-90.15150895061544,41.90301603971255],[-90.16373919373072,41.90338521344362],[-90.16894635958988,41.89940369517984],[-90.17320673261528,41.89797039505211],[-90.17384402924193,41.89723456537121]],
+        "charlie"=>[[-90.18670223903518,41.83023340830405],[-90.17114833843958,41.82975357100782],[-90.16905537691486,41.83688562511055],[-90.18689095019816,41.83662425531738],[-90.18670223903518,41.83023340830405]],
+        "delta"=>[[-90.21753349647736,41.79943767319528],[-90.21333792859896,41.79395362167281],[-90.1870558339624,41.80145364281677],[-90.20882580767872,41.80164711748697],[-90.21753349647736,41.79943767319528]],
+        "echo"=>[[-90.37455258751223,41.58171239423995],[-90.37079867884374,41.57455151513277],[-90.36222621928434,41.57654348944093],[-90.36603975144148,41.58335417612248],[-90.37455258751223,41.58171239423995]],
+        "foxtrot"=>[[-90.40662438201728,41.57460526046725],[-90.39956087781775,41.56697139101282],[-90.3949711632937,41.56863748242898],[-90.3997376748238,41.57444884847366],[-90.39749831665003,41.57525119519553],[-90.3978494807305,41.57587256923827],[-90.40662438201728,41.57460526046725]],
+        "golf"=>[[-90.57119718322605,41.5197727920422],[-90.56957251022988,41.51493838303466],[-90.56162979231036,41.51941134974355],[-90.56211369554093,41.51984963255459],[-90.56609663118097,41.51809415925702],[-90.56796101611982,41.52079186696324],[-90.57119718322605,41.5197727920422]],
+        "hotel"=>[[-90.64019441700943,41.47743654658274],[-90.63512116169886,41.47315588085525],[-90.62868674032384,41.47695338950061],[-90.63470038478822,41.48145706440016],[-90.64019441700943,41.47743654658274]]
+    ];
+
+    //Tests if a waypoint was reached seperate from the mile zone check
+    if($this->live->liveDirection=="upriver") {
+       foreach($order as $wpName) {
+            $isInside = $this->isInsidePoly($this->point, $uppolys[$wpName]);
+            if($isInside) {
+                if($this->isNewWaypoint($wpName, false)) {
+                    $wsConcat = "liveMarker".ucfirst($wpName)."WasReached";
+                    $tsConcat = "liveMarker".ucfirst($wpName)."TS";
+                    $this->live->$wsConcat = true;
+                    $this->live->$tsConcat = time();
+                    //Convert to event code and trigger
+                    $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
+                    $event = $wpName."u".$type;
+                    flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Upriver.\033[0m\n\n");
+                    $this->live->PlotDaemon->AlertsModel->triggerEvent($event, $this->live);
+                }
+            }
+       }
+    } else if($this->live->liveDirection=="downriver") {
+        foreach($order as $wpName) {
+            $isInside = $this->isInsidePoly($this->point, $dnpolys[$wpName]);
+            if($isInside) {
+                if($this->isNewWaypoint($wpName, false)) {
+                    $wsConcat = "liveMarker".ucfirst($wpName)."WasReached";
+                    $tsConcat = "liveMarker".ucfirst($wpName)."TS";
+                    $this->live->$wsConcat = true;
+                    $this->live->$tsConcat = time();
+                    //Convert to event code and trigger
+                    $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
+                    $event = $wpName."d".$type;
+                    flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Downriver.\033[0m\n\n");
+                    $this->live->PlotDaemon->AlertsModel->triggerEvent($event, $this->live);
+                }
+            }
+        }
+    }
+   
+  }
+
+
+
+
+
   public function determineRegion() { //Returns "clinton" | "qc" | "outside"   
     $polys = [
       "clinton"=>[[-90.40382479466886,41.64720326378053],[-90.15589018585558,41.63905440118833],[-90.03647726615425,42.14497501389922],
@@ -261,10 +290,10 @@ class Location {
       "qc"=>[[-90.15918561340592,41.63731381803267],[-90.40375392359645,41.64698185704191],[-91.1443998108527,41.41024258877019],[-90.46229684338448,41.39866172374725],[-90.15918561340592,41.63731381803267]]
     ];
     $this->setPoint();
-    if($this->insidePoly($this->point, $polys["clinton"])) {
+    if($this->isInsidePoly($this->point, $polys["clinton"])) {
       flog("        determineRegion() = CLINTON \r\n");
       return "clinton";
-    } else if($this->insidePoly($this->point, $polys["qc"])) {
+    } else if($this->isInsidePoly($this->point, $polys["qc"])) {
       flog("        determineRegion() = QC \r\n");
       return "qc";
     } else {
@@ -282,11 +311,11 @@ class Location {
         "sawmillRight"=>[[-90.16874241651087,41.86806324116959],[-90.17419031585581,41.86905063197391],[-90.17650722879176,41.86370945812324],[-90.17059025504298,41.86313198828161],[-90.16874241651087,41.86806324116959]]
     ];
     $this->setPoint();
-    $isInCamA     = $this->insidePoly($this->point, $polys["clintonWebcamA"]);
-    $isInCamB     = $this->insidePoly($this->point, $polys["clintonWebcamB"]);
-    $isInCamCLeft = $this->insidePoly($this->point, $polys["sawmillLeft"]);
-    $isInCamCCent = $this->insidePoly($this->point, $polys["sawmillCenter"]);
-    $isInCamCRght = $this->insidePoly($this->point, $polys["sawmillRight"]);
+    $isInCamA     = $this->isInsidePoly($this->point, $polys["clintonWebcamA"]);
+    $isInCamB     = $this->isInsidePoly($this->point, $polys["clintonWebcamB"]);
+    $isInCamCLeft = $this->isInsidePoly($this->point, $polys["sawmillLeft"]);
+    $isInCamCCent = $this->isInsidePoly($this->point, $polys["sawmillCenter"]);
+    $isInCamCRght = $this->isInsidePoly($this->point, $polys["sawmillRight"]);
     
     //Show Waypoints when all cams disabled
     if($this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] &&
@@ -362,10 +391,10 @@ class Location {
     return ['name'=> false, 'zoom'=>0];
 
         /* [section replaced by checks for substutute cameras above]
-        if($this->insidePoly($this->point, $polys["clintonWebcamA"])) {
+        if($this->isInsidePoly($this->point, $polys["clintonWebcamA"])) {
         flog("      Location::determineCamera() = clintonWebcamA\n");
         return ['name' => 'A', 'zoom' => 0];
-        } else if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
+        } else if($this->isInsidePoly($this->point, $polys["clintonWebcamB"])) {
             //Substitute camera A if camera B is disabled
             if($this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClbIsDisabled']) {
                 flog("      Location::determineCamera() = clintonWebcamB disabled, using A instead\n");
@@ -373,13 +402,13 @@ class Location {
             }
         flog("      Location::determineCamera() = clintonWebcamB\n");
         return ['name' => 'B', 'zoom' => 0];
-        }  else if($this->insidePoly($this->point, $polys["sawmillCenter"])) {
+        }  else if($this->isInsidePoly($this->point, $polys["sawmillCenter"])) {
         flog("      Location::determineCamera() = sawmillCenter\n");
         return ['name' => 'C', 'zoom' => 2];
-        }  else if($this->insidePoly($this->point, $polys["sawmillLeft"])) {
+        }  else if($this->isInsidePoly($this->point, $polys["sawmillLeft"])) {
         flog("      Location::determineCamera() = sawmillLeft\n");
         return ['name' => 'C', 'zoom' => 1];
-        }  else if($this->insidePoly($this->point, $polys["sawmillRight"])) {
+        }  else if($this->isInsidePoly($this->point, $polys["sawmillRight"])) {
         flog("      Location::determineCamera() = sawmillRight\n");
         return ['name' => 'C', 'zoom' => 3];
         }
@@ -400,7 +429,7 @@ class Location {
       ]
     ];
     $this->setPoint();
-    if($this->insidePoly($this->point, $polys["clintonWebcamB"])) {
+    if($this->isInsidePoly($this->point, $polys["clintonWebcamB"])) {
       $now = time();
       flog(" is inside poly (now: $now - last: {$this->live->lastVideoRecordedTS}) ");
       if($now - $this->live->lastVideoRecordedTS > 300) { //Limit 86400 is once daily [300 is 5 min for testing]
@@ -428,7 +457,7 @@ class Location {
       ]
     ];
     $this->setPoint();
-    if($this->insidePoly($this->point, $polys["clintonWebcams"])) {
+    if($this->isInsidePoly($this->point, $polys["clintonWebcams"])) {
       flog(" -> inside clintonWebcams poly.\n ");
       //Set flag in Admin document
       $this->live->PlotDaemon->VesselsModel->setVideoIsPassing(true);
@@ -457,7 +486,7 @@ class Location {
     return "new";
   }
 
-  public function insidePoly($point, $vs) {
+  public function isInsidePoly($point, $vs) {
       // ray-casting algorithm based on
       // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
   
@@ -476,9 +505,9 @@ class Location {
       return $inside;
   }
 
-  public function verifyWaypointEvent($event, $supressTrigger=false) {
-      flog( "      verifyWaypointEvent()...\n");
-      $status = $this->updateEventStatus($event, $supressTrigger);
+  public function isNewEvent($event, $suppressTrigger=false) {
+      flog( "      isNewEvent()...\n");
+      $status = $this->isAuthenticEvent($event, $suppressTrigger);
       if($status) {
           //Push new event to array and do updates
           $this->lastEvent = $this->event;     
@@ -490,27 +519,65 @@ class Location {
       return $status;           
   }
 
-  public function updateEventStatus($event, $suppressTrigger=false) {
+  public function isNewWaypoint($waypoint, $suppressTrigger=false) {
+    flog( "      isNewWaypoint()...\n");
+    $status = $this->isAuthenticWaypoint($event, $suppressTrigger);
+    if($status) {
+        //Push new waypoint to array and do updates
+        $this->lastWaypoint = $this->waypoint;     
+        $this->waypoint = $waypoint;
+        $this->lastWaypointTS = $this->waypointTS;
+        $this->waypointTS = time();
+        $this->waypoints[$this->waypoint] = $this->waypointTS; 
+    }
+    return $status;           
+}
+
+  public function isAuthenticEvent($event, $suppressTrigger=false) {
       if($suppressTrigger) {
-          flog( "\033[33m        * updateEventStatus() = TRIGGER SUPPRESSED \033[0m\n");
+          flog( "\033[33m        * isAuthenticEvent() = TRIGGER SUPPRESSED \033[0m\n");
           return false;
       }
       if($event == $this->lastEvent) {
-          flog( "\033[33m        * updateEventStatus() = SAME AS LAST EVENT\033[0m\n");
+          flog( "\033[33m        * isAuthenticEvent() = SAME AS LAST EVENT\033[0m\n");
           return false;
       }
       //Is this event in array already?
       if(isset($this->events[$event])) {
-          flog( "\033[33m        * updateEventStatus() = EVENT IN ARRAY ALREADY\033[0m\n");
+          flog( "\033[33m        * isAuthenticEvent() = EVENT IN ARRAY ALREADY\033[0m\n");
           return false;
       }
       //Reject update if one just happened
       if((time() - $this->lastEventTS) < 60) {
-          flog( "\033[33m        * updateEventStatus() = EVENT < 60 OLD \033[0m\n");
+          flog( "\033[33m        * isAuthenticEvent() = EVENT < 60 OLD \033[0m\n");
           return false;
       }
-      flog( "\033[33m        * updateEventStatus() = $event EVENT IS AUTHENTIC\033[0m\n");        
+      flog( "\033[33m        * isAuthenticEvent() = $event EVENT IS AUTHENTIC\033[0m\n");        
       return true;
   }
+
+
+  public function isAuthenticWaypoint($waypoint, $suppressTrigger=false) {
+    if($suppressTrigger) {
+        flog( "\033[33m        * isAuthenticWaypoint() = TRIGGER SUPPRESSED \033[0m\n");
+        return false;
+    }
+    if($waypoint == $this->lastWaypoint) {
+        flog( "\033[33m        * isAuthenticWaypoint() = SAME AS LAST EVENT\033[0m\n");
+        return false;
+    }
+    //Is this waypoint in array already?
+    if(isset($this->waypoints[$waypoint])) {
+        flog( "\033[33m        * isAuthenticWaypoint() = EVENT IN ARRAY ALREADY\033[0m\n");
+        return false;
+    }
+    //Reject update if one just happened
+    if((time() - $this->lastWaypointTS) < 60) {
+        flog( "\033[33m        * isAuthenticWaypoint() = EVENT < 60 OLD \033[0m\n");
+        return false;
+    }
+    flog( "\033[33m        * isAuthenticWaypoint() = $waypoint EVENT IS AUTHENTIC\033[0m\n");        
+    return true;
+}
     
 }

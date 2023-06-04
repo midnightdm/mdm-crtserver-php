@@ -169,7 +169,7 @@ class LiveScan {
       $this->PlotDaemon->VesselsModel->updateVesselLastDetectedTS($this->liveVesselID, time());
       
 
-      if($this->liveLocation->verifyWaypointEvent($event)) {
+      if($this->liveLocation->isNewEvent($event)) {
         //trigger an alert
         $this->triggerQueued = false;
         $this->triggerActivated = true;

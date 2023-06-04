@@ -28,6 +28,7 @@ class Location {
     $this->live = $livescan; //PlotDaemon
     $this->mm   = "new";
     $this->event = "new";
+    $this->waypoint = "new";
     $this->events = [];
     $this->waypoints = [];
     
@@ -523,10 +524,13 @@ class Location {
     flog( "      isNewWaypoint()...\n");
     $status = $this->isAuthenticWaypoint($waypoint, $suppressTrigger);
     if($status) {
+        //Push decription array to location->description
+        $zoneName = "m".$waypoint;
+        $this->description = ZONE::$$zoneName;
         //Push new waypoint to array and do updates
         $this->lastWaypoint = $this->waypoint;     
         $this->waypoint = $waypoint;
-        $this->lastWaypointTS = $this->waypointTS;
+        //$this->lastWaypointTS = $this->waypointTS;
         $this->waypointTS = time();
         $this->waypoints[$this->waypoint] = $this->waypointTS; 
     }

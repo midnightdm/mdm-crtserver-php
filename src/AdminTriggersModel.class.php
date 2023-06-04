@@ -56,7 +56,7 @@ class AdminTriggersModel extends Firestore {
         return ['state' => true, 
                 'ts' => $this->adminData['encoderEnabledTS'], 
                 'vesselID'=> $this->adminData['encoderEnablerID'],
-                'vesselDir'=> $this->adminData['encoderEnablerVesselDir']
+                'vesselDir'=> $this->adminData['encoderEnablerDir']
               ];
       }
       return ['state'=> false, 'ts' => null];

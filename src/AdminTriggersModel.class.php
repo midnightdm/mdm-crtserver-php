@@ -55,8 +55,8 @@ class AdminTriggersModel extends Firestore {
       if($this->adminData['encoderEnabled']==true) {
         return ['state' => true, 
                 'ts' => $this->adminData['encoderEnabledTS'], 
-                'vesselID'=> $this->adminData['encoderEnablerID'],
-                'vesselDir'=> $this->adminData['encoderEnablerDir']
+                'vesselID'=> $this->adminData['encoderEnablerVesselID'],
+                'vesselDir'=> $this->adminData['encoderEnablerVesselDir']
               ];
       }
       return ['state'=> false, 'ts' => null];
@@ -84,8 +84,8 @@ class AdminTriggersModel extends Firestore {
     $this->db->collection('Passages')
     ->document('Admin')
     ->set(['encoderStart'=>true, 
-           'encoderEnablerID' => $liveObj->liveVesselID,
-           'encoderEnablerDir'=> $liveObj->liveDirection
+           'encoderEnablerVesselID' => $liveObj->liveVesselID,
+           'encoderEnablerVesselDir'=> $liveObj->liveDirection
           ],['merge'=>true]);
   }
 

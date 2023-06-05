@@ -625,12 +625,13 @@ class PlotDaemon {
   }
 
   protected function checkLivescanForWatchedVessels() {
-    flog("      * checkLivescanForWatchedVessels()");
+    flog("      * checkLivescanForWatchedVessels()\n");
     if(!count($this->liveScan)) {
       flog(" = NONE\n");
       return;
     }
     foreach($this->liveScan as $key => $liveObj) {
+      flog("     * liveObj->determineEncoderStartConditions()\n");
       $liveObj->determineEncoderStartConditions();
     }
   }

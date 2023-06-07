@@ -43,6 +43,8 @@ class AlertsModel extends Firestore {
       }  
   }
 
+
+
   public function setAlertsAll($data, $region='clinton') {
     switch($region) {
       case "clinton": $collection = "Alertpublish"; break;
@@ -474,6 +476,16 @@ class AlertsModel extends Firestore {
     //Also update collective alert list queue (a or p type)...
     
     $len = count($this->daemon->$arrName);
+/* This is source of an error when len == 0 the array key becomes -1.   We need to rebuild the array from previous single alerts 
+*/
+   if($len<20) {
+    //If alerts array is incomplete, rebuild it from db.
+    $this->daemon->$arrName = $this->rebuildPublishedAlerts($type , $collection, $arrName);
+   }
+
+
+
+    
     flog("Last $arrName obj in $len sized array before queue update:". var_dump($this->daemon->$arrName[$len-1])."\n");
     $this->daemon->$arrName = objectQueue($this->daemon->$arrName, $data, 20);
     $len = count($this->daemon->$arrName);
@@ -485,6 +497,24 @@ class AlertsModel extends Firestore {
     $this->generateRss($type, $region);
     return true;
   }
+
+
+
+  public function rebuildPublishedAlerts($type,  $collection, $arrName) {
+    $arr = array();
+    //Reads most recent published alerts and returns 20 of type all
+    flog("  REBUILDING $arrayName array from $collection\n ");
+    $docRef = $this->db->collection($collection);
+    $query = $docRef->where('apubType', '=', $type)->orderBy('apubTS', 'decending')->limit(20);
+    $documents = $query->documents();
+    foreach($documents as $document) {
+        if($document->exists()) {
+            $arr.push($document->data());
+        }
+    }
+    return $arr;
+  }
+
 
 
   public function announcePassengerProgress($event, $liveScan) {

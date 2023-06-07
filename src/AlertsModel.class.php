@@ -465,7 +465,8 @@ class AlertsModel extends Firestore {
         $collection = "AlertpublishQC"; 
         $arrName = $type=='p' ? 'alertsPassengerQC':'alertsAllQC'; 
         break;                     
-      case "clinton": 
+      case "clinton":
+      default:   
         $collection = "Alertpublish";
         $arrName = $type=='p' ? 'alertsPassenger' : 'alertsAll';
         break;

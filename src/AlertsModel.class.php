@@ -506,11 +506,11 @@ class AlertsModel extends Firestore {
     //Reads most recent published alerts and returns 20 of type all
     flog("  REBUILDING $arrName array from $collection for type $type\n ");
     $docRef = $this->db->collection($collection);
-    $query = $docRef->where('apubType', '=', $type)->orderBy('apubTS', 'DESC')->limit(20);
+    $query = $docRef->where('apubType', '==', $type)->orderBy('apubTS', 'DESC')->limit(20);
     $documents = $query->documents();
     foreach($documents as $document) {
         if($document->exists()) {
-            $arr.push($document->data());
+            $arr[] = $document->data();
         }
     }
     return $arr;

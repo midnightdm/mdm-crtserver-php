@@ -215,7 +215,7 @@ class Location {
 
 
 
-  public function determineWaypoint() {
+  public function determineWaypoint($suppressTrigger) {
     $order = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel"];
     
     $uppolys = [
@@ -254,8 +254,11 @@ class Location {
                     //Convert to event code and trigger
                     $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
                     $event = $wpName."u".$type;
-                    flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Upriver.\033[0m\n\n");
-                    $this->live->PlotDaemon->AlertsModel->triggerEvent($event, $this->live);
+                    //Test that event is new to avoid duplicates
+                    if($this->isNewEvent($event, $suppressTrigger)) {
+                        flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Upriver.\033[0m\n\n");
+                        $this->live->PlotDaemon->AlertsModel->triggerEvent($event, $this->live);
+                    }
                 }
             }
        }
@@ -271,8 +274,11 @@ class Location {
                     //Convert to event code and trigger
                     $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
                     $event = $wpName."d".$type;
-                    flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Downriver.\033[0m\n\n");
-                    $this->live->PlotDaemon->AlertsModel->triggerEvent($event, $this->live);
+                    //Test that event is new to avoid duplicates
+                    if($this->isNewEvent($event, $suppressTrigger)) {
+                        flog("\33[42m      ...$wpName waypoint was reached by ".$this->live->liveName." traveling Upriver.\033[0m\n\n");
+                        $this->live->PlotDaemon->AlertsModel->triggerEvent($event, $this->live);
+                    }
                 }
             }
         }

@@ -484,10 +484,6 @@ class AlertsModel extends Firestore {
     $this->daemon->$arrName = $this->rebuildPublishedAlerts($type , $collection, $arrName);
    }
 
-
-
-    
-    flog("Last $arrName obj in $len sized array before queue update:". var_dump($this->daemon->$arrName[$len-1])."\n");
     $this->daemon->$arrName = objectQueue($this->daemon->$arrName, $data, 20);
     $len = count($this->daemon->$arrName);
     flog("Last $arrName obj in $len sized array after queue update:". var_dump($this->daemon->$arrName[$len-1])."\n");
@@ -513,6 +509,8 @@ class AlertsModel extends Firestore {
             $arr[] = $document->data();
         }
     }
+    //$docType = $type=='a' ? 'all' : 'passenger';
+    //$this->db->collection($collection)->document($docType)->set($arr);
     return $arr;
   }
 

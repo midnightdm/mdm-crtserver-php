@@ -39,7 +39,7 @@ class Location {
   }
 
   public function calculate($suppressTrigger=false) {
-    flog( "      Location::calculate()\n");
+    flog( "      Location::calculate(".$this->live->liveName.")\n");
     //Define points of polygons represenating geographic zones
 
 
@@ -298,13 +298,13 @@ class Location {
     ];
     $this->setPoint();
     if($this->isInsidePoly($this->point, $polys["clinton"])) {
-      flog("        determineRegion() = CLINTON \r\n");
+      flog("        determineRegion(".$this->live->liveName.") = CLINTON \r\n");
       return "clinton";
     } else if($this->isInsidePoly($this->point, $polys["qc"])) {
-      flog("        determineRegion() = QC \r\n");
+      flog("        determineRegion(".$this->live->liveName.") = QC \r\n");
       return "qc";
     } else {
-      flog("        determineRegion() = \33[42m NOT IN REGION \033[0m\r\n");
+      flog("        determineRegion(".$this->live->liveName.") = \33[42m NOT IN REGION \033[0m\r\n");
       return "outside";
     }
   }
@@ -453,7 +453,7 @@ class Location {
   }
 
   public function determineIfPassingCamera() { //Returns nothing
-    flog("      Location::determineIfPassingCamera() ");
+    flog("      Location::determineIfPassingCamera(".$this->live->liveName.") ");
     $polys = [
       "clintonWebcams"=>[
         [-90.201650, 41.801466],

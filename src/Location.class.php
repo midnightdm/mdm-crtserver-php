@@ -513,7 +513,7 @@ class Location {
   }
 
   public function isNewEvent($event, $suppressTrigger=false) {
-      flog( "      isNewEvent()...\n");
+      //flog( "      isNewEvent()...\n");
       $status = $this->isAuthenticEvent($event, $suppressTrigger);
       if($status) {
           //Push new event to array and do updates
@@ -527,7 +527,7 @@ class Location {
   }
 
   public function isNewWaypoint($waypoint, $suppressTrigger=false) {
-    flog( "      isNewWaypoint()...\n");
+    //flog( "      isNewWaypoint()...\n");
     $status = $this->isAuthenticWaypoint($waypoint, $suppressTrigger);
     if($status) {
         //Push decription array to location->description

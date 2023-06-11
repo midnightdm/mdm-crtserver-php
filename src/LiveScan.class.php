@@ -393,6 +393,7 @@ class LiveScan {
 
 
   public function determineEncoderStartConditions() {
+    flog("         - determineEncoderStartConditions(".$this->liveName.")");
     //Has determination score reached the deactivation threshold with encoder enabled?
     if($this->PlotDaemon->encoderIsEnabled&& $this->PlotDaemon->encoderEnabledScore < 1) {
       //Yes, then send deactivation command to the database
@@ -410,6 +411,7 @@ class LiveScan {
     }//No, then test other conditions
     //Is this vessel on the target list? 
     if(!in_array(strval($this->liveVesselID), $this->PlotDaemon->encoderWatchList, true)) {
+        flog(" = FALSE\n");
       return; //No, done
     } //Yes, continue
     //Is vessel in watch area (based on travel direction)?

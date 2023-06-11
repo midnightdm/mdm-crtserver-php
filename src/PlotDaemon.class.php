@@ -640,7 +640,6 @@ class PlotDaemon {
       return;
     }
     foreach($this->liveScan as $key => $liveObj) {
-      flog("         - liveObj->determineEncoderStartConditions(".$liveObj->liveName.")\n");
       $liveObj->determineEncoderStartConditions();
     }
   }

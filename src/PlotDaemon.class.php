@@ -334,7 +334,7 @@ class PlotDaemon {
   public function updateLiveScanLength() {
     //Skip in AIS Test Mode
     if($this->aisTestMode) {
-        flog("updateLiveScanLength() skipped for aisTestMode")
+        flog("updateLiveScanLength() skipped for aisTestMode");
         return;
     }
     /* Updated 8/27/22 to test region and push quantity of vessels in each */

@@ -288,7 +288,7 @@ class PlotDaemon {
             unset($this->liveScan[$key]);
             $this->updateLiveScanLength();
         } else {
-          flog(" Not Deleted\n");
+          flog(" Not Deleted");
         }
         //1-A) No, record is fresh, so keep in live.
         flog("\n");
@@ -640,7 +640,7 @@ class PlotDaemon {
       return;
     }
     foreach($this->liveScan as $key => $liveObj) {
-      flog("     * liveObj->determineEncoderStartConditions()\n");
+      flog("         - liveObj->determineEncoderStartConditions(".$liveObj->liveName.")\n");
       $liveObj->determineEncoderStartConditions();
     }
   }

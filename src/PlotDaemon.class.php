@@ -179,7 +179,7 @@ class PlotDaemon {
       //*                                                                     *
       
       //Do some communication, this loop can handle multiple clients
-      if($this->encoderEnabled) {
+      if($this->encoderIsEnabled) {
         flog("--- \033[1;31mStream ENABLED\033[0m -----------------------------------------------\n"); 
       } else {
         flog("------------------------------------------------------------------\n");
@@ -407,7 +407,7 @@ class PlotDaemon {
   }
 
   public function enableEncoder() {
-    if($this->encoderEnabled) {
+    if($this->encoderIsEnabled) {
         flog("\n          plotDaemon::enableEncoder() -> already enabled\n");
         return;
     }
@@ -452,7 +452,7 @@ class PlotDaemon {
   }
 
   public function disableEncoder() {
-    if(!$this->encoderEnabled) {
+    if(!$this->encoderIsEnabled) {
       //flog("\n          plotDaemon::disableEncoder() -> disabled already\n");
       return false;
     }
@@ -615,7 +615,7 @@ class PlotDaemon {
       $wasJustDisabled = $this->disableEncoder();
     }
      //Show screen reminder if live encoder is enabled.
-    if($this->encoderEnabled) {
+    if($this->encoderIsEnabled) {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes');

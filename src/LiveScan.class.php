@@ -394,7 +394,7 @@ class LiveScan {
 
   public function determineEncoderStartConditions() {
     //Has determination score reached the deactivation threshold with encoder enabled?
-    if($this->PlotDaemon->encoderEnabled && $this->PlotDaemon->encoderEnabledScore < 1) {
+    if($this->PlotDaemon->encoderIsEnabled&& $this->PlotDaemon->encoderEnabledScore < 1) {
       //Yes, then send deactivation command to the database
       $this->PlotDaemon->AdminTriggersModel->resetEncoderStart();
       flog("\n        resetEncoderStart()");
@@ -402,7 +402,7 @@ class LiveScan {
     }
     //Has live stream exceeded timeout value?
     $now = time();
-    if($this->PlotDaemon->encoderEnabled && $now - $this->PlotDaemon->encoderEnabledTS > $this->PlotDaemon->encoderTimeoutValue) {
+    if($this->PlotDaemon->encoderIsEnabled&& $now - $this->PlotDaemon->encoderEnabledTS > $this->PlotDaemon->encoderTimeoutValue) {
       //Yes, then decrease determination score. 
       $this->PlotDaemon->encoderEnabledScore--;
       flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);

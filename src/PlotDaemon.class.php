@@ -29,7 +29,7 @@ class PlotDaemon {
   public $rowsNow;
   public $rowsBefore;
   protected $run;
-  public $encoderEnabled = false;
+  public $encoderIsEnabled= false;
   public $encoderEnabledTS = null;
   public $encoderEnabledScore = 0;
   public $encoderEnablerVesselID = null;
@@ -238,7 +238,7 @@ class PlotDaemon {
         //Test age of transponder update [changed from move update 3/3/22].  
         $deleteIt = false;       
         flog( "      * Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
-        if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record is older than timeout value?
+        if(($now - $this->liveScanTimeout) > $obj->transponderTS) { //1-Q) Is record older than timeout value?
           /*1-A) Yes, then 
             *     2-Q) Is it near the edge of receiving range?
             *         (Seperate check for upriver & downriver vessels removed 6/13/21) */
@@ -282,12 +282,11 @@ class PlotDaemon {
                 //Table delete was sucessful, remove object from array
                 $key = 'mmsi'.$obj->liveVesselID;
                 flog("\n          Db delete was sucessful. Now deleting object with key $key from liveScan array.");
-                $this->updateLiveScanLength();
             } else {
                 error_log("\n        Error deleting LiveScan " . $obj->liveVesselID);
             }
             unset($this->liveScan[$key]);
-
+            $this->updateLiveScanLength();
         } else {
           flog(" Not Deleted\n");
         }
@@ -333,6 +332,11 @@ class PlotDaemon {
   }
 
   public function updateLiveScanLength() {
+    //Skip in AIS Test Mode
+    if($this->aisTestMode) {
+        flog("updateLiveScanLength() skipped for aisTestMode")
+        return;
+    }
     /* Updated 8/27/22 to test region and push quantity of vessels in each */
      $c = 0;  $q = 0;
      foreach($this->liveScan as $obj) {
@@ -379,6 +383,10 @@ class PlotDaemon {
       }
       $this->lastPassagesSave = $now;
       flog( "\n      Finished saving ".$scans." live vessels to passages.\n");
+      //Test for unset live scans
+      if($scans > count($this->liveScan)) {
+        $this->updateLiveScanLength();
+      }
     }
   }
 
@@ -399,20 +407,21 @@ class PlotDaemon {
   }
 
   public function enableEncoder() {
-    //Check for reload
+    if($this->encoderEnabled) {
+        flog("\n          plotDaemon::enableEncoder() -> already enabled\n");
+        return;
+    }
+    //Check for reload 
     $test = $this->AdminTriggersModel->testForEncoderEnabled();
     if($test['state']) {
-      $this->encoderEnabled = true;
+      $this->encoderIsEnabled= true;
       $this->encoderEnabledTS = new DateTime();
       $this->encoderEnabledTS->setTimestamp($test['ts']);
       $this->encoderEnablerVesselID  = $test['vesselID'];
       $this->encoderEnablerVesselDir = $test['vesselDir'];
       $this->encoderEnabledScore = 5;
     }
-    if($this->encoderEnabled) {
-      flog("\n          plotDaemon::enableEncoder() -> already enabled\n");
-      return;
-    }
+
     flog("\n          plotDaemon::enableEncoder() -> starting\n");   
 
     //Set Video options
@@ -431,7 +440,7 @@ class PlotDaemon {
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
     $screen4 = grab_protected($reboot, $this->encoderUsr, $this->encoderPwd);
     if(str_contains($screen1, "succeed") && str_contains($screen2, "succeed") && str_contains($screen3, "succeed") && str_contains($screen4, "succeed")) {
-      $this->encoderEnabled = true;
+      $this->encoderIsEnabled= true;
       $this->encoderEnabledTS = new DateTime();
       $this->AdminTriggersModel->setEncoderEnabledTrue();
       flog("          Encoder enable success!\n");
@@ -465,7 +474,7 @@ class PlotDaemon {
       flog( "\033[41m *  *  *                Live Stream Encoder DISABLED\033[0m\033[41m                  *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  Final Stream Duration was $formated $padding  *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
-      $this->encoderEnabled = false;
+      $this->encoderIsEnabled= false;
       $this->encoderEnabledTS = null;
       $this->encoderEnabledScore = 0;
       $this->AdminTriggersModel->resetEncoderEnabled();

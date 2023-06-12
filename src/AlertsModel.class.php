@@ -89,7 +89,7 @@ class AlertsModel extends Firestore {
   }
 
   public function checkForUserNotificationTestRequest() {
-    flog("      * checkForUserNotificationTestRequest()");
+    flog("      * checkForUserNotificationTestRequest() ");
     $ref = $this->db->collection('user_devices');
     $query = $ref->where("alertTestRequest", "==", true);  
     $documents = $query->documents();

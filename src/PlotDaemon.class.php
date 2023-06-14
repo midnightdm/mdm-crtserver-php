@@ -180,7 +180,7 @@ class PlotDaemon {
       //*                                                                     *
       
       //Do some communication, this loop can handle multiple clients
-      if($this->encoderIsEnabled) {
+      if($this->encoderIsEnabled || $this->encoderIsManualEnabled) {
         flog("--- \033[1;31mStream ENABLED\033[0m -----------------------------------------------\n"); 
       } else {
         flog("------------------------------------------------------------------\n");

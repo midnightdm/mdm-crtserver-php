@@ -403,7 +403,7 @@ class LiveScan {
     }
     //Has live stream exceeded timeout value?
     $now = time();
-    if($this->PlotDaemon->encoderIsEnabled&& $now - $this->PlotDaemon->encoderEnabledTS > $this->PlotDaemon->encoderTimeoutValue) {
+    if($this->PlotDaemon->encoderIsEnabled && $now - $this->PlotDaemon->encoderEnabledTS > $this->PlotDaemon->encoderTimeoutValue) {
       //Yes, then decrease determination score. 
       $this->PlotDaemon->encoderEnabledScore--;
       flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
@@ -427,7 +427,7 @@ class LiveScan {
     }
     if(!$isInWatchArea) { 
       //No, then we're done, but demerit if encoder is on.
-      if($this->PlotDaemon->encoderEnabled) {
+      if($this->PlotDaemon->encoderIsEnabled) {
         $this->PlotDaemon->encoderEnabledScore--;
         flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
       }

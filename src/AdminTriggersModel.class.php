@@ -52,7 +52,7 @@ class AdminTriggersModel extends Firestore {
 
   public function testForEncoderEnabled() {
     if($this->getAdminDocument()) {
-      if($this->adminData['encoderEnabled']==true) {
+      if($this->adminData['encoderIsEnabled']==true) {
         return ['state' => true, 
                 'ts' => $this->adminData['encoderEnabledTS'], 
                 'vesselID'=> $this->adminData['encoderEnablerVesselID'],
@@ -77,7 +77,7 @@ class AdminTriggersModel extends Firestore {
   public function resetEncoderEnabled() {
     $this->db->collection('Passages')
     ->document('Admin')
-    ->set(['encoderEnabled'=> false, 'encoderStart'=>false],['merge'=>true]);
+    ->set(['encoderIsEnabled'=> false, 'encoderStart'=>false],['merge'=>true]);
   }
   
   public function setEncoderStart($liveObj) {
@@ -99,7 +99,7 @@ class AdminTriggersModel extends Firestore {
     $now = time();
     $this->db->collection('Passages')
     ->document('Admin')
-    ->set(['encoderEnabled'   => true,
+    ->set(['encoderIsEnabled'   => true,
            'encoderEnabledTS' => $now, 
           ],['merge'=>true]);
   }

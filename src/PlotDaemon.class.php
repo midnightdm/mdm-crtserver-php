@@ -29,7 +29,8 @@ class PlotDaemon {
   public $rowsNow;
   public $rowsBefore;
   protected $run;
-  public $encoderIsEnabled= false;
+  public $encoderIsEnabled = false;
+  public $encoderIsManualEnabled = false;
   public $encoderEnabledTS = null;
   public $encoderEnabledScore = 0;
   public $encoderEnablerVesselID = null;
@@ -316,8 +317,9 @@ class PlotDaemon {
       $this->checkDbForDaemonReset();
       //Test whether to turn on enableEncoder flag in db
       $this->checkLivescanForWatchedVessels();
-      //Check database for enableEncoder flag
+      //Check database for enableEncoder flags
       $this->checkDbForEncoderStart();
+      $this->checkDbForEncoderManualStart();
     }
   }
 
@@ -412,7 +414,7 @@ class PlotDaemon {
         return;
     }
     //Check for reload 
-    $test = $this->AdminTriggersModel->testForEncoderEnabled();
+    $test = $this->AdminTriggersModel->testForEncoderIsEnabled();
     if($test['state']) {
       $this->encoderIsEnabled= true;
       $this->encoderEnabledTS = new DateTime();
@@ -445,11 +447,60 @@ class PlotDaemon {
       $this->AdminTriggersModel->setEncoderEnabledTrue();
       flog("          Encoder enable success!\n");
     } else {
-      flog ("          Encoder enable failure: $screen1, $screen2, $screen3, $screen4 \n");
+        flog ("          Encoder enable failure: ".$screen1.", ". $screen2.", ". $screen3.", ".$screen4." \n");
     }
     //Send twitter notification of active live stream
     //$this->Twitter->postStreamAnnouncement($this->encoderEnablerVesselID, $this->encoderEnablerVesselDir);
   }
+
+
+  public function enableEncoderManually() {
+    if($this->encoderIsManualEnabled) {
+        flog("\n          plotDaemon::enableEncoderManually() -> already enabled\n");
+        return;
+    }
+    //Check for reload 
+    $test = $this->AdminTriggersModel->testForEncoderIsManualEnabled();
+    if($test['state']) {
+      $this->encoderIsManualEnabled= true;
+      $this->encoderEnabledTS = new DateTime();
+      $this->encoderEnabledTS->setTimestamp($test['ts']);
+      $this->encoderEnablerVesselID  = $test['vesselID'];
+      $this->encoderEnablerVesselDir = $test['vesselDir'];
+      $this->encoderEnabledScore = 5;
+    }
+
+    flog("\n          plotDaemon::enableEncoderManually() -> starting\n");   
+
+    //Set Video options
+    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
+    $screen1 = grab_protected($video, $this->encoderUsr, $this->encoderPwd);
+    
+    //Set Audio options
+    $audio = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=audio&media_grp=1&audio_interface=0&audio_enctype=100&audio_bitrate=128000";
+    $screen2 = grab_protected($audio, $this->encoderUsr, $this->encoderPwd);
+    
+    //Update server with RTMP enabled
+    $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
+    $screen3 = grab_protected($rtmp, $this->encoderUsr, $this->encoderPwd);
+    
+    //Reboot server to activate
+    $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
+    $screen4 = grab_protected($reboot, $this->encoderUsr, $this->encoderPwd);
+    if(str_contains($screen1, "succeed") && str_contains($screen2, "succeed") && str_contains($screen3, "succeed") && str_contains($screen4, "succeed")) {
+      $this->encoderIsManualEnabled= true;
+      $this->encoderEnabledTS = new DateTime();
+      $this->AdminTriggersModel->setEncoderManualEnabledTrue();
+      flog("          Manual Encoder enable success!\n");
+    } else {
+      flog ("          Manual Encoder enable failure: ".$screen1.", ". $screen2.", ". $screen3.", ".$screen4." \n");
+    }
+    //Send twitter notification of active live stream
+    //$this->Twitter->postStreamAnnouncement($this->encoderEnablerVesselID, $this->encoderEnablerVesselDir);
+  }
+
+
+
 
   public function disableEncoder() {
     if(!$this->encoderIsEnabled) {
@@ -477,10 +528,44 @@ class PlotDaemon {
       $this->encoderIsEnabled= false;
       $this->encoderEnabledTS = null;
       $this->encoderEnabledScore = 0;
-      $this->AdminTriggersModel->resetEncoderEnabled();
+      $this->AdminTriggersModel->resetEncoderIsEnabled();
       return true;
     } else {
       flog("\033[41m plotDaemon::disableEncoder() function was run, but it did not receive a \"succeed\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
+      return false;
+    }
+  }
+
+  public function disableEncoderManually() {
+    if(!$this->encoderIsManualEnabled) {
+      //flog("\n          plotDaemon::disableEncoder() -> disabled already\n");
+      return false;
+    }
+    flog("\n          plotDaemon::disableEncoderManually() -> disabling now\n");
+    //Disable server url
+    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&rtmp_sle=0";
+    $result1 = grab_protected($disable, $this->encoderUsr, $this->encoderPwd);
+    //sleep(1);
+    //Reboot server to activate
+    $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
+    $result2 = grab_protected($reboot, $this->encoderUsr, $this->encoderPwd);
+    if(str_contains($result1, "succeed") && str_contains($result2, "succeed")) {
+      $ts = new DateTime();
+      $duration = $ts->diff($this->encoderEnabledTS);
+      $formated = $duration->format('%h hours, %i minutes, %s seconds');
+      $flength  = strlen($formated); //compensate spacing 
+      $padding  = $flength==31 ? "": " ";
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *                Live Stream Encoder DISABLED\033[0m\033[41m                  *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *  Final Stream Duration was $formated $padding  *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
+      $this->encoderIsManualEnabled= false;
+      $this->encoderEnabledTS = null;
+      $this->encoderEnabledScore = 0;
+      $this->AdminTriggersModel->resetEncoderIsManualEnabled();
+      return true;
+    } else {
+      flog("\033[41m plotDaemon::disableEncoderManually() function was run, but it did not receive a \"succeed\" response confirming that encoder was turned off.  The encoder's response for disable command was\n\t: $result1\n\t on reboot: $result2\033[0m\n\n");
       return false;
     }
   }
@@ -616,6 +701,32 @@ class PlotDaemon {
     }
      //Show screen reminder if live encoder is enabled.
     if($this->encoderIsEnabled) {
+      $ts = new DateTime();
+      $duration = $ts->diff($this->encoderEnabledTS);
+      $formated = $duration->format('%h hours, %i minutes');
+      $flength  = strlen($formated); //compensate spacing 
+      $padding  = $flength==19 ? "": " ";
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *            YouTube Live Stream Encoder is \033[5mENABLED\033[0m\033[41m            *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *             Stream Duration = $formated $padding           *  *  *\033[0m\r\n");
+      flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
+    } else {
+      if($wasJustDisabled) {
+        return; //Skips msg below when disableEncoder gives its own msg
+      }
+      flog("  = DISABLED\n");
+    }
+  }
+
+  protected function checkDbForEncoderManualStart() {
+    flog("      * checkDbForEncoderManualStart()  ");
+    if($this->AdminTriggersModel->testForEncoderkManualStart()) {
+      $this->enableEncoderManually();
+    } else {
+      $wasJustDisabled = $this->disableEncoderManually();
+    }
+     //Show screen reminder if live encoder is enabled.
+    if($this->encoderIsManualEnabled) {
       $ts = new DateTime();
       $duration = $ts->diff($this->encoderEnabledTS);
       $formated = $duration->format('%h hours, %i minutes');

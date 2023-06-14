@@ -395,7 +395,7 @@ class LiveScan {
   public function determineEncoderStartConditions() {
     flog("         - determineEncoderStartConditions(".$this->liveName.")");
     //Has determination score reached the deactivation threshold with encoder enabled?
-    if($this->PlotDaemon->encoderIsEnabled&& $this->PlotDaemon->encoderEnabledScore < 1) {
+    if($this->PlotDaemon->encoderIsEnabled && $this->PlotDaemon->encoderEnabledScore < 1) {
       //Yes, then send deactivation command to the database
       $this->PlotDaemon->AdminTriggersModel->resetEncoderStart();
       flog("\n        resetEncoderStart()");
@@ -434,14 +434,16 @@ class LiveScan {
     } //Yes, continue
     //Has the determination score reached activation threshold?
     if($this->PlotDaemon->encoderEnabledScore > 2) {
-      //Yes, then send activation command to the database
+      //Yes, then send encoder start command to the database
       $this->PlotDaemon->AdminTriggersModel->setEncoderStart($this);
       flog("\n        running setEncoderStart()");
       return;
-    } //No, then increase determination score. Maybe activation next round.
+    }//No, then increase determination score. Maybe activation next round.
     $this->PlotDaemon->encoderEnabledScore++;
     flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
   }
+
+
 
   public function determineDirection() {
     //When monitored river section runs north/south (N Hemisphere)

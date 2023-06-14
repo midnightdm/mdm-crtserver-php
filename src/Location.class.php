@@ -208,7 +208,11 @@ class Location {
     }
     if($inside==false) {
       $this->description = ["undetermined location", "at an as yet undetermined Location."];
-      flog( "   ...search for ".$this->live->liveName." ended at $m \r\n");
+      flog( "   ...search for ".$this->live->liveName." ended at ".$m." \r\n");
+    }
+    if(count($this->description)==0) {
+        $this->description = ["location ?", "at an undetected Location."];
+      flog( "   ".$this->live->liveName." recorded mile ".$m." but description was missing.\r\n");
     }
   }
 

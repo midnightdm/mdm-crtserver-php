@@ -720,7 +720,7 @@ class PlotDaemon {
 
   protected function checkDbForEncoderManualStart() {
     flog("      * checkDbForEncoderManualStart()  ");
-    if($this->AdminTriggersModel->testForEncoderkManualStart()) {
+    if($this->AdminTriggersModel->testForEncoderManualStart()) {
       $this->enableEncoderManually();
     } else {
       $wasJustDisabled = $this->disableEncoderManually();

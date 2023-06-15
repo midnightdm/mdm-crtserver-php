@@ -692,7 +692,7 @@ class PlotDaemon {
     }
   }
 
-  protected function checkDbForEncoderStart() {
+  public function checkDbForEncoderStart() {
     flog("      * checkDbForEncoderStart()  ");
     if($this->AdminTriggersModel->testForEncoderStart()) {
       $this->enableEncoder();
@@ -718,7 +718,7 @@ class PlotDaemon {
     }
   }
 
-  protected function checkDbForEncoderManualStart() {
+  public function checkDbForEncoderManualStart() {
     flog("      * checkDbForEncoderManualStart()  ");
     if($this->AdminTriggersModel->testForEncoderManualStart()) {
       $this->enableEncoderManually();

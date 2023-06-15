@@ -392,7 +392,7 @@ class LiveScan {
   }
 
 
-  public function determineEncoderStartConditions() {
+  public function determineEncoderStartConditions_old() {
     flog("         - determineEncoderStartConditions(".$this->liveName.")");
     //Has determination score reached the deactivation threshold with encoder enabled?
     if($this->PlotDaemon->encoderIsEnabled && $this->PlotDaemon->encoderEnabledScore < 1) {
@@ -444,6 +444,79 @@ class LiveScan {
   }
 
 
+  public function determineEncoderStartConditions() {
+    flog("         - determineEncoderStartConditions(".$this->liveName.")");
+    //If on 
+    if($this->PlotDaemon->encoderIsEnabled) {
+    //      and done,
+        if($this->PlotDaemon->encoderEnabledScore < 1) {
+    //                then turn off.
+            $this->PlotDaemon->AdminTriggersModel->resetEncoderStart(); //sets encoderStart = false in db
+            flog("\n        resetEncoderStart()\n");
+            return;
+    //If on and NOT done,
+        } else {
+    //                    then if watched vessel
+            if($this->vesselIsOnWatchList() ) {
+    //                                            is not still ready,            
+                if(!$this->vesselIsInWatchArea()) {
+    //                                                                then lower its score.
+                    $this->PlotDaemon->encoderEnabledScore--;
+                    flog(" = TRUE\n");
+                    flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore."\n");
+                }
+    //                     and not a watched vessel, 
+            } else {
+    //                                               then do nothing.
+                    flog(" = FALSE\n");
+            }
+        } 
+    //If off
+    } else if($this->PlotDaemon->encoderIsEnabled==false) {
+    //        and ready
+        if($this->vesselIsOnWatchList() && $this->vesselIsInWatchArea()) {
+    //                  and verified,
+            if($this->PlotDaemon->encoderEnabledScore > 2) {
+    //                                then turn on.
+                $this->PlotDaemon->AdminTriggersModel->setEncoderStart($this); //sets encoderStart = true in db
+    //                  but not verified
+            } else {
+    //                                    then raise score.
+                $this->PlotDaemon->encoderEnabledScore++;
+                flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
+            }
+    //If off and not ready, then do nothing.
+        } else {
+            flog(" = FALSE\n");
+            return;
+        }
+    }
+  }
+
+
+  public function vesselIsOnWatchList() { //bool
+    return in_array(strval($this->liveVesselID), $this->PlotDaemon->encoderWatchList, true);
+  }
+
+  public function vesselIsInWatchArea() { //bool 
+    //Check for missing location data
+    if(!$this->liveLocation instanceof Location || !isset($this->liveLocation->mm)) {
+        error_log("vesselIsInWatchArea() couldn't find location data for ".$this->liveName);
+        return false;
+    }
+     //Is vessel in watch area (based on travel direction)?
+     $isInWatchArea = false;
+     if($this->liveDirection=="upriver") {
+       if(in_array($this->liveLocation->mm, $this->PlotDaemon->encoderUpriverWatch)) {
+         $isInWatchArea = true;
+       } 
+     } else if($this->liveDirection == "downriver") {
+       if(in_array($this->liveLocation->mm, $this->PlotDaemon->encoderDnriverWatch)) {
+         $isInWatchArea = true;
+       }
+     }
+     return $isInWatchArea;
+  }
 
   public function determineDirection() {
     //When monitored river section runs north/south (N Hemisphere)

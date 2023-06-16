@@ -699,7 +699,6 @@ class PlotDaemon {
         flog(" = TRUE\n");
         $this->enableEncoder();
     } else {
-        flog(" = FALSE\n");
         $wasJustDisabled = $this->disableEncoder();
     }
      //Show screen reminder if live encoder is enabled.

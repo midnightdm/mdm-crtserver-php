@@ -305,8 +305,9 @@ class PlotDaemon {
   public function adminCommands() {
     //Runs on same timing as removeOldScans(), but only that function resets the timer.
     $now = time(); 
-    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout-10) {
-      flog("    PlotDaemon::adminCommands()...\n");
+    if(($now-$this->lastCleanUp) > $this->cleanUpTimeout) {
+        flog("now: $now, lastCleanup: {$this->lastCleanup}, cleanUpTimeout: {$this->cleanUpTimeout}\n");
+        flog("    PlotDaemon::adminCommands()...\n");
       //Check DB for new vessel ID to scrape
       $this->checkDbForInputVessels();
       //Check DB for admin command to test Alert trigger
@@ -525,7 +526,7 @@ class PlotDaemon {
       flog( "\033[41m *  *  *                Live Stream Encoder DISABLED\033[0m\033[41m                  *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  Final Stream Duration was $formated $padding  *  *  *\033[0m\r\n");
       flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *\033[0m\r\n");
-      $this->encoderIsEnabled= false;
+      $this->encoderIsEnabled = false;
       $this->encoderEnabledTS = null;
       $this->encoderEnabledScore = 0;
       $this->AdminTriggersModel->resetEncoderIsEnabled();
@@ -695,9 +696,11 @@ class PlotDaemon {
   public function checkDbForEncoderStart() {
     flog("      * checkDbForEncoderStart()  ");
     if($this->AdminTriggersModel->testForEncoderStart()) {
-      $this->enableEncoder();
+        flog(" = TRUE\n");
+        $this->enableEncoder();
     } else {
-      $wasJustDisabled = $this->disableEncoder();
+        flog(" = FALSE\n");
+        $wasJustDisabled = $this->disableEncoder();
     }
      //Show screen reminder if live encoder is enabled.
     if($this->encoderIsEnabled) {

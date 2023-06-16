@@ -408,7 +408,7 @@ class AlertsModel extends Firestore {
 
 
   public function publishAlertMessage($event, $liveScan) {
-    flog("AlertsModel::publishAlertMessage(".$event.",".$liveScan->liveName.") ");
+    flog("AlertsModel::publishAlertMessage(".$event.", ".$liveScan->liveName.") \n");
     //This function gets run by Event trigger methods of this class 
     $ts = time();
     if(!isset($liveScan->liveRegion)) {
@@ -486,7 +486,7 @@ class AlertsModel extends Firestore {
 
     $this->daemon->$arrName = objectQueue($this->daemon->$arrName, $data, 20);
     $len = count($this->daemon->$arrName);
-    flog("Last $arrName obj in $len sized array after queue update:". var_dump($this->daemon->$arrName[$len-1])."\n");
+    flog("Last $arrName obj in $len sized array after queue update. Region is $region\n");
     //...and save as db document
     $sref = $type=='p' ? 'setAlertsPassenger' : 'setAlertsAll';
     $this->$sref($this->daemon->$arrName, $region);

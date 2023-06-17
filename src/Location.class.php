@@ -170,19 +170,19 @@ class Location {
           $dir = "u";   $um  = $m;
         } else {
           $dir = "d";
-          //Offset ($m + 1) disabled 10/4/22 to test   
-          $um = is_int($m) ? ($m) : $m; //Shows polygon entry at upper mile line for downriver movement
+          //Offset ($m + 1) restored 08/11/23   
+          $um = is_int($m) ? ($m+1) : $m; //Shows polygon entry at upper mile line for downriver movement
         }
-        $mileMarker = "m".$m;
+        $mileMarker = "m".$um;
         //desciption is an array containing [0] short text for status and [1] longer text for speech conversion
         $this->description = ZONE::$$mileMarker;
         $eventTS = time();
         $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
-        if(is_int($m)) { //Numbered mile marker zones
-          $event = "m".$m.$dir.$type;          
+        if(is_int($um)) { //Numbered mile marker zones
+          $event = "m".$um.$dir.$type;          
         } else {         //Named zones          
           //Concatanate event
-          switch($m) {
+          switch($um) {
             case "beaver": 
               $event = "beaver".$dir."a";  break;
             case "camanche":
@@ -194,7 +194,7 @@ class Location {
             case "joyce_slough_clinton": 
               $event = "joyce_slough_clinton"; break;  
             default:
-              $event = $m;            
+              $event = $um;            
           }           
         }
         $this->lastMM = $this->mm;

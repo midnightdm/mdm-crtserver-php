@@ -295,10 +295,10 @@ class LiveScan {
       $solution =  $ts - $this->PlotDaemon->lastCameraSwitch > 29;
       //flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->PlotDaemon->lastCameraSwitch.")> 29 ?".$solution."\n"); 
       if(($cameraIsA || $cameraIsB || $cameraIsC) ) {
-        flog("calculateLocation() found {$this->liveName} in camera {$camera['name']} range.\n");
+        flog("          calculateLocation() found {$this->liveName} in camera {$camera['name']} range.\n");
         $this->inCameraRange = true;
         if($solution) { //When last cam switch 30+ sec ago
-          flog("calculateLocation() switching to camera {$camera['name']}, zoom {$camera['zoom']} now.\n");
+          flog("          calculateLocation() switching to camera {$camera['name']}, zoom {$camera['zoom']} now.\n");
           $this->PlotDaemon->AlertsModel->setClCamera($camera);
           $this->PlotDaemon->lastCameraSwitch = $ts;
         }

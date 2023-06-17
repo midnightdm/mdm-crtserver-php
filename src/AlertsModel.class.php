@@ -134,6 +134,15 @@ class AlertsModel extends Firestore {
   }   
 
   public function triggerEvent($event, $liveObj) {
+      //Error check for bad region data
+      if(!isset($liveObj->liveRegion)) {
+        $liveObj->liveRegion = $liveObj->liveLocation->determineRegion();
+      }
+      if($liveObj->liveRegion=="outside") {
+        error_log("Triggered event $event for {$liveObj->liveName} has 'outside' region label.");
+        return;
+      }
+      
       //Error check for valid event code
       $codes = array("alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "detecta", "detectp","albany", "camanche", "beaverua", "beaverda", 
       "echoda", "echoua", "echodp", "echoup", "foxtrotda", "foxtrotua", "foxtrotup", "foxtrotua", "golfda", "golfua", "golfdp", "golfup", "hotelda", "hotelua","hoteldp","hotelup", "m500ua", "m500up", "m500da", "m500dp",
@@ -153,9 +162,6 @@ class AlertsModel extends Firestore {
       }    
       //If not otherwise published, but is passenger vessel push a voice annoucement
       else if(str_ends_with($event, 'p')) {
-        if(!isset($liveObj->liveRegion) || $liveObj->liveRegion=="outside") {
-          return false;
-        }
         flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") PASSENGER VESSEL PROGRESS ACCOUNCEMENT\033[0m\r\n");
         $this->announcePassengerProgress($event, $liveObj);
       }

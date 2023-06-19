@@ -82,8 +82,14 @@ class Facebook {
     } catch(Facebook\Exceptions\FacebookSDKException $e) {
         flog("Facebook SDK error: ".$e->getMessage());
     }
-    $graphNode = $response->getGraphNode();
-    flog("Facebook AP Photo ID: ". $graphNode['id']);
+    if($response) {
+        $graphNode = $response->getGraphNode();
+        flog("Facebook AP Photo ID: ". $graphNode['id']);
+    } else {
+        flog("Face API, no resonse.\n");
+    }
+    
+    
     
   }
 

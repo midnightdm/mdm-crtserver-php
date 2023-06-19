@@ -13,7 +13,8 @@ class Facebook {
   protected $fbPageID;
   protected $fbSecret;
   protected $fbGraphVersion;
-  protected $fbToken;
+  protected $fbDefaultToken;
+  protected $fbPageToken;
   protected $fbSlidesFilePath;
     
 
@@ -23,13 +24,14 @@ class Facebook {
     $this->fbPageID         = $config['fbPageID'];
     $this->fbSecret         = $config['fbSecret'];
     $this->fbGraphVersion   = $config['fbGraphVersion'];
-    $this->fbToken          = $config['fbToken']; 
+    $this->fbDefaultToken   = $config['fbDefaultToken'];
+    $this->fbPageToken      = $config['fbPageToken']; 
     $this->fbSlidesFilePath = $config['fbSlidesFilePath'];   // "c:\\app\\twitter\\clinton\\"
     $this->connection = new \Facebook\Facebook([
-        'app_id' => $this->fbPageID,
+        'app_id' => $this->fbAppID,
         'app_secret' => $this->fbSecret,
         'default_graph_version' => $this->fbGraphVersion,
-        'default_access_token' => $this->fbToken
+        'default_access_token' => $this->fbDefaultToken
     ]);
        
     flog("Facebook::__construct() \n"); 
@@ -75,7 +77,7 @@ class Facebook {
     ];
     try {
         //Returns a Facebook\FacebookResponse object
-        $response = $this->connection->post('/me/photos', $data, $this->fbToken);
+        $response = $this->connection->post('/me/photos', $data, $this->fbPageToken);
 
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         flog("Facebook response error: ".$e->getMessage()."\n");

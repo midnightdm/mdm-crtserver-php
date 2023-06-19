@@ -69,7 +69,7 @@ class Facebook {
     if($vesselID == "368261120" && $vesselDirection == "upriver")   { $png = $p."slide-08.png"; } //Viking Mississippi
     if($vesselID == "368261120" && $vesselDirection == "downriver") { $png = $p."slide-09.png"; }
     
-    $media1 = [
+    $data = [
         'message' => "This is an API test, please ignore...",
         'source' => $this->connection->fileToUpload($png)
     ];

@@ -78,11 +78,11 @@ class Facebook {
         $response = $this->connection->post('/me/photos', $data, $this->fbToken);
 
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
-        flog("Facebook resonse error: ".$e->getMessage());
+        flog("Facebook response error: ".$e->getMessage()."\n");
     } catch(Facebook\Exceptions\FacebookSDKException $e) {
-        flog("Facebook SDK error: ".$e->getMessage());
+        flog("Facebook SDK error: ".$e->getMessage()."\n");
     }
-    if($response) {
+    if(isset($response)) {
         $graphNode = $response->getGraphNode();
         flog("Facebook AP Photo ID: ". $graphNode['id']);
     } else {

@@ -26,7 +26,7 @@ class Facebook {
     $this->fbToken          = $config['fbToken']; 
     $this->fbSlidesFilePath = $config['fbSlidesFilePath'];   // "c:\\app\\twitter\\clinton\\"
     $this->connection = new \Facebook\Facebook([
-        'app_id' => $this->fbAppID,
+        'app_id' => $this->fbPageID,
         'app_secret' => $this->fbSecret,
         'default_graph_version' => $this->fbGraphVersion,
         'default_access_token' => $this->fbToken
@@ -84,9 +84,9 @@ class Facebook {
     }
     if(isset($response)) {
         $graphNode = $response->getGraphNode();
-        flog("Facebook AP Photo ID: ". $graphNode['id']);
+        flog("Facebook API Photo ID: ". $graphNode['id']);
     } else {
-        flog("Face API, no resonse.\n");
+        flog("Facebook API, no resonse.\n");
     }
     
     

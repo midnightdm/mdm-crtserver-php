@@ -51,6 +51,7 @@ class PlotDaemon {
   public $alertsPassengerQC;
   public $AlertsModel;
   public $PassagesModel;
+  public $Facebook;
   public $liveScanTimeout;
   public $cleanUpTimeout;
   public $savePassagesTimeout;
@@ -74,6 +75,7 @@ class PlotDaemon {
     $this->AlertsModel         = new AlertsModel($this);
     $this->PassagesModel       = new PassagesModel();
     //$this->Twitter             = new Twitter();
+    //$this->Facebook            = new Facebook($this->config);
     $this->lastCleanUp         = $now-50; //Used to increment cleanup routine
     $this->lastCameraSwitch    = $now-50; //Prevents rapid camera switching if 2 vessels near
     $this->lastJsonSave        = $now-10; //Used to increment liveScan.json save

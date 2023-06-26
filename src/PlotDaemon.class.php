@@ -430,15 +430,15 @@ class PlotDaemon {
     flog("\n          plotDaemon::enableEncoder() -> starting\n");   
 
     //Set Video options
-    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=2&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
+    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
     $screen1 = grab_protected($video, $this->encoderUsr, $this->encoderPwd);
     
     //Set Audio options
-    $audio = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=audio&media_grp=2&audio_interface=0&audio_enctype=100&audio_bitrate=128000";
+    $audio = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=audio&media_grp=1&audio_interface=0&audio_enctype=100&audio_bitrate=128000";
     $screen2 = grab_protected($audio, $this->encoderUsr, $this->encoderPwd);
     
     //Update server with RTMP enabled
-    $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=2&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
+    $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
     $screen3 = grab_protected($rtmp, $this->encoderUsr, $this->encoderPwd);
     
     //Reboot server to activate
@@ -476,16 +476,18 @@ class PlotDaemon {
     flog("\n          plotDaemon::enableEncoderManually() -> starting\n");   
 
     //Set Video options
-    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=2&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
+    $video = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=video&media_grp=1&media_chn=0&video_enc=96&profile=1&rc_mod=0&fps=30&gop=30&cbr_bit=2048&fluctuate=0&des_width=1920&des_height=1080";
     $screen1 = grab_protected($video, $this->encoderUsr, $this->encoderPwd);
     
     //Set Audio options
-    $audio = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=audio&media_grp=2&audio_interface=0&audio_enctype=100&audio_bitrate=128000";
+    $audio = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=audio&media_grp=1&audio_interface=0&audio_enctype=100&audio_bitrate=128000";
     $screen2 = grab_protected($audio, $this->encoderUsr, $this->encoderPwd);
+    sleep(1);
     
     //Update server with RTMP enabled
-    $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=2&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
+    $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
     $screen3 = grab_protected($rtmp, $this->encoderUsr, $this->encoderPwd);
+    sleep(2);
     
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
@@ -512,7 +514,7 @@ class PlotDaemon {
     }
     flog("\n          plotDaemon::disableEncoder() -> disabling now\n");
     //Disable server url
-    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=2&media_chn=0&rtmp_sle=0";
+    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&rtmp_sle=0";
     $result1 = grab_protected($disable, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
     //Reboot server to activate
@@ -546,7 +548,7 @@ class PlotDaemon {
     }
     flog("\n          plotDaemon::disableEncoderManually() -> disabling now\n");
     //Disable server url
-    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=2&media_chn=0&rtmp_sle=0";
+    $disable = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&rtmp_sle=0";
     $result1 = grab_protected($disable, $this->encoderUsr, $this->encoderPwd);
     //sleep(1);
     //Reboot server to activate

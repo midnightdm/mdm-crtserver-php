@@ -440,7 +440,7 @@ class PlotDaemon {
     //Update server with RTMP enabled
     $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
     $screen3 = grab_protected($rtmp, $this->encoderUsr, $this->encoderPwd);
-    sleep(2);
+    sleep(3);
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";
     $screen4 = grab_protected($reboot, $this->encoderUsr, $this->encoderPwd);
@@ -487,7 +487,7 @@ class PlotDaemon {
     //Update server with RTMP enabled
     $rtmp = "http://".$this->encoderUrl."/cgi-bin/set_codec.cgi?type=serv&media_grp=1&media_chn=0&http_sle=0&rstp_sle=0&mul_sle=0&hls_sle=0&rtmp_sle=1&rtmp_ip=".$this->streamUrl."&rtmp_port=1935&rtmp_path=".$this->streamPath."&rtmp_node=".$this->streamKey."&onvif_sle=0";
     $screen3 = grab_protected($rtmp, $this->encoderUsr, $this->encoderPwd);
-    sleep(2);
+    sleep(3);
     
     //Reboot server to activate
     $reboot = "http://".$this->encoderUrl."/cgi-bin/set_sys.cgi?type=reboot";

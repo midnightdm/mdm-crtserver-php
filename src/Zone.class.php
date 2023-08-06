@@ -91,6 +91,47 @@ class ZONE {
     public static $m538 = ["at marker 538 3 miles above Sabula drawbridge","at marker 538, 3 miles above the Sabula drawbridge"];
     public static $m539 = ["at marker 539 4 miles above Sabula drawbridge","at marker 539, 4 miles above the Sabula drawbridge"];
     public static $m540 = ["at marker 540 5 miles above Sabula drawbridge","at marker 540, 5 miles above the Sabula drawbridge"];
+    public static $m541 = ["",""];
+    public static $m542 = ["",""];
+    public static $m543 = ["",""];
+    public static $m544 = ["",""];
+    public static $m545 = ["",""];
+    public static $m546 = ["",""];
+    public static $m547 = ["",""];
+    public static $m548 = ["",""];
+    public static $m549 = ["",""];
+    public static $m550 = ["",""];
+    public static $m551 = ["",""];
+    public static $m552 = ["",""];
+    public static $m553 = ["",""];
+    public static $m554 = ["",""];
+    public static $m555 = ["",""];
+    public static $m556 = ["",""];
+    public static $m557 = ["",""];
+    public static $m558 = ["",""];
+    public static $m559 = ["",""];
+
+    public static $m560 = ["",""];
+    public static $m561 = ["",""];
+    public static $m562 = ["",""];
+    public static $m563 = ["",""];
+    public static $m564 = ["",""];
+    public static $m565 = ["",""];
+    public static $m566 = ["",""];
+    public static $m567 = ["",""];
+    public static $m568 = ["",""];
+    public static $m569 = ["",""];
+
+    public static $m570 = ["",""];
+    public static $m571 = ["",""];
+    public static $m572 = ["",""];
+    public static $m573 = ["",""];
+    public static $m574 = ["",""];
+    public static $m575 = ["",""];
+    public static $m576 = ["",""];
+    public static $m577 = ["",""];
+    public static $m578 = ["",""];
+    
     public static $malpha = ["3 miles N of Lock 13", "3 miles north of Lock 13"];
     public static $mbravo = ["at Lock 13, Fulton", "at Lock 13 by Fulton, Illinois"];
     public static $mcharlie = ["at RR drawbridge, Clinton", "at Clinton's railroad drawbridge"];

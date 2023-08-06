@@ -359,7 +359,8 @@ class Location {
         "clintonWebcamB"=>[[-90.18665777418799,41.80172331446524],[-90.18241924324515,41.80447550087962],[-90.18382325251146,41.80785938852225],[-90.19848702798852,41.80279497988711],[-90.19566956157554,41.79887548569596],[-90.18665777418799,41.80172331446524]],
         "sawmillCenter"=>[[-90.1669740996215,41.87264028722591],[-90.17329738191796,41.8732111879936],[-90.17419440469216,41.86903267384908],[-90.16874637550174,41.86810264395464],[-90.1669740996215,41.87264028722591]],
         "sawmillLeft"=>[[-90.16501264098754,41.87894741988096],[-90.17251063427827,41.87884147250501],[-90.17346424255584,41.87325543214909],[-90.16695583176345,41.87265837618259],[-90.16501264098754,41.87894741988096]],
-        "sawmillRight"=>[[-90.16874241651087,41.86806324116959],[-90.17419031585581,41.86905063197391],[-90.17650722879176,41.86370945812324],[-90.17059025504298,41.86313198828161],[-90.16874241651087,41.86806324116959]]
+        "sawmillRight"=>[[-90.16874241651087,41.86806324116959],[-90.17419031585581,41.86905063197391],[-90.17650722879176,41.86370945812324],[-90.17059025504298,41.86313198828161],[-90.16874241651087,41.86806324116959]],
+        "clintonWebcamD"=>[[-90.18457852931127,41.84040938998683],[-90.18629171882891,41.83629778523537],[-90.18647893106738,41.82967383405006],[-90.17852863785301,41.82819846679814],[-90.18043377301612,41.84005278002021],[-90.18457852931127,41.84040938998683]]
     ];
     $this->setPoint();
     $isInCamA     = $this->isInsidePoly($this->point, $polys["clintonWebcamA"]);
@@ -367,6 +368,7 @@ class Location {
     $isInCamCLeft = $this->isInsidePoly($this->point, $polys["sawmillLeft"]);
     $isInCamCCent = $this->isInsidePoly($this->point, $polys["sawmillCenter"]);
     $isInCamCRght = $this->isInsidePoly($this->point, $polys["sawmillRight"]);
+    $isInCamD     = $this->isInsidePoly($this->point, $polys["clintonWebcamD"]);
     
     //Show Waypoints when all cams disabled
     if($this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] &&
@@ -437,6 +439,23 @@ class Location {
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamC disabled, using A instead\n");    
             return ['name' => 'A', 'zoom' => 0];  
+        }
+    }
+
+    if($isInCamD) {
+        if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamCldIsDisabled']){
+            flog("      Location::determineCamera() = clintonWebcamD\n");
+            return ['name' => 'D', 'zoom' => 0];
+        } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
+            flog("      Location::determineCamera() = clintonWebcamD disabled, using A instead\n");    
+            return ['name' => 'A', 'zoom' => 0];  
+        }else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClbIsDisabled'] ) {
+            flog("      Location::determineCamera() = clintonWebcamD disabled, using B instead\n");    
+            return ['name' => 'B', 'zoom' => 0];  
+        }  
+        else {
+            flog("      Location::determineCamera() = Webcams D, A & B disabled, using sawmill right\n");
+            return ['name' => 'C', 'zoom' => 3];
         }
     }
     return ['name'=> false, 'zoom'=>0];

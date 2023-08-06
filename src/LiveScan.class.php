@@ -43,6 +43,12 @@ class LiveScan {
   public $liveMarkerHotelTS = null;
 
   public $inCameraRange = FALSE;
+  public $isInCameraRange = [
+    "A"=> FALSE,
+    "B"=> FALSE,
+    "C"=> FALSE,
+    "D"=> FALSE
+  ];
   public $isReloaded;
   public $triggerQueued;
   public $triggerActivated;
@@ -292,11 +298,18 @@ class LiveScan {
       $cameraIsA = $camera['name']==="A";
       $cameraIsB = $camera['name']==="B";
       $cameraIsC = $camera['name']==="C";
+      $cameraIsD = $camera['name']==="D";
       $solution =  $ts - $this->PlotDaemon->lastCameraSwitch > 29;
       //flog("camera==A? $cameraIsA camera==B? $cameraIsB, ts($ts) - lastCameraSwitch(".$this->PlotDaemon->lastCameraSwitch.")> 29 ?".$solution."\n"); 
-      if(($cameraIsA || $cameraIsB || $cameraIsC) ) {
+      if(($cameraIsA || $cameraIsB || $cameraIsC || $cameraIsD) ) {
         flog("          calculateLocation() found {$this->liveName} in camera {$camera['name']} range.\n");
         $this->inCameraRange = true;
+        //Set all false before setting active one as true
+        $this->isInCameraRange['A'] = false;
+        $this->isInCameraRange['B'] = false;
+        $this->isInCameraRange['C'] = false;
+        $this->isInCameraRange['D'] = false;
+        $this->isInCameraRange[$camera['name']] = true;
         if($solution) { //When last cam switch 30+ sec ago
           flog("          calculateLocation() switching to camera {$camera['name']}, zoom {$camera['zoom']} now.\n");
           $this->PlotDaemon->AlertsModel->setClCamera($camera);
@@ -304,6 +317,10 @@ class LiveScan {
         }
       } else {
         $this->inCameraRange = false;
+        $this->isInCameraRange['A'] = false;
+        $this->isInCameraRange['B'] = false;
+        $this->isInCameraRange['C'] = false;
+        $this->isInCameraRange['D'] = false;
       }
       //Test if vessel in video capture target area
       $this->liveLocation->determineIfPassingCamera();
@@ -330,6 +347,7 @@ class LiveScan {
     $data['liveLastLon'] = $this->liveLastLon;
     $data['liveDirection'] = $this->liveDirection;
     $data['inCameraRange'] = $this->inCameraRange;
+    $data['isInCameraRange'] = $this->isInCameraRange;
     if($this->liveLocation instanceof Location) {
       $data['liveLocation'] = ucfirst($this->liveLocation->description[0]);
       $data['liveEvent']  = $this->liveLocation->event;

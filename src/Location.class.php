@@ -219,6 +219,8 @@ class Location {
         $this->description = ZONE::$$mileMarker;
         $eventTS = time();
         $type  = strpos($this->live->liveVessel->vesselType, "assenger") ? "p" : "a";
+        //Make type=p if on vessel watch list (even if non-passenger)
+        $type = $this->live->liveVessel->vesselWatchOn==true ? 'p' : $type;
         if(is_int($um)) { //Numbered mile marker zones
           $event = "m".$um.$dir.$type;          
         } else {         //Named zones          

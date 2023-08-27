@@ -368,6 +368,7 @@ class LiveScan {
     $data['liveRegion'] = $this->liveRegion;
     $data['imageUrl']   = $this->liveVessel->vesselImageUrl;
     $data['type']       = $this->liveVessel->vesselType;
+    $data['vesselWatchOn'] = $this->liveVessel->vesselWatchOn;
     
     //Clinton Waypoints
     $data['liveMarkerAlphaWasReached'] = $this->liveMarkerAlphaWasReached;

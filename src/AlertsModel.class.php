@@ -169,9 +169,9 @@ class AlertsModel extends Firestore {
           flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") WAYPOINT PUBLISHED\033[0m\r\n");
         }
       }    
-      //If not otherwise published, but is passenger vessel push a voice annoucement
-      else if(str_ends_with($event, 'p')) {
-        flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") PASSENGER VESSEL PROGRESS ACCOUNCEMENT\033[0m\r\n");
+      //If not otherwise published, but is on watch list push a voice annoucement
+      else if($liveObj->liveVessel->vesselWatchOn) {
+        flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") WATCHED VESSEL PROGRESS ACCOUNCEMENT\033[0m\r\n");
         $this->announcePassengerProgress($event, $liveObj);
       }
 
@@ -538,6 +538,7 @@ class AlertsModel extends Firestore {
     $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
     $vpubID = $this->getVpubID($region) + 1; //Method in parent
     $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
+    $type = $liveScan->liveVessel->vesselWatchOn ? "p": $type;
     if($type=='a') {
       trigger_error("Non passenger vessel sent to AlertsModel::announcePassengerProgress() function.");
     }

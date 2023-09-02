@@ -3,3 +3,4 @@ mdm-*.json
 php_errors.log
 *-workspace
 php_errors.log
+/node_modules

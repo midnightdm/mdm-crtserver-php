@@ -162,6 +162,28 @@ class AdminTriggersModel extends Firestore {
   }
 
 
+  public function setWebcams($cameraNames) {
+    $this->db->collection('Passages')
+    ->document('Admin')
+    ->set([
+        'webcamClinton'   => $cameraNames['clinton'],
+        'webcamClintoncf' => $cameraNames['clintoncf'],
+        'webcamQc'        => $cameraNames['qc']
+    ],['merge'=>true]);
+  }
+
+  public function getWebcams() {
+    if($this->getAdminDocument()) {
+        $cameraNames = [
+            'clinton'  =>$this->adminData['webcamClinton'],
+            'clintoncf'=>$this->adminData['webcamClintoncf'],
+            'qc'       =>$this->adminData['webcamQc']
+        ];
+        return $cameraNames;
+        
+    }
+  }
+
   public function setClCamsAreDisabled() {
     $this->db->collection('Passages')
     ->document('Admin')

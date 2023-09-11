@@ -50,6 +50,7 @@ class LiveScan {
     "D"=> FALSE,
     "E"=> FALSE
   ];
+  public $liveCamera   = ["name"=>false, "zoom"=>0]; //Valid cameras: 'CabinDR', 'CabinUR', 'HistoricalSoc', 'SawmillLeft','SawmillCenter','SawmillRight', 'PortByron'
   public $isReloaded;
   public $triggerQueued;
   public $triggerActivated;
@@ -226,6 +227,8 @@ class LiveScan {
     $data['liveSegment'] = $this->liveSegment;
     $data['liveVesselID'] = $this->liveVesselID;
     $data['liveName'] = $this->liveName;
+    $data['liveCamera'] = $this->liveCamera;
+    $data['inCameraRange'] = $this->inCameraRange;
     //$data['liveLength'] = $this->liveLength;
     //$data['liveWidth'] = $this->liveWidth;
     //$data['liveDraft'] = $this->liveDraft;
@@ -242,6 +245,85 @@ class LiveScan {
   }
 
   public function update($ts, $name, $id, $lat, $lon, $speed, $course, $isTestMode=false) {
+    //Function run by run() in crtDaemon.class.php
+    //Is this first update after init?
+    if($this->liveLastLat == null) {
+      //Yes. Then update TS.
+      $this->setTimestamp($ts, 'liveLastTS');      
+    } else {
+      //Does the transponder report movement?
+      if(intval(rtrim($this->liveSpeed, "kts"))>0) {
+        //Yes. Has position changed?
+        if($this->liveLastLat != $lat || $this->liveLastLon != $lon) {
+          //Yes. Then update TS.
+          $this->setTimestamp($ts, 'liveLastTS');
+          //And test if detect event can be triggered [DISABLED 6/2/22, not working ]
+          //$this->checkDetectEventTrigger();           
+        } //No. Then do nothing keeping last TS.
+      }
+    }
+    //liveLastTS changes only on movement, this changes on each transponder data receipt     
+    $this->setTimestamp($ts, 'transponderTS');
+    $this->livePrevLat = $this->liveLastLat==null ? $this->liveInitLat : $this->liveLastLat;
+    $this->livePrevLon = $this->liveLastLon==null ? $this->liveInitLon : $this->liveLastLon;
+    //Store new latitude value if valid
+    if($this->validateLatitude($lat)) {
+      $this->liveLastLat = $lat;
+      $latWasUpdated = true;
+    //Otherwise use latitude from previous update that was good
+    } else {
+      $this->liveLastLat = $this->livePrevLat;
+      $latWasUpdated = false;
+    }
+    
+    //Store new longitude if valid (& lat wasn't rejected)
+    if($this->validateLongitude($lon) && $latWasUpdated) {
+      $this->liveLastLon = $lon;
+    //Otherwise use longitude from previous update that was good.
+    } else {
+      $this->liveLastLon = $this->livePrevLon;
+    }
+    
+    $this->liveSpeed   = $speed;
+    $this->liveCourse  = $course;
+    
+    $this->liveName    = $name;
+    $this->determineDirection();
+    if($this->liveName=="" || str_contains($this->liveName, "@@") || (is_null($this->liveVessel) && $this->lookUpCount < 5)) {
+      $this->lookUpVessel();
+    }
+    $this->calculateLocation();
+    //$this->checkMarkerPassage(); Retired 7/10/22 after duties passed to calculateLocation()
+    if($this->liveLocation != null) {
+      $this->liveRegion  = $this->liveLocation->determineRegion(); //Added 7/10/22
+      $this->liveSegment = $this->liveLocation->determineSegment();//Added 8/21/22
+      $this->liveCamera = $this->liveLocation->determineCamera();           //Added 9/24/22
+      //Do somethings with camera data
+     
+      if($this->liveCamera["name"]) {
+        flog("          calculateLocation() found {$this->liveName} in camera {$camera['name']} range.\n");
+        $this->inCameraRange = true;
+      } else {
+        $this->inCameraRange = false;
+      }
+      //Test if vessel in video capture target area
+      $this->liveLocation->determineIfPassingCamera();
+    }
+    //Skip DB access in test mode
+    if($isTestMode) {
+        flog("update() skipping DB\n");
+        return;
+    }
+    //And remove reload flag if set.
+    if($this->isReloaded) {
+      $this->insertNewRecord(); //Adds reload as new db record 
+      $this->isReloaded = false;
+    }
+    $this->savePassageIfComplete();
+    $this->updateRecord();
+  }
+
+  public function update_old($ts, $name, $id, $lat, $lon, $speed, $course, $isTestMode=false) {
     //Function run by run() in crtDaemon.class.php
     //Is this first update after init?
     if($this->liveLastLat == null) {
@@ -353,6 +435,7 @@ class LiveScan {
     $data['liveDirection'] = $this->liveDirection;
     $data['inCameraRange'] = $this->inCameraRange;
     $data['isInCameraRange'] = $this->isInCameraRange;
+    $data['liveCamera'] = $this->liveCamera;
     if($this->liveLocation instanceof Location) {
       $data['liveLocation'] = ucfirst($this->liveLocation->description[0]);
       $data['liveEvent']  = $this->liveLocation->event;

@@ -771,7 +771,7 @@ class LiveScan {
       //Save if at least 4 markers passed
       $score = 0;
       if($this->liveMarkerEchoWasReached){   $score++; }
-      if($this->liveMarkerFoxtrotReached){   $score++; } 
+      if($this->liveMarkerFoxtrotWasReached){   $score++; } 
       if($this->liveMarkerGolfWasReached){   $score++; }
       if($this->liveMarkerHotelWasReached){  $score++; }
         

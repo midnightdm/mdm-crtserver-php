@@ -278,12 +278,12 @@ class PlotDaemon {
             }
         }
         $count = count($vesselsInCamera);
-
+        $bothDifferent = false;
         //When multiple cameras have vessels in view
         if($count>1) {
             $bothClinton = ($vesselsInCamera[0]->liveRegion=="clinton" && $vesselsInCamera[1]->liveRegion=="clinton") ? true:false;
             $bothQc      = ($vesselsInCamera[0]->liveRegion=="qc" && $vesselsInCamera[1]->liveRegion=="qc") ? true:false;
-            $bothDifferent = false;
+            
             //Evaluate switch for each location
             if($bothClinton) {
                 if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {

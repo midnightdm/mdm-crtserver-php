@@ -269,112 +269,111 @@ class PlotDaemon {
             }
         }
 
-        if(($now-$this->lastCameraSwitch) > $this->cameraTimeout) {
-            //Count vessels in view of a camera
-            $vesselsInCamera = [];
-            foreach($this->liveScan as $key => $liveObj) {
-                if($liveObj->inCameraRange) {
-                    $vesselsInCamera[] = $liveObj;
-                }
+       
+        //Count vessels in view of a camera
+        $vesselsInCamera = [];
+        foreach($this->liveScan as $key => $liveObj) {
+            if($liveObj->inCameraRange) {
+                $vesselsInCamera[] = $liveObj;
             }
-            $count = count($vesselsInCamera);
+        }
+        $count = count($vesselsInCamera);
 
-            //When multiple cameras have vessels in view
-            if($count>1) {
-                $bothClinton = ($vesselsInCamera[0]->liveRegion=="clinton" && $vesselsInCamera[1]->liveRegion=="clinton") ? true:false;
-                $bothQc      = ($vesselsInCamera[0]->liveRegion=="qc" && $vesselsInCamera[1]->liveRegion=="qc") ? true:false;
-                $bothDifferent = false;
-                //Evaluate switch for each location
-                if($bothClinton) {
-                    if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
+        //When multiple cameras have vessels in view
+        if($count>1) {
+            $bothClinton = ($vesselsInCamera[0]->liveRegion=="clinton" && $vesselsInCamera[1]->liveRegion=="clinton") ? true:false;
+            $bothQc      = ($vesselsInCamera[0]->liveRegion=="qc" && $vesselsInCamera[1]->liveRegion=="qc") ? true:false;
+            $bothDifferent = false;
+            //Evaluate switch for each location
+            if($bothClinton) {
+                if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
+                    //Use opposite of one used last
+                    if($vesselsInCamera[0]->liveCamera["name"]==$this->lastCameraName["clinton"]) {
+                        $this->currentCameraName["clinton"]   = $vesselsInCamera[1]->liveCamera;
+                        $this->lastCameraSwitch["clinton"] = $now;
+                        $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
+                    } else {
+                        $this->currentCameraName["clinton"]   = $vesselsInCamera[0]->liveCamera;
+                        $this->lastCameraSwitch["clinton"] = $now;
+                        $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
+                    }
+                    
+                }
+                if($now-$this->lastCameraSwitch["clintoncf"]> $this->cameraTimeout) {
+                    //Use opposite of one used last
+                    if($vesselsInCamera[0]->livecamera["name"]==$this->lastCameraName["clintoncf"]) {
+                        $this->currentCameraName["clintoncf"] = $vesselsInCamera[1]->liveCamera;
+                        $this->lastCameraSwitch["clintoncf"] = $now;
+                        $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                    } else {
+                        $this->currentCameraName["clintoncf"]   = $vesselsInCamera[0]->liveCamera;
+                        $this->lastCameraSwitch["clintoncf"] = $now;
+                        $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                    }
+                    
+                }  
+            }  
+            else if ($bothQc) {
+                if($now-$this->lastCameraSwitch["qc"] > $this->cameraTimeout) {
                         //Use opposite of one used last
-                        if($vesselsInCamera[0]->liveCamera["name"]==$this->lastCameraName["clinton"]) {
-                            $this->currentCameraName["clinton"]   = $vesselsInCamera[1]->liveCamera;
-                            $this->lastCameraSwitch["clinton"] = $now;
-                            $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
-                        } else {
-                            $this->currentCameraName["clinton"]   = $vesselsInCamera[0]->liveCamera;
-                            $this->lastCameraSwitch["clinton"] = $now;
-                            $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
-                        }
-                        
+                        if($vesselsInCamera[0]->livecamera["name"]==$this->lastCameraName["qc"]) {
+                        $this->currentCameraName["qc"] = $vesselsInCamera[1]->liveCamera;
+                        $this->lastCameraSwitch["qc"] = $now;
+                        $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
+                    } else {
+                        $this->currentCameraName["qc"]   = $vesselsInCamera[0]->liveCamera;
+                        $this->lastCameraSwitch["qc"] = $now;
+                        $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
+                    }
+                }
+                if($now-$this->lastCameraSwitch["clintoncf"]> $this->cameraTimeout) {
+                    //Use opposite of one used last
+                    if($vesselsInCamera[0]->livecamera["name"]==$this->lastCameraName["clintoncf"]) {
+                        $this->currentCameraName["clintoncf"] = $vesselsInCamera[1]->liveCamera;
+                        $this->lastCameraSwitch["clintoncf"] = $now;
+                        $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                    } else {
+                        $this->currentCameraName["clintoncf"]   = $vesselsInCamera[0]->liveCamera;
+                        $this->lastCameraSwitch["clintoncf"] = $now;
+                        $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                    }
+                }  
+            }
+            else {
+                $bothDifferent = true;
+            }
+        }
+        if($count==1 || $bothDifferent) {
+            foreach($vesselsInCamera as $i => $liveObj) {
+                //Evaluate switch for each location
+                if($vesselsInCamera[$i]->liveRegion=="clinton") {
+                    if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
+                        $this->currentCameraName["clinton"]   = $vesselsInCamera[$i]->liveCamera;
+                        $this->lastCameraSwitch["clinton"] = $now;
+                        $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
                     }
                     if($now-$this->lastCameraSwitch["clintoncf"]> $this->cameraTimeout) {
-                        //Use opposite of one used last
-                        if($vesselsInCamera[0]->livecamera["name"]==$this->lastCameraName["clintoncf"]) {
-                            $this->currentCameraName["clintoncf"] = $vesselsInCamera[1]->liveCamera;
-                            $this->lastCameraSwitch["clintoncf"] = $now;
-                            $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                        } else {
-                            $this->currentCameraName["clintoncf"]   = $vesselsInCamera[0]->liveCamera;
-                            $this->lastCameraSwitch["clintoncf"] = $now;
-                            $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                        }
-                       
+                        $this->currentCameraName["clintoncf"] = $vesselsInCamera[$i]->liveCamera;
+                        $this->lastCameraSwitch["clintoncf"] = $now;
+                        $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                     }  
                 }  
-                else if ($bothQc) {
-                    if($now-$this->lastCameraSwitch["qc"] > $this->cameraTimeout) {
-                         //Use opposite of one used last
-                         if($vesselsInCamera[0]->livecamera["name"]==$this->lastCameraName["qc"]) {
-                            $this->currentCameraName["qc"] = $vesselsInCamera[1]->liveCamera;
-                            $this->lastCameraSwitch["qc"] = $now;
-                            $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
-                        } else {
-                            $this->currentCameraName["qc"]   = $vesselsInCamera[0]->liveCamera;
-                            $this->lastCameraSwitch["qc"] = $now;
-                            $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
-                        }
+                else if ($vesselsInCamera[0]->liveRegion=="qc") {
+                    if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
+                        $this->currentCameraName["qc"]   = $vesselsInCamera[$i]->liveCamera;
+                        $this->lastCameraSwitch["qc"] = $now;
+                        $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
                     }
                     if($now-$this->lastCameraSwitch["clintoncf"]> $this->cameraTimeout) {
-                       //Use opposite of one used last
-                       if($vesselsInCamera[0]->livecamera["name"]==$this->lastCameraName["clintoncf"]) {
-                            $this->currentCameraName["clintoncf"] = $vesselsInCamera[1]->liveCamera;
-                            $this->lastCameraSwitch["clintoncf"] = $now;
-                            $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                        } else {
-                            $this->currentCameraName["clintoncf"]   = $vesselsInCamera[0]->liveCamera;
-                            $this->lastCameraSwitch["clintoncf"] = $now;
-                            $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                        }
+                        $this->currentCameraName["clintoncf"] = $vesselsInCamera[$i]->liveCamera;
+                        $this->lastCameraSwitch["clintoncf"] = $now;
+                        $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                     }  
                 }
-                else {
-                    $bothDifferent = true;
-                }
             }
-            if($count==1 || $bothDifferent) {
-                foreach($vesselsInCamera as $i => $liveObj) {
-                    //Evaluate switch for each location
-                    if($vesselsInCamera[$i]->liveRegion=="clinton") {
-                        if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
-                            $this->currentCameraName["clinton"]   = $vesselsInCamera[$i]->liveCamera;
-                            $this->lastCameraSwitch["clinton"] = $now;
-                            $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
-                        }
-                        if($now-$this->lastCameraSwitch["clintoncf"]> $this->cameraTimeout) {
-                            $this->currentCameraName["clintoncf"] = $vesselsInCamera[$i]->liveCamera;
-                            $this->lastCameraSwitch["clintoncf"] = $now;
-                            $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                        }  
-                    }  
-                    else if ($vesselsInCamera[0]->liveRegion=="qc") {
-                        if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
-                            $this->currentCameraName["qc"]   = $vesselsInCamera[$i]->liveCamera;
-                            $this->lastCameraSwitch["qc"] = $now;
-                            $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
-                        }
-                        if($now-$this->lastCameraSwitch["clintoncf"]> $this->cameraTimeout) {
-                            $this->currentCameraName["clintoncf"] = $vesselsInCamera[$i]->liveCamera;
-                            $this->lastCameraSwitch["clintoncf"] = $now;
-                            $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                        }  
-                    }
-                }
-            }
-            
-            
         }
+        $this->AdminTriggersModel->setWebcams($this->currentCameraName);
+        
     }
 
   public function removeOldScans() {

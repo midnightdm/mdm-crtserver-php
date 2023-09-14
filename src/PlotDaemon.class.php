@@ -283,15 +283,13 @@ class PlotDaemon {
         $vesselsOnHistoricalSocCam = count($vesselsPerCamera["HistoricalSoc"]);
         $vesselsOnSawmillCam   = count($vesselsPerCamera["Sawmill"]);
         
-        //If more than one camera in a region showing a vessel, rotate through cameras.
-        //If more than one vessel on a single camera, list all the names
-        
-
-        //When multiple cameras have vessels in view
-        
+        //Get any database camera changes before doing new changes based on vessel reports
+        $this->updateCameraStatus();
 
             
-        //Evaluate switch for each location
+        //Evaluate each location
+        //  If more than one camera in a region is showing a vessel, rotate through cameras.
+        //  If more than one vessel is on a single camera, list all the names
         if($totalVesselsInClinton>0) {
             $vesselNames = [];
             foreach($vesselsPerRegion['clinton'] as $key => $liveObj) {
@@ -363,6 +361,20 @@ class PlotDaemon {
         }
         $this->AdminTriggersModel->setWebcams($this->currentCameraName);
         
+    }
+
+    public function updateCameraStatus() {
+        $cameraNames = $this->AdminTriggersModel->getWebcams();
+        foreach($cameraNames as $camera => $data) {
+            //Has camera changed remotely?
+            if($this->currentCameraName[$camera]['name'] != $data['name'] ||
+               $this->currentCameraName[$camera]['zoom'] != $data['zoom']) {
+                //Yes, then update model
+                $this->currentCameraName[$camera] = $data;
+                $this->lastCameraSwitch[$camera] = time();
+                $this->lastCameraName[$camera] =  $this->currentCameraName[$camera];
+            }
+        }
     }
 
   public function removeOldScans() {

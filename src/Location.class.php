@@ -388,7 +388,7 @@ class Location {
         if($this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClAllCamsAreDisabled']) {
             $this->live->PlotDaemon->AdminTriggersModel->setClCamsAreEnabled();
         }
-    }determineCamera
+    }
     
     //Tabulate the camera to return by the in-view boolean + check for camera disabled
     if($isInCamA) {

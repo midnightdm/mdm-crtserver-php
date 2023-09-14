@@ -276,7 +276,7 @@ class PlotDaemon {
         }
         $totalVesselsInRange   = count($liveObjects); //show to regoinal (clintoncf)
         $totalVesselsInClinton = isset($vesselsPerRegion["clinton"]) ? count($vesselsPerRegion["clinton"]) : 0; //show to clinton
-        $totalVesselInQc       = isset($vesselsPerRegion["qc"]) ? count($vesselsPerRegion["qc"]) : 0 ; //show to qc
+        $totalVesselsInQc       = isset($vesselsPerRegion["qc"]) ? count($vesselsPerRegion["qc"]) : 0 ; //show to qc
         
         $vesselsOnPortByronCam = isset($vesselsPerCamera["PortByron"]) ? count($vesselsPerCamera["PortByron"]) : 0;
         $vesselsOnCabinDR      = isset($vesselsPerCamera["CabinDR"]) ? count($vesselsPerCamera["CabinDR"]) : 0;

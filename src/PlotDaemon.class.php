@@ -275,13 +275,15 @@ class PlotDaemon {
             }
         }
         $totalVesselsInRange   = count($liveObjects); //show to regoinal (clintoncf)
-        $totalVesselsInClinton = count($vesselsPerRegion["clinton"]); //show to clinton
-        $totalVesselInQc       = count($vesselsPerRegion["qc"]); //show to qc
+        $totalVesselsInClinton = isset($vesselsPerRegion["clinton"]) ? count($vesselsPerRegion["clinton"]) : 0; //show to clinton
+        $totalVesselInQc       = isset($vesselsPerRegion["qc"]) ? count($vesselsPerRegion["qc"]) : 0 ; //show to qc
         
-        $vesselsOnPortByronCam = count($vesselsPerCamera["PortByron"]);
-        $vesselsOnCabinCam     = count($vesselsPerCamera["CabinDR"]) + count($vesselsPerCamera["CabinUR"]);
-        $vesselsOnHistoricalSocCam = count($vesselsPerCamera["HistoricalSoc"]);
-        $vesselsOnSawmillCam   = count($vesselsPerCamera["Sawmill"]);
+        $vesselsOnPortByronCam = isset($vesselsPerCamera["PortByron"]) ? count($vesselsPerCamera["PortByron"]) : 0;
+        $vesselsOnCabinDR      = isset($vesselsPerCamera["CabinDR"]) ? count($vesselsPerCamera["CabinDR"]) : 0;
+        $vesselsOnCabinUR      = isset($vesselsPerCamera["CabingUR"]) ? count($vesselsPerCamera["CabinUR"]) : 0;
+        $vesselsOnCabin        = $vesselsOnCabinDR + $vesselsOnCabinUR;
+        $vesselsOnHistoricalSocCam = isset($vesselsPerCamera["HistorialSoc"]) ? count($vesselsPerCamera["HistoricalSoc"]) : 0 ;
+        $vesselsOnSawmillCam   = isset($vesselsPerCamera["Sawmill"]) ? count($vesselsPerCamera["Sawmill"]) : 0;
         
         //Get any database camera changes before doing new changes based on vessel reports
         $this->updateCameraStatus();

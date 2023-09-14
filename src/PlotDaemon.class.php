@@ -315,7 +315,7 @@ class PlotDaemon {
             }
             $this->currentCameraName["clinton"]["vesselsInRange"] = $vesselNames;
         }
-        if($totalVesselsinQc>0 ) {
+        if($totalVesselsInQc>0 ) {
             $vesselNames = [];
             foreach($vesselsPerRegion['qc'] as $key => $liveObj) {
                 $vesselNames[] = $liveObj->liveName; //Inject after loop

@@ -43,13 +43,6 @@ class LiveScan {
   public $liveMarkerHotelTS = null;
 
   public $inCameraRange = FALSE;
-//   public $isInCameraRange = [
-//     "A"=> FALSE,
-//     "B"=> FALSE,
-//     "C"=> FALSE,
-//     "D"=> FALSE,
-//     "E"=> FALSE
-//   ];
   //Valid cameras: 'CabinDR', 'CabinUR', 'HistoricalSoc', 'SawmillLeft','SawmillCenter','SawmillRight', 'PortByron'
   public $liveCamera   = [
     "name"=>false, 

@@ -312,8 +312,11 @@ class PlotDaemon {
                     //no, then keep this one (no change to current camera name)
                 }
                 //no, then just get the vesselName
-            }
+            } 
             $this->currentCameraName["clinton"]["vesselsInRange"] = $vesselNames;
+        } else {
+            //Clear vesselsInRange when none
+            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
         }
         if($totalVesselsInQc>0 ) {
             $vesselNames = [];
@@ -337,6 +340,9 @@ class PlotDaemon {
                 //no, then just get the vesselName
             }
             $this->currentCameraName["qc"]["vesselsInRange"] = $vesselNames;
+        } else {
+            //Clear vesselsInRange when none
+            $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];
         }
         if($totalVesselsInRange > 0) {
             $vesselNames = [];
@@ -360,6 +366,9 @@ class PlotDaemon {
                 //no, then just get the vesselName
             }
             $this->currentCameraName["clintoncf"]["vesselsInRange"] = $vesselNames;
+        } else {
+            //Clear vesselsInRange when none
+            $this->currentCameraName["clintoncf"]["vesselsInRange"] = ["None"];
         }
         $this->AdminTriggersModel->setWebcams($this->currentCameraName);
         

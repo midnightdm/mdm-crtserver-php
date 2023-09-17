@@ -382,7 +382,7 @@ class PlotDaemon {
                     $this->lastCameraSwitch["clintoncf"] = $now;
                     $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                     $name =  $this->currentCameraName["clintoncf"]["name"];
-                    flog( "     Site clintoncf switched to camera $name\033[45m  \033[0m\r\n\r\n");
+                    flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
             }
@@ -406,7 +406,7 @@ class PlotDaemon {
                 $this->lastCameraSwitch[$camera] = time();
                 $this->lastCameraName[$camera] =  $this->currentCameraName[$camera];
                 $name =  $this->currentCameraName[$camera]["name"];
-                flog( "     Site $camera manually switched to camera $name\033[45m  \033[0m\r\n\r\n");
+                flog( "     \033[45m Site $camera manually switched to camera $name \033[0m\r\n\r\n");
             }
         }
     }

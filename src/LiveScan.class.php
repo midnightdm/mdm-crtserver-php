@@ -298,7 +298,7 @@ class LiveScan {
       //Do somethings with camera data
      
       if($this->liveCamera["name"]) {
-        flog("          calculateLocation() found {$this->liveName} in camera {$camera['name']} range.\n");
+        flog("          calculateLocation() found {$this->liveName} in camera {$this->camera['name']} range.\n");
         $this->inCameraRange = true;
       } else {
         $this->inCameraRange = false;

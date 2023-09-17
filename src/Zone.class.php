@@ -85,12 +85,12 @@ class ZONE {
     public static $m533 = ["at mile 533, 10.5 abv Lock 13, 2 blw Sabula drawbridge","at mile 533, 10.5 miles above Lock 13 and 2 miles below the Sabula drawbridge"];
     public static $m534 = ["at marker 534 1 mile below Sabula drawbridge","at marker 534, 1 mile below the Subyoola drawbridge"];
     public static $msabula = ["In Island City Harbor at Sabula", "in Island City Harbor at Sabula"];
-    public static $m535 = ["at marker 535 Sabula drawbridge","at marker 535, the Sabula drawbridge"];
-    public static $m536 = ["at marker 536 1 mile above Sabula drawbridge","at marker 536, 1 mile above the Sabula drawbridge"];
-    public static $m537 = ["at Savanna, IL 2 miles above Sabula drawbridge","at Savanna Illinois, 2 miles above the Sabula drawbridge"];
-    public static $m538 = ["at marker 538 3 miles above Sabula drawbridge","at marker 538, 3 miles above the Sabula drawbridge"];
+    public static $m535 = ["at marker 535 Sabula drawbridge","at marker 535, the Subyoola drawbridge"];
+    public static $m536 = ["at marker 536 1 mile above Sabula drawbridge","at marker 536, 1 mile above the Subyoola drawbridge"];
+    public static $m537 = ["at Savanna, IL 2 miles above Sabula drawbridge","at Savanna Illinois, 2 miles above the Subyoola drawbridge"];
+    public static $m538 = ["at marker 538 3 miles above Sabula drawbridge","at marker 538, 3 miles above the Subyoola drawbridge"];
     public static $m539 = ["at marker 539 by Palisades state park lookout","at marker 539, near the Palisades state park lookout point"];
-    public static $m540 = ["at marker 540 5 miles above Sabula drawbridge","at marker 540, 5 miles above the Sabula drawbridge"];
+    public static $m540 = ["at marker 540 5 miles above Sabula drawbridge","at marker 540, 5 miles above the Subyoola drawbridge"];
     public static $m541 = ["at marker 541 by Palisades state park campground","at marker 541, by the Palisades state park campground entrance"];
     public static $m542 = ["at marker 542 7 miles above Sabula drawbridge","at marker 542, 7 miles above the Sabula drawbridge"];
     public static $m543 = ["at marker 543 by Palisades Golf Course","at marker 543 by Palisades Golf Course"];

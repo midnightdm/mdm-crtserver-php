@@ -261,6 +261,7 @@ class PlotDaemon {
 
     public function switchCamera() {
         $now = time();
+        $hasBeenSwitched = false;
        
         //Tally vessels in view of a camera
         $liveObjects = [];
@@ -307,6 +308,7 @@ class PlotDaemon {
                             $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][$nextKey]->liveCamera;
                             $this->lastCameraSwitch["clinton"] = $now;
                             $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
+                            $hasBeenSwitched = true;
                             $name =  $this->currentCameraName["clinton"]["name"];
                             flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
                         }
@@ -315,6 +317,7 @@ class PlotDaemon {
                     $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][0]->liveCamera;
                     $this->lastCameraSwitch["clinton"] = $now;
                     $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
+                    $hasBeenSwitched = true;
                     $name =  $this->currentCameraName["clinton"]["name"];
                     flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
                 }
@@ -340,6 +343,7 @@ class PlotDaemon {
                             $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][$nextKey]->liveCamera;
                             $this->lastCameraSwitch["qc"] = $now;
                             $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
+                            $hasBeenSwitched = true;
                             $name =  $this->currentCameraName["qc"]["name"];
                             flog( "    \033[45m  Site qc switched to camera $name \033[0m\r\n\r\n");
                         }
@@ -348,6 +352,7 @@ class PlotDaemon {
                     $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][0]->liveCamera;
                     $this->lastCameraSwitch["qc"] = $now;
                     $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
+                    $hasBeenSwitched = true;
                     $name =  $this->currentCameraName["qc"]["name"];
                     flog( "     \033[45m Site qc switched to camera $name \033[0m\r\n\r\n");
                 }
@@ -373,6 +378,7 @@ class PlotDaemon {
                             $this->currentCameraName["clintoncf"] = $liveObjects[$nextKey]->liveCamera;
                             $this->lastCameraSwitch["clintoncf"] = $now;
                             $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                            $hasBeenSwitched = true;
                             $name =  $this->currentCameraName["clintoncf"]["name"];
                             flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
                         }
@@ -381,6 +387,7 @@ class PlotDaemon {
                     $this->currentCameraName["clintoncf"] = $vesselsPerRegion["clintoncf"][0]->liveCamera;
                     $this->lastCameraSwitch["clintoncf"] = $now;
                     $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                    $hasBeenSwitched = true;
                     $name =  $this->currentCameraName["clintoncf"]["name"];
                     flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
                 }
@@ -391,7 +398,10 @@ class PlotDaemon {
             //Clear vesselsInRange when none
             $this->currentCameraName["clintoncf"]["vesselsInRange"] = ["None"];
         }
-        $this->AdminTriggersModel->setWebcams($this->currentCameraName);
+        if($hasBeenSwitched) {
+            $this->AdminTriggersModel->setWebcams($this->currentCameraName);
+        }
+        
         
     }
 

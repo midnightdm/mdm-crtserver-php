@@ -324,6 +324,7 @@ class PlotDaemon {
                 //no, then just get the vesselName
             }
             //Test for vesselsInRange change
+            echo var_dump($this->currentCameraName["clinton"]);
             if($vesselNames != $this->currentCameraName["clinton"]["vesselsInRange"]) {
                 $hasBeenSwitched = true;
             }

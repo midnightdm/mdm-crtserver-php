@@ -294,9 +294,7 @@ class PlotDaemon {
         //  If more than one camera in a region is showing a vessel, rotate through cameras.
         //  If more than one vessel is on a single camera, list all the names
         if($totalVesselsInClinton>0) {
-            $vesselNames = [];
             foreach($vesselsPerRegion['clinton'] as $key => $liveObj) {
-                $vesselNames[] = $liveObj->liveName; //Inject after loop
                 //Is the tested vessel's camera name the one switched on now?
                 if($liveObj->liveCamera['name'] == $this->currentCameraName["clinton"]["name"]) {
                 //yes, then has is been on more than the time limit?
@@ -306,6 +304,7 @@ class PlotDaemon {
                         //yes, then switch it to the next one
                             $nextKey = $key>$totalVesselsInClinton-1 ? 0 : $key+1;
                             $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][$nextKey]->liveCamera;
+                            $this->currentCameraName["clinton"]["vesselsInRange"][] = $vesselsPerRegion["clinton"][$nextKey]->liveName;
                             $this->lastCameraSwitch["clinton"] = $now;
                             $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
                             $hasBeenSwitched = true;
@@ -315,6 +314,7 @@ class PlotDaemon {
                     }
                     //no, then use only one found
                     $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][0]->liveCamera;
+                    $this->currentCameraName["clinton"]["vesselsInRange"][] = $vesselsPerRegion["clinton"][0]->liveName;
                     $this->lastCameraSwitch["clinton"] = $now;
                     $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
                     $hasBeenSwitched = true;
@@ -323,24 +323,13 @@ class PlotDaemon {
                 }
                 //no, then just get the vesselName
             }
-            //Test for vesselsInRange change
-            echo var_dump($this->currentCameraName["clinton"]);
-            if($vesselNames != $this->currentCameraName["clinton"]["vesselsInRange"]) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["clinton"]["vesselsInRange"] = $vesselNames;
         } else {
             //Clear vesselsInRange when none
-            //   Test for vesselsInRange change
-            if($this->currentCameraName["clinton"]["vesselsInRange"] != ["None"]) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
+            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];  
+            $hasBeenSwitched = true; 
         }
         if($totalVesselsInQc>0 ) {
-            $vesselNames = [];
             foreach($vesselsPerRegion['qc'] as $key => $liveObj) {
-                $vesselNames[] = $liveObj->liveName; //Inject after loop
                 //Is the tested vessel's camera name the one switched on now?
                 if($liveObj->liveCamera['name'] == $this->currentCameraName["qc"]["name"]) {
                 //yes, then has is been on more than the time limit?
@@ -350,6 +339,7 @@ class PlotDaemon {
                         //yes, then switch it to the next one
                             $nextKey = $key>$totalVesselsInQc-1 ? 0 : $key+1;
                             $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][$nextKey]->liveCamera;
+                            $this->currentCameraName["qc"]["vesselsInRange"][] = $vesselsPerRegion["qc"][$nextKey]->liveName;
                             $this->lastCameraSwitch["qc"] = $now;
                             $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
                             $hasBeenSwitched = true;
@@ -359,6 +349,7 @@ class PlotDaemon {
                     }
                     //no, then use only one found
                     $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][0]->liveCamera;
+                    $this->currentCameraName["qc"]["vesselsInRange"][] = $vesselsPerRegion["qc"][0]->liveName;
                     $this->lastCameraSwitch["qc"] = $now;
                     $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
                     $hasBeenSwitched = true;
@@ -367,23 +358,13 @@ class PlotDaemon {
                 }
                 //no, then just get the vesselName
             }
-             //Test for vesselsInRange change
-             if($vesselNames != $this->currentCameraName["qc"]["vesselsInRange"]) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["qc"]["vesselsInRange"] = $vesselNames;
         } else {
             //Clear vesselsInRange when none
-            //   Test for vesselsInRange change
-            if($this->currentCameraName["qc"]["vesselsInRange"] != ["None"]) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];  
+            $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];
+            $hasBeenSwitched = true;  
         }
         if($totalVesselsInRange > 0) {
-            $vesselNames = [];
             foreach($liveObjects as $key => $liveObj) {
-                $vesselNames[] = $liveObj->liveName; //Inject after loop
                 //Is the tested vessel's camera name the one switched on now?
                 if($liveObj->liveCamera['name'] == $this->currentCameraName["clintoncf"]["name"]) {
                 //yes, then has is been on more than the time limit?
@@ -393,6 +374,7 @@ class PlotDaemon {
                         //yes, then switch it to the next one
                             $nextKey = $key>$totalVesselsInRange-1 ? 0 : $key+1;
                             $this->currentCameraName["clintoncf"] = $liveObjects[$nextKey]->liveCamera;
+                            $this->currentCameraName["clintoncf"]["vesselsInRange"][] = $vesselsPerRegion["clintoncf"][$nextKey]->liveName;
                             $this->lastCameraSwitch["clintoncf"] = $now;
                             $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                             $hasBeenSwitched = true;
@@ -402,6 +384,7 @@ class PlotDaemon {
                     }
                     //no, then use only one found
                     $this->currentCameraName["clintoncf"] = $vesselsPerRegion["clintoncf"][0]->liveCamera;
+                    $this->currentCameraName["clintoncf"]["vesselsInRange"][] = $vesselsPerRegion["clintoncf"][0]->liveName;
                     $this->lastCameraSwitch["clintoncf"] = $now;
                     $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                     $hasBeenSwitched = true;
@@ -410,18 +393,10 @@ class PlotDaemon {
                 }
                 //no, then just get the vesselName
             }
-            //Test for vesselsInRange change
-            if($vesselNames != $this->currentCameraName["clintoncf"]["vesselsInRange"]) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["clintoncf"]["vesselsInRange"] = $vesselNames;
         } else {
             //Clear vesselsInRange when none
-            //   Test for vesselsInRange change
-            if($this->currentCameraName["clintoncf"]["vesselsInRange"] != ["None"]) {
-                $hasBeenSwitched = true;
-            }
             $this->currentCameraName["clintoncf"]["vesselsInRange"] = ["None"];
+            $hasBeenSwitched = true;
         }
         if($hasBeenSwitched) {
             $this->AdminTriggersModel->setWebcams($this->currentCameraName);

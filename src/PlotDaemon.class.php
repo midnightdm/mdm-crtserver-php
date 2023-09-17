@@ -307,12 +307,16 @@ class PlotDaemon {
                             $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][$nextKey]->liveCamera;
                             $this->lastCameraSwitch["clinton"] = $now;
                             $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
+                            $name =  $this->currentCameraName["clinton"]["name"];
+                            flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
                         }
                     }
                     //no, then use only one found
                     $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][0]->liveCamera;
                     $this->lastCameraSwitch["clinton"] = $now;
                     $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
+                    $name =  $this->currentCameraName["clinton"]["name"];
+                    flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
             } 
@@ -336,12 +340,16 @@ class PlotDaemon {
                             $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][$nextKey]->liveCamera;
                             $this->lastCameraSwitch["qc"] = $now;
                             $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
+                            $name =  $this->currentCameraName["qc"]["name"];
+                            flog( "    \033[45m  Site qc switched to camera $name \033[0m\r\n\r\n");
                         }
                     }
                     //no, then use only one found
                     $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][0]->liveCamera;
                     $this->lastCameraSwitch["qc"] = $now;
                     $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
+                    $name =  $this->currentCameraName["qc"]["name"];
+                    flog( "     \033[45m Site qc switched to camera $name \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
             }
@@ -365,12 +373,16 @@ class PlotDaemon {
                             $this->currentCameraName["clintoncf"] = $liveObjects[$nextKey]->liveCamera;
                             $this->lastCameraSwitch["clintoncf"] = $now;
                             $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                            $name =  $this->currentCameraName["clintoncf"]["name"];
+                            flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
                         }
                     }
                     //no, then use only one found
                     $this->currentCameraName["clintoncf"] = $vesselsPerRegion["clintoncf"][0]->liveCamera;
                     $this->lastCameraSwitch["clintoncf"] = $now;
                     $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
+                    $name =  $this->currentCameraName["clintoncf"]["name"];
+                    flog( "     Site clintoncf switched to camera $name\033[45m  \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
             }
@@ -387,10 +399,10 @@ class PlotDaemon {
         $cameraNames = $this->AdminTriggersModel->getWebcams();
         foreach($cameraNames as $camera => $data) {
             //Has camera changed remotely?
-            if($this->currentCameraName[$camera]['name'] != $data['name'] ||
-               $this->currentCameraName[$camera]['zoom'] != $data['zoom']) {
+            if($this->currentCameraName[$camera]['name'] != $data[$camera]['name'] ||
+               $this->currentCameraName[$camera]['zoom'] != $data[$camera]['zoom']) {
                 //Yes, then update model
-                $this->currentCameraName[$camera] = $data;
+                $this->currentCameraName[$camera] = $data[$camera];
                 $this->lastCameraSwitch[$camera] = time();
                 $this->lastCameraName[$camera] =  $this->currentCameraName[$camera];
             }

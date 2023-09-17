@@ -405,6 +405,8 @@ class PlotDaemon {
                 $this->currentCameraName[$camera] = $data;
                 $this->lastCameraSwitch[$camera] = time();
                 $this->lastCameraName[$camera] =  $this->currentCameraName[$camera];
+                $name =  $this->currentCameraName[$camera]["name"];
+                flog( "     Site $camera manually switched to camera $name\033[45m  \033[0m\r\n\r\n");
             }
         }
     }

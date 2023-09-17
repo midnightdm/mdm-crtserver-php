@@ -399,7 +399,6 @@ class PlotDaemon {
         $cameraNames = $this->AdminTriggersModel->getWebcams();
         foreach($cameraNames as $camera => $data) {
             //Has camera changed remotely?
-            echo $camera . " name:". $data['name']. " zoom:".$data['zoom'];
             if($this->currentCameraName[$camera]['name'] != $data['name'] ||
                $this->currentCameraName[$camera]['zoom'] != $data['zoom']) {
                 //Yes, then update model

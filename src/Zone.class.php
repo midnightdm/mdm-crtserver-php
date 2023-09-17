@@ -83,7 +83,7 @@ class ZONE {
     public static $m531 = ["at marker 531 8.5 miles above Lock 13","at marker 531, 8.5 miles above Lock 13"];
     public static $m532 = ["at mile 532, 9.5 abv Lock 13, 3 blw Sabula drawbridge","at mile 532, 9.5 miles above Lock 13 and 3 miles below the Sabula drawbridge"];
     public static $m533 = ["at mile 533, 10.5 abv Lock 13, 2 blw Sabula drawbridge","at mile 533, 10.5 miles above Lock 13 and 2 miles below the Sabula drawbridge"];
-    public static $m534 = ["at marker 534 1 mile below Sabula drawbridge","at marker 534, 1 mile below the Sabula drawbridge"];
+    public static $m534 = ["at marker 534 1 mile below Sabula drawbridge","at marker 534, 1 mile below the Subyoola drawbridge"];
     public static $msabula = ["In Island City Harbor at Sabula", "in Island City Harbor at Sabula"];
     public static $m535 = ["at marker 535 Sabula drawbridge","at marker 535, the Sabula drawbridge"];
     public static $m536 = ["at marker 536 1 mile above Sabula drawbridge","at marker 536, 1 mile above the Sabula drawbridge"];

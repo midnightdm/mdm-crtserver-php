@@ -309,7 +309,10 @@ class PlotDaemon {
                             $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
                         }
                     }
-                    //no, then keep this one (no change to current camera name)
+                    //no, then use only one found
+                    $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][0]->liveCamera;
+                    $this->lastCameraSwitch["clinton"] = $now;
+                    $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
                 }
                 //no, then just get the vesselName
             } 
@@ -335,7 +338,10 @@ class PlotDaemon {
                             $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
                         }
                     }
-                    //no, then keep this one (no change to current camera name)
+                    //no, then use only one found
+                    $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][0]->liveCamera;
+                    $this->lastCameraSwitch["qc"] = $now;
+                    $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
                 }
                 //no, then just get the vesselName
             }
@@ -361,7 +367,10 @@ class PlotDaemon {
                             $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                         }
                     }
-                    //no, then keep this one (no change to current camera name)
+                    //no, then use only one found
+                    $this->currentCameraName["clintoncf"] = $vesselsPerRegion["clintoncf"][0]->liveCamera;
+                    $this->lastCameraSwitch["clintoncf"] = $now;
+                    $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                 }
                 //no, then just get the vesselName
             }

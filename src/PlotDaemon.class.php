@@ -322,10 +322,18 @@ class PlotDaemon {
                     flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
-            } 
+            }
+            //Test for vesselsInRange change
+            if($vesselNames != $this->currentCameraName["clinton"]["vesselsInRange"]) {
+                $hasBeenSwitched = true;
+            }
             $this->currentCameraName["clinton"]["vesselsInRange"] = $vesselNames;
         } else {
             //Clear vesselsInRange when none
+            //   Test for vesselsInRange change
+            if($this->currentCameraName["clinton"]["vesselsInRange"] != ["None"]) {
+                $hasBeenSwitched = true;
+            }
             $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
         }
         if($totalVesselsInQc>0 ) {
@@ -358,10 +366,18 @@ class PlotDaemon {
                 }
                 //no, then just get the vesselName
             }
+             //Test for vesselsInRange change
+             if($vesselNames != $this->currentCameraName["qc"]["vesselsInRange"]) {
+                $hasBeenSwitched = true;
+            }
             $this->currentCameraName["qc"]["vesselsInRange"] = $vesselNames;
         } else {
             //Clear vesselsInRange when none
-            $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];
+            //   Test for vesselsInRange change
+            if($this->currentCameraName["qc"]["vesselsInRange"] != ["None"]) {
+                $hasBeenSwitched = true;
+            }
+            $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];  
         }
         if($totalVesselsInRange > 0) {
             $vesselNames = [];
@@ -393,9 +409,17 @@ class PlotDaemon {
                 }
                 //no, then just get the vesselName
             }
+            //Test for vesselsInRange change
+            if($vesselNames != $this->currentCameraName["clintoncf"]["vesselsInRange"]) {
+                $hasBeenSwitched = true;
+            }
             $this->currentCameraName["clintoncf"]["vesselsInRange"] = $vesselNames;
         } else {
             //Clear vesselsInRange when none
+            //   Test for vesselsInRange change
+            if($this->currentCameraName["clintoncf"]["vesselsInRange"] != ["None"]) {
+                $hasBeenSwitched = true;
+            }
             $this->currentCameraName["clintoncf"]["vesselsInRange"] = ["None"];
         }
         if($hasBeenSwitched) {

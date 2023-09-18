@@ -7,11 +7,14 @@ if(php_sapi_name() !='cli') { exit('No direct script access allowed.');}
  */
 class AdminTriggersModel extends Firestore {
   public $adminData;
+  public $webcamSitesData;
   public $dataTS;
+  public $camDataTS;
 
   public function __construct() {
       parent::__construct(['name' => 'AdminTriggers']);
       $this->dataTS = null;
+      $this->camDataTS = null;
   }
 
   public function getAdminDocument() {
@@ -24,6 +27,27 @@ class AdminTriggersModel extends Firestore {
       if($snapshot->exists()) {
         $this->adminData = $snapshot->data();
         $this->dataTS = $now;
+        //flog("            updated document retrieved\n");
+        return true;
+      }
+      //flog("            no document snapshot\n");
+      return false;
+    }
+    //flog("            stored document used\n");
+    return true;
+  }
+
+
+  public function getWebcamSitesDocument() {
+    //flog("          AdminTriggersModel::getWebccamSitesDocument()\n");
+    $now = time();
+    //Read from DB if not just done.
+    if($this->camDataTS===null || $now-$this->camDataTS >10) {
+      $document = $this->db->collection('Controls')->document('webcamSites');
+      $snapshot = $document->snapshot();
+      if($snapshot->exists()) {
+        $this->webcamSitesData = $snapshot->data();
+        $this->camDataTS = $now;
         //flog("            updated document retrieved\n");
         return true;
       }
@@ -163,21 +187,21 @@ class AdminTriggersModel extends Firestore {
 
 
   public function setWebcams($cameraNames) {
-    $this->db->collection('Passages')
-    ->document('Admin')
+    $this->db->collection('Controls')
+    ->document('webcamSites')
     ->set([
-        'webcamClinton'   => $cameraNames['clinton'],
-        'webcamClintoncf' => $cameraNames['clintoncf'],
-        'webcamQc'        => $cameraNames['qc']
+        'clinton'   => $cameraNames['clinton'],
+        'clintoncf' => $cameraNames['clintoncf'],
+        'qc'        => $cameraNames['qc']
     ],['merge'=>true]);
   }
 
   public function getWebcams() {
-    if($this->getAdminDocument()) {
+    if($this->getWebcamSitesDocument()) {
         $cameraNames = [
-            'clinton'  =>$this->adminData['webcamClinton'],
-            'clintoncf'=>$this->adminData['webcamClintoncf'],
-            'qc'       =>$this->adminData['webcamQc']
+            'clinton'  =>$this->webcamSitesData['clinton'],
+            'clintoncf'=>$this->webcamSitesData['clintoncf'],
+            'qc'       =>$this->webcamSitesData['qc']
         ];
         return $cameraNames;
         

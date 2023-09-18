@@ -325,7 +325,7 @@ class PlotDaemon {
             }
         } else {
             //Clear vesselsInRange when none
-            if(count($this->currentCameraName["clinton"][vesselsInRange])) {
+            if(count($this->currentCameraName["clinton"]["vesselsInRange"])) {
                 $hasBeenSwitched = true;
             }
             $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
@@ -362,7 +362,7 @@ class PlotDaemon {
             }
         } else {
             //Clear vesselsInRange when none
-            if(count($this->currentCameraName["qc"][vesselsInRange])) {
+            if(count($this->currentCameraName["qc"]["vesselsInRange"])) {
                 $hasBeenSwitched = true;
             }
             $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];
@@ -399,7 +399,7 @@ class PlotDaemon {
             }
         } else {
             //Clear vesselsInRange when none
-            if(count($this->currentCameraName["clintoncf"][vesselsInRange])) {
+            if(count($this->currentCameraName["clintoncf"]["vesselsInRange"])) {
                 $hasBeenSwitched = true;
             }
             $this->currentCameraName["clintoncf"]["vesselsInRange"] = ["None"];

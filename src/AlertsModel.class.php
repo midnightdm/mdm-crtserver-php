@@ -581,7 +581,7 @@ class AlertsModel extends Firestore {
     //   case "qc":      $collection = "VoicepublishQC";  break;                     
     //   case "clinton": $collection = "Voicepublish";    break;
     // }
-    $collection = "Voicepublish"
+    $collection = "Voicepublish";
     $this->db->collection($collection)->document(strval($vpubID))->set($data);
     //Now save new vpubID to admin which trips JS event
     $this->stepVpubID($region);

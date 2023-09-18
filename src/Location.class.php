@@ -383,7 +383,7 @@ class Location {
     {
         $this->live->PlotDaemon->AdminTriggersModel->setClCamsAreDisabled();
         flog("      Location::determineCamera() = Clinton cams disabled, using Waypoint slides instead\n");
-        return ['name' => false, 'zoom' => 0]; 
+        return ["srcID" => false, 'zoom' => 0]; 
     } else {
         //If at least one cam is working. Re-enable video if off
         if($this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClAllCamsAreDisabled']) {
@@ -395,87 +395,87 @@ class Location {
     if($isInCamA) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinDR'] ) {
             flog("      Location::determineCamera() = CabinDR\n");
-            return ['name' => 'CabinDR', 'zoom' => 0];
+            return ["srcID" => 'CabinDR', 'zoom' => 0];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinUR']){
             flog("      Location::determineCamera() = CabinDR disabled, using CabinUR instead\n");
-            return ['name' => 'CabinUR', 'zoom' => 0];
+            return ["srcID" => 'CabinUR', 'zoom' => 0];
         } else {
             flog("      Location::determineCamera() = Webcams A & B disabled, using sawmill right\n");
-            return ['name' => 'Sawmill', 'zoom' => 3];
+            return ["srcID" => 'Sawmill', 'zoom' => 3];
         }
     }
 
     if($isInCamB) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinUR']){
             flog("      Location::determineCamera() = CabinUR\n");
-            return ['name' => 'CabinUR', 'zoom' => 0];
+            return ["srcID" => 'CabinUR', 'zoom' => 0];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinDR'] ) {
             flog("      Location::determineCamera() = CabinUR disabled, using CabinDR instead\n");    
-            return ['name' => 'CabinDR', 'zoom' => 0];  
+            return ["srcID" => 'CabinDR', 'zoom' => 0];  
         } else {
             flog("      Location::determineCamera() = Webcams A & B disabled, using sawmill right\n");
-            return ['name' => 'Sawmill', 'zoom' => 3];
+            return ["srcID" => 'Sawmill', 'zoom' => 3];
         }
     }
 
     if($isInCamCRght) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['Sawmill']) {
             flog("      Location::determineCamera() = SawmillRight\n");
-            return ['name' => 'Sawmill', 'zoom' => 3];
+            return ["srcID" => 'Sawmill', 'zoom' => 3];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinDR'] ) {
             flog("      Location::determineCamera() = Sawmill cam disabled, using A instead\n");    
-            return ['name' => 'CabinDR', 'zoom' => 0];  
+            return ["srcID" => 'CabinDR', 'zoom' => 0];  
         }
     }
 
     if($isInCamCCent) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['Sawmill']) {
             flog("      Location::determineCamera() = SawmillCenter\n");
-            return ['name' => 'Sawmill', 'zoom' => 2];
+            return ["srcID" => 'Sawmill', 'zoom' => 2];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinDR'] ) {
             flog("      Location::determineCamera() = Sawmill cam disabled, using CabinDR instead\n");    
-            return ['name' => 'CabinDR', 'zoom' => 0];  
+            return ["srcID" => 'CabinDR', 'zoom' => 0];  
         }
     }
 
     if($isInCamCLeft) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['Sawmill']) {
             flog("      Location::determineCamera() = SawmillLeft\n");
-            return ['name' => 'Sawmill', 'zoom' => 1];
+            return ["srcID" => 'Sawmill', 'zoom' => 1];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinDR'] ) {
             flog("      Location::determineCamera() = Sawmill cam disabled, using A instead\n");    
-            return ['name' => 'CabinDR', 'zoom' => 0];  
+            return ["srcID" => 'CabinDR', 'zoom' => 0];  
         }
     }
 
     if($isInCamD) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['HistoricalSoc']){
             flog("      Location::determineCamera() = HistoricalSoc\n");
-            return ['name' => 'HistoricalSoc', 'zoom' => 0];
+            return ["srcID" => 'HistoricalSoc', 'zoom' => 0];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinDR'] ) {
             flog("      Location::determineCamera() = HistoricalSoc disabled, using CabinDR instead\n");    
-            return ['name' => 'CabinDR', 'zoom' => 0];  
+            return ["srcID" => 'CabinDR', 'zoom' => 0];  
         }else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['CabinUR'] ) {
             flog("      Location::determineCamera() = HistoricalSoc disabled, using CabinUR instead\n");    
-            return ['name' => 'CabinUR', 'zoom' => 0];  
+            return ["srcID" => 'CabinUR', 'zoom' => 0];  
         }  
         else {
             flog("      Location::determineCamera() = Webcams D, A & B disabled, using sawmill right\n");
-            return ['name' => 'Sawmill', 'zoom' => 3];
+            return ["srcID" => 'Sawmill', 'zoom' => 3];
         }
     }
     if($isInCamE) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['PortByron']){
             flog("      Location::determineCamera() = PortByron\n");
-            return ['name' => 'PortByron', 'zoom' => 0];
+            return ["srcID" => 'PortByron', 'zoom' => 0];
         } 
         else {
             flog("      Location::determineCamera() = PortByron disabled, using sawmill right\n");
-            return ['name' => 'Sawmill', 'zoom' => 3];
+            return ["srcID" => 'Sawmill', 'zoom' => 3];
         }
     }
 
-    return ['name'=> false, 'zoom'=>0];
+    return ["srcID"=> false, 'zoom'=>0];
 
   }
  
@@ -508,7 +508,7 @@ class Location {
     {
         $this->live->PlotDaemon->AdminTriggersModel->setClCamsAreDisabled();
         flog("      Location::determineCamera() = Clinton cams disabled, using Waypoint slides instead\n");
-        return ['name' => false, 'zoom' => 0]; 
+        return ["srcID" => false, 'zoom' => 0]; 
     } else {
         //If at least one cam is working. Re-enable video if off
         if($this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClAllCamsAreDisabled']) {
@@ -520,76 +520,76 @@ class Location {
     if($isInCamA) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamA\n");
-            return ['name' => 'A', 'zoom' => 0];
+            return ["srcID" => 'A', 'zoom' => 0];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClbIsDisabled']){
             flog("      Location::determineCamera() = clintonWebcamA disabled, using B instead\n");
-            return ['name' => 'B', 'zoom' => 0];
+            return ["srcID" => 'B', 'zoom' => 0];
         } else {
             flog("      Location::determineCamera() = Webcams A & B disabled, using sawmill right\n");
-            return ['name' => 'C', 'zoom' => 3];
+            return ["srcID" => 'C', 'zoom' => 3];
         }
     }
 
     if($isInCamB) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClbIsDisabled']){
             flog("      Location::determineCamera() = clintonWebcamB\n");
-            return ['name' => 'B', 'zoom' => 0];
+            return ["srcID" => 'B', 'zoom' => 0];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamB disabled, using A instead\n");    
-            return ['name' => 'A', 'zoom' => 0];  
+            return ["srcID" => 'A', 'zoom' => 0];  
         } else {
             flog("      Location::determineCamera() = Webcams A & B disabled, using sawmill right\n");
-            return ['name' => 'C', 'zoom' => 3];
+            return ["srcID" => 'C', 'zoom' => 3];
         }
     }
 
     if($isInCamCRght) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClcIsDisabled']) {
             flog("      Location::determineCamera() = sawmillRight\n");
-            return ['name' => 'C', 'zoom' => 3];
+            return ["srcID" => 'C', 'zoom' => 3];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamC disabled, using A instead\n");    
-            return ['name' => 'A', 'zoom' => 0];  
+            return ["srcID" => 'A', 'zoom' => 0];  
         }
     }
 
     if($isInCamCCent) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClcIsDisabled']) {
             flog("      Location::determineCamera() = sawmillCenter\n");
-            return ['name' => 'C', 'zoom' => 2];
+            return ["srcID" => 'C', 'zoom' => 2];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamC disabled, using A instead\n");    
-            return ['name' => 'A', 'zoom' => 0];  
+            return ["srcID" => 'A', 'zoom' => 0];  
         }
     }
 
     if($isInCamCLeft) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClcIsDisabled']) {
             flog("      Location::determineCamera() = sawmillLeft\n");
-            return ['name' => 'C', 'zoom' => 1];
+            return ["srcID" => 'C', 'zoom' => 1];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamC disabled, using A instead\n");    
-            return ['name' => 'A', 'zoom' => 0];  
+            return ["srcID" => 'A', 'zoom' => 0];  
         }
     }
 
     if($isInCamD) {
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamCldIsDisabled']){
             flog("      Location::determineCamera() = clintonWebcamD\n");
-            return ['name' => 'D', 'zoom' => 0];
+            return ["srcID" => 'D', 'zoom' => 0];
         } else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClaIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamD disabled, using A instead\n");    
-            return ['name' => 'A', 'zoom' => 0];  
+            return ["srcID" => 'A', 'zoom' => 0];  
         }else if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['webcamClbIsDisabled'] ) {
             flog("      Location::determineCamera() = clintonWebcamD disabled, using B instead\n");    
-            return ['name' => 'B', 'zoom' => 0];  
+            return ["srcID" => 'B', 'zoom' => 0];  
         }  
         else {
             flog("      Location::determineCamera() = Webcams D, A & B disabled, using sawmill right\n");
-            return ['name' => 'C', 'zoom' => 3];
+            return ["srcID" => 'C', 'zoom' => 3];
         }
     }
-    return ['name'=> false, 'zoom'=>0];
+    return ["srcID"=> false, 'zoom'=>0];
 
   }
   

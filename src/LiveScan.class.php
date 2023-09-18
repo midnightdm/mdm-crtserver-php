@@ -45,7 +45,7 @@ class LiveScan {
   public $inCameraRange = FALSE;
   //Valid cameras: 'CabinDR', 'CabinUR', 'HistoricalSoc', 'SawmillLeft','SawmillCenter','SawmillRight', 'PortByron'
   public $liveCamera   = [
-    "name"=>false, 
+    "srcID"=>false, 
     "zoom"=>0
   ]; 
   public $isReloaded;
@@ -297,8 +297,8 @@ class LiveScan {
       $this->liveCamera = $this->liveLocation->determineCamera();           //Added 9/24/22
       //Do somethings with camera data
      
-      if($this->liveCamera["name"]) {
-        flog("          calculateLocation() found {$this->liveName} in camera {$this->liveCamera['name']} range.\n");
+      if($this->liveCamera["srcID"]) {
+        flog("          calculateLocation() found {$this->liveName} in camera {$this->liveCamera['srcID']} range.\n");
         $this->inCameraRange = true;
       } else {
         $this->inCameraRange = false;

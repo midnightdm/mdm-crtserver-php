@@ -575,12 +575,13 @@ class AlertsModel extends Firestore {
         'vpubRegion'=>$liveScan->liveRegion
     ];
     //Add new db document for perm record
-    flog("announcePassengerProgress region is ".$region);
-    switch($region) {
+    // flog("announcePassengerProgress region is ".$region);
+    // switch($region) {
       
-      case "qc":      $collection = "VoicepublishQC";  break;                     
-      case "clinton": $collection = "Voicepublish";    break;
-    }
+    //   case "qc":      $collection = "VoicepublishQC";  break;                     
+    //   case "clinton": $collection = "Voicepublish";    break;
+    // }
+    $collection = "Voicepublish"
     $this->db->collection($collection)->document(strval($vpubID))->set($data);
     //Now save new vpubID to admin which trips JS event
     $this->stepVpubID($region);

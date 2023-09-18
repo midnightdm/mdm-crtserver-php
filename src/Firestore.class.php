@@ -89,7 +89,9 @@ class Firestore {
 
   public function stepVpubID($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
+    //$field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
+    //Altered 9/18/23 to share vpub directory and ids
+    $field = 'lastVpubID';
     $vpubID = $admin->data()[$field];
     $vpubID++;
     flog("stepVpubID(): $vpubID\n");
@@ -101,7 +103,9 @@ class Firestore {
    
   public function getVpubID($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
+    //Altered 9/18/23 to put all in one
+    //$field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
+    $field = 'lastVpubID';
     $vpubID = $admin->data()[$field];
     return $vpubID;
   }

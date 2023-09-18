@@ -271,7 +271,7 @@ class PlotDaemon {
         foreach($this->liveScan as $key => $liveObj) {
             if($liveObj->inCameraRange) {
                 $liveObjects[] = $liveObj;
-                $vesselsPerCamera[$liveObj->liveCamera["name"]][] = $liveObj->liveName;
+                $vesselsPerCamera[$liveObj->liveCamera["srcID"]][] = $liveObj->liveName;
                 $vesselsPerRegion[$liveObj->liveRegion][] = $liveObj;
             }
         }
@@ -296,7 +296,7 @@ class PlotDaemon {
         if($totalVesselsInClinton>0) {
             foreach($vesselsPerRegion['clinton'] as $key => $liveObj) {
                 //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera['name'] == $this->currentCameraName["clinton"]["name"]) {
+                if($liveObj->liveCamera['name'] == $this->currentCameraName["clinton"]["srcID"]) {
                 //yes, then has is been on more than the time limit?
                     if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
                     //yes, then is there another to switch to?
@@ -308,7 +308,7 @@ class PlotDaemon {
                             $this->lastCameraSwitch["clinton"] = $now;
                             $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
                             $hasBeenSwitched = true;
-                            $name =  $this->currentCameraName["clinton"]["name"];
+                            $name =  $this->currentCameraName["clinton"]["srcID"];
                             flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
                         }
                     }
@@ -318,7 +318,7 @@ class PlotDaemon {
                     $this->lastCameraSwitch["clinton"] = $now;
                     $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
                     $hasBeenSwitched = true;
-                    $name =  $this->currentCameraName["clinton"]["name"];
+                    $name =  $this->currentCameraName["clinton"]["srcID"];
                     flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
@@ -333,7 +333,7 @@ class PlotDaemon {
         if($totalVesselsInQc>0 ) {
             foreach($vesselsPerRegion['qc'] as $key => $liveObj) {
                 //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera['name'] == $this->currentCameraName["qc"]["name"]) {
+                if($liveObj->liveCamera['name'] == $this->currentCameraName["qc"]["srcID"]) {
                 //yes, then has is been on more than the time limit?
                     if($now-$this->lastCameraSwitch["qc"] > $this->cameraTimeout) {
                     //yes, then is there another to switch to?
@@ -345,7 +345,7 @@ class PlotDaemon {
                             $this->lastCameraSwitch["qc"] = $now;
                             $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
                             $hasBeenSwitched = true;
-                            $name =  $this->currentCameraName["qc"]["name"];
+                            $name =  $this->currentCameraName["qc"]["srcID"];
                             flog( "    \033[45m  Site qc switched to camera $name \033[0m\r\n\r\n");
                         }
                     }
@@ -355,7 +355,7 @@ class PlotDaemon {
                     $this->lastCameraSwitch["qc"] = $now;
                     $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
                     $hasBeenSwitched = true;
-                    $name =  $this->currentCameraName["qc"]["name"];
+                    $name =  $this->currentCameraName["qc"]["srcID"];
                     flog( "     \033[45m Site qc switched to camera $name \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
@@ -370,7 +370,7 @@ class PlotDaemon {
         if($totalVesselsInRange > 0) {
             foreach($liveObjects as $key => $liveObj) {
                 //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera['name'] == $this->currentCameraName["clintoncf"]["name"]) {
+                if($liveObj->liveCamera['name'] == $this->currentCameraName["clintoncf"]["srcID"]) {
                 //yes, then has is been on more than the time limit?
                     if($now-$this->lastCameraSwitch["clintoncf"] > $this->cameraTimeout) {
                     //yes, then is there another to switch to?
@@ -382,7 +382,7 @@ class PlotDaemon {
                             $this->lastCameraSwitch["clintoncf"] = $now;
                             $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                             $hasBeenSwitched = true;
-                            $name =  $this->currentCameraName["clintoncf"]["name"];
+                            $name =  $this->currentCameraName["clintoncf"]["srcID"];
                             flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
                         }
                     }
@@ -392,7 +392,7 @@ class PlotDaemon {
                     $this->lastCameraSwitch["clintoncf"] = $now;
                     $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
                     $hasBeenSwitched = true;
-                    $name =  $this->currentCameraName["clintoncf"]["name"];
+                    $name =  $this->currentCameraName["clintoncf"]["srcID"];
                     flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
                 }
                 //no, then just get the vesselName
@@ -424,7 +424,7 @@ class PlotDaemon {
                 $this->currentCameraName[$camera] = $data;
                 $this->lastCameraSwitch[$camera] = time();
                 $this->lastCameraName[$camera] =  $this->currentCameraName[$camera];
-                $name =  $this->currentCameraName[$camera]["name"];
+                $name =  $this->currentCameraName[$camera]["srcID"];
                 flog( "     \033[45m Site $camera manually switched to camera $name \033[0m\r\n\r\n");
             }
         }

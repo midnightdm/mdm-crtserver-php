@@ -287,7 +287,7 @@ class PlotDaemon {
         $vesselsOnSawmillCam   = isset($vesselsPerCamera["Sawmill"]) ? count($vesselsPerCamera["Sawmill"]) : 0;
         
         //Get any database camera changes before doing new changes based on vessel reports
-        $this->updateCameraStatus();
+        $updated = $this->updateCameraStatus();
 
             
         //Evaluate each location
@@ -325,8 +325,10 @@ class PlotDaemon {
             }
         } else {
             //Clear vesselsInRange when none
-            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];  
-            $hasBeenSwitched = true; 
+            if(count($this->currentCameraName["clinton"][vesselsInRange])) {
+                $hasBeenSwitched = true;
+            }
+            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
         }
         if($totalVesselsInQc>0 ) {
             foreach($vesselsPerRegion['qc'] as $key => $liveObj) {
@@ -360,8 +362,10 @@ class PlotDaemon {
             }
         } else {
             //Clear vesselsInRange when none
+            if(count($this->currentCameraName["qc"][vesselsInRange])) {
+                $hasBeenSwitched = true;
+            }
             $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];
-            $hasBeenSwitched = true;  
         }
         if($totalVesselsInRange > 0) {
             foreach($liveObjects as $key => $liveObj) {
@@ -395,8 +399,10 @@ class PlotDaemon {
             }
         } else {
             //Clear vesselsInRange when none
+            if(count($this->currentCameraName["clintoncf"][vesselsInRange])) {
+                $hasBeenSwitched = true;
+            }
             $this->currentCameraName["clintoncf"]["vesselsInRange"] = ["None"];
-            $hasBeenSwitched = true;
         }
         if($hasBeenSwitched) {
             $this->AdminTriggersModel->setWebcams($this->currentCameraName);
@@ -407,11 +413,13 @@ class PlotDaemon {
 
     public function updateCameraStatus() {
         $cameraNames = $this->AdminTriggersModel->getWebcams();
+        $updated = ["clinton"=>false, "clintoncf"=>false, "qc"=>false];
         foreach($cameraNames as $camera => $data) {
             //Has camera changed remotely?
             if($this->currentCameraName[$camera]['name'] != $data['name'] ||
                $this->currentCameraName[$camera]['zoom'] != $data['zoom']) {
                 //Yes, then update model
+                $updated[$camera] = true;
                 $this->currentCameraName[$camera] = $data;
                 $this->lastCameraSwitch[$camera] = time();
                 $this->lastCameraName[$camera] =  $this->currentCameraName[$camera];
@@ -419,6 +427,7 @@ class PlotDaemon {
                 flog( "     \033[45m Site $camera manually switched to camera $name \033[0m\r\n\r\n");
             }
         }
+        return $updated;
     }
 
   public function removeOldScans() {

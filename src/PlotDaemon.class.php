@@ -89,20 +89,20 @@ class PlotDaemon {
     
      //Regionalized as 'clinton', 'clintoncf' & 'qc'
     $this->defaultCameraName   = [
-        "clinton"    => ["name"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"]],
-        "clintoncf"  => ["name"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
-        "qc"         => ["name"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
+        "clinton"    => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"]],
+        "clintoncf"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
+        "qc"         => ["srcID"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
     ];
     
      $this->currentCameraName   = [
-        "clinton"    => ["name"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
-        "clintoncf"  => ["name"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
-        "qc"         => ["name"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
+        "clinton"    => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
+        "clintoncf"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
+        "qc"         => ["srcID"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
     ];
     $this->lastCameraName      = [
-        "clinton"    => ["name"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"]],
-        "clintoncf"  => ["name"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
-        "qc"         => ["name"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
+        "clinton"    => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"]],
+        "clintoncf"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
+        "qc"         => ["srcID"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
     ];
 
      //Prevents rapid camera switching if 2 vessels enable cam

@@ -472,7 +472,8 @@ class AlertsModel extends Firestore {
         'apubVoiceUrl' => $apubVoiceUrl,
         'apubVesselName' => $liveScan->liveName, 
         'apubEvent'=>$event, 
-        'apubDir'=>$liveScan->liveDirection
+        'apubDir'=>$liveScan->liveDirection,
+        'apubRegion'=>$liveScan->liveRegion
     ];
     //Add new Alert document for perm record
     switch($region) {
@@ -570,7 +571,8 @@ class AlertsModel extends Firestore {
         'vpubVoiceUrl' => $vpubVoiceUrl,
         'vpubVesselName' => $liveScan->liveName, 
         'vpubEvent'=>$event, 
-        'vpubDir'=>$liveScan->liveDirection
+        'vpubDir'=>$liveScan->liveDirection,
+        'vpubRegion'=>$liveScan->liveRegion
     ];
     //Add new db document for perm record
     flog("announcePassengerProgress region is ".$region);

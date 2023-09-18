@@ -296,7 +296,7 @@ class PlotDaemon {
         if($totalVesselsInClinton>0) {
             foreach($vesselsPerRegion['clinton'] as $key => $liveObj) {
                 //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera['name'] == $this->currentCameraName["clinton"]["srcID"]) {
+                if($liveObj->liveCamera["srcID"] == $this->currentCameraName["clinton"]["srcID"]) {
                 //yes, then has is been on more than the time limit?
                     if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
                     //yes, then is there another to switch to?
@@ -333,7 +333,7 @@ class PlotDaemon {
         if($totalVesselsInQc>0 ) {
             foreach($vesselsPerRegion['qc'] as $key => $liveObj) {
                 //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera['name'] == $this->currentCameraName["qc"]["srcID"]) {
+                if($liveObj->liveCamera["srcID"] == $this->currentCameraName["qc"]["srcID"]) {
                 //yes, then has is been on more than the time limit?
                     if($now-$this->lastCameraSwitch["qc"] > $this->cameraTimeout) {
                     //yes, then is there another to switch to?
@@ -370,7 +370,7 @@ class PlotDaemon {
         if($totalVesselsInRange > 0) {
             foreach($liveObjects as $key => $liveObj) {
                 //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera['name'] == $this->currentCameraName["clintoncf"]["srcID"]) {
+                if($liveObj->liveCamera["srcID"] == $this->currentCameraName["clintoncf"]["srcID"]) {
                 //yes, then has is been on more than the time limit?
                     if($now-$this->lastCameraSwitch["clintoncf"] > $this->cameraTimeout) {
                     //yes, then is there another to switch to?
@@ -417,8 +417,8 @@ class PlotDaemon {
         $updated = ["clinton"=>false, "clintoncf"=>false, "qc"=>false];
         foreach($cameraNames as $camera => $data) {
             //Has camera changed remotely?
-            if($this->currentCameraName[$camera]['name'] != $data['name'] ||
-               $this->currentCameraName[$camera]['zoom'] != $data['zoom']) {
+            if($this->currentCameraName[$camera]["srcID"] != $data["srcID"] ||
+               $this->currentCameraName[$camera]["zoom"] != $data["zoom"]) {
                 //Yes, then update model
                 $updated[$camera] = true;
                 $this->currentCameraName[$camera] = $data;

@@ -964,9 +964,10 @@ class PlotDaemon {
       flog(" = NONE\n");
       return;
     }
-    foreach($this->liveScan as $key => $liveObj) {
-      $liveObj->determineEncoderStartConditions();
-    }
+    //Encoder check disabled 9/18/23
+    // foreach($this->liveScan as $key => $liveObj) {
+    //   $liveObj->determineEncoderStartConditions();
+    // }
   }
 
   protected function reloadSavedScans() {

@@ -522,7 +522,7 @@ class PlotDaemon {
         }
         //If changes made, write to db
         if($hasChanged) {
-            $this->AdminTriggersModel->setSiteWebcam($site, $this->currentCamraName[$site]);
+            $this->AdminTriggersModel->setSiteWebcam($site, $this->currentCameraName[$site]);
         }
     }
 

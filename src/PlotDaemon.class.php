@@ -470,7 +470,7 @@ class PlotDaemon {
 
         //Evaluate each location
         foreach($this->siteNames as $site) {
-            $this->evaluateSite($site, $tally);
+            $this->evaluateSite($site, $tally, $vesselsAtCam, $vesselsInRegion);
         }
     }
 

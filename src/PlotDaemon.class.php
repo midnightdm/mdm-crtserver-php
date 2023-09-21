@@ -515,7 +515,7 @@ class PlotDaemon {
             $this->currentCameraName[$site]["vesselsInRange"] = $vesselsInRange;
         } else {
             //Clear vesselsInRange when none
-            if(count($this->currentCameraName[$site]["vesselsInRange"])) {
+            if($this->currentCameraName[$site] && count($this->currentCameraName[$site]["vesselsInRange"])) {
                 $hasChanged = true;
             }
             $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   

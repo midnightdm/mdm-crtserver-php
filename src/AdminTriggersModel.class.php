@@ -196,6 +196,12 @@ class AdminTriggersModel extends Firestore {
     ],['merge'=>true]);
   }
 
+  public function setSiteWebcam($site, $data) {
+    $this->db->collection('Controls')
+    ->document('webcamSites')
+    ->set([$site => $data],["merge"=>true]);
+  }
+
   public function getWebcams() {
     if($this->getWebcamSitesDocument()) {
         $cameraNames = [

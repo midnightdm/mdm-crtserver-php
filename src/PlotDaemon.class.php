@@ -62,6 +62,9 @@ class PlotDaemon {
   public $savePassagesTimeout;
   public $image_base;
 
+  public $siteNames;
+  public $camNames;
+
 
   public function __construct($config_ref) {
     $this->config = $config_ref;   
@@ -86,6 +89,10 @@ class PlotDaemon {
     $this->lastJsonSave        = $now-10; //Used to increment liveScan.json save
     $this->lastPassagesSave    = $now-50; //Increments savePassages routine
     
+    //Names for loop purposes
+    $this->siteNames = ["clinton", "qc", "clintoncf"];
+    $this->camNames  = ["CabinDR", "CabinUR", "HistoricalSoc", "PortByron", "Sawmill"];
+
     
      //Regionalized as 'clinton', 'clintoncf' & 'qc'
     $this->defaultCameraName   = [
@@ -109,7 +116,13 @@ class PlotDaemon {
     $this->lastCameraSwitch    = [
         "clinton"    =>$now-50,
         "clintoncf"  =>$now-50,
-        "clinton"    =>$now-50
+        "qc"         =>$now-50
+    ];
+
+    $this->inCamRangeRotKey = [
+        "clinton"   => 0,
+        "clintoncf" => 0,
+        "qc"        => 0
     ];
 
     //Set values below in $config array in config.php
@@ -244,7 +257,7 @@ class PlotDaemon {
       //Resuming here if above was skipped with
       //    things to do on each loop besides UDP data handling (Skip if aisTestMode)
       if(!$this->aisTestMode) {
-         $this->switchCamera();    //Used built-in 30sec timer
+         $this->switchCamera2();    //Used built-in 30sec timer
          $this->adminCommands();	 //Uses removeOldScans() timer	
          $this->removeOldScans(); //Resets the timer shared by adminCommands() 
          $this->saveAllScans();   //Has its own interval timer
@@ -267,6 +280,7 @@ class PlotDaemon {
         $liveObjects = [];
         $vesselsPerCamera = [];
         $vesselsPerRegion = [];
+
 
         foreach($this->liveScan as $key => $liveObj) {
             if($liveObj->inCameraRange) {
@@ -429,6 +443,87 @@ class PlotDaemon {
             }
         }
         return $updated;
+    }
+
+    public function switchCamera2() {
+        $now = time();
+
+        //Get any database camera changes before doing new changes based on vessel reports
+        $updated = $this->updateCameraStatus();
+
+        //Tally vessels in view of a camera
+        $allLiveObjects = [];
+        $vesselsAtCam = [];
+        $vesselsInRegion = [];
+        $tally = [ "clinton" => 0, "qc" =>0, "clintoncf"=> 0];
+
+        foreach($this->liveScan as $key => $liveObj) {
+            if($liveObj->inCameraRange) {
+                $allLiveObjects[] = $liveObj;
+                $vesselsAtCam[$liveObj->liveCamera["srcID"]][] = $liveObj->liveName;
+                $vesselsInRegion[$liveObj->liveRegion][] = $liveObj;
+            }
+        }
+        $tally["clinton"] = isset($vesselsPerRegion["clinton"]) ? count($vesselsPerRegion["clinton"]) : 0;
+        $tally["qc"]      = isset($vesselsPerRegion["qc"]) ? count($vesselsPerRegion["qc"]) : 0 ;
+        $tally["clintoncf"] = count($allLiveObjects);
+
+        //Evaluate each location
+        foreach($this->siteNames as $site) {
+            $this->evaluateSite($site, $tally);
+        }
+    }
+
+    public function evaluateSite($site, $tally, $vesselsAtCam, $vesselsInRegion) {
+        //  If more than one camera in a region is showing a vessel, rotate through cameras.
+        //  If more than one vessel is on a single camera, list all the names
+        if($tally[$site] > 0) {
+            $vesselsInRange = [];
+            $hasChanged = false;
+            foreach($vesselsInRegion[$site] as $key => $liveObj) {
+                //Put its name into an array for on screen list
+                $vesselsInRange[] = $liveObj->liveName;
+                //Don't retest if camera switched earlier in loop
+                if($hasChanged) {
+                    continue;
+                }
+                //Is the tested vessel's camera name the one switched on now?
+                if($liveObj->liveCamera["srcID"] == $this->currentCameraName[$site]["srcID"]) {
+                //yes, then has is been on more than the time limit?
+                    if($now-$this->lastCameraSwitch[$site] > $this->cameraTimeout) {
+                    //yes, then switch cam to the next vessel in range (if another)
+                        $this->inCamRangeRotKey[$site]++;
+                        //Reset key to 0 after last one (or keep 0 if only one)
+                        if($this->inCamRangeRotKey[$site] > $tally[$site]-1) {
+                            $this->inCamRangeRotKey[$site] = 0;
+                        }
+                        $rotKey = $this->inCamRangeRotKey[$site];
+                        $this->currentCameraName[$site] = $vesselsInRegion[$site][$rotKey]->liveCamera;
+                        $this->lastCameraSwitch[$site] = $now;
+                        $this->lastCameraName[$site] =  $this->currentCameraName[$site];
+                        $hasChanged = true;
+                        $srcID =  $this->currentCameraName[$site]["srcID"];
+                        flog( "     \033[45m Site $site switched to camera $srcID \033[0m\r\n\r\n");
+                    }
+                }
+                //no, then don't switch the webcam view
+            }
+            //Update stored vesselsInRange with capture from loop
+            if(count($vesselsInRange) != count($this->currentCameraName[$site]["vesselsInRange"])) {
+                $hasChanged = true;
+            }
+            $this->currentCameraName[$site]["vesselsInRange"] = $vesselsInRange;
+        } else {
+            //Clear vesselsInRange when none
+            if(count($this->currentCameraName[$site]["vesselsInRange"])) {
+                $hasChanged = true;
+            }
+            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
+        }
+        //If changes made, write to db
+        if($hasChanged) {
+            $this->AdminTriggersModel->setSiteWebcam($site, $this->currentCamraName[$site]);
+        }
     }
 
   public function removeOldScans() {

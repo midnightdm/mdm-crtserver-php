@@ -257,7 +257,7 @@ class PlotDaemon {
       //Resuming here if above was skipped with
       //    things to do on each loop besides UDP data handling (Skip if aisTestMode)
       if(!$this->aisTestMode) {
-         $this->switchCamera();    //Used built-in 30sec timer
+         //$this->switchCamera();    //Used built-in 30sec timer
          $this->adminCommands();	 //Uses removeOldScans() timer	
          $this->removeOldScans(); //Resets the timer shared by adminCommands() 
          $this->saveAllScans();   //Has its own interval timer

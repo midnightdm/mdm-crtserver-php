@@ -199,7 +199,7 @@ class AdminTriggersModel extends Firestore {
   public function setSiteWebcam($site, $data) {
     $this->db->collection('Controls')
     ->document('webcamSites')
-    ->set([$site => $data],["merge"=>true]);
+    ->update(["path" => $site, "value" => $data]);
   }
 
   public function getWebcams() {

@@ -465,6 +465,7 @@ class Location {
         }
     }
     if($isInCamE) {
+        echo "read of disabledWebcams".var_dump($this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']);
         if(!$this->live->PlotDaemon->AdminTriggersModel->adminData['disabledWebcams']['PortByron']){
             flog("      Location::determineCamera() = PortByron\n");
             return ["srcID" => 'PortByron', 'zoom' => 0];

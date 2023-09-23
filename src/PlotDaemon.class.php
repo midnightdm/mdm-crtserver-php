@@ -481,7 +481,7 @@ class PlotDaemon {
         $hasChanged = false;
         if($tally[$site] > 0) {
             $vesselsInRange = [];
-      
+            flog("   Tally of $site is {$tally[$site]}");
             foreach($vesselsInRegion[$site] as $key => $liveObj) {
                 //Put its name into an array for on screen list
                 $vesselsInRange[] = $liveObj->liveName;

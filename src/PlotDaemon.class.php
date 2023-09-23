@@ -272,159 +272,7 @@ class PlotDaemon {
     socket_close($aisMonSock);
   }
 
-    public function switchCamera() {
-        $now = time();
-        $hasBeenSwitched = false;
-       
-        //Tally vessels in view of a camera
-        $liveObjects = [];
-        $vesselsPerCamera = [];
-        $vesselsPerRegion = [];
-
-
-        foreach($this->liveScan as $key => $liveObj) {
-            if($liveObj->inCameraRange) {
-                $liveObjects[] = $liveObj;
-                $vesselsPerCamera[$liveObj->liveCamera["srcID"]][] = $liveObj->liveName;
-                $vesselsPerRegion[$liveObj->liveRegion][] = $liveObj;
-            }
-        }
-        $totalVesselsInRange   = count($liveObjects); //show to regoinal (clintoncf)
-        $totalVesselsInClinton = isset($vesselsPerRegion["clinton"]) ? count($vesselsPerRegion["clinton"]) : 0; //show to clinton
-        $totalVesselsInQc       = isset($vesselsPerRegion["qc"]) ? count($vesselsPerRegion["qc"]) : 0 ; //show to qc
-        
-        $vesselsOnPortByronCam = isset($vesselsPerCamera["PortByron"]) ? count($vesselsPerCamera["PortByron"]) : 0;
-        $vesselsOnCabinDR      = isset($vesselsPerCamera["CabinDR"]) ? count($vesselsPerCamera["CabinDR"]) : 0;
-        $vesselsOnCabinUR      = isset($vesselsPerCamera["CabingUR"]) ? count($vesselsPerCamera["CabinUR"]) : 0;
-        $vesselsOnCabin        = $vesselsOnCabinDR + $vesselsOnCabinUR;
-        $vesselsOnHistoricalSocCam = isset($vesselsPerCamera["HistorialSoc"]) ? count($vesselsPerCamera["HistoricalSoc"]) : 0 ;
-        $vesselsOnSawmillCam   = isset($vesselsPerCamera["Sawmill"]) ? count($vesselsPerCamera["Sawmill"]) : 0;
-        
-        //Get any database camera changes before doing new changes based on vessel reports
-        $updated = $this->updateCameraStatus();
-
-            
-        //Evaluate each location
-        //  If more than one camera in a region is showing a vessel, rotate through cameras.
-        //  If more than one vessel is on a single camera, list all the names
-        if($totalVesselsInClinton>0) {
-            foreach($vesselsPerRegion['clinton'] as $key => $liveObj) {
-                //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera["srcID"] == $this->currentCameraName["clinton"]["srcID"]) {
-                //yes, then has is been on more than the time limit?
-                    if($now-$this->lastCameraSwitch["clinton"] > $this->cameraTimeout) {
-                    //yes, then is there another to switch to?
-                        if($totalVesselsInClinton>1) {
-                        //yes, then switch it to the next one
-                            $nextKey = $key>$totalVesselsInClinton-1 ? 0 : $key+1;
-                            $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][$nextKey]->liveCamera;
-                            $this->currentCameraName["clinton"]["vesselsInRange"][] = $vesselsPerRegion["clinton"][$nextKey]->liveName;
-                            $this->lastCameraSwitch["clinton"] = $now;
-                            $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
-                            $hasBeenSwitched = true;
-                            $name =  $this->currentCameraName["clinton"]["srcID"];
-                            flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
-                        }
-                    }
-                    //no, then use only one found
-                    $this->currentCameraName["clinton"] = $vesselsPerRegion["clinton"][0]->liveCamera;
-                    $this->currentCameraName["clinton"]["vesselsInRange"][] = $vesselsPerRegion["clinton"][0]->liveName;
-                    $this->lastCameraSwitch["clinton"] = $now;
-                    $this->lastCameraName["clinton"] =  $this->currentCameraName["clinton"];
-                    $hasBeenSwitched = true;
-                    $name =  $this->currentCameraName["clinton"]["srcID"];
-                    flog( "     \033[45m Site clinton switched to camera $name \033[0m\r\n\r\n");
-                }
-                //no, then just get the vesselName
-            }
-        } else {
-            //Clear vesselsInRange when none
-            if(count($this->currentCameraName["clinton"]["vesselsInRange"])) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
-        }
-        if($totalVesselsInQc>0 ) {
-            foreach($vesselsPerRegion['qc'] as $key => $liveObj) {
-                //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera["srcID"] == $this->currentCameraName["qc"]["srcID"]) {
-                //yes, then has is been on more than the time limit?
-                    if($now-$this->lastCameraSwitch["qc"] > $this->cameraTimeout) {
-                    //yes, then is there another to switch to?
-                        if($totalVesselsInQc>1) {
-                        //yes, then switch it to the next one
-                            $nextKey = $key>$totalVesselsInQc-1 ? 0 : $key+1;
-                            $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][$nextKey]->liveCamera;
-                            $this->currentCameraName["qc"]["vesselsInRange"][] = $vesselsPerRegion["qc"][$nextKey]->liveName;
-                            $this->lastCameraSwitch["qc"] = $now;
-                            $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
-                            $hasBeenSwitched = true;
-                            $name =  $this->currentCameraName["qc"]["srcID"];
-                            flog( "    \033[45m  Site qc switched to camera $name \033[0m\r\n\r\n");
-                        }
-                    }
-                    //no, then use only one found
-                    $this->currentCameraName["qc"] = $vesselsPerRegion["qc"][0]->liveCamera;
-                    $this->currentCameraName["qc"]["vesselsInRange"][] = $vesselsPerRegion["qc"][0]->liveName;
-                    $this->lastCameraSwitch["qc"] = $now;
-                    $this->lastCameraName["qc"] =  $this->currentCameraName["qc"];
-                    $hasBeenSwitched = true;
-                    $name =  $this->currentCameraName["qc"]["srcID"];
-                    flog( "     \033[45m Site qc switched to camera $name \033[0m\r\n\r\n");
-                }
-                //no, then just get the vesselName
-            }
-        } else {
-            //Clear vesselsInRange when none
-            if(count($this->currentCameraName["qc"]["vesselsInRange"])) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["qc"]["vesselsInRange"] = ["None"];
-        }
-        if($totalVesselsInRange > 0) {
-            foreach($liveObjects as $key => $liveObj) {
-                //Is the tested vessel's camera name the one switched on now?
-                if($liveObj->liveCamera["srcID"] == $this->currentCameraName["clintoncf"]["srcID"]) {
-                //yes, then has is been on more than the time limit?
-                    if($now-$this->lastCameraSwitch["clintoncf"] > $this->cameraTimeout) {
-                    //yes, then is there another to switch to?
-                        if($totalVesselsInClinton>1) {
-                        //yes, then switch it to the next one
-                            $nextKey = $key>$totalVesselsInRange-1 ? 0 : $key+1;
-                            $this->currentCameraName["clintoncf"] = $liveObjects[$nextKey]->liveCamera;
-                            $this->currentCameraName["clintoncf"]["vesselsInRange"][] = $vesselsPerRegion["clintoncf"][$nextKey]->liveName;
-                            $this->lastCameraSwitch["clintoncf"] = $now;
-                            $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                            $hasBeenSwitched = true;
-                            $name =  $this->currentCameraName["clintoncf"]["srcID"];
-                            flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
-                        }
-                    }
-                    //no, then use only one found
-                    $this->currentCameraName["clintoncf"] = $vesselsPerRegion["clintoncf"][0]->liveCamera;
-                    $this->currentCameraName["clintoncf"]["vesselsInRange"][] = $vesselsPerRegion["clintoncf"][0]->liveName;
-                    $this->lastCameraSwitch["clintoncf"] = $now;
-                    $this->lastCameraName["clintoncf"] =  $this->currentCameraName["clintoncf"];
-                    $hasBeenSwitched = true;
-                    $name =  $this->currentCameraName["clintoncf"]["srcID"];
-                    flog( "     \033[45m Site clintoncf switched to camera $name \033[0m\r\n\r\n");
-                }
-                //no, then just get the vesselName
-            }
-        } else {
-            //Clear vesselsInRange when none
-            if(count($this->currentCameraName["clintoncf"]["vesselsInRange"])) {
-                $hasBeenSwitched = true;
-            }
-            $this->currentCameraName["clintoncf"]["vesselsInRange"] = ["None"];
-        }
-        if($hasBeenSwitched) {
-            $this->AdminTriggersModel->setWebcams($this->currentCameraName);
-        }
-        
-        
-    }
-
+    
     public function updateCameraStatus() {
         $cameraNames = $this->AdminTriggersModel->getWebcams();
         //echo var_dump($cameraNames);
@@ -510,7 +358,17 @@ class PlotDaemon {
                         flog( "     \033[45m Site $site switched to camera $srcID \033[0m\r\n\r\n");
                     }
                 }
-                //no, then don't switch the webcam view
+                /* NO, then switch damn it!  */
+                $this->currentCameraName[$site] = [
+                    "srcID" => $liveObj->liveCamera["srcID"],
+                    "zoom"  => $liveObj->liveCamera["zoom"],
+                    "vesselsInRange" => $liveObj->liveName
+                ];
+                $this->lastCameraSwitch[$site] = $now;
+                $this->lastCameraName[$site] = $this->currentCameraName[$site];
+                $hasChanged = true;
+                $srcID =  $this->currentCameraName[$site]["srcID"];
+                flog( "     \033[45m Site $site switched to camera $srcID \033[0m\r\n\r\n");
             }
             //Update stored vesselsInRange with capture from loop
             if(count($vesselsInRange) != count($this->currentCameraName[$site]["vesselsInRange"])) {

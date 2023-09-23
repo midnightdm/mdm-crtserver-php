@@ -197,10 +197,16 @@ class AdminTriggersModel extends Firestore {
   }
 
   public function setSiteWebcam($site, $data) {
+    $srcPath = $site.".srcID";
+    $zoomPath = $site.".zoom";
+    $vesselsPath = $site.".vesselInRange";
+
     $this->db->collection('Controls')
     ->document('webcamSites')
     ->update([
-        ["path" => $site, "value" => $data]
+        ["path" => $srcPath, "value" => $data['srcID']],
+        ["path" => $zoomPath, "value" => $data['zoom']],
+        ["path" => $vesselsPath, "value" => $data['vesselsInRange']]
     ]);
   }
 

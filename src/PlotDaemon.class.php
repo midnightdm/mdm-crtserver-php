@@ -459,6 +459,7 @@ class PlotDaemon {
 
         foreach($this->liveScan as $key => $liveObj) {
             if($liveObj->inCameraRange) {
+                flog("inCamera range: ".$liveObj->liveName."\n");
                 $allLiveObjects[] = $liveObj;
                 $vesselsAtCam[$liveObj->liveCamera["srcID"]][] = $liveObj->liveName;
                 $vesselsInRegion[$liveObj->liveRegion][] = $liveObj;
@@ -482,7 +483,7 @@ class PlotDaemon {
         $hasChanged = false;
         if($tally[$site] > 0) {
             $vesselsInRange = [];
-            flog("   Tally of $site is {$tally[$site]}");
+            flog("   Tally of $site is {$tally[$site]}\n");
             foreach($vesselsInRegion[$site] as $key => $liveObj) {
                 //Put its name into an array for on screen list
                 $vesselsInRange[] = $liveObj->liveName;

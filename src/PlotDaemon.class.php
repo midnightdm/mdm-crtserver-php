@@ -371,7 +371,7 @@ class PlotDaemon {
                 flog( "     \033[45m Site $site switched to camera $srcID \033[0m\r\n\r\n");
             }
             //Update stored vesselsInRange with capture from loop
-            if(count($vesselsInRange) != count($this->currentCameraName[$site]["vesselsInRange"])) {
+            if(isset($vesselsInRange) && count($vesselsInRange) != count($this->currentCameraName[$site]["vesselsInRange"])) {
                 $hasChanged = true;
             }
             $this->currentCameraName[$site]["vesselsInRange"] = $vesselsInRange;

@@ -478,6 +478,7 @@ class PlotDaemon {
     public function evaluateSite($site, $tally, $vesselsAtCam, $vesselsInRegion) {
         //  If more than one camera in a region is showing a vessel, rotate through cameras.
         //  If more than one vessel is on a single camera, list all the names
+        $now = time();
         $hasChanged = false;
         if($tally[$site] > 0) {
             $vesselsInRange = [];

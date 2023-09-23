@@ -462,6 +462,7 @@ class PlotDaemon {
                 $allLiveObjects[] = $liveObj;
                 $vesselsAtCam[$liveObj->liveCamera["srcID"]][] = $liveObj->liveName;
                 $vesselsInRegion[$liveObj->liveRegion][] = $liveObj;
+                $vesselsInRegion['clintoncf'][] = $liveObj;
             }
         }
         $tally["clinton"] = isset($vesselsPerRegion["clinton"]) ? count($vesselsPerRegion["clinton"]) : 0;

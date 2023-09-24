@@ -283,7 +283,11 @@ class PlotDaemon {
                $this->currentCameraName[$camera]["zoom"] != $data["zoom"]) {
                 //Yes, then update model
                 $updated[$camera] = true;
-                $this->currentCameraName[$camera] = $data;
+                $this->currentCameraName[$camera] = [
+                    "srcID"=> $data["srcID"],
+                    "zoom" => $data["zoom"],
+                    "vesselsInRange" => $data["vesselsInRange"]
+                ];
                 $this->lastCameraSwitch[$camera] = time();
                 $this->lastCameraName[$camera] =  $this->currentCameraName[$camera];
                 $name =  $this->currentCameraName[$camera]["srcID"];
@@ -341,21 +345,25 @@ class PlotDaemon {
                 }
                 //Is the tested vessel's camera name the one switched on now?
                 if($liveObj->liveCamera["srcID"] == $this->currentCameraName[$site]["srcID"]) {
-                //yes, then has is been on more than the time limit?
+                    //yes, then has is been on more than the time limit?
                     if($now-$this->lastCameraSwitch[$site] > $this->cameraTimeout) {
-                    //yes, then switch cam to the next vessel in range (if another)
-                        $this->inCamRangeRotKey[$site]++;
-                        //Reset key to 0 after last one (or keep 0 if only one)
-                        if($this->inCamRangeRotKey[$site] > $tally[$site]-1) {
-                            $this->inCamRangeRotKey[$site] = 0;
+                        //yes, is there another to switch to?
+                        if($tally[$site]>1) {
+                            //yes, then rotate key 
+                            $this->inCamRangeRotKey[$site]++;
+                            //Reset key to 0 after last one (or keep 0 if only one)
+                            if($this->inCamRangeRotKey[$site] > $tally[$site]-1) {
+                                $this->inCamRangeRotKey[$site] = 0;
+                            }
+                            $rotKey = $this->inCamRangeRotKey[$site];
+                            $this->currentCameraName[$site] = $vesselsInRegion[$site][$rotKey]->liveCamera;
+                            $this->lastCameraSwitch[$site] = $now;
+                            $this->lastCameraName[$site] =  $this->currentCameraName[$site];
+                            $hasChanged = true;
+                            $srcID =  $this->currentCameraName[$site]["srcID"];
+                            flog( "     \033[45m Site $site switched to camera $srcID \033[0m\r\n\r\n");
                         }
-                        $rotKey = $this->inCamRangeRotKey[$site];
-                        $this->currentCameraName[$site] = $vesselsInRegion[$site][$rotKey]->liveCamera;
-                        $this->lastCameraSwitch[$site] = $now;
-                        $this->lastCameraName[$site] =  $this->currentCameraName[$site];
-                        $hasChanged = true;
-                        $srcID =  $this->currentCameraName[$site]["srcID"];
-                        flog( "     \033[45m Site $site switched to camera $srcID \033[0m\r\n\r\n");
+                        //no, then don't switch despite age
                     }
                 }
                 /* NO, then switch damn it!  */
@@ -371,7 +379,7 @@ class PlotDaemon {
                 flog( "     \033[45m Site $site switched to camera $srcID \033[0m\r\n\r\n");
             }
             //Update stored vesselsInRange with capture from loop
-            if(isset($vesselsInRange) && count($vesselsInRange) != count($this->currentCameraName[$site]["vesselsInRange"])) {
+            if(isset($vesselsInRange)) {
                 $hasChanged = true;
             }
             $this->currentCameraName[$site]["vesselsInRange"] = $vesselsInRange;
@@ -380,7 +388,7 @@ class PlotDaemon {
             if($this->currentCameraName[$site] && count($this->currentCameraName[$site]["vesselsInRange"])) {
                 $hasChanged = true;
             }
-            $this->currentCameraName["clinton"]["vesselsInRange"] = ["None"];   
+            $this->currentCameraName[$site]["vesselsInRange"] = ["None"];   
         }
         //If changes made, write to db
         if($hasChanged) {

@@ -93,18 +93,19 @@ class MyAIS extends AIS {
     //      return $ro;
     //   }
 
+
       if(isset($this->plotDaemon->liveScan[$key])) {
         //Update liveScan object only if data is new
         if($lat != $this->plotDaemon->liveScan[$key]->liveLastLat || $lon != $this->plotDaemon->liveScan[$key]->liveLastLon) {
           $this->plotDaemon->liveScan[$key]->update($ts, $name, $id, $lat, $lon, $speed, $course, $isTestMode);
-          flog( "    livePlot[$key]->update(".date("F j, Y, g:i:s a", $ts).", ".$name
+          flog( "    liveScan[$key]->update(".date("F j, Y, g:i:s a", $ts+$offset).", ".$name
             .", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");					  
         }  
       } else {
         //Skip river marker numbers & void bad lat data
         if($id < 990000000 && $id > 100000000 && $lat > 1) {
             $this->plotDaemon->liveScan[$key] = new LiveScan($ts, $name, $id, $lat, $lon, $speed, $course, $this->plotDaemon, $isTestMode);
-            flog( "    NEW liveScan[$key] (".date("F j, Y, g:i a", $ts).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");            
+            flog( "    NEW liveScan[$key] (".date("F j, Y, g:i a", $ts+$offset).", ".$name.", ".$id.", ".$lat.", ".$lon.", ".$speed.", ".$course.")\r\n");            
             //Update LiveScanLength if NOT in test mode
             if(!$isTestMode) { 
                 $this->plotDaemon->updateLiveScanLength();

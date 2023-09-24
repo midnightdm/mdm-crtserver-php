@@ -197,6 +197,7 @@ class AdminTriggersModel extends Firestore {
   }
 
   public function setSiteWebcam($site, $data) {
+    flog("                TRACER:   setSiteWebcam() \n");
     $srcPath = $site.".srcID";
     $zoomPath = $site.".zoom";
     $vesselsPath = $site.".vesselsInRange";

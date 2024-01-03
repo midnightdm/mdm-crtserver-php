@@ -308,55 +308,6 @@ class AlertsModel extends Firestore {
     //$loc = ""; 
     $str = "m/j/Y h:i:sa";
     $offset = getTimeOffset();
-    //Parse event code to get status (and marker data)
-    
-    // if(str_starts_with($event, 'alpha'   )) { 
-    //     $status = "alpha";
-    // } elseif(str_starts_with($event, 'bravo'   )) {
-    //     $status = "bravo";
-    // } elseif(str_starts_with($event, 'charlie' )) {
-    //     $status = "charlie";
-    // } elseif(str_starts_with($event, 'delta'   )) {
-    //     $status = "delta";
-    // } elseif(str_starts_with($event, 'echo'   )) {
-    //     $status = "echo";
-    // } elseif(str_starts_with($event, 'foxtrot'   )) {
-    //     $status = "foxtrot";    
-    // } elseif(str_starts_with($event, 'golf'   )) {
-    //     $status = "golf";    
-    // } elseif(str_starts_with($event, 'hotel'   )) {
-    //     $status = "hotel";
-    // } elseif(str_starts_with($event, 'albany'  )) {
-    //     $status = "albany";
-    // } elseif(str_starts_with($event, 'camanche')) {
-    //     $status = "camanche";
-    // } elseif(str_starts_with($event, 'beaver' ) ) {
-    //     $status = "beaver";
-    // } elseif(str_starts_with($event, 'detect' ) ) {
-    //     $status = "detect";
-    // } elseif(str_starts_with($event, "m")) { 
-    //     $status = "marker"; 
-    //     $mile = substr(1,3);
-    // } else { 
-    //     $status = "Not Resolved";
-    // }
-    // flog( "AlertsModel::buildAlertMessage() event: $event\n");
-    // switch($status) {
-    //     case "alpha" : $evtDesc = "crossed 3 mi N of Lock 13 ";  break;
-    //     case "bravo" : $evtDesc = $direction=="downriver" ? "left " : " reached ";
-    //                     $evtDesc .= "Lock 13 "; break;
-    //     case "charlie" : $evtDesc = "passed the Clinton RR drawbridge ";  break;
-    //     case "delta" : $evtDesc = "crossed 3 mi S of drawbridge ";  break;
-    //     case "echo" : $evtDesc = "passed the I-80 bridge, LeClaire ";  break;
-    //     case "foxtrot" : $evtDesc = "is at Lock 14 ";  break;
-    //     case "golf" : $evtDesc = "is at Lock 15 ";  break;
-    //     case "hotel" : $evtDesc = "crossed the I-280 bridge ";  break;
-    //     case "detect" : $evtDesc = "has been detected "; break;
-    //     case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
-    //     case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
-    //     case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
-    //     case "marker" : $evtDesc = "is ".$location; break;
-    // }
     $txt  = str_replace('Vessel', '', $vesselType);
     $txt .= " Vessel ".$vesselName." was ".$locDesc;
     $txt .= $direction=='undetermined' ? "" : " traveling ".$direction;
@@ -365,55 +316,6 @@ class AlertsModel extends Firestore {
   }
 
   public function buildVoiceMessage($event, $vesselName, $vesselType, $direction, $ts, $lat, $lon, $locDesc) {
-    // $loc = ""; 
-    // //Parse event code to get status (and marker data)  
-    // if(str_starts_with($event, 'alpha'   )) { 
-    //     $status = "alpha";
-    // } elseif(str_starts_with($event, 'bravo'   )) {
-    //     $status = "bravo";
-    // } elseif(str_starts_with($event, 'charlie' )) {
-    //     $status = "charlie";
-    // } elseif(str_starts_with($event, 'delta'   )) {
-    //     $status = "delta";
-    // } elseif(str_starts_with($event, 'echo'   )) {
-    //     $status = "echo";
-    // } elseif(str_starts_with($event, 'foxtrot' )) {
-    //     $status = "foxtrot";    
-    // } elseif(str_starts_with($event, 'golf'   )) {
-    //     $status = "golf";    
-    // } elseif(str_starts_with($event, 'hotel'   )) {
-    //     $status = "hotel";        
-    // } elseif(str_starts_with($event, 'albany'  )) {
-    //     $status = "albany";
-    // } elseif(str_starts_with($event, 'camanche')) {
-    //     $status = "camanche";
-    // } elseif(str_starts_with($event, 'beaver' ) ) {
-    //     $status = "beaver";
-    // } elseif(str_starts_with($event, 'detect' ) ) {
-    //     $status = "detect";
-    // } elseif(str_starts_with($event, "m")) { 
-    //     $status = "marker"; 
-    //     $mile = substr(1,3);
-    // } else { 
-    //     $status = "Not Resolved";
-    // }
-    // flog( "AlertsModel::buildVoiceMessage() event: $event, status: $status\n");
-    // switch($status) {
-    //     case "alpha" : $evtDesc = "crossed 3 miles north of Lock 13 ";  break;
-    //     case "bravo" : $evtDesc = $direction=="downriver" ? " has left " : " has reached ";
-    //                     $evtDesc .= "Lock 13 "; break;
-    //     case "charlie" : $evtDesc = "passed the Clinton drawbridge ";  break;
-    //     case "delta" : $evtDesc = "crossed 3 miles south of the Clinton drawbridge ";  break;
-    //     case "echo" : $evtDesc = "passed the Interstate 80 bridge in LeClaire ";  break;
-    //     case "foxtrot" : $evtDesc = "is at Lock 14 below Princeton ";  break;
-    //     case "golf" : $evtDesc = "is at Lock 15 in Davenport";  break;
-    //     case "hotel" : $evtDesc = "crossed the Intersate two-eighty bridge in Davenport ";  break;
-    //     case "detect" : $evtDesc = "has been detected "; break;
-    //     case "albany" : $evtDesc = "has entered the Albany sand pit harbor ";  break;
-    //     case "camanche": $evtDesc = "has entered the Camanche marina harbor ";  break;
-    //     case "beaver" : $evtDesc = "is now in Beaver slough ";  break;
-    //     case "marker" : $evtDesc = "is ".$location; break;
-    // }
     $txt = $direction=='undetermined' ? "" : "Traveling ".$direction.", ";
     $txt .= str_replace('vessel', '', $vesselType);
     $txt .= " Vessel, ".$vesselName.", is ".$locDesc;
@@ -434,6 +336,7 @@ class AlertsModel extends Firestore {
     $vesselType = $liveScan->liveVessel==null ? "" : $liveScan->liveVessel->vesselType;
     $apubID = $this->getApubID($region) + 1; //Method in parent
     $type  = strpos($liveScan->liveVessel->vesselType, "assenger") ? "p" : "a";
+    $arrName = $type=='p' ? 'alertsPassenger' : 'alertsAll';
     $txt = $this->buildAlertMessage(
       $event, 
       $liveScan->liveName, 
@@ -476,18 +379,18 @@ class AlertsModel extends Firestore {
         'apubRegion'=>$liveScan->liveRegion
     ];
     //Add new Alert document for perm record
-    switch($region) {
-      case "qc":  
-        $collection = "AlertpublishQC"; 
-        $arrName = $type=='p' ? 'alertsPassengerQC':'alertsAllQC'; 
-        break;                     
-      case "clinton":
-      default:   
-        $collection = "Alertpublish";
-        $arrName = $type=='p' ? 'alertsPassenger' : 'alertsAll';
-        break;
-    }
-    $this->db->collection($collection)->document(strval($apubID))->set($data);
+    // switch($region) {
+    //   case "qc":  
+    //     $collection = "AlertpublishQC"; 
+    //     $arrName = $type=='p' ? 'alertsPassengerQC':'alertsAllQC'; 
+    //     break;                     
+    //   case "clinton":
+    //   default:   
+    //     $collection = "Alertpublish";
+    //     $arrName = $type=='p' ? 'alertsPassenger' : 'alertsAll';
+    //     break;
+    // }
+    $this->db->collection("Alertpublish")->document(strval($apubID))->set($data);
     //Save new apubID to admin to trigger JS
     $this->stepApubID($region);
     //Also update collective alert list queue (a or p type)...
@@ -497,7 +400,7 @@ class AlertsModel extends Firestore {
 */
    if($len<20) {
     //If alerts array is incomplete, rebuild it from db.
-    $this->daemon->$arrName = $this->rebuildPublishedAlerts($type , $collection, $arrName);
+    $this->daemon->$arrName = $this->rebuildPublishedAlerts($type , "Alertpublish", $arrName);
    }
 
     $this->daemon->$arrName = objectQueue($this->daemon->$arrName, $data, 20);
@@ -510,8 +413,6 @@ class AlertsModel extends Firestore {
     $this->generateRss($type, $region);
     return true;
   }
-
-
 
   public function rebuildPublishedAlerts($type,  $collection, $arrName) {
     $arr = array();
@@ -680,165 +581,6 @@ _END;
   }
 
 
-  //Methods below were for sql based version of app 
-
-  public function generateAlertLogSms($clickSendResponse, $smsMessages) {
-      //Gets run by generateAlertMessages() method of this class to document response from sms host
-      $csArr = $clickSendResponse->data->messages;
-      foreach ($smsMessages as $msg) {
-          $data = [];
-          $data['alogAlertID']   = intval($msg['alertID']);
-          $data['alogDirection'] = $msg['dir'];
-          $data['alogType']      = $msg['event'];
-          $data['alogMessageTo'] = $msg['phone'];
-          $data['alogMessageType'] = 'sms';
-          $sms = current($csArr);
-          while($sms) {
-              if($sms->to == $msg['phone']) {
-                  $data['alogMessageID']     = $sms->message_id;
-                  $data['alogMessageCost']    = $sms->message_price;
-                  $data['alogMessageStatus'] = $sms->status;
-                  $data['alogTS']            = $sms->schedule;
-                  break;          
-              }
-              next($csArr);
-          }
-          //Test dump
-          //echo "AlertsModel::generateAlertLogSms() test dumping data array...\n";
-          //var_dump($data);
-          $db = $this->db();
-          $sql = "INSERT INTO alertlog (alogAlertID, alogType, alogTS, alogDirection, alogMessageType, alogMessageTo, "
-          . "alogMessageID, alogMessageCost, alogMessageStatus) VALUES (:alogAlertID, :alogType, :alogTS, "
-          . ":alogDirection, :alogMessageType, :alogMessageTo, :alogMessageID, :alogMessageCost, :alogMessageStatus)";
-          echo "AlertsModel::generateAlertLogSms()\n";
-          $db->prepare($sql)->execute($data);
-      }
-  }
-
-  /* DEPRICATED 
-  public function generateAlertLogNotif($pusherResponse, $notifMessages) {
-      //Gets run by generateAlertMessages() method of this class to document response from sms host
-      $now = time();
-      foreach($notifMessages as $m) {    
-      $data = [
-          'alogAlertID'=>substr($m['subject'],9), 
-          'alogType'=>$m['event'], 
-          'alogTS'=>$now, 
-          'alogDirection'=>$m['dir'],
-          'alogMessageType'=>'notif',
-          'alogMessageTo' =>$m['to'],
-          'alogMessageID'=>$pusherResponse->publishId,
-          'alogMessageCost'=> "",
-          'alogMessageStatus'=>""
-      ];
-      $db = $this->db();
-      $sql = "INSERT INTO alertlog (alogAlertID, alogType, alogTS, alogDirection, alogMessageType, alogMessageTo, "
-      . "alogMessageID, alogMessageCost, alogMessageStatus) VALUES (:alogAlertID, :alogType, :alogTS, "
-      . ":alogDirection, :alogMessageType, :alogMessageTo, :alogMessageID, :alogMessageCost, :alogMessageStatus)";
-      echo "AlertsModel::generateAlertLogNotif()\n";
-      $db->prepare($sql)->execute($data);
-      }
-  }
-  */
-
-  public function generateAlertLogEmail($clickSendResponse, $emailMessages ) {
-      //Gets run by generateAlertMessages() method of this class to document phpMailer process. clickSend host portion is depreciated
-      //$csArr = $clickSendResponse->data->data;
-      foreach ($emailMessages as $msg) {
-      $data = [];
-      $data['alogAlertID']   = intval($msg['alertID']);
-      $data['alogDirection'] = $msg['dir'];
-      $data['alogType']      = $msg['event'];
-      $data['alogMessageTo'] = $msg['to'];
-      $data['alogMessageType'] = 'email';
-      //$cs = current($csArr);
-      //while($cs) {
-      //  if($cs->to->email == $msg['to']) {
-      //    $data['alogMessageID']     = $cs->message_id;
-      //    $data['alogMessgeCost']    = $cs->price;
-      //    $data['alogMessageStatus'] = $cs->status;
-      //    $data['alogTS']            = $cs->date_added;
-      //    break;          
-      //  }
-      //  next($csArr);
-      //}
-      $data['alogMessageID']     = 'N/A';
-      $data['alogMessageCost']    = 0.0;
-      $data['alogMessageStatus'] = 'N/A';
-      $data['alogTS']            = time();
-      //Test dump
-      //echo "AlertsModel::generateAlertLogEmail() test dumping data array...\n";
-      //var_dump($data);
-      $db = $this->db();
-      $sql = "INSERT INTO alertlog (alogAlertID, alogType, alogTS, alogDirection, alogMessageType, alogMessageTo, "
-      . "alogMessageID, alogMessageCost, alogMessageStatus) VALUES (:alogAlertID, :alogType, :alogTS, "
-      . ":alogDirection, :alogMessageType, :alogMessageTo, :alogMessageID, :alogMessageCost, :alogMessageStatus)";
-      echo "AlertsModel::generateAlertLogEmail()\n";
-      $db->prepare($sql)->execute($data);
-      }
-  }
-
-  public function triggerDetectEvent($event, $liveScan) { 
-      $this->postAlertMessage("detected", $liveScan);
-      //$this->queueAlertsForVessel($liveScan->liveVesselID, "detect", 21600, "undetermined"); //6 hours
-      echo "Alerts monitor Detect Event triggered by ".$liveScan->liveName."  \n";
-      $apubID = $this->getLastPublishedAlertId();
-      return $apubID;
-  }
-
-  public function triggerAlphaEvent($liveScan) { //Returns alertpublish record id
-      $this->postAlertMessage("alpha", $liveScan);
-      /*
-      if($liveScan->liveDirection == 'downriver') {
-      $this->queueAlertsForVessel($liveScan->liveVesselID, "alpha", 7200, $liveScan->liveDirection); //2 hours
-      } 
-      */   
-      echo "Alerts monitor Alpha Event triggered by ".$liveScan->liveName."  \n";
-      $apubID = $this->getLastPublishedAlertId();
-      return $apubID;
-  }
-
-  public function triggerBravoEvent($liveScan) { //Returns alertpublish record id
-      $this->postAlertMessage("bravo", $liveScan);
-      //$this->queueAlertsForVessel($liveScan->liveVesselID, "bravo", 7200, $liveScan->liveDirection); //2 hours);
-      $apubID = $this->getLastPublishedAlertId();
-      echo "Alerts monitor Bravo Event triggered by ".$liveScan->liveName." with \$apubID = ".$apubID."\n";
-      return $apubID;
-  }
-
-  public function triggerCharlieEvent($liveScan) { //Returns alertpublish record id
-      $this->postAlertMessage("charlie", $liveScan);
-      //$this->queueAlertsForVessel($liveScan->liveVesselID, "charlie", 7200, $liveScan->liveDirection); //2 hours)
-      echo "Alerts monitor Charlie Event triggered by ".$liveScan->liveName."  \n";
-      $apubID = $this->getLastPublishedAlertId();
-      return $apubID;
-  }
-
-  public function triggerDeltaEvent($liveScan) { //Returns alertpublish record id
-      $this->postAlertMessage("delta", $liveScan);
-      /*
-      if($liveScan->liveDirection=='upriver') {
-      $this->queueAlertsForVessel($liveScan->liveVesselID, "delta", 7200, $liveScan->liveDirection); //2 hours
-      } 
-      */   
-      echo "Alerts monitor Delta Event triggered by ".$liveScan->liveName."  \n";
-      $apubID = $this->getLastPublishedAlertId();
-      return $apubID;
-  }
-
-  public function getLastPublishedAlertId() {
-      //Gets run by CRTdaemon::setup() and by $this->trigger_____Event() methods
-      $sql = "SELECT apubID FROM alertpublish ORDER BY apubTS DESC LIMIT 1";
-      $q = $this->db()->query($sql);
-      if($results = $q->fetch()) {
-          $apubID = intval($results['apubID']);
-          //echo "getLastPublishedAlertId(): \n";
-          //echo var_dump($results);
-          //echo "\n".$apubID;
-          return $apubID;
-      }
-      return false;
-  }
 }
 
 

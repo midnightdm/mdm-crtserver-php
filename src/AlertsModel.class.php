@@ -163,7 +163,7 @@ class AlertsModel extends Firestore {
       }
 
       //Publish the event to the database if it passes waypoint type filter 
-      $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup"];
+      $filter = ["alphada", "alphaua", "alphadp", "alphaup", "bravoda", "bravoua", "bravodp", "bravoup", "charlieda", "charlieua", "charliedp", "charlieup", "deltada", "deltaua", "deltadp", "deltaup", "echoda", "echoua", "echodp", "echoup", "foxtrotda", "foxtrotua", "foxtrotup", "foxtrotua", "golfda", "golfua", "golfdp", "golfup", "hotelda", "hotelua","hoteldp","hotelup"];
       if(in_array($event, $filter)) {
         if($this->publishAlertMessage($event, $liveObj)) {
           flog("\033[41m AlertsModel::triggerEvent(".$event.", ".$liveObj->liveName.") WAYPOINT PUBLISHED\033[0m\r\n");

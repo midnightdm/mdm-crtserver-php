@@ -90,38 +90,38 @@ class PlotDaemon {
     $this->lastPassagesSave    = $now-50; //Increments savePassages routine
     
     //Names for loop purposes
-    $this->siteNames = ["clinton", "qc", "clintoncf"];
+    $this->siteNames = ["clinton", "qc", "regional"];
     $this->camNames  = ["CabinDR", "CabinUR", "HistoricalSoc", "PortByron", "Sawmill"];
 
     
-     //Regionalized as 'clinton', 'clintoncf' & 'qc'
+     //Regionalized as 'clinton', 'regional' & 'qc'
     $this->defaultCameraName   = [
         "clinton"    => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"]],
-        "clintoncf"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
+        "regional"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
         "qc"         => ["srcID"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
     ];
     
      $this->currentCameraName   = [
         "clinton"    => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
-        "clintoncf"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
+        "regional"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
         "qc"         => ["srcID"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
     ];
     $this->lastCameraName      = [
         "clinton"    => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"]],
-        "clintoncf"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
+        "regional"  => ["srcID"=>"CabinUR",   "zoom"=> 0, "vesselsInRange" => ["None"] ],
         "qc"         => ["srcID"=>"PortByron", "zoom"=> 0, "vesselsInRange" => ["None"] ]
     ];
 
      //Prevents rapid camera switching if 2 vessels enable cam
     $this->lastCameraSwitch    = [
         "clinton"    =>$now-50,
-        "clintoncf"  =>$now-50,
+        "regional"  =>$now-50,
         "qc"         =>$now-50
     ];
 
     $this->inCamRangeRotKey = [
         "clinton"   => 0,
-        "clintoncf" => 0,
+        "regional" => 0,
         "qc"        => 0
     ];
 
@@ -276,7 +276,7 @@ class PlotDaemon {
     public function updateCameraStatus() {
         $cameraNames = $this->AdminTriggersModel->getWebcams();
         //echo var_dump($cameraNames);
-        $updated = ["clinton"=>false, "clintoncf"=>false, "qc"=>false];
+        $updated = ["clinton"=>false, "regional"=>false, "qc"=>false];
         foreach($cameraNames as $camera => $data) {
             //Has camera changed remotely?
             if($this->currentCameraName[$camera]["srcID"] != $data["srcID"] ||
@@ -307,7 +307,7 @@ class PlotDaemon {
         $allLiveObjects = [];
         $vesselsAtCam = [];
         $vesselsInRegion = [];
-        $tally = [ "clinton" => 0, "qc" =>0, "clintoncf"=> 0];
+        $tally = [ "clinton" => 0, "qc" =>0, "regional"=> 0];
 
         foreach($this->liveScan as $key => $liveObj) {
             if($liveObj->inCameraRange) {
@@ -315,12 +315,12 @@ class PlotDaemon {
                 $allLiveObjects[] = $liveObj;
                 $vesselsAtCam[$liveObj->liveCamera["srcID"]][] = $liveObj->liveName;
                 $vesselsInRegion[$liveObj->liveRegion][] = $liveObj;
-                $vesselsInRegion['clintoncf'][] = $liveObj;
+                $vesselsInRegion['regional'][] = $liveObj;
             }
         }
         $tally["clinton"] = isset($vesselsPerRegion["clinton"]) ? count($vesselsPerRegion["clinton"]) : 0;
         $tally["qc"]      = isset($vesselsPerRegion["qc"]) ? count($vesselsPerRegion["qc"]) : 0 ;
-        $tally["clintoncf"] = count($allLiveObjects);
+        $tally["regional"] = count($allLiveObjects);
 
         //Evaluate each location
         foreach($this->siteNames as $site) {

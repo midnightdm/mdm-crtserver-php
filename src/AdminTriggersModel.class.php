@@ -191,7 +191,7 @@ class AdminTriggersModel extends Firestore {
     ->document('webcamSites')
     ->set([
         'clinton'   => $cameraNames['clinton'],
-        'clintoncf' => $cameraNames['clintoncf'],
+        'regional' => $cameraNames['regional'],
         'qc'        => $cameraNames['qc']
     ],['merge'=>true]);
   }
@@ -215,7 +215,7 @@ class AdminTriggersModel extends Firestore {
     if($this->getWebcamSitesDocument()) {
         $cameraNames = [
             'clinton'  =>$this->webcamSitesData['clinton'],
-            'clintoncf'=>$this->webcamSitesData['clintoncf'],
+            'regional'=>$this->webcamSitesData['regional'],
             'qc'       =>$this->webcamSitesData['qc']
         ];
         return $cameraNames;

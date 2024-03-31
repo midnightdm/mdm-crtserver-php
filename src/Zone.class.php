@@ -40,6 +40,7 @@ class ZONE {
     public static $m492 = ["at M-492 Hampton, IL 1.5 miles below Lock 14", "at marker 492 in Hampton, 1.5 miles below Lock 14"];
     public static $m493 = ["at marker 493 half mile below Lock 14","at marker 493, a half mile below Lock 14"];
     public static $m494 = ["at marker 494 half mile above Lock 14","at marker 494, a half mile above Lock 14"];
+    public static $mleclaire_slough = ["in LeClaire Slough by Lock 14", "in LeClaire Slough by Lock 14"];
     public static $m495 = ["at marker 495 1.5 miles above Lock 14","at marker 495, 1.5 miles above Lock 14"];
     public static $m496 = ["at marker 496 2.5 miles above Lock 14","at marker 496, 2.5 miles above Lock 14"];
     public static $m497 = ["at marker 497 3.5 miles above Lock 14","at marker 497, 3.5 miles above Lock 14"];

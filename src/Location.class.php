@@ -253,11 +253,11 @@ class Location {
       }  
     }
     if($inside==false) {
-      $this->description = ["undetermined location", "at an as yet undetermined Location."];
+      $this->description = ["undetermined location", "at an as yet undetermined Location.", 1000];
       flog( "        ...search for ".$this->live->liveName." ended at ".$m." \r\n");
     }
     if(count($this->description)==0) {
-        $this->description = ["location ?", "at an undetected Location."];
+        $this->description = ["location ?", "at an undetected Location.", 1000];
       flog( "   ".$this->live->liveName." recorded mile ".$m." but description was missing.\r\n");
     }
   }

@@ -24,6 +24,7 @@ class LiveScan {
   public $liveLocation = null;
   public $liveSegment = null;
   public $liveRegion  = null;
+  public $liveMile = null;
   public $liveMarkerAlphaWasReached = FALSE;
   public $liveMarkerAlphaTS = null;
   public $liveMarkerBravoWasReached = FALSE;
@@ -411,6 +412,7 @@ class LiveScan {
     $data['liveCamera'] = $this->liveCamera;
     if($this->liveLocation instanceof Location) {
       $data['liveLocation'] = ucfirst($this->liveLocation->description[0]);
+      $data['rangeMile'] = $this->liveLocation->description[2]; //This is integer
       $data['liveEvent']  = $this->liveLocation->event;
       $data['liveEvents'] = $this->liveLocation->events; //This is array
     } else{
@@ -725,34 +727,11 @@ class LiveScan {
     if($this->livePassageWasSaved || $this->liveIsLocal) {
       return true;
     }
-    //Clinton Region
-    if($this->liveRegion=="clinton") {
-      //Save if at least 4 markers passed
-      $score = 0;
-      if($this->liveMarkerAlphaWasReached){   $score++; }
-      if($this->liveMarkerBravoWasReached){   $score++; } 
-      if($this->liveMarkerCharlieWasReached){ $score++; }
-      if($this->liveMarkerDeltaWasReached){   $score++; }
-        
-      if($score >3) {
-        $this->PlotDaemon->PassagesModel->savePassageClinton($this);
+    //Save if at least 6 mile markers passed    
+    if(count($this->liveLocation->events)>5) {
+        $this->PlotDaemon->PassagesModel->savePassage($this);
         $this->livePassageWasSaved = true;
         return true;
-      }
-    //QC Region
-    } else if($this->liveRegion=="qc") {
-      //Save if at least 4 markers passed
-      $score = 0;
-      if($this->liveMarkerEchoWasReached){   $score++; }
-      if($this->liveMarkerFoxtrotWasReached){   $score++; } 
-      if($this->liveMarkerGolfWasReached){   $score++; }
-      if($this->liveMarkerHotelWasReached){  $score++; }
-        
-      if($score >3) {
-        $this->PlotDaemon->PassagesModel->savePassageQC($this);
-        $this->livePassageWasSaved = true;
-        return true;
-      }
     }
     if($overRide) {
       return true;

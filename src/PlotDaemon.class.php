@@ -549,12 +549,12 @@ class PlotDaemon {
         flog( "\n          * ".$liveScanObj->liveName. " ".$len." events.");
         $liveScanObj->livePassageWasSaved = true;
         //Determine Clinton or QC passage save
-        if($liveScanObj->liveRegion == "clinton") {
-         $this->PassagesModel->savePassageClinton($liveScanObj);
-        } else if($liveScanObj->liveRegion == "qc") {
-           $this->PassagesModel->savePassageQC($liveScanObj);  
-        }
-        //$this->PassagesModel->savePassage($liveScanObj);
+      //   if($liveScanObj->liveRegion == "clinton") {
+      //    $this->PassagesModel->savePassageClinton($liveScanObj);
+      //   } else if($liveScanObj->liveRegion == "qc") {
+      //      $this->PassagesModel->savePassageQC($liveScanObj);  
+      //   }
+        $this->PassagesModel->savePassage($liveScanObj);
       }
       $this->lastPassagesSave = $now;
       flog( "\n      Finished saving ".$scans." live vessels to passages.\n");

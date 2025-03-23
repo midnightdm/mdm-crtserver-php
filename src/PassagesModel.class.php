@@ -30,7 +30,7 @@ class PassagesModel extends Firestore {
             $data['passageMarkerBravoTS']   = $ts;
          }
          if(str_starts_with($event, 'charlie')) {
-            $data['passageMarkerCharllieTS']   = $ts;
+            $data['passageMarkerCharlieTS']   = $ts;
          }
          if(str_starts_with($event, 'delta')) {
             $data['passageMarkerDeltaTS']   = $ts;
@@ -88,7 +88,8 @@ class PassagesModel extends Firestore {
                "date" => $humanDate,
                "id" => $liveScanObj->liveVesselID,
                "image" => $liveScanObj->liveVessel->vesselImageUrl,
-               "name"  => $liveScanObj->liveName
+               "name"  => $liveScanObj->liveName,
+               "type"  => $liveScanObj->liveVessel->vesselType
             ]
       ];
       
@@ -191,7 +192,8 @@ class PassagesModel extends Firestore {
               "date" => $humanDate,
               "id" => $liveScanObj->liveVesselID,
               "image" => $liveScanObj->liveVessel->vesselImageUrl,
-              "name"  => $liveScanObj->liveName
+              "name"  => $liveScanObj->liveName,
+              "type"  => $liveScanObj->liveVessel->vesselType
            ]
       ];
       
@@ -268,7 +270,8 @@ class PassagesModel extends Firestore {
                "date" => $humanDate,
                "id" => $liveScanObj->liveVesselID,
                "image" => $liveScanObj->liveVessel->vesselImageUrl,
-               "name"  => $liveScanObj->liveName
+               "name"  => $liveScanObj->liveName,
+               "type"  => $liveScanObj->liveVessel->vesselType
             ]
       ];
       
@@ -277,6 +280,8 @@ class PassagesModel extends Firestore {
          flog( "Bogus month ".$month." for ".$liveScanObj->liveName.". Passage not saved.\n");
          return;
       }
+
+      //Send data to Firestore
 
       $this->db->collection('Vessels')
          ->document('mmsi'.$data['passageVesselID'])
@@ -290,7 +295,32 @@ class PassagesModel extends Firestore {
          ->document('All')
          ->set($model, ['merge' => true]);
 
-      flog( "\033[33m Passage records saved for $liveScanObj->liveName ".getNow()."\033[0m\n");
+      flog( "\033[33m Passage records saved to Firestore for $liveScanObj->liveName ".getNow()."\033[0m\n");
+
+      //Send same data to MongoDb through API
+      $responseMongo = post_page(API_POST_URL."/passagelogs/vessel", 
+         [
+            'passageVesselID' => 'mmsi'.$data['passageVesselID'],
+            'date'=> $data['date'], 
+            'passageData'=> $data
+         ]);
+      flog( "\033[33m Passage records for vessel saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
+
+      $responseMongo = post_page(API_POST_URL."/passagelogs/month",
+         [
+            'month' => $month,
+            'day' => $day,
+            'passageVesselID' => 'mmsi'.$data['passageVesselID'],
+            'passageData'=> $data
+         ]);
+      flog( "\033[33m Passage records for month saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
+
+      $responseMongo = post_page(API_POST_URL."/passagelogs/last",
+         [
+            'passageVesselID' => $data['passageVesselID'],
+            'passageSummary'=> $model
+         ]);
+
    }
 
 }  

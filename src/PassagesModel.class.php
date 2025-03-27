@@ -298,13 +298,13 @@ class PassagesModel extends Firestore {
       flog( "\033[33m Passage records saved to Firestore for $liveScanObj->liveName ".getNow()."\033[0m\n");
 
       //Send same data to MongoDb through API
-      $responseMongo = post_page(API_POST_URL."/passagelogs/vessel", 
+      $responseMongo = post_page(API_POST_URL."/vessels/passage", 
          [
             'passageVesselID' => 'mmsi'.$data['passageVesselID'],
-            'date'=> $data['date'], 
-            'passageData'=> $data
+            'date' => $data['date'],
+            'passageData'=>  $data 
          ]);
-      flog( "\033[33m Passage records for vessel saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
+         flog( "\033[33m Passage records for vessel saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
 
       $responseMongo = post_page(API_POST_URL."/passagelogs/month",
          [

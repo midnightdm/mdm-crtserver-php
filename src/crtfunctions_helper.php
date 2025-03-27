@@ -124,6 +124,8 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
 //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
   curl_setopt($ch, CURLOPT_TIMEOUT, 40);
   curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_VERBOSE, true);
+
   
   // Convert PHP array to JSON for MongoDB REST API
   $json_data = json_encode($data);
@@ -135,7 +137,7 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
   $result = curl_exec($ch);
   
   if (curl_errno($ch)) {
-    flog("CURL Error: " . curl_error($ch) . "\n");
+   flog("CURL error-> Num: " .curl_erno($ch) ." Msg:". curl_error($ch) . "\n");
   }
   
   curl_close($ch);

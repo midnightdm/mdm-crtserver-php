@@ -46,7 +46,7 @@ class Firestore {
 
 
 
-
+   $this->apiUrl = $config['MDM_CRT_PLOT_POST'];
     $this->projectID = $config['cloud_projectID'];
     $this->name = $collection['name'];
     flog("Firestore::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']." collection: ". $this->name ."\n"); 

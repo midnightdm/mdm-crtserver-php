@@ -73,8 +73,8 @@ define('MARKER_DELTA_LAT', 41.800704);
 define('AIS_LOG_PATH', 'AISMon.log');
 
 //Set the URL of the API that will save the decoded data
-define('API_POST_URL', getenv('MDM_CRT_PLOT_POST'));
-define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
+//define('API_POST_URL', getenv('MDM_CRT_PLOT_POST'));
+//define('API_DELETE_URL', getenv('MDM_CRT_PLOT_DELETE'));
 
 
 

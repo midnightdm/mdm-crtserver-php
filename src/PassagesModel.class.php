@@ -298,7 +298,7 @@ class PassagesModel extends Firestore {
       flog( "\033[33m           Passage records saved to Firestore for $liveScanObj->liveName ".getNow()."\033[0m\n");
 
       //Send same data to MongoDb through API
-      $url1 = API_POST_URL."/vessels/passage";
+      $url1 = $this->apiUrl."/vessels/passage";
       flog( "\033[33m           Send $liveScanObj->liveName to API $url1 ".getNow()."\033[0m\n");
       $responseMongo = post_page($url1, 
          [
@@ -308,9 +308,9 @@ class PassagesModel extends Firestore {
          ]);
          flog( "\033[33m Passage records for vessel saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
 
-      $url2 = API_POST_URL."/passagelogs/month";
+      $url2 = $this->apiUrl."/passagelogs/month";
       flog( "\033[33m           Save month $month day $day to API $url2 ".getNow()."\033[0m\n");
-      $responseMongo = post_page(API_POST_URL."/passagelogs/month",
+      $responseMongo = post_page($url2,
          [
             'month' => $month,
             'day' => $day,
@@ -319,9 +319,9 @@ class PassagesModel extends Firestore {
          ]);
       flog( "\033[33m Passage records for month saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
 
-      $url3 = API_POST_URL."/passagelogs/last";
+      $url3 = $this->apiUrl."/passagelogs/last";
       flog( "\033[33m           Save last passage to API $url3 ".getNow()."\033[0m\n");
-      $responseMongo = post_page(API_POST_URL."/passagelogs/last",
+      $responseMongo = post_page($url3,
          [
             'passageVesselID' => $data['passageVesselID'],
             'passageSummary'=> $model

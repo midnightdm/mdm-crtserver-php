@@ -281,8 +281,8 @@ class PassagesModel extends Firestore {
          return;
       }
 
-      //Send data to Firestore
-
+      //Send data to Firestore *** DISABLED Mar 28, 2025 **
+      /*
       $this->db->collection('Vessels')
          ->document('mmsi'.$data['passageVesselID'])
          ->set(['vesselPassages' => [ $data['date'] => $data] ] , ['merge' => true]);
@@ -296,20 +296,20 @@ class PassagesModel extends Firestore {
          ->set($model, ['merge' => true]);
 
       flog( "\033[33m           Passage records saved to Firestore for $liveScanObj->liveName ".getNow()."\033[0m\n");
+      */
 
       //Send same data to MongoDb through API
       $url1 = $this->apiUrl."/vessels/passage";
-      flog( "\033[33m           Send $liveScanObj->liveName to API $url1 ".getNow()."\033[0m\n");
       $responseMongo = post_page($url1, 
          [
             'passageVesselID' => 'mmsi'.$data['passageVesselID'],
             'date' => $data['date'],
             'passageData'=>  $data 
          ]);
-         flog( "\033[33m Passage records for vessel saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
+         flog( "\033[33m           Passage records for $liveScanObj->liveName vessel saved to Mongo ".getNow()."\n               Response: $responseMongo \033[0m\n");
 
       $url2 = $this->apiUrl."/passagelogs/month";
-      flog( "\033[33m           Save month $month day $day to API $url2 ".getNow()."\033[0m\n");
+      flog( "\033[33m           Save month $month day $day ".getNow()."\033[0m\n");
       $responseMongo = post_page($url2,
          [
             'month' => $month,
@@ -317,10 +317,8 @@ class PassagesModel extends Firestore {
             'passageVesselID' => 'mmsi'.$data['passageVesselID'],
             'passageData'=> $data
          ]);
-      flog( "\033[33m Passage records for month saved to Mongo $liveScanObj->liveName ".getNow()."\n     Response: $responseMongo \033[0m\n");
 
       $url3 = $this->apiUrl."/passagelogs/last";
-      flog( "\033[33m           Save last passage to API $url3 ".getNow()."\033[0m\n");
       $responseMongo = post_page($url3,
          [
             'passageVesselID' => $data['passageVesselID'],

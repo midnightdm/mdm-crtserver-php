@@ -266,13 +266,12 @@ class PassagesModel extends Firestore {
 
       //Build array for Passages All document update
       $humanDate = date('M d, Y', $firstEventTS);
-      $model = [ $data['passageVesselID'] => [
+      $model =  [
                "date" => $humanDate,
                "id" => $liveScanObj->liveVesselID,
                "image" => $liveScanObj->liveVessel->vesselImageUrl,
                "name"  => $liveScanObj->liveName,
                "type"  => $liveScanObj->liveVessel->vesselType
-            ]
       ];
       
       //Final error check for bogus month

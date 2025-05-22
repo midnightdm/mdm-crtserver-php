@@ -18,22 +18,42 @@ class VesselsModel extends Firestore {
   }
 
   public function getVessel($vesselID) {
-    //
-    $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
+    //Firestore Version
+    /* $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
         return $snapshot->data();
     } else {
         return false;
-    }
+    } */
+    //MongoDB Version
+    $url1 = $this->apiUrl."/vessels/".$vesselID;
+    $responseMongo = post_page($url1);
+      if($responseMongo['http_code'] == 200) {
+         $data = json_decode($responseMongo['body'], true);
+         return $data;
+      } else {
+         return false;
+      }
   }
   
   public function vesselHasRecord($vesselID) {
     //true if vessel exists
-    return $this->db->collection('Vessels')->document('mmsi'.$vesselID)->snapshot()->exists();
+    //return $this->db->collection('Vessels')->document('mmsi'.$vesselID)->snapshot()->exists();
+  
+    //MongoDB Version
+    $url1 = $this->apiUrl."/vessels/".$vesselID;
+    $responseMongo = post_page($url1);
+      if($responseMongo['http_code'] == 200) {
+         return true;
+      } else {
+         return false;
+      }
   }
 
   public function getVesselLastDetectedTS($vesselID) {
+   //Firestore Version
+   /*
     $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
@@ -55,6 +75,21 @@ class VesselsModel extends Firestore {
     } else {
         return false;
     }
+    */
+      //MongoDB Version
+      $data = $this->getVessel($vesselID);
+      $passages = [];
+      if(isset($data['vesselPassages'])) {
+        foreach($data['vesselPassages'] as $date=>$obj) {
+          $passages[] = $date;
+        }
+        rsort($passages);
+        $dt = date_create($passages[0]);
+        $dtStr = $dt->format('D M j, Y');
+        return [$dt->getTimeStamp(), $dtStr];
+      } else {  
+        return false;
+      }
   }
   
   public function updateVesselLastDetectedTS($vesselID, $ts) {

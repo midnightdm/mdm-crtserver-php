@@ -27,12 +27,30 @@ class LiveScanModel extends Firestore {
   public function insertLiveScan($live) {
     //flog("insertLiveScan(live) DATA=". $live. "EOF"); //Test Only
     $this->db->collection('LiveScan')->document('mmsi'.$live['liveVesselID'])->set($live);
+
+    //MongoDB write
+    $url1 = $this->apiUrl."/live"
+    $responseMongo = post_page($url1, 
+    [
+      'liveVesselID' => $live['liveVesselID'],
+      'liveData'     => $live
+   ]);
+   flog('MongoDB response: '. $responseMongo['http_code']. "\n");
   }
 
   public function updateLiveScan($live){
     $this->db->collection('LiveScan')
         ->document('mmsi'.$live['liveVesselID'])
         ->set($live, ["merge"=> true]);
+
+      //MongoDB write
+      $url1 = $this->apiUrl."/live"
+      $responseMongo = post_page($url1, 
+      [
+         'liveVesselID' => $live['liveVesselID'],
+         'liveData'     => $live
+      ]);
+      flog('MongoDB response: '. $responseMongo['http_code']. "\n");
   }
 
   //Replaced in AdminTriggersModel

@@ -35,7 +35,7 @@ class LiveScanModel extends Firestore {
       'liveVesselID' => $live['liveVesselID'],
       'liveData'     => $live
    ]);
-   flog('MongoDB response: '. print_r($responseMongo) . "\n");
+   //flog('MongoDB response: '. print_r($responseMongo) . "\n");
   }
 
   public function updateLiveScan($live){
@@ -50,7 +50,7 @@ class LiveScanModel extends Firestore {
          'liveVesselID' => $live['liveVesselID'],
          'liveData'     => $live
       ]);
-      flog('MongoDB response: '. print_r($responseMongo). "\n");
+      //flog('MongoDB response: '. print_r($responseMongo). "\n");
   }
 
   //Replaced in AdminTriggersModel

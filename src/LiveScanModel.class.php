@@ -29,7 +29,7 @@ class LiveScanModel extends Firestore {
     $this->db->collection('LiveScan')->document('mmsi'.$live['liveVesselID'])->set($live);
 
     //MongoDB write
-    $url1 = $this->apiUrl."/live"
+    $url1 = $this->apiUrl."/live";
     $responseMongo = post_page($url1, 
     [
       'liveVesselID' => $live['liveVesselID'],
@@ -44,7 +44,7 @@ class LiveScanModel extends Firestore {
         ->set($live, ["merge"=> true]);
 
       //MongoDB write
-      $url1 = $this->apiUrl."/live"
+      $url1 = $this->apiUrl."/live";
       $responseMongo = post_page($url1, 
       [
          'liveVesselID' => $live['liveVesselID'],

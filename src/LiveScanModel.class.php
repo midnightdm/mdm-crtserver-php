@@ -35,7 +35,7 @@ class LiveScanModel extends Firestore {
       'liveVesselID' => $live['liveVesselID'],
       'liveData'     => $live
    ]);
-   flog('MongoDB response: '. $responseMongo['http_code']. "\n");
+   flog('MongoDB response: '. $responseMongo . "\n");
   }
 
   public function updateLiveScan($live){

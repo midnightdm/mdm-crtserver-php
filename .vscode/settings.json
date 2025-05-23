@@ -1,3 +1,6 @@
 {
-  "search.useGlobalIgnoreFiles": false
+"search.useGlobalIgnoreFiles": false,
+"cSpell.words": [
+   "tlog"
+]
 }

@@ -70,9 +70,14 @@ class LiveScanModel extends Firestore {
   }
 
   public function deleteLiveScan($vesselID) {
-    $ts  = time();  
-    $now = date('n/j/Y, g:i:s A', $ts);
-    $day = date('w', $ts);     
+    //  $ts  = time();  
+    //  $now = date('n/j/Y, g:i:s A', $ts);
+    //  $day = date('w', $ts);
+    //MongoDB delete
+    $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
+    $responseMongo = delete_page($url1);
+    tlog('updateLiveScan: '.json_encode($responseMongo));     
+    //Firestore delete
     $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);
     $snapshot = $document->snapshot();
     if($snapshot->exists()) {
@@ -83,10 +88,7 @@ class LiveScanModel extends Firestore {
         return false;
     }
 
-   //MongoDB delete
-   $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
-   $responseMongo = delete_page($url1);
-   tlog('updateLiveScan: '.json_encode($responseMongo));
+
   }
 
 }

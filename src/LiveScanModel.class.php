@@ -82,6 +82,11 @@ class LiveScanModel extends Firestore {
         flog( "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n");
         return false;
     }
+
+   //MongoDB delete
+   $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
+   $responseMongo = delete_page($url1);
+   tlog('updateLiveScan: '.json_encode($responseMongo));
   }
 
 }

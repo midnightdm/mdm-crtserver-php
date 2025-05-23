@@ -113,10 +113,10 @@ function grab_protected($url, $user, $pw){
 	return curl_exec($ch); 
 }
 
-//function to post to page using cURL
+//Send data to a page using the POST method with cURL
 function post_page($url, $data=array('postvar1' => 'value1')) {
   $ch = curl_init();
-  //UA last updated 4/10/21
+  //UA last updated 5/22/25
   $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36";
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -145,10 +145,10 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
 }
 
 
-//function to put page using cURL
+//Send data to a page using the PUT method with cURL
 function put_page($url, $data=array('postvar1' => 'value1')) {
   $ch = curl_init();
-  //UA last updated 4/10/21
+  //UA last updated 5/22/25
   $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36";
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -176,6 +176,32 @@ function put_page($url, $data=array('postvar1' => 'value1')) {
   return $result;
 }
 
+//Send request to a page using the DELETE method with cURL
+function delete_page($url) {
+  $ch = curl_init();
+  // UA last updated 5/22/25
+  $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36";
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+  curl_setopt($ch, CURLOPT_USERAGENT, $ua);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($ch, CURLOPT_TIMEOUT, 40);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_VERBOSE, true);
+
+  // Set the DELETE request method
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+  
+  $result = curl_exec($ch);
+  
+  if (curl_errno($ch)) {
+    flog("CURL error-> Num: " . curl_errno($ch) . " Msg: " . curl_error($ch) . "\n");
+  }
+  
+  curl_close($ch);
+  return $result;
+}
 
 function flog($string) {
   $date = Date('ymd', time());
@@ -188,7 +214,7 @@ function flog($string) {
 }
 
 function tlog($string) {
-  $date = Date('ymd', time());
+  $date = Date('y-m-d g:i:s A', time());
   $line = "----- {$date} -----------------------------------------------------\n\n";
   
   $file = __DIR__."/../../../../logs/test.log";

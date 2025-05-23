@@ -14,13 +14,13 @@ class LiveScanModel extends Firestore {
 
 public function getAllLiveScans() {
     //Firestore grab
-    $documents = $this->db->collection('LiveScan')->documents();
-    $scans = []; 
-    foreach($documents as $document) {
-        if($document->exists()) {
-            $scans[$document->id()] = $document->data();
-        }
-    }
+   //  $documents = $this->db->collection('LiveScan')->documents();
+   //  $scans = []; 
+   //  foreach($documents as $document) {
+   //      if($document->exists()) {
+   //          $scans[$document->id()] = $document->data();
+   //      }
+   //  }
     //MongoDB grab
     $mongoScans = [];
     $jsonResponse = grab_page($this->apiUrl."/live/json");
@@ -40,7 +40,7 @@ public function getAllLiveScans() {
 
   public function insertLiveScan($live) {
     //flog("insertLiveScan(live) DATA=". $live. "EOF"); //Test Only
-    $this->db->collection('LiveScan')->document('mmsi'.$live['liveVesselID'])->set($live);
+    //$this->db->collection('LiveScan')->document('mmsi'.$live['liveVesselID'])->set($live);
 
     //MongoDB write
     $url1 = $this->apiUrl."/live";
@@ -54,9 +54,9 @@ public function getAllLiveScans() {
   }
 
   public function updateLiveScan($live){
-    $this->db->collection('LiveScan')
-        ->document('mmsi'.$live['liveVesselID'])
-        ->set($live, ["merge"=> true]);
+    //$this->db->collection('LiveScan')
+      //   ->document('mmsi'.$live['liveVesselID'])
+      //   ->set($live, ["merge"=> true]);
       //MongoDB update
       $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
       $responseMongo = put_page($url1, ['liveData' => $live]);
@@ -90,17 +90,18 @@ public function getAllLiveScans() {
 
     //MongoDB delete    
     $responseMongo = delete_page($this->apiUrl."/live/".$vesselID);
-    tlog('updateLiveScan: '.json_encode($responseMongo));     
+    tlog('updateLiveScan: '.json_encode($responseMongo)); 
+    return true;    
     //Firestore delete
-    $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);
-    $snapshot = $document->snapshot();
-    if($snapshot->exists()) {
-        $document->delete();
-        return true;
-    } else {
-        flog( "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n");
-        return false;
-    }
+   //  $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);
+   //  $snapshot = $document->snapshot();
+   //  if($snapshot->exists()) {
+   //      $document->delete();
+   //      return true;
+   //  } else {
+   //      flog( "Couldn't delete vesselID ".$vesselID. " from LiveScans.\n");
+   //      return false;
+   //  }
 
 
   }

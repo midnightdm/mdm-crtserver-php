@@ -187,6 +187,17 @@ function flog($string) {
   echo $string;
 }
 
+function tlog($string) {
+  $date = Date('ymd', time());
+  $line = "----- ${$date} -----------------------------------------------------\r\n";
+  
+  $file = __DIR__."/../../../../logs/test.log";
+  $handle = fopen($file,'a');
+  fwrite($handle, $line.$string);
+  fclose($handle);
+  echo $string;
+}
+
 function objectQueue($arr, $add, $size=20) { //Returns updated $arr
   $arr[] = $add;
   if(count($arr)>$size) {

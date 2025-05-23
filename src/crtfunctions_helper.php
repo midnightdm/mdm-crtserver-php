@@ -193,7 +193,7 @@ function tlog($string) {
   
   $file = __DIR__."/../../../../logs/test.log";
   $handle = fopen($file,'a');
-  fwrite($handle, $line.$string);
+  fwrite($handle, $line.$string."\n");
   fclose($handle);
   echo $string;
 }

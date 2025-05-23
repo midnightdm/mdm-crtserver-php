@@ -128,7 +128,7 @@ function post_page($url, $data=array('postvar1' => 'value1')) {
 
   
   // Convert PHP array to JSON for MongoDB REST API
-  $json_data = json_encode($data);
+  $json_data = json_encode($data, JSON_FORCE_OBJECT);
   
   curl_setopt($ch, CURLOPT_POST, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
@@ -160,7 +160,7 @@ function put_page($url, $data=array('postvar1' => 'value1')) {
 
   
   // Convert PHP array to JSON for MongoDB REST API
-  $json_data = json_encode($data);
+  $json_data = json_encode($data, JSON_FORCE_OBJECT);
   
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
   curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);

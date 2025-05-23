@@ -35,7 +35,7 @@ class LiveScanModel extends Firestore {
       'liveVesselID' => $live['liveVesselID'],
       'liveData'     => $live
    ]);
-   tlog('insertLiveScan: '.json_encode(['liveData' => $live]));
+   tlog('insertLiveScan: '.json_encode(['liveData' => $live], JSON_FORCE_OBJECT));
    //flog('MongoDB response: '. print_r($responseMongo) . "\n");
   }
 
@@ -73,7 +73,7 @@ class LiveScanModel extends Firestore {
     //  $ts  = time();  
     //  $now = date('n/j/Y, g:i:s A', $ts);
     //  $day = date('w', $ts);
-    
+
     //MongoDB delete    
     $responseMongo = delete_page($this->apiUrl."/live/".$vesselID);
     tlog('updateLiveScan: '.json_encode($responseMongo));     

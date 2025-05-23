@@ -43,15 +43,10 @@ class LiveScanModel extends Firestore {
         ->document('mmsi'.$live['liveVesselID'])
         ->set($live, ["merge"=> true]);
 
-      //MongoDB write
-      $url1 = $this->apiUrl."/live";
-      $responseMongo = post_page($url1, 
-      [
-         'liveVesselID' => $live['liveVesselID'],
-         'liveData'     => $live
-      ]);
-      //flog('MongoDB response: '. print_r($responseMongo). "\n");
-  }
+      //MongoDB update
+      $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
+      put_page($url1, ['liveData' => $live]);
+   }
 
   //Replaced in AdminTriggersModel
   public function resetExit() {

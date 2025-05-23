@@ -49,7 +49,7 @@ public function getAllLiveScans() {
       'liveVesselID' => $live['liveVesselID'],
       'liveData'     => $live
    ]);
-   tlog('insertLiveScan: '.json_encode(['liveData' => $live], JSON_FORCE_OBJECT));
+   //tlog('insertLiveScan: '.json_encode(['liveData' => $live], JSON_FORCE_OBJECT));
    //flog('MongoDB response: '. print_r($responseMongo) . "\n");
   }
 
@@ -60,7 +60,7 @@ public function getAllLiveScans() {
       //MongoDB update
       $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
       $responseMongo = put_page($url1, ['liveData' => $live]);
-      tlog('updateLiveScan: '.json_encode($responseMongo));
+      //tlog('updateLiveScan: '.json_encode($responseMongo));
       //tlog('updateLiveScan: '.json_encode(['liveData' => $live]));
    }
 
@@ -90,7 +90,7 @@ public function getAllLiveScans() {
 
     //MongoDB delete    
     $responseMongo = delete_page($this->apiUrl."/live/".$vesselID);
-    tlog('updateLiveScan: '.json_encode($responseMongo)); 
+    //tlog('updateLiveScan: '.json_encode($responseMongo)); 
     return true;    
     //Firestore delete
    //  $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);

@@ -189,7 +189,7 @@ function flog($string) {
 
 function tlog($string) {
   $date = Date('ymd', time());
-  $line = "----- {$date} -----------------------------------------------------\r\n";
+  $line = "----- {$date} -----------------------------------------------------\n\n";
   
   $file = __DIR__."/../../../../logs/test.log";
   $handle = fopen($file,'a');

@@ -46,7 +46,8 @@ class LiveScanModel extends Firestore {
       //MongoDB update
       $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
       $responseMongo = put_page($url1, ['liveData' => $live]);
-      tlog('updateLiveScan: '.json_encode(['liveData' => $live]));
+      tlog('updateLiveScan: '.json_encode($responseMongo));
+      //tlog('updateLiveScan: '.json_encode(['liveData' => $live]));
    }
 
   //Replaced in AdminTriggersModel

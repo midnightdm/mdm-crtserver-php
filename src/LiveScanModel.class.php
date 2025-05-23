@@ -73,9 +73,9 @@ class LiveScanModel extends Firestore {
     //  $ts  = time();  
     //  $now = date('n/j/Y, g:i:s A', $ts);
     //  $day = date('w', $ts);
-    //MongoDB delete
-    $url1 = $this->apiUrl."/live/".$live['liveVesselID'];
-    $responseMongo = delete_page($url1);
+    
+    //MongoDB delete    
+    $responseMongo = delete_page($this->apiUrl."/live/".$vesselID);
     tlog('updateLiveScan: '.json_encode($responseMongo));     
     //Firestore delete
     $document = $this->db->collection('LiveScan')->document('mmsi'.$vesselID);

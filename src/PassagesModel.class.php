@@ -305,7 +305,7 @@ class PassagesModel extends Firestore {
             'date' => $data['date'],
             'passageData'=>  $data 
          ]);
-         flog( "\033[33m           Passage records for $liveScanObj->liveName vessel saved to Mongo ".getNow()."\n               Response: $responseMongo \033[0m\n");
+         flog( "\033[33m           Passage records for $liveScanObj->liveName vessel saved to Mongo ".getNow()."\n                \033[0m\n");
 
       $url2 = $this->apiUrl."/passagelogs/month";
       flog( "\033[33m           Save month $month day $day ".getNow()."\033[0m\n");

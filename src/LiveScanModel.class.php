@@ -12,15 +12,29 @@ class LiveScanModel extends Firestore {
       //flog("INIT: LiveScanModel\n");
   }
 
-  public function getAllLiveScans() {
+public function getAllLiveScans() {
+    //Firestore grab
     $documents = $this->db->collection('LiveScan')->documents();
-    $scans = [];
+    $scans = []; 
     foreach($documents as $document) {
         if($document->exists()) {
             $scans[$document->id()] = $document->data();
         }
     }
-    return $scans;
+    //MongoDB grab
+    $mongoScans = [];
+    $jsonResponse = grab_page($this->apiUrl."/live/json");
+    $collection = json_decode($jsonResponse, true); 
+    //Ensure associative array 
+    if(is_array($collection)) {
+       foreach($collection as $document) {
+           $mongoScans[$document['_id']] = $document;
+       }
+    } else {
+       errorHandler(501,"Error decoding JSON response from MongoDB API", "LiveScanModel.class.php", 15); 
+    }
+    //return $scans;
+    return $mongoScans;
   }
 
 

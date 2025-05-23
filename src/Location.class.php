@@ -664,7 +664,7 @@ class Location {
         return $i;
       }
     }
-    return "new";
+    return -1;
   }
 
   public function isInsidePoly($point, $vs) {

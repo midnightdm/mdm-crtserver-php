@@ -657,7 +657,11 @@ class LiveScan {
       return true;
     }
     //Save if at least 6 mile markers passed    
-    if(count($this->liveLocation->events)>5) {
+    if(!isset($this->liveLocation->events) || !is_array($this->liveLocation->events)) {
+      $this->liveLocation->events = [];
+   }
+   $eventCount = count($this->liveLocation->events);
+    if($eventCount>5) {
         $this->PlotDaemon->PassagesModel->savePassage($this);
         $this->livePassageWasSaved = true;
         return true;

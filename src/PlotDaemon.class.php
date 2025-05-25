@@ -961,6 +961,8 @@ class PlotDaemon {
         $this->liveScan[$key]->lookUpVessel();
         //Initialize location object
         $this->liveScan[$key]->liveLocation = new Location($this->liveScan[$key]);
+        //Ensure events is always an array even if not in the database
+        $this->liveScan[$key]->liveLocation->events = [];
         //Restore db saved event data
         if(isset($row['liveEvent'])) {
           $this->liveScan[$key]->liveLocation->lastEvent = $row['liveEvent'];

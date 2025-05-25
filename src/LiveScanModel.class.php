@@ -24,7 +24,11 @@ public function getAllLiveScans() {
     //MongoDB grab
     $mongoScans = [];
     $jsonResponse = grab_page($this->apiUrl."/live/json");
-    $collection = json_decode($jsonResponse, true); 
+    if($jsonResponse['http_code'] == 200) {
+      $collection = json_decode($jsonResponse['body'], true);
+    } else {
+      $collection = null;
+    }
     //Ensure associative array 
     if(is_array($collection)) {
        foreach($collection as $document) {

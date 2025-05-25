@@ -19,77 +19,78 @@ class VesselsModel extends Firestore {
 
   public function getVessel($vesselID) {
     //Firestore Version
-    $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
-    $snapshot = $document->snapshot();
-    if($snapshot->exists()) {
-        return $snapshot->data();
-    } else {
-        return false;
-    } //
+   //  $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
+   //  $snapshot = $document->snapshot();
+   //  if($snapshot->exists()) {
+   //      return $snapshot->data();
+   //  } else {
+   //      return false;
+   //  } //
     //MongoDB Version
-   //  $url1 = $this->apiUrl."/vessels/".$vesselID;
-   //  $responseMongo = post_page($url1);
-   //    if($responseMongo['http_code'] == 200) {
-   //       $data = json_decode($responseMongo['body'], true);
-   //       return $data;
-   //    } else {
-   //       return false;
-   //    }
+    $url1 = $this->apiUrl."/vessels/".$vesselID;
+    $responseMongo = grab_page($url1);
+      if($responseMongo['http_code'] == 200) {
+         $data = json_decode($responseMongo['body'], true);
+         return $data;
+      } else {
+         return false;
+      }
   }
   
   public function vesselHasRecord($vesselID) {
     //true if vessel exists
-    return $this->db->collection('Vessels')->document('mmsi'.$vesselID)->snapshot()->exists();
+    //return $this->db->collection('Vessels')->document('mmsi'.$vesselID)->snapshot()->exists();
   
     //MongoDB Version
-   //  $url1 = $this->apiUrl."/vessels/".$vesselID;
-   //  $responseMongo = post_page($url1);
-   //    if($responseMongo['http_code'] == 200) {
-   //       return true;
-   //    } else {
-   //       return false;
-   //    }
+    $url1 = $this->apiUrl."/vessels/".$vesselID;
+    $responseMongo = grab_page($url1);
+      if($responseMongo['http_code'] == 200) {
+         return true;
+      } else {
+         return false;
+      }
   }
 
   public function getVesselLastDetectedTS($vesselID) {
-   //Firestore Version
-   
-    $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
-    $snapshot = $document->snapshot();
-    if($snapshot->exists()) {
-        $data = $snapshot->data();
-        $passages = [];
-        if(isset($data['vesselPassages'])) {
-          foreach($data['vesselPassages'] as $date=>$obj) {
-            $passages[] = $date;
-          }
-          rsort($passages);
-          $dt = date_create($passages[0]);
-          $dtStr = $dt->format('D M j, Y');
-          flog("getVesselLastDetectedTS() ".$passages[0]." ".$dtStr);
-          return [$dt->getTimeStamp(), $dtStr];
-        } else {  
-          flog( "\033[41m *  VesselsModel::getVesselLastDetectedTS() failed to find TS data.  * \033[0m\r\n"); 
-          return false;
-        }      
-    } else {
-        return false;
-    }
+      //Firestore Version
+      
+      //  $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
+      //  $snapshot = $document->snapshot();
+      //  if($snapshot->exists()) {
+      //      $data = $snapshot->data();
+      //      $passages = [];
+      //      if(isset($data['vesselPassages'])) {
+      //        foreach($data['vesselPassages'] as $date=>$obj) {
+      //          $passages[] = $date;
+      //        }
+      //        rsort($passages);
+      //        $dt = date_create($passages[0]);
+      //        $dtStr = $dt->format('D M j, Y');
+      //        flog("getVesselLastDetectedTS() ".$passages[0]." ".$dtStr);
+      //        return [$dt->getTimeStamp(), $dtStr];
+      //      } else {  
+      //        flog( "\033[41m *  VesselsModel::getVesselLastDetectedTS() failed to find TS data.  * \033[0m\r\n"); 
+      //        return false;
+      //      }      
+      //  } else {
+      //      return false;
+      //  }
     
       //MongoDB Version
-      // $data = $this->getVessel($vesselID);
-      // $passages = [];
-      // if(isset($data['vesselPassages'])) {
-      //   foreach($data['vesselPassages'] as $date=>$obj) {
-      //     $passages[] = $date;
-      //   }
-      //   rsort($passages);
-      //   $dt = date_create($passages[0]);
-      //   $dtStr = $dt->format('D M j, Y');
-      //   return [$dt->getTimeStamp(), $dtStr];
-      // } else {  
-      //   return false;
-      // }
+      $data = $this->getVessel($vesselID);
+      $passages = [];
+      if(isset($data['vesselPassages'])) {
+        foreach($data['vesselPassages'] as $date=>$obj) {
+          $passages[] = $date;
+        }
+        rsort($passages);
+        $dt = date_create($passages[0]);
+        $dtStr = $dt->format('D M j, Y');
+        return [$dt->getTimeStamp(), $dtStr];
+      } else {  
+        flog( "\033[41m *  VesselsModel::getVesselLastDetectedTS() failed to find TS data.  * \033[0m\r\n"); 
+        return false;
+      }
   }
   
   public function updateVesselLastDetectedTS($vesselID, $ts) {
@@ -111,8 +112,16 @@ class VesselsModel extends Firestore {
   }
   
   public function insertVessel($dataArr) {
-    //Add a new vessel record
-    $this->db->collection('Vessels')->document('mmsi'.$dataArr['vesselID'])->set($dataArr);
+      //Add a new vessel record
+      $this->db->collection('Vessels')->document('mmsi'.$dataArr['vesselID'])->set($dataArr);
+      //MongoDB Version
+      $url1 = $this->apiUrl."/vessels";
+      $responseMongo = post_page($url1, 
+      [
+         'vesselID' => $dataArr['vesselID'],
+         'vesselData' => $dataArr
+      ]); 
+      flog("VesselsModel::insertVessel() MongoDB response: ".json_encode($responseMongo)."\n");
   }
 
   //Added 10/31/21 
@@ -129,8 +138,11 @@ class VesselsModel extends Firestore {
     //Otherwise scrape data from a website UPDATED 7/13/22
     $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
     $q = $vesselID;
-    $html = grab_page($url, $q);  
-  
+    $response = grab_page($url, $q);  
+    if($response['http_code'] != 200) {
+      return ["error"=>"Unable to connect to MarineTraffic.com"];
+    }
+    $html = $response['body'];
     //Edit segment from html string
     $startPos = strpos($html,'<title>Ship ')+12;
     $clip     = substr($html, $startPos);
@@ -173,7 +185,7 @@ class VesselsModel extends Firestore {
       $data['vesselHasImage'] = false;
       $data['vesselImageUrl'] = $this->cs->no_image;
     }
-    //data gleened locally by daemon needs done remotely in manual admin add
+    //data gleaned locally by daemon needs done remotely in manual admin add
     $data['vesselRecordAddedTS'] = time();
     $data['vesselWatchOn']  = false;
     $data['vesselID']       = $vesselID;

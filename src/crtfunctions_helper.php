@@ -71,25 +71,36 @@ function printRange($dateArr) {
 
 //function to grab page using cURL
 function grab_page($url, $query='') {
-  //echo "Function grab_page() \$url=$url, \$query=$query\n";
-  $ch = curl_init();
-  //UA last updated 4/10/21
-  $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36";
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-  curl_setopt($ch, CURLOPT_USERAGENT, $ua);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-  curl_setopt($ch, CURLOPT_TIMEOUT, 40);
-  curl_setopt($ch, CURLOPT_URL, $url.$query);
-  //ob_start();
-  return curl_exec($ch);
-  //ob_end_clean();
-  curl_close($ch);
+   //echo "Function grab_page() \$url=$url, \$query=$query\n";
+   $ch = curl_init();
+   //UA last updated 5/22/25
+   $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36";
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+   curl_setopt($ch, CURLOPT_HEADER, TRUE);
+   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+   curl_setopt($ch, CURLOPT_USERAGENT, $ua);
+   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+   curl_setopt($ch, CURLOPT_TIMEOUT, 40);
+   curl_setopt($ch, CURLOPT_URL, $url.$query);
+   $response = curl_exec($ch);
+   $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+   curl_close($ch);
+
+   // Split headers and body
+   $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+   $body = substr($response, $headerSize);
+
+   return [
+      'http_code' => $httpCode,
+      'body' => $body
+   ];
+
 } 
 
 function grab_image($url){
 	$ch = curl_init ();
-  $ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0';
+  //UA last updated 5/22/25
+  $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36";
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_USERAGENT, $ua);
@@ -101,7 +112,8 @@ function grab_image($url){
 
 function grab_protected($url, $user, $pw){
 	$ch = curl_init ();
-  $ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0';
+  //UA last updated 5/22/25
+  $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36";
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_USERAGENT, $ua);

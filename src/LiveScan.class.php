@@ -581,8 +581,16 @@ class LiveScan {
     $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
     $q = $this->liveVesselID;
     flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
-    $html = grab_page($url, $q);  
     
+    $response = grab_page($url, $q);
+    //Check for scrape error     
+    if($response['http_code'] != 200) {
+      flog( "Vessel not found in Marine Traffic database: " .$this->liveName);
+      return;
+    }
+
+    $html = $response['body'];  
+        
     //Edit segment from html string
     $startPos = strpos($html,'<title>Ship ')+12;
     $clip     = substr($html, $startPos);

@@ -704,8 +704,9 @@ class Location {
     //flog( "      isNewWaypoint()...\n");
     $status = $this->isAuthenticWaypoint($waypoint, $suppressTrigger);
     if($status) {
-        //Push decription array to location->description
+        //Push description array to location->description
         $zoneName = "m".$waypoint;
+
         $this->description = ZONE::$$zoneName;
         //Push new waypoint to array and do updates
         $this->lastWaypoint = $this->waypoint;     

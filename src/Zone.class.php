@@ -122,15 +122,15 @@ class ZONE {
     public static $m568 =  ["at marker 568, 11 miles above lock 12","at marker 568, 11 miles above lock 12", 568];
     public static $m569 =  ["at marker 569, 12 miles above lock 12","at marker 569, 12 miles above lock 12", 569];
 
-    public static $m570 = ["","", 570];
-    public static $m571 = ["","", 571];
-    public static $m572 = ["","", 572];
-    public static $m573 = ["","", 573];
-    public static $m574 = ["","", 574];
-    public static $m575 = ["","", 575];
-    public static $m576 = ["","", 576];
-    public static $m577 = ["","", 577];
-    public static $m578 = ["","", 578];
+    public static $m570 = ["at marker 570, 13 miles above lock 12","at marker 570, 13 miles above lock 12", 570];
+    public static $m571 = ["at marker 571, 14 miles above lock 12","at marker 571, 14 miles above lock 12", 571];
+    public static $m572 = ["at marker 572, 15 miles above lock 12","at marker 572, 15 miles above lock 12", 572];
+    public static $m573 = ["at marker 573, 16 miles above lock 12","at marker 573, 16 miles above lock 12", 573];
+    public static $m574 = ["at marker 574, 17 miles above lock 12","at marker 574, 17 miles above lock 12", 574];
+    public static $m575 = ["at marker 575, 18 miles above lock 12","at marker 575, 18 miles above lock 12", 575];
+    public static $m576 = ["at marker 576, 19 miles above lock 12","at marker 576, 19 miles above lock 12", 576];
+    public static $m577 = ["at marker 577, 20 miles above lock 12","at marker 577, 20 miles above lock 12", 577];
+    public static $m578 = ["at marker 578, 21 miles above lock 12","at marker 578, 21 miles above lock 12", 578];
     
     public static $malpha = ["3 miles N of Lock 13", "3 miles north of Lock 13", 525];
     public static $mbravo = ["at Lock 13, Fulton", "at Lock 13 by Fulton, Illinois", 522];

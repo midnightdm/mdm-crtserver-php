@@ -653,12 +653,31 @@ class LiveScan {
     $this->liveName     = $data['vesselName'];    
   }  
 
-  public function calculateLocation($suppressTrigger=false) {
+public function calculateLocation($suppressTrigger=false) {
+    flog("      LiveScan::calculateLocation() for {$this->liveName}...\n");
+    
     if($this->liveLocation === null) {
-      $this->liveLocation = new Location($this);
+        flog("      Creating new Location object for {$this->liveName}\n");
+        $this->liveLocation = new Location($this);
     }
-    $this->liveLocation->calculate($suppressTrigger);
-  }
+    
+    try {
+        $success = $this->liveLocation->calculate($suppressTrigger);
+        
+        // Verify calculation worked
+        if ($success === false || empty($this->liveLocation->description)) {
+            flog("      WARNING: Location calculation failed or produced empty results for {$this->liveName}\n");
+            return false;
+        }
+        
+        flog("      Location calculated successfully: " . 
+             (isset($this->liveLocation->description[0]) ? $this->liveLocation->description[0] : "Unknown") . "\n");
+        return true;
+    } catch (Exception $e) {
+        flog("      ERROR in calculateLocation(): " . $e->getMessage() . "\n");
+        return false;
+    }
+}
 
   public function savePassageIfComplete($overRide = false) {
     if($this->livePassageWasSaved || $this->liveIsLocal) {

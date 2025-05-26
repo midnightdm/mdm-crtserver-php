@@ -161,7 +161,7 @@ class LiveScan {
 
   //Depricated Function Not Used
   public function checkDetectEventTrigger() {
-    //Performs trigger when condtions met. (Created 2021-07-31)
+    //Performs trigger when conditions met. (Created 2021-07-31)
     $event = strpos($this->liveVessel->vesselType, "assenger")>-1 ? "detectp" : "detecta";
     flog("LiveScan::checkDetectEventTrigger(".$event.")...\n");
     $ta = !$this->triggerActivated;
@@ -329,15 +329,23 @@ class LiveScan {
     $data['liveLastLon'] = $this->liveLastLon;
     $data['liveDirection'] = $this->liveDirection;
     $data['inCameraRange'] = $this->inCameraRange;
-    //$data['isInCameraRange'] = $this->isInCameraRange;
     $data['liveCamera'] = $this->liveCamera;
     if($this->liveLocation instanceof Location) {
-      $data['liveLocation'] = ucfirst($this->liveLocation->description[0]);
-      $data['rangeMile'] = $this->liveLocation->description[2]; //This is integer
+      // Make sure description is properly initialized
+      if(!isset($this->liveLocation->description) || !is_array($this->liveLocation->description)) {
+        $this->liveLocation->description = ["Not Calculated", "Not Calculated", -1];
+      }
+      
+      // Now safely access elements
+      $data['liveLocation'] = isset($this->liveLocation->description[0]) ? 
+                           ucfirst($this->liveLocation->description[0]) : "Unknown";
+      $data['rangeMile'] = isset($this->liveLocation->description[2]) ? 
+                        $this->liveLocation->description[2] : 0;
       $data['liveEvent']  = $this->liveLocation->event;
       $data['liveEvents'] = $this->liveLocation->events; //This is array
-    } else{
+    } else {
       $data['liveLocation'] = "Location Not Calculated";
+      $data['rangeMile'] = 0;
       $data['liveEvent'] = "";
       $data['liveEvents'] = [];
     }

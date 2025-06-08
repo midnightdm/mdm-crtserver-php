@@ -635,6 +635,8 @@ class LiveScan {
    //      $data['vesselHasImage'] = true;
    //      $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
    //    } else {
+   $data=[];
+   $data['vesselType'] = "Unknown";
    $data['vesselHasImage'] = false;
    $data['vesselImageUrl'] = $cs->no_image;
         //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';

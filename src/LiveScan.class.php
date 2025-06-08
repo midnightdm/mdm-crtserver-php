@@ -576,7 +576,7 @@ class LiveScan {
     flog( '      LiveScan::lookUpVessel() '."\n");
     //See if Vessel data is available locally
     if($data = $this->PlotDaemon->VesselsModel->getVessel($this->liveVesselID)) {
-      //flog( "Vessel found in database: " .$this->liveName);
+      flog( "Vessel found in database: " .$this->liveName);
       $this->liveVessel = new Vessel($data, $this->PlotDaemon);
       //Give saved vesselName to live if it has none or number only
       if($this->liveName == "" || strpos($this->liveName, '[')  || str_contains($this->liveName, "@@")) {

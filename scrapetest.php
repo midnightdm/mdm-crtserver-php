@@ -48,7 +48,7 @@ require_once($path);
 //This is the active part of the app. It creates the daemon object then starts the loop.
 $plotDaemon = new PlotDaemon($config);
 
-//$plotDaemon->setup();
+$plotDaemon->setup();
 //$plotDaemon->run = true;
 //$plotDaemon->reloadSavedScans();
 //sleep(3);

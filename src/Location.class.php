@@ -41,6 +41,7 @@ class Location {
 
   public function calculate($suppressTrigger=false) {
     flog( "      Location::calculate(".$this->live->liveName.")\n");
+    $this->setPoint();
     //Define points of polygons represenating geographic zones
 
 

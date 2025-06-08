@@ -586,72 +586,72 @@ class LiveScan {
     }
     
     //Otherwise scrape data from a website
-    $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
-    $q = $this->liveVesselID;
-    flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
-    flog( "   - URL = ".$url.$q."\n");
-    $response = grab_page($url, $q);
-    flog( "   - Scrape response: " . $response['http_code'] . "\n");
-    //Check for scrape error     
-    if($response['http_code'] != 200) {
-      flog( "   -Vessel not found in Marine Traffic database: " .$this->liveName);
-      return;
-    }
+   //  $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
+   //  $q = $this->liveVesselID;
+   //  flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
+   //  flog( "   - URL = ".$url.$q."\n");
+   //  $response = grab_page($url, $q);
+   //  flog( "   - Scrape response: " . $response['http_code'] . "\n");
+   //  //Check for scrape error     
+   //  if($response['http_code'] != 200) {
+   //    flog( "   -Vessel not found in Marine Traffic database: " .$this->liveName);
+   //    return;
+   //  }
 
-    $html = $response['body'];  
+   //  $html = $response['body'];  
         
-    //Edit segment from html string
-    $startPos = strpos($html,'<title>Ship ')+12;
-    $clip     = substr($html, $startPos);
-    $endPos   = (strpos($clip, ' Registered'));
-    $len      = strlen($clip);
-    $edit     = substr($clip, 0, ($endPos-$len));           
+   //  //Edit segment from html string
+   //  $startPos = strpos($html,'<title>Ship ')+12;
+   //  $clip     = substr($html, $startPos);
+   //  $endPos   = (strpos($clip, ' Registered'));
+   //  $len      = strlen($clip);
+   //  $edit     = substr($clip, 0, ($endPos-$len));           
     
-    //Isolate vessel type from parenthesis
-    $pstart   = strpos($edit, '(');
-    $pend     = strpos($edit, ')');
-    $type     = substr($edit, $pstart+1, ($pend-2));
-    $type     = str_replace(')', '', $type);
-    //Vessel name is first part
-    $name     = substr($edit, 0, $pstart-1); 
+   //  //Isolate vessel type from parenthesis
+   //  $pstart   = strpos($edit, '(');
+   //  $pend     = strpos($edit, ')');
+   //  $type     = substr($edit, $pstart+1, ($pend-2));
+   //  $type     = str_replace(')', '', $type);
+   //  //Vessel name is first part
+   //  $name     = substr($edit, 0, $pstart-1); 
     
-    //Count lookup attempt
-    $this->lookUpCount++;        
+   //  //Count lookup attempt
+   //  $this->lookUpCount++;        
 
-    //assign data gleened from mst table rows
-    $data = [];
-    $data['vesselType'] = $type;
+   //  //assign data gleened from mst table rows
+   //  $data = [];
+   //  $data['vesselType'] = $type;
     
-    //Filter Spare - Local Vessel
-    if($data['vesselType']=="Spare - Local Vessel") {
-      $data['vesselType'] = "Towing";
-    }
+   //  //Filter Spare - Local Vessel
+   //  if($data['vesselType']=="Spare - Local Vessel") {
+   //    $data['vesselType'] = "Towing";
+   //  }
 
     //Try for image
     $cs = new CloudStorage('lookUpVessel() in LiveScan'); 
-    try {      
-      if($cs->scrapeImage($this->liveVesselID)) {
-        $base = $cs->image_base;
-        $data['vesselHasImage'] = true;
-        $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
-      } else {
-        $data['vesselHasImage'] = false;
-        $data['vesselImageUrl'] = $cs->no_image;
+   //  try {      
+   //    if($cs->scrapeImage($this->liveVesselID)) {
+   //      $base = $cs->image_base;
+   //      $data['vesselHasImage'] = true;
+   //      $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $this->liveVesselID.'.jpg'; 
+   //    } else {
+   $data['vesselHasImage'] = false;
+   $data['vesselImageUrl'] = $cs->no_image;
         //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
-      }
-    }
-    catch (exception $e) {
-      $data['vesselHasImage'] = false;
-      $data['vesselImageUrl'] = $cs->no_image;
-    }
+    //  }
+    //}
+   //  catch (exception $e) {
+   //    $data['vesselHasImage'] = false;
+   //    $data['vesselImageUrl'] = $cs->no_image;
+   //  }
     $data['vesselRecordAddedTS'] = time();
     $data['vesselID'] = $this->liveVesselID;
     $data['vesselWatchOn']  = false;
-    $data['vesselName'] = $name; 
+    $data['vesselName'] = $this->liveName; 
     
     $this->liveVessel = new Vessel($data, $this->PlotDaemon);
     //In case scraped data replaced the local above, also update the live object
-    $this->liveName     = $data['vesselName'];    
+    //$this->liveName     = $data['vesselName'];    
   }  
 
 public function calculateLocation($suppressTrigger=false) {

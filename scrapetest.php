@@ -65,11 +65,14 @@ $liveScan = new LiveScan(
     -90.1607883, 
     10.0, 
     180, 
-    null, 
+    $plotDaemon, 
     false, 
     [], 
     $config['aisTestMode']
 );
+
+$liveScan->liveLastLat = 42.1009900;
+$liveScan->liveLastLon = -90.1607883;
 
 $liveScan->lookUpVessel();
 exit;

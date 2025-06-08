@@ -35,6 +35,7 @@ class Location {
   }
 
   public function setPoint() {
+    flog("setPoint() based on liveLastLon/Lat: ".$this->live->liveLastLon.", ".$this->live->liveLastLat."\n");
     $this->point = [$this->live->liveLastLon, $this->live->liveLastLat];
   }
 

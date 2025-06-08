@@ -649,11 +649,15 @@ class LiveScan {
     $data['vesselRecordAddedTS'] = time();
     $data['vesselID'] = $this->liveVesselID;
     $data['vesselWatchOn']  = false;
+
     $data['vesselName'] = $this->liveName; 
     
     $this->liveVessel = new Vessel($data, $this->PlotDaemon);
-    //In case scraped data replaced the local above, also update the live object
-    //$this->liveName     = $data['vesselName'];    
+    //In case name is empty use mmsi # in object
+    if($this->liveName == "") {
+      $this->liveName = strval($this->liveVesselID);
+    }
+       
   }  
 
 public function calculateLocation($suppressTrigger=false) {

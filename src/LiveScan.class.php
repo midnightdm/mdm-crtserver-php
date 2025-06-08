@@ -591,6 +591,7 @@ class LiveScan {
     flog( "Begin scraping for vesselID " . $this->liveVesselID."\n");
     
     $response = grab_page($url, $q);
+    flog( "Scrape response: " . $response['http_code'] . "\n");
     //Check for scrape error     
     if($response['http_code'] != 200) {
       flog( "Vessel not found in Marine Traffic database: " .$this->liveName);

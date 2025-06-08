@@ -28,7 +28,7 @@ class PlotDaemon {
   public $liveScan;
   public $rowsNow;
   public $rowsBefore;
-  protected $run;
+  public $run;  //protected
   public $encoderIsEnabled = false;
   public $encoderIsManualEnabled = false;
   public $encoderEnabledTS = null;

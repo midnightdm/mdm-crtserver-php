@@ -65,7 +65,7 @@ $liveScan = new LiveScan(
     -90.1607883, 
     10.0, 
     180, 
-    $this, 
+    $plotDaemon, 
     false, 
     [], 
     $config['aisTestMode']

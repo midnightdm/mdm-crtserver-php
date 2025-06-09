@@ -616,7 +616,7 @@ class LiveScan {
    //  $name     = substr($edit, 0, $pstart-1); 
     
    //  //Count lookup attempt
-   //  $this->lookUpCount++;        
+   $this->lookUpCount++;        
 
    //  //assign data gleened from mst table rows
    //  $data = [];
@@ -651,13 +651,12 @@ class LiveScan {
     $data['vesselWatchOn']  = false;
 
     $data['vesselName'] = $this->liveName; 
-    
-    $this->liveVessel = new Vessel($data, $this->PlotDaemon);
+       
     //In case name is empty use mmsi # in object
     if($this->liveName == "") {
       $this->liveName = strval($this->liveVesselID);
     }
-       
+    $this->liveVessel = new Vessel($data, $this->PlotDaemon);
   }  
 
 public function calculateLocation($suppressTrigger=false) {

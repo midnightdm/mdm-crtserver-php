@@ -408,6 +408,10 @@ class PlotDaemon {
       //Only perform once every few min to reduce db queries
       flog( "    PlotDaemon::removeOldScans()...   \n");     
       foreach($this->liveScan as $key => $obj) {  
+         //Skip Control Data
+        if($key == 'mmsiControlData') {
+          continue;
+        }
         //Test age of transponder update [changed from move update 3/3/22].  
         $deleteIt = false;       
         flog( "      * Vessel ". $obj->liveName . " last transponder ". ($now - $obj->transponderTS) . " seconds ago (Timeout is " . $this->liveScanTimeout . " seconds) ");
@@ -943,8 +947,14 @@ class PlotDaemon {
         return;
       }
       $this->liveScan = array();
-      foreach($data as $row) {      
+      foreach($data as $row) {
+        
+               
         $key = 'mmsi'. $row['liveVesselID'];
+        //Ignore Control Data for loading to object
+        if($key == 'mmsiControlData') {
+          continue;
+        }
         $this->liveScan[$key] = new LiveScan(null, null, null, null, null, null, null, $this, true, $row);
         
         //Ensure data included liveInitLat & liveInitLon or waypoint passages will fail

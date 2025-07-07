@@ -410,7 +410,8 @@ class PlotDaemon {
       foreach($this->liveScan as $key => $obj) {  
          //Skip Control Data
         if($key == 'mmsiControlData') {
-          continue;
+            flog("    Skipping Control Data object.\n");
+            continue;
         }
         //Test age of transponder update [changed from move update 3/3/22].  
         $deleteIt = false;       

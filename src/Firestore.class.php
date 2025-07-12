@@ -31,9 +31,10 @@ if(!isset($strJsonFileContents)) {
  * This is a custom library to interact with the firebase firestore cloud db
  */
 class Firestore {
-  protected $db;
-  protected $name;
-  public $projectID;
+   protected $db;
+   protected $apiUrl;
+   protected $name;
+   public $projectID;
   
   
 
@@ -67,27 +68,66 @@ class Firestore {
   public function serverTimestamp() {
     return FieldValue::serverTimestamp();
   }
-   
-  public function stepApubID($region) {
+  
+  // Removed region selection 7/12/25
+  public function stepApubID_Old($region) {
+   //Get current apubID from the admin document
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $field = $region == "qc"? 'lastQcApubID' : 'lastApubID'; 
+    $field = 'lastApubID'; 
     $apubID = $admin->data()[$field];
+    //increment it
     $apubID++;
     flog("stepApubID(): $apubID\n");
+    //Update the admin document with the new apubID
     $this->db->collection('Passages')
         ->document('Admin')
         ->set([$field=>$apubID], ['merge'=>true]);
     return $apubID;
   }
 
-  public function getApubID($region) {
+  public function stepApubID() {
+    $apubID = $this->getApubID();
+    if($apubID === false) {
+        flog("stepApubID() failed to retrieve lastApubID from MongoDB.\n");
+        return false;
+    }
+    $apubID++;
+      flog("stepApubID(): $apubID\n");
+    $url = $this->apiUrl."/live/ControlData";
+    $data = [
+        'lastApubID' => $apubID
+    ];
+    $responseMongo = put_page($url, $data);
+
+    if($responseMongo['http_code'] == 200) {
+        flog("stepApubID() updated to $apubID\n");
+        return $apubID;
+    } else {
+        flog("stepApubID() failed with REST Message ${responseMongo['message']}.\n");
+        return false;
+    }
+  }
+
+  // Removed region selection 7/12/25 
+  public function getApubID_Old($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
-    $field = $region=='qc'? 'lastQcApubID' : 'lastApubID';
+    $field = 'lastApubID';
     $apubID = $admin->data()[$field];
     return $apubID;
   }
 
-  public function stepVpubID($region) {
+  public function getApubID() {
+      $url = $this->apiUrl."/live/ControlData";
+      $responseMongo = grab_page($url);
+      if($responseMongo && isset($responseMongo['lastApubID'])) {
+          return $responseMongo['lastApubID'];
+      } else {
+          flog("getApubID() failed to retrieve lastApubID from MongoDB.\n");
+          return false;
+      }
+  }
+
+  public function stepVpubID_Old($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
     //$field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
     //Altered 9/18/23 to share vpub directory and ids
@@ -100,14 +140,48 @@ class Firestore {
         ->set([$field=>$vpubID], ['merge'=>true]);
     return $vpubID;
   }
+
+  public function stepVpubID() {
+    $vpubID = $this->getVpubID();
+    if($vpubID === false) {
+        flog("stepVpubID() failed to retrieve lastVpubID from MongoDB.\n");
+        return false;
+    }
+    $vpubID++;
+      flog("stepVpubID(): $vpubID\n"); 
+    $url = $this->apiUrl."/live/ControlData";
+    $data = [
+        'lastVpubID' => $vpubID
+    ];
+    $responseMongo = put_page($url, $data);
+
+    if($responseMongo['http_code'] == 200) {
+        flog("stepVpubID() updated to $vpubID\n");
+        return $vpubID;
+    } else {
+        flog("stepVpubID() failed with REST Message ${responseMongo['message']}.\n");
+        return false;
+    }
+  }
    
-  public function getVpubID($region) {
+  public function getVpubID_Old($region) {
     $admin = $this->db->collection('Passages')->document('Admin')->snapshot();
     //Altered 9/18/23 to put all in one
     //$field = $region=='qc'? 'lastQcVpubID' : 'lastVpubID';
     $field = 'lastVpubID';
     $vpubID = $admin->data()[$field];
     return $vpubID;
+  }
+
+  public function getVpubID() {
+      $url = $this->apiUrl."/live/ControlData";
+      $responseMongo = grab_page($url);
+      if($responseMongo && isset($responseMongo['lastVpubID'])) {
+          return $responseMongo['lastVpubID'];
+      } else {
+          flog("getVpubID() failed to retrieve lastVpubID from MongoDB.\n");
+          return false;
+      }
   }
 
   public function setClCamera($camera) {

@@ -385,74 +385,7 @@ class LiveScan {
     $this->PlotDaemon->LiveScanModel->updateLiveScan($data);
   }
 
-  public function determineSegment($lat) {
-    //Calculates river segment 0-4 below, between or above waypoints
-    if($lat < MARKER_DELTA_LAT) {
-      return 0;
-    } elseif($lat > MARKER_DELTA_LAT  && $lat < MARKER_CHARLIE_LAT) {
-      return 1;
-    } elseif($lat > MARKER_CHARLIE_LAT && $lat < MARKER_BRAVO_LAT) {
-      return 2;
-    } elseif($lat > MARKER_BRAVO_LAT && $lat < MARKER_ALPHA_LAT) {
-      return 3;
-    } elseif($lat > MARKER_ALPHA_LAT) {
-      return 4;
-    } else {
-      return null;
-    }
-  }
 
-
-  public function determineEncoderStartConditions_old() {
-    flog("         - determineEncoderStartConditions(".$this->liveName.")");
-    //Has determination score reached the deactivation threshold with encoder enabled?
-    if($this->PlotDaemon->encoderIsEnabled && $this->PlotDaemon->encoderEnabledScore < 1) {
-      //Yes, then send deactivation command to the database
-      $this->PlotDaemon->AdminTriggersModel->resetEncoderStart();
-      flog("\n        resetEncoderStart()");
-      return;
-    }
-    //Has live stream exceeded timeout value?
-    $now = time();
-    if($this->PlotDaemon->encoderIsEnabled && $now - $this->PlotDaemon->encoderEnabledTS > $this->PlotDaemon->encoderTimeoutValue) {
-      //Yes, then decrease determination score. 
-      $this->PlotDaemon->encoderEnabledScore--;
-      flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
-      return;
-    }//No, then test other conditions
-    //Is this vessel on the target list? 
-    if(!in_array(strval($this->liveVesselID), $this->PlotDaemon->encoderWatchList, true)) {
-        flog(" = FALSE\n");
-      return; //No, done
-    } //Yes, continue
-    //Is vessel in watch area (based on travel direction)?
-    $isInWatchArea = false;
-    if($this->liveDirection=="upriver") {
-      if(in_array($this->liveLocation->mm, $this->PlotDaemon->encoderUpriverWatch)) {
-        $isInWatchArea = true;
-      } 
-    } else if($this->liveDirection == "downriver") {
-      if(in_array($this->liveLocation->mm, $this->PlotDaemon->encoderDnriverWatch)) {
-        $isInWatchArea = true;
-      }
-    }
-    if(!$isInWatchArea) { 
-      //No, then we're done, but demerit if encoder is on.
-      if($this->PlotDaemon->encoderIsEnabled) {
-        $this->PlotDaemon->encoderEnabledScore--;
-        flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
-      }
-    } //Yes, continue
-    //Has the determination score reached activation threshold?
-    if($this->PlotDaemon->encoderEnabledScore > 2) {
-      //Yes, then send encoder start command to the database
-      $this->PlotDaemon->AdminTriggersModel->setEncoderStart($this);
-      flog("\n        running setEncoderStart()");
-      return;
-    }//No, then increase determination score. Maybe activation next round.
-    $this->PlotDaemon->encoderEnabledScore++;
-    flog("\n         Encoder Score=".$this->PlotDaemon->encoderEnabledScore);
-  }
 
 
   public function determineEncoderStartConditions() {

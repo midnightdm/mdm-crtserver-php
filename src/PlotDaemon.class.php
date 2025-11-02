@@ -800,7 +800,16 @@ class PlotDaemon {
       } else {
         $sentMt = 0;
       }
-      flog( "  Also sent $sentMst bytes to myshiptracking, vesselfinder & marinetraffic\n");
+
+      //Forward NMEA sentence to aisfriends.comm
+      $mtSock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+      if($mtSock) {
+        $sentAf = socket_sendto($mtSock, $msg, $len, 0, 'ais.aisfriends.com', 15976);
+        socket_close($mtSock);
+      } else {
+        $sentAf = 0;
+      }
+      flog( "  Also sent $sentMst bytes to myshiptracking, vesselfinder, marinetraffic & aisfriends.com\n");
     }
   }
 

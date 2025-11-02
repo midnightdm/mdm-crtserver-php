@@ -293,13 +293,11 @@ class ZONE {
     public static $m632 = ["at marker 632, 1 mi below Prarie duChien, WI", "at marker 632, 1 mile below Prairie du Chien, Wisconsin", 632];
 
 
-
-
     public static $mlock10 = ["at Lock 10, Guttenberg", "at Lock and Dam 10 in Guttenberg, Iowa", 615];
     public static $mlock11 = ["at Lock 11, Dubuque", "at Lock and Dam 11 in Dubuque, Iowa", 583];
-    public static $mus61bridge = ["at US 61 bridge, Dubuque", "at the US Highway 61 bridge in Dubuque, Iowa", 579];
-    public static $mdubuquerrdrawbridge = ["at Dubuque RR drawbridge", "at Dubuque's railroad drawbridge", 580];
     public static $mus20bridge = ["at US 20 bridge, Dubuque", "at the US Highway 20 bridge in Dubuque, Iowa", 581];
+    public static $mdubuquerrdrawbridge = ["at Dubuque RR drawbridge", "at Dubuque's railroad drawbridge", 580];
+    public static $mus61bridge = ["at US 61 bridge, Dubuque", "at the US Highway 61 bridge in Dubuque, Iowa", 579];
     public static $mlock12 = ["at Lock 12, Bellevue", "at Lock and Dam 12 in Bellevue, Iowa", 557];
     public static $malpha = ["3 miles N of Lock 13", "3 miles north of Lock 13", 525];
     public static $mbravo = ["at Lock 13, Fulton", "at Lock 13 by Fulton, Illinois", 522];

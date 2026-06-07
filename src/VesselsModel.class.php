@@ -93,6 +93,7 @@ class VesselsModel extends Firestore {
       }
   }
   
+  
   public function updateVesselLastDetectedTS($vesselID, $ts) {
     //In Vessels/:id document
     $document = $this->db->collection('Vessels')->document('mmsi'.$vesselID);
@@ -170,44 +171,45 @@ class VesselsModel extends Firestore {
     // Use placeholder data for now until new scraper is built
 
     $data = [];
-    $data['vesselType'] = "Unknown Type";
+    $name = $vesselID;
+    $data['vesselType'] = $vesselID;
     $data['vesselHasImage'] = false;
     $data['vesselImageUrl'] = $this->cs->no_image;
       
-    //Try for image
-    try {
-      if($this->cs->scrapeImage($vesselID)) {
-        $base = $this->cs->image_base;
-        $data['vesselHasImage'] = true;
-        $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $vesselID.'.jpg';      
-      } else {
-        $data['vesselHasImage'] = false;
-        $data['vesselImageUrl'] = $this->cs->no_image;
-        //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
-      }
-    }
-    catch (exception $e) {
-      $data['vesselHasImage'] = false;
-      $data['vesselImageUrl'] = $this->cs->no_image;
-    }
+    // //Try for image
+    // try {
+    //   if($this->cs->scrapeImage($vesselID)) {
+    //     $base = $this->cs->image_base;
+    //     $data['vesselHasImage'] = true;
+    //     $data['vesselImageUrl'] = $base.'images/vessels/mmsi' . $vesselID.'.jpg';      
+    //   } else {
+    //     $data['vesselHasImage'] = false;
+    //     $data['vesselImageUrl'] = $this->cs->no_image;
+    //     //'https://storage.googleapis.com/www.clintonrivertraffic.com/images/vessels/no-image-placard.jpg';
+    //   }
+    // }
+    // catch (exception $e) {
+    //   $data['vesselHasImage'] = false;
+    //   $data['vesselImageUrl'] = $this->cs->no_image;
+    // }
     //data gleaned locally by daemon needs done remotely in manual admin add
     $data['vesselRecordAddedTS'] = time();
     $data['vesselWatchOn']  = false;
     $data['vesselID']       = $vesselID;
     
-    //Test for no data returned which is probably bad vesselID 
-    if($name=="---") {
-      return ["error"=>"The provided Vessel ID was not found."];
-    }
+    // //Test for no data returned which is probably bad vesselID 
+    // if($name=="---") {
+    //   return ["error"=>"The provided Vessel ID was not found."];
+    // }
  
     
     //Cleanup parsing needed for some data
     //$name     = trim(substr($name, $startPos)); //Remove white spaces
-    $name     = str_replace(',', '', $name);   //Remove commas (,)
-    $name     = str_replace('.', ' ', $name); //Add space after (.)
-    $name     = str_replace('  ', ' ', $name); //Remove double space
-    $name     = ucwords(strtolower($name)); //Change capitalization
-    $data['vesselName'] = $name;
+    // $name     = str_replace(',', '', $name);   //Remove commas (,)
+    // $name     = str_replace('.', ' ', $name); //Add space after (.)
+    // $name     = str_replace('  ', ' ', $name); //Remove double space
+    // $name     = ucwords(strtolower($name)); //Change capitalization
+    $data['vesselName'] = strval($name);
 
     return $data;
   } 

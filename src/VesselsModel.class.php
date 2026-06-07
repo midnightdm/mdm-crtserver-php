@@ -135,28 +135,29 @@ class VesselsModel extends Firestore {
       //echo "Vessel found in database: " . var_dump($data);
       return ["error"=>"Vessel ID is already in the database."];
     }
-    //Otherwise scrape data from a website UPDATED 7/13/22
-    $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
-    $q = $vesselID;
-    $response = grab_page($url, $q);  
-    if($response['http_code'] != 200) {
-      return ["error"=>"Unable to connect to MarineTraffic.com"];
-    }
-    $html = $response['body'];
-    //Edit segment from html string
-    $startPos = strpos($html,'<title>Ship ')+12;
-    $clip     = substr($html, $startPos);
-    $endPos   = (strpos($clip, ' Registered'));
-    $len      = strlen($clip);
-    $edit     = substr($clip, 0, ($endPos-$len));           
+
+    // //Otherwise scrape data from a website UPDATED 7/13/22
+    // $url = 'https://www.marinetraffic.com/en/ais/details/ships/mmsi:';
+    // $q = $vesselID;
+    // $response = grab_page($url, $q);  
+    // if($response['http_code'] != 200) {
+    //   return ["error"=>"Unable to connect to MarineTraffic.com"];
+    // }
+    // $html = $response['body'];
+    // //Edit segment from html string
+    // $startPos = strpos($html,'<title>Ship ')+12;
+    // $clip     = substr($html, $startPos);
+    // $endPos   = (strpos($clip, ' Registered'));
+    // $len      = strlen($clip);
+    // $edit     = substr($clip, 0, ($endPos-$len));           
     
-    //Isolate vessel type from parenthesis
-    $pstart   = strpos($edit, '(');
-    $pend     = strpos($edit, ')');
-    $type     = substr($edit, $pstart+1, ($pend-2));
-    $type     = str_replace(')', '', $type); 
-    //Vessel name is first part
-    $name     = substr($edit, 0, $pstart-1);
+    // //Isolate vessel type from parenthesis
+    // $pstart   = strpos($edit, '(');
+    // $pend     = strpos($edit, ')');
+    // $type     = substr($edit, $pstart+1, ($pend-2));
+    // $type     = str_replace(')', '', $type); 
+    // //Vessel name is first part
+    // $name     = substr($edit, 0, $pstart-1);
 
 
     /*/Use DOM Document class
@@ -164,10 +165,14 @@ class VesselsModel extends Firestore {
     @ $dom->loadHTML($html);
     */
     //assign data gleened from mst table rows
+
+
+    // Use placeholder data for now until new scraper is built
+
     $data = [];
-    $data['vesselType'] = $type;
-    //$data['vesselOwner'] = $rows->item(11)->getElementsByTagName('td')->item(1)->textContent;
-    //$data['vesselBuilt'] = $rows->item(12)->getElementsByTagName('td')->item(1)->textContent;
+    $data['vesselType'] = "Unknown Type";
+    $data['vesselHasImage'] = false;
+    $data['vesselImageUrl'] = $this->cs->no_image;
       
     //Try for image
     try {

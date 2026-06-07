@@ -41,7 +41,7 @@ class PlotDaemon {
   public $currentCameraName;
   public $lastCameraName;
   public $lastCameraSwitch;
-
+  public $lastPassagesSave;
   public $lastCleanUp;
   public $lastJsonSave;
 
@@ -64,6 +64,40 @@ class PlotDaemon {
 
   public $siteNames;
   public $camNames;
+  public $defaultCameraName;
+  
+ // Config values to be set in config.php
+  public $sockerDataTimer;
+  public $nonVesselFilter;
+  public $localVesselFilter;
+  public $socket_address;
+  public $socket_port;
+  public $encoderUrl;
+  public $streamUrl;
+  public $streamPath;
+  public $streamKey;
+  public $encoderUsr;
+  public $encoderPwd;
+  public $encoderWatchList;
+  public $encoderUpriverWatch;
+  public $encoderDnriverWatch;
+  public $encoderTimeoutValue;
+  public $errEmail;
+  public $ais;
+  public $cs;
+  public $videoIsPassing;
+  public $encoderWatchListArr;
+  public $encoderUpriverWatchArr;
+  public $encoderDnriverWatchArr;
+  public $encoderWatchListArrUpriver;
+  public $encoderWatchListArrDnriver;
+  public $socketDataTimer;
+  public $inCamRangeRotKey;
+  public $dbHost;
+  public $dbUser;
+  public $dbPwd;
+  public $dbName;
+
 
 
   public function __construct($config_ref) {

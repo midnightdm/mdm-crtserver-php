@@ -506,7 +506,7 @@ class LiveScan {
 
 
   public function lookUpVessel() {   
-    flog( '      LiveScan::lookUpVessel() '."\n");
+    flog( '      LiveScan::lookUpVessel('.$this->liveVesselID.') '."\n");
     //See if Vessel data is available locally
     if($data = $this->PlotDaemon->VesselsModel->getVessel($this->liveVesselID)) {
       flog( "Vessel found in database: " .$this->liveName);

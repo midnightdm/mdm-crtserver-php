@@ -27,6 +27,7 @@ class CloudStorage {
     public $image_base;
     public $no_image; 
 
+
     public function __construct($caller='unspecified') {
         //flog("INIT: CloudStorage called by $caller\n");
         global $config;
@@ -36,7 +37,7 @@ class CloudStorage {
         $this->no_image = $config['no_image'];
         
         //# Your Google Cloud Platform project ID
-        $this->projectId = $config['cloud_projectID'];
+        $this->projectID = $config['cloud_projectID'];
         
         flog("CloudStorage::__construct() -> google cred:".GOOGLE_APPLICATION_CREDENTIALS['project_id']."\n");
         $this->storage = new StorageClient([

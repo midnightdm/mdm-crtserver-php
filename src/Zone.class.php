@@ -307,6 +307,12 @@ class ZONE {
     public static $mfoxtrot = ["at Lock 14, Princeton","at Lock 14 by Princeton, Iowa", 493];
     public static $mgolf = ["at Lock 15, Davenport", "at Lock 15 in Davenport", 482];
     public static $mhotel = ["at I-280 bridge, Davenport", "at the Interstate two-eighty bridge in Davenport", 478];
+    public static $mindia = ["at lock 16, Muscatine", "at Lock 16 in Muscatine, Iowa", 457];
+    public static $mjuliet = ["at Lock 17, New Boston", "at Lock 17 by New Boston, Illinois", 437];
+    public static $mkilo = ["at Lock 18, Gladstone", "at Lock 18 by Gladstone, Illinois", 410];
+    public static $mlima = ["at US 34 bridge, Burlington", "at the US Highway 34 bridge in Burlington, Iowa", 404];
+    public static $mmike = ["at Fort Madison drawbridge", "at the Fort Madison railroad drawbridge", 383];
+    public static $mnovember = ["at Lock 19, Keokuk", "at Lock 19 by Keokuk, Iowa", 364];
     public static $mlakepotter = ["at Sunset Marina, Rock Island", "at Lake Potter, the home of Sunset Marina in Rock Island", 479];
     public static $mcredit_island_slough = ["in Davenport Harbor", "at Davenport Harbor in Credit Island Slough",479];
 

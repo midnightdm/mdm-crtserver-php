@@ -97,6 +97,11 @@ class LiveScan {
       $this->PlotDaemon->LiveScanModel->deleteLiveScan($this->liveVesselID);
     //New Construct        
     } else {
+      $isNonVessel = in_array($id, $this->PlotDaemon->nonVesselFilter);
+      if($isNonVessel) {
+        flog("Vessel $id is marked as non-vessel, constructor stopped.\n");
+        return;
+      }
       $this->setTimestamp($ts, 'liveInitTS');
       $this->setTimestamp($ts, 'liveLastTS');
       $this->setTimestamp($ts, 'transponderTS');
@@ -561,7 +566,7 @@ class LiveScan {
    //  }
 
     //Try for image
-    $cs = new CloudStorage('lookUpVessel() in LiveScan'); 
+   $cs = new CloudStorage('lookUpVessel() in LiveScan'); 
    //  try {      
    //    if($cs->scrapeImage($this->liveVesselID)) {
    //      $base = $cs->image_base;

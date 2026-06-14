@@ -15,7 +15,8 @@ class PassagesModel extends Firestore {
 
 
    public function savePassage($liveScanObj) {
-      $data['passageVesselID'] = $liveScanObj->liveVesselID;
+      $vesselID = strval($liveScanObj->liveVesselID);
+      $data['passageVesselID'] = $vesselID;
       $data['passageDirection']       = $liveScanObj->liveDirection;
       if($liveScanObj->liveLocation instanceof Location) {
       $data['passageEvents'] = $liveScanObj->liveLocation->events;
@@ -63,7 +64,7 @@ class PassagesModel extends Firestore {
       $humanDate = date('M d, Y', $firstEventTS);
       $model =  [
                "date" => $humanDate,
-               "id" => $liveScanObj->liveVesselID,
+               "id" => $vesselID,
                "image" => $liveScanObj->liveVessel->vesselImageUrl,
                "name"  => $liveScanObj->liveName,
                "type"  => $liveScanObj->liveVessel->vesselType
@@ -94,30 +95,42 @@ class PassagesModel extends Firestore {
 
       //Send same data to MongoDb through API
       $url1 = $this->apiUrl."/vessels/passage";
-      $responseMongo = post_page($url1, 
-         [
-            'passageVesselID' => $data['passageVesselID'],
-            'date' => $data['date'],
-            'passageData'=>  $data 
-         ]);
+      $vesselPayload = [
+         'passageVesselID' => $vesselID,
+         'date' => $data['date'],
+         'passageData' => $data
+      ];
+      $responseMongo = post_page($url1, $vesselPayload);
+      if($responseMongo === false || str_contains(strtolower(strval($responseMongo)), 'error')) {
+         flog("\033[41m PassagesModel::savePassage vessel endpoint error for mmsi$vesselID: ".strval($responseMongo)."\033[0m\n");
+      } else {
          flog( "\033[33m           Passage records for $liveScanObj->liveName vessel saved to Mongo ".getNow()."\n                \033[0m\n");
+      }
 
       $url2 = $this->apiUrl."/passagelogs/month";
       flog( "\033[33m           Save month $month day $day ".getNow()."\033[0m\n");
-      $responseMongo = post_page($url2,
-         [
-            'month' => $month,
-            'day' => $day,
-            'passageVesselID' => $data['passageVesselID'],
-            'passageData'=> $data
-         ]);
+      $monthPassageData = $data;
+      $monthPassageData['passageVesselID'] = intval($vesselID);
+      $monthPayload = [
+         'month' => $month,
+         'day' => intval($day),
+         'passageVesselID' => intval($vesselID),
+         'passageData' => $monthPassageData
+      ];
+      $responseMongo = post_page($url2, $monthPayload);
+      if($responseMongo === false || str_contains(strtolower(strval($responseMongo)), 'error')) {
+         flog("\033[41m PassagesModel::savePassage month endpoint error for mmsi$vesselID: ".strval($responseMongo)."\033[0m\n");
+      }
 
       $url3 = $this->apiUrl."/passagelogs/last";
-      $responseMongo = post_page($url3,
-         [
-            'passageVesselID' => $data['passageVesselID'],
-            'passageSummary'=> $model
-         ]);
+      $lastPayload = [
+         'passageVesselID' => $vesselID,
+         'passageSummary' => $model
+      ];
+      $responseMongo = post_page($url3, $lastPayload);
+      if($responseMongo === false || str_contains(strtolower(strval($responseMongo)), 'error')) {
+         flog("\033[41m PassagesModel::savePassage last endpoint error for mmsi$vesselID: ".strval($responseMongo)."\033[0m\n");
+      }
 
    }
 
